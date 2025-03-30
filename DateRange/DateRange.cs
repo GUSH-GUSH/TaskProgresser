@@ -27,6 +27,18 @@ namespace MyUtils
         }
 
 
+        public int TotalWeeks { get => (int)((End - Start).TotalDays / 7) + 1; }
+        public int TotalDays { get => (int)(End - Start).TotalDays; }
+
+
+
+        private void VerifyDateTimePoint(DateTime point)
+        {
+            if (point < Start || End < point)
+                throw new ArgumentOutOfRangeException($"The point ({point}) is not in range {ToString()}");
+        }
+        
+        
         /// <summary>
         /// Принимает временную отметку, и возвращает долю, которую она составляет от текущего диапазона
         /// </summary>
@@ -34,18 +46,29 @@ namespace MyUtils
         /// <returns>[0 ... 1]</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public double GetFractionOf(DateTime point) {
-            if (point < Start || End < point)
-                throw new ArgumentOutOfRangeException($"The point ({point}) is not in range {this.ToString()}");
+            VerifyDateTimePoint(point);
+
+            return (point - Start).TotalMinutes / Length.TotalMinutes;
+        }
+
+
+
+
+        public int GetWeekOf(DateTime point) {
+            VerifyDateTimePoint(point);
             
-            TimeSpan currentLength = point - Start;
-            double fraction = currentLength.TotalMinutes / Length.TotalMinutes;
-            
-            return fraction;
+            return (int)((point - Start).TotalDays / 7) + 1;
+        }
+
+        public int GetDayOf(DateTime point)
+        {
+            VerifyDateTimePoint(point);
+
+            return (int)(point - Start).TotalDays;
         }
 
 
         public override string ToString() => $"[{Start}, {End}]";
-
         public override bool Equals(object obj) => obj?.GetType() == GetType() && obj.ToString() == ToString();
         public override int GetHashCode() => ToString().GetHashCode();
     }
