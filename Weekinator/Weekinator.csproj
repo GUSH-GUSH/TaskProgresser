@@ -79,5 +79,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DateRange\DateRange.csproj">
+      <Project>{65236863-f7a8-45b5-9cfe-a8872072aa8d}</Project>
+      <Name>DateRange</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
