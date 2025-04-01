@@ -117,4 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>ToDo:
+* Динамический выбор диапазона
+   -&gt; Вариант1: Отдельное окно для такого диапазона
+   -&gt;  Вариант2: Динамический выбор под шкалой процента (нужна динамическая валидация)
+* Сохранение в конфигурационный файл
+* Вывод в трей чисельник/знаменик
+* Фикс позиционирования процента +
+
+Как вариант
+* Трансформация этой концепции потенциально в "отдельный класс" - весь класс "panel"
+</value>
+  </data>
 </root>

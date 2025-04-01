@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MainProgressBar = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.PrecentLabel = new System.Windows.Forms.Label();
-            this.StartDate = new System.Windows.Forms.DateTimePicker();
             this.EndDate = new System.Windows.Forms.DateTimePicker();
+            this.StartDate = new System.Windows.Forms.DateTimePicker();
+            this.PrecentLabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +62,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(581, 90);
             this.panel1.TabIndex = 1;
+            this.panel1.Resize += new System.EventHandler(this.panel1_Resize);
+            // 
+            // EndDate
+            // 
+            this.EndDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.EndDate.Location = new System.Drawing.Point(381, 70);
+            this.EndDate.MaxDate = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
+            this.EndDate.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
+            this.EndDate.Name = "EndDate";
+            this.EndDate.Size = new System.Drawing.Size(200, 20);
+            this.EndDate.TabIndex = 5;
+            this.EndDate.ValueChanged += new System.EventHandler(this.EndDate_ValueChanged);
+            // 
+            // StartDate
+            // 
+            this.StartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.StartDate.Location = new System.Drawing.Point(0, 70);
+            this.StartDate.MaxDate = new System.DateTime(2026, 6, 17, 0, 0, 0, 0);
+            this.StartDate.MinDate = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
+            this.StartDate.Name = "StartDate";
+            this.StartDate.Size = new System.Drawing.Size(200, 20);
+            this.StartDate.TabIndex = 4;
+            this.StartDate.Value = new System.DateTime(2025, 4, 10, 0, 0, 0, 0);
+            this.StartDate.ValueChanged += new System.EventHandler(this.StartDate_ValueChanged);
             // 
             // PrecentLabel
             // 
@@ -68,33 +94,27 @@
             this.PrecentLabel.AutoSize = true;
             this.PrecentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PrecentLabel.Location = new System.Drawing.Point(65, 17);
-            this.PrecentLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.PrecentLabel.Margin = new System.Windows.Forms.Padding(0);
             this.PrecentLabel.Name = "PrecentLabel";
             this.PrecentLabel.Size = new System.Drawing.Size(41, 20);
             this.PrecentLabel.TabIndex = 2;
             this.PrecentLabel.Text = "59%";
             // 
-            // StartDate
+            // textBox1
             // 
-            this.StartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.StartDate.Location = new System.Drawing.Point(0, 70);
-            this.StartDate.Name = "StartDate";
-            this.StartDate.Size = new System.Drawing.Size(200, 20);
-            this.StartDate.TabIndex = 4;
-            // 
-            // EndDate
-            // 
-            this.EndDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.EndDate.Location = new System.Drawing.Point(381, 70);
-            this.EndDate.Name = "EndDate";
-            this.EndDate.Size = new System.Drawing.Size(200, 20);
-            this.EndDate.TabIndex = 5;
+            this.textBox1.Location = new System.Drawing.Point(100, 70);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(502, 139);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 376);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(526, 200);
             this.Name = "Form1";
@@ -103,6 +123,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -113,6 +134,7 @@
         private System.Windows.Forms.DateTimePicker EndDate;
         private System.Windows.Forms.DateTimePicker StartDate;
         private System.Windows.Forms.Label PrecentLabel;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

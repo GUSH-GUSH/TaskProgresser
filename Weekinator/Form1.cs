@@ -9,11 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace Weekinator
 {
     public partial class Form1 : Form
     {
+        private DateRange dateRange;
+        private double fract;
         public Form1()
         {
             InitializeComponent();
@@ -21,7 +24,8 @@ namespace Weekinator
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DateRange dateRange = new DateRange(new DateTime(2025, 02, 03), new DateTime(2025, 05, 23));
+            SetDateRange(new DateTime(2025, 02, 03), new DateTime(2025, 05, 23));
+            
             DateTime point = DateTime.Now;
 
             Debug.WriteLine("");
@@ -34,17 +38,58 @@ namespace Weekinator
             Debug.WriteLine($"Total precent: {Math.Round(dateRange.GetFractionOf(point) * 100, 3)}%");
             Debug.WriteLine($"Week mark: " + ((dateRange.GetWeekOf(point) % 2 == 0) ? "Znamenyk" : "Chiselnyk"));
 
-            double fract = dateRange.GetFractionOf(point);
+            fract = dateRange.GetFractionOf(point);
 
-            MainProgressBar.Value = (int)(fract * MainProgressBar.Maximum);
-            StartDate.Value = dateRange.Start;
-            EndDate.Value = dateRange.End;
+
+            UpdatePrecentLabelText();
+            UpdatePrecentLabelLocation();
+            UpdateMainProgressBarValue();
+        }
+
+        private void SetDateRange(DateTime start, DateTime end) {
+            dateRange = new DateRange(start, end);
+            StartDate.Value = start;
+            StartDate.MaxDate = DateTime.Now;
+
+            EndDate.Value = end;
+            EndDate.MinDate = DateTime.Now.AddDays(1);
+        }
+        private void UpdatePrecentLabelText() {
             PrecentLabel.Text = $"{Math.Round(fract * 100, 2)}%";
-
+        }
+        private void UpdatePrecentLabelLocation() {
             PrecentLabel.Location = new Point(
                 (int)(MainProgressBar.Location.X - PrecentLabel.Size.Width / 2 + MainProgressBar.Size.Width * fract),
                 PrecentLabel.Location.Y);
+        }
+        private void UpdateMainProgressBarValue()
+        {
+            MainProgressBar.Value = (int)(fract * MainProgressBar.Maximum);
+        }
 
+        private void panel1_Resize(object sender, EventArgs e)
+        {
+            UpdatePrecentLabelLocation();
+        }
+
+        private void StartDate_ValueChanged(object sender, EventArgs e)
+        {
+            SetDateRange(StartDate.Value, dateRange.End);
+            fract = dateRange.GetFractionOf(DateTime.Now); //Очень условно пока-что
+            UpdatePrecentLabelText();
+            UpdatePrecentLabelLocation();
+            UpdateMainProgressBarValue();
+        }
+
+        private void EndDate_ValueChanged(object sender, EventArgs e)
+        {
+            //if(StartDate.Value > ...) Проверка, что выбранная дата не уходит за диапазон
+            //Эта проверка уже не нужна, т.к. все проерки сделаны путём ограничения выбора даты
+            SetDateRange(dateRange.Start, EndDate.Value);
+            fract = dateRange.GetFractionOf(DateTime.Now); //Очень условно пока-что
+            UpdatePrecentLabelText();
+            UpdatePrecentLabelLocation();
+            UpdateMainProgressBarValue();
         }
     }
 }
