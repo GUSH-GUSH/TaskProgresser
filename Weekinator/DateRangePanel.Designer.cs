@@ -1,13 +1,13 @@
 ﻿namespace Weekinator
 {
-    partial class Form1
+    partial class DateRangePanel
     {
-        /// <summary>
+        /// <summary> 
         /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Освободить все используемые ресурсы.
         /// </summary>
         /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
@@ -20,61 +20,44 @@
             base.Dispose(disposing);
         }
 
-        #region Код, автоматически созданный конструктором форм Windows
+        #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary>
+        /// <summary> 
         /// Требуемый метод для поддержки конструктора — не изменяйте 
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.MainProgressBar = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.EndDate = new System.Windows.Forms.DateTimePicker();
             this.StartDate = new System.Windows.Forms.DateTimePicker();
             this.PrecentLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.MainProgressBar = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // MainProgressBar
-            // 
-            this.MainProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainProgressBar.Location = new System.Drawing.Point(60, 40);
-            this.MainProgressBar.Maximum = 10000;
-            this.MainProgressBar.Name = "MainProgressBar";
-            this.MainProgressBar.Size = new System.Drawing.Size(461, 23);
-            this.MainProgressBar.TabIndex = 0;
-            this.MainProgressBar.Value = 6000;
-            // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.EndDate);
             this.panel1.Controls.Add(this.StartDate);
             this.panel1.Controls.Add(this.PrecentLabel);
             this.panel1.Controls.Add(this.MainProgressBar);
-            this.panel1.Location = new System.Drawing.Point(40, 246);
-            this.panel1.MinimumSize = new System.Drawing.Size(430, 30);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.MinimumSize = new System.Drawing.Size(430, 90);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(581, 90);
-            this.panel1.TabIndex = 1;
-            this.panel1.Resize += new System.EventHandler(this.panel1_Resize);
+            this.panel1.Size = new System.Drawing.Size(430, 90);
+            this.panel1.TabIndex = 2;
             // 
             // EndDate
             // 
             this.EndDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.EndDate.Location = new System.Drawing.Point(381, 70);
+            this.EndDate.Location = new System.Drawing.Point(230, 70);
             this.EndDate.MaxDate = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             this.EndDate.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
             this.EndDate.Name = "EndDate";
             this.EndDate.Size = new System.Drawing.Size(200, 20);
             this.EndDate.TabIndex = 5;
-            this.EndDate.ValueChanged += new System.EventHandler(this.EndDate_ValueChanged);
             // 
             // StartDate
             // 
@@ -87,7 +70,6 @@
             this.StartDate.Size = new System.Drawing.Size(200, 20);
             this.StartDate.TabIndex = 4;
             this.StartDate.Value = new System.DateTime(2025, 4, 10, 0, 0, 0, 0);
-            this.StartDate.ValueChanged += new System.EventHandler(this.StartDate_ValueChanged);
             // 
             // PrecentLabel
             // 
@@ -102,53 +84,37 @@
             this.PrecentLabel.TabIndex = 2;
             this.PrecentLabel.Text = "59%";
             // 
-            // textBox1
+            // MainProgressBar
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 26);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(502, 139);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
-            this.textBox1.Visible = false;
+            this.MainProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainProgressBar.Location = new System.Drawing.Point(60, 40);
+            this.MainProgressBar.Maximum = 10000;
+            this.MainProgressBar.Name = "MainProgressBar";
+            this.MainProgressBar.Size = new System.Drawing.Size(310, 23);
+            this.MainProgressBar.TabIndex = 0;
+            this.MainProgressBar.Value = 6000;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(291, 227);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
-            // 
-            // Form1
+            // DateRangePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 376);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel1);
-            this.MinimumSize = new System.Drawing.Size(526, 200);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.MinimumSize = new System.Drawing.Size(430, 90);
+            this.Name = "DateRangePanel";
+            this.Size = new System.Drawing.Size(430, 90);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ProgressBar MainProgressBar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker EndDate;
         private System.Windows.Forms.DateTimePicker StartDate;
         private System.Windows.Forms.Label PrecentLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar MainProgressBar;
     }
 }
-

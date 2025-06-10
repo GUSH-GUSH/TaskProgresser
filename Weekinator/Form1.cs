@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.SymbolStore;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
@@ -25,9 +27,9 @@ namespace Weekinator
         private void Form1_Load(object sender, EventArgs e)
         {
             SetDateRange(new DateTime(2025, 02, 03), new DateTime(2025, 05, 23));
-            
-            DateTime point = DateTime.Now;
 
+            DateTime point = DateTime.Now;
+            
             Debug.WriteLine("");
 
             Debug.WriteLine($"Range: {dateRange}");
@@ -38,15 +40,24 @@ namespace Weekinator
             Debug.WriteLine($"Total precent: {Math.Round(dateRange.GetFractionOf(point) * 100, 3)}%");
             Debug.WriteLine($"Week mark: " + ((dateRange.GetWeekOf(point) % 2 == 0) ? "Znamenyk" : "Chiselnyk"));
 
-            fract = dateRange.GetFractionOf(point);
+            //fract = dateRange.GetFractionOf(point);
 
+            //UpdatePrecentLabelText();
+            //UpdatePrecentLabelLocation();
+            //UpdateMainProgressBarValue();
+            //int count = 0;
 
-            UpdatePrecentLabelText();
-            UpdatePrecentLabelLocation();
-            UpdateMainProgressBarValue();
+            var timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000;
+            timer.Tick += (obj, eventArgs) => {
+                Update();
+                label_update();
+            };
+            timer.Start();
         }
 
-        private void SetDateRange(DateTime start, DateTime end) {
+        private void SetDateRange(DateTime start, DateTime end)
+        {
             dateRange = new DateRange(start, end);
             StartDate.Value = start;
             StartDate.MaxDate = DateTime.Now;
@@ -54,10 +65,12 @@ namespace Weekinator
             EndDate.Value = end;
             EndDate.MinDate = DateTime.Now.AddDays(1);
         }
-        private void UpdatePrecentLabelText() {
-            PrecentLabel.Text = $"{Math.Round(fract * 100, 2)}%";
+        private void UpdatePrecentLabelText(byte digits = 5)
+        {
+            PrecentLabel.Text = $"{Math.Round(fract * 100, digits)}%";
         }
-        private void UpdatePrecentLabelLocation() {
+        private void UpdatePrecentLabelLocation()
+        {
             PrecentLabel.Location = new Point(
                 (int)(MainProgressBar.Location.X - PrecentLabel.Size.Width / 2 + MainProgressBar.Size.Width * fract),
                 PrecentLabel.Location.Y);
@@ -90,6 +103,20 @@ namespace Weekinator
             UpdatePrecentLabelText();
             UpdatePrecentLabelLocation();
             UpdateMainProgressBarValue();
+        }
+
+        private void Update()
+        {
+            DateTime point = DateTime.Now;
+            fract = dateRange.GetFractionOf(point);
+
+            UpdatePrecentLabelText();
+            UpdatePrecentLabelLocation();
+            UpdateMainProgressBarValue();
+        }
+
+        private void label_update() {
+            label1.Text = DateTime.Now.ToString();
         }
     }
 }
