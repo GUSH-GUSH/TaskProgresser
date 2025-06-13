@@ -15,18 +15,18 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace Weekinator
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         private DateRange dateRange;
         private double fract;
-        public Form1()
+        public Main()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SetDateRange(new DateTime(2025, 02, 03), new DateTime(2025, 05, 23));
+            /*SetDateRange(new DateTime(2025, 02, 03), new DateTime(2025, 06, 23));
 
             DateTime point = DateTime.Now;
             
@@ -47,23 +47,39 @@ namespace Weekinator
             //UpdateMainProgressBarValue();
             //int count = 0;
 
+            dateRangeControl1.SetDateRange(dateRange);
+
             var timer = new System.Windows.Forms.Timer();
             timer.Interval = 1000;
             timer.Tick += (obj, eventArgs) => {
+                dateRangeControl1.GetFractionOf(DateTime.Now);
                 Update();
                 label_update();
             };
+            timer.Start();*/
+
+            dateRangeControl1.SetDateRange(new DateTime(2025, 02, 03), new DateTime(2025, 06, 23));
+            dateRangeControl1.GetFractionOf(DateTime.Now);
+            /*
+            var timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000;
+            timer.Tick += (obj, eventArgs) => {
+                dateRangeControl1.GetFractionOf(DateTime.Now);
+            };
             timer.Start();
+            */
         }
 
         private void SetDateRange(DateTime start, DateTime end)
         {
             dateRange = new DateRange(start, end);
-            StartDate.Value = start;
+            StartDate.MinDate = DateTimePicker.MinimumDateTime;
             StartDate.MaxDate = DateTime.Now;
+            StartDate.Value = start;
 
-            EndDate.Value = end;
             EndDate.MinDate = DateTime.Now.AddDays(1);
+            EndDate.MaxDate = DateTimePicker.MaximumDateTime; 
+            EndDate.Value = end;
         }
         private void UpdatePrecentLabelText(byte digits = 5)
         {
@@ -116,7 +132,7 @@ namespace Weekinator
         }
 
         private void label_update() {
-            label1.Text = DateTime.Now.ToString();
+            //label1.Text = DateTime.Now.ToString();
         }
     }
 }

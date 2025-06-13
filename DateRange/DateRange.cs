@@ -8,12 +8,13 @@ namespace MyUtils
         public DateTime End { get; private set; }
         public TimeSpan Length { get => End - Start; }
 
-       
-        public DateRange (DateTime start, DateTime end) => SetDateRange(start, end);
-        public DateRange (DateTime start, TimeSpan length) => SetDateRange(start, length);
+
+        public DateRange(DateTime start, DateTime end) => SetDateRange(start, end);
+        public DateRange(DateTime start, TimeSpan length) => SetDateRange(start, length);
 
 
-        public void SetDateRange(DateTime start, DateTime end) {
+        public void SetDateRange(DateTime start, DateTime end)
+        {
             if (start > end)
                 throw new ArgumentException("The argument \"start\" can't be greater than \"end\"");
 
@@ -23,7 +24,7 @@ namespace MyUtils
         public void SetDateRange(DateTime start, TimeSpan length)
         {
             Start = start;
-            End = start+length;
+            End = start + length;
         }
 
 
@@ -37,33 +38,29 @@ namespace MyUtils
             if (point < Start || End < point)
                 throw new ArgumentOutOfRangeException($"The point ({point}) is not in range {ToString()}");
         }
-        
-        
+
+
         /// <summary>
         /// Принимает временную отметку, и возвращает долю, которую она составляет от текущего диапазона
         /// </summary>
         /// <param name="point">Временная отметка DateTime (должна быть в диапазоне [Start, End]</param>
         /// <returns>[0 ... 1]</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public double GetFractionOf(DateTime point) {
+        public double GetFractionOf(DateTime point)
+        {
             VerifyDateTimePoint(point);
-
             return (point - Start).TotalMinutes / Length.TotalMinutes;
         }
 
-
-
-
-        public int GetWeekOf(DateTime point) {
+        public int GetWeekOf(DateTime point)
+        {
             VerifyDateTimePoint(point);
-            
             return (int)((point - Start).TotalDays / 7) + 1;
         }
 
         public int GetDayOf(DateTime point)
         {
             VerifyDateTimePoint(point);
-
             return (int)(point - Start).TotalDays;
         }
 

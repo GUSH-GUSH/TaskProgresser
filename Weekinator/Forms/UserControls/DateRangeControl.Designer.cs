@@ -1,6 +1,6 @@
 ﻿namespace Weekinator
 {
-    partial class DateRangePanel
+    partial class DateRangeControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,48 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.EndDate = new System.Windows.Forms.DateTimePicker();
-            this.StartDate = new System.Windows.Forms.DateTimePicker();
+            this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.StartDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.PrecentLabel = new System.Windows.Forms.Label();
             this.MainProgressBar = new System.Windows.Forms.ProgressBar();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // EndDateTimePicker
             // 
-            this.panel1.Controls.Add(this.EndDate);
-            this.panel1.Controls.Add(this.StartDate);
-            this.panel1.Controls.Add(this.PrecentLabel);
-            this.panel1.Controls.Add(this.MainProgressBar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.MinimumSize = new System.Drawing.Size(430, 90);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(430, 90);
-            this.panel1.TabIndex = 2;
+            this.EndDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.EndDateTimePicker.Location = new System.Drawing.Point(230, 70);
+            this.EndDateTimePicker.MaxDate = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
+            this.EndDateTimePicker.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
+            this.EndDateTimePicker.Name = "EndDateTimePicker";
+            this.EndDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.EndDateTimePicker.TabIndex = 9;
             // 
-            // EndDate
+            // StartDateTimePicker
             // 
-            this.EndDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.EndDate.Location = new System.Drawing.Point(230, 70);
-            this.EndDate.MaxDate = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
-            this.EndDate.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
-            this.EndDate.Name = "EndDate";
-            this.EndDate.Size = new System.Drawing.Size(200, 20);
-            this.EndDate.TabIndex = 5;
-            // 
-            // StartDate
-            // 
-            this.StartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.StartDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.StartDate.Location = new System.Drawing.Point(0, 70);
-            this.StartDate.MaxDate = new System.DateTime(2026, 6, 17, 0, 0, 0, 0);
-            this.StartDate.MinDate = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
-            this.StartDate.Name = "StartDate";
-            this.StartDate.Size = new System.Drawing.Size(200, 20);
-            this.StartDate.TabIndex = 4;
-            this.StartDate.Value = new System.DateTime(2025, 4, 10, 0, 0, 0, 0);
+            this.StartDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.StartDateTimePicker.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.StartDateTimePicker.Location = new System.Drawing.Point(0, 70);
+            this.StartDateTimePicker.MaxDate = new System.DateTime(2026, 6, 17, 0, 0, 0, 0);
+            this.StartDateTimePicker.MinDate = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
+            this.StartDateTimePicker.Name = "StartDateTimePicker";
+            this.StartDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.StartDateTimePicker.TabIndex = 8;
+            this.StartDateTimePicker.Value = new System.DateTime(2025, 4, 10, 0, 0, 0, 0);
             // 
             // PrecentLabel
             // 
@@ -81,7 +66,7 @@
             this.PrecentLabel.Margin = new System.Windows.Forms.Padding(0);
             this.PrecentLabel.Name = "PrecentLabel";
             this.PrecentLabel.Size = new System.Drawing.Size(41, 20);
-            this.PrecentLabel.TabIndex = 2;
+            this.PrecentLabel.TabIndex = 7;
             this.PrecentLabel.Text = "59%";
             // 
             // MainProgressBar
@@ -92,28 +77,31 @@
             this.MainProgressBar.Maximum = 10000;
             this.MainProgressBar.Name = "MainProgressBar";
             this.MainProgressBar.Size = new System.Drawing.Size(310, 23);
-            this.MainProgressBar.TabIndex = 0;
+            this.MainProgressBar.TabIndex = 6;
             this.MainProgressBar.Value = 6000;
             // 
-            // DateRangePanel
+            // DateRangeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.EndDateTimePicker);
+            this.Controls.Add(this.StartDateTimePicker);
+            this.Controls.Add(this.PrecentLabel);
+            this.Controls.Add(this.MainProgressBar);
+            this.MaximumSize = new System.Drawing.Size(0, 90);
             this.MinimumSize = new System.Drawing.Size(430, 90);
-            this.Name = "DateRangePanel";
+            this.Name = "DateRangeControl";
             this.Size = new System.Drawing.Size(430, 90);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Resize += new System.EventHandler(this.DateRangeControl_Resize);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker EndDate;
-        private System.Windows.Forms.DateTimePicker StartDate;
+        private System.Windows.Forms.DateTimePicker EndDateTimePicker;
+        private System.Windows.Forms.DateTimePicker StartDateTimePicker;
         private System.Windows.Forms.Label PrecentLabel;
         private System.Windows.Forms.ProgressBar MainProgressBar;
     }

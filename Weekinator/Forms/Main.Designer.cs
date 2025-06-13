@@ -1,6 +1,6 @@
 ﻿namespace Weekinator
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MainProgressBar = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.EndDate = new System.Windows.Forms.DateTimePicker();
             this.StartDate = new System.Windows.Forms.DateTimePicker();
             this.PrecentLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.dateRangeControl1 = new Weekinator.DateRangeControl();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +56,7 @@
             this.panel1.Controls.Add(this.StartDate);
             this.panel1.Controls.Add(this.PrecentLabel);
             this.panel1.Controls.Add(this.MainProgressBar);
-            this.panel1.Location = new System.Drawing.Point(40, 246);
+            this.panel1.Location = new System.Drawing.Point(27, 415);
             this.panel1.MinimumSize = new System.Drawing.Size(430, 30);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(581, 90);
@@ -102,41 +100,31 @@
             this.PrecentLabel.TabIndex = 2;
             this.PrecentLabel.Text = "59%";
             // 
-            // textBox1
+            // dateRangeControl1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 26);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(502, 139);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
-            this.textBox1.Visible = false;
+            this.dateRangeControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateRangeControl1.Location = new System.Drawing.Point(27, 12);
+            this.dateRangeControl1.MaximumSize = new System.Drawing.Size(0, 90);
+            this.dateRangeControl1.MinimumSize = new System.Drawing.Size(430, 90);
+            this.dateRangeControl1.Name = "dateRangeControl1";
+            this.dateRangeControl1.Size = new System.Drawing.Size(430, 90);
+            this.dateRangeControl1.TabIndex = 2;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(291, 227);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
-            // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 376);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(661, 752);
+            this.Controls.Add(this.dateRangeControl1);
             this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(526, 200);
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -147,8 +135,7 @@
         private System.Windows.Forms.DateTimePicker EndDate;
         private System.Windows.Forms.DateTimePicker StartDate;
         private System.Windows.Forms.Label PrecentLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
+        private DateRangeControl dateRangeControl1;
     }
 }
 
