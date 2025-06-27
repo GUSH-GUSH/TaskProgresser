@@ -72,6 +72,7 @@
             this.EndDate.Name = "EndDate";
             this.EndDate.Size = new System.Drawing.Size(200, 20);
             this.EndDate.TabIndex = 5;
+            this.EndDate.Value = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             this.EndDate.ValueChanged += new System.EventHandler(this.EndDate_ValueChanged);
             // 
             // StartDate
@@ -102,13 +103,10 @@
             // 
             // dateRangeControl1
             // 
-            this.dateRangeControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateRangeControl1.Location = new System.Drawing.Point(27, 12);
-            this.dateRangeControl1.MaximumSize = new System.Drawing.Size(0, 90);
-            this.dateRangeControl1.MinimumSize = new System.Drawing.Size(430, 90);
+            this.dateRangeControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.dateRangeControl1.Location = new System.Drawing.Point(27, 571);
             this.dateRangeControl1.Name = "dateRangeControl1";
-            this.dateRangeControl1.Size = new System.Drawing.Size(430, 90);
+            this.dateRangeControl1.Size = new System.Drawing.Size(581, 90);
             this.dateRangeControl1.TabIndex = 2;
             // 
             // Main

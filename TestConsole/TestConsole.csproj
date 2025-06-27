@@ -36,6 +36,9 @@
     <Reference Include="DateTimeExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DateTimeExtension.1.0.0\lib\net48\DateTimeExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="DateTimeToolKit, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GUSH.Utils.DateTimeToolKit.1.2.1\lib\net48\DateTimeToolKit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -53,12 +56,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DateRange\DateRange.csproj">
-      <Project>{65236863-f7a8-45b5-9cfe-a8872072aa8d}</Project>
-      <Name>DateRange</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

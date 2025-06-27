@@ -36,6 +36,9 @@
     <Reference Include="DateTimeExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DateTimeExtension.1.0.0\lib\net48\DateTimeExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="DateTimeToolKit, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GUSH.Utils.DateTimeToolKit.1.2.1\lib\net48\DateTimeToolKit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +50,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WinFormsExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GUSH.Utils.WinFormsToolKit.1.0.0\lib\net48\WinFormsExtensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms\UserControls\DateRangeControl.cs">
@@ -91,12 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DateRange\DateRange.csproj">
-      <Project>{65236863-f7a8-45b5-9cfe-a8872072aa8d}</Project>
-      <Name>DateRange</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ToDo.txt" />

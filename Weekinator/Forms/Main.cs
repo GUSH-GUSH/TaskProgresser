@@ -1,5 +1,4 @@
-﻿using MyUtils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +11,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using DateTimeToolKit.Models.DateRange;
+
 
 namespace Weekinator
 {
@@ -60,14 +61,14 @@ namespace Weekinator
 
             dateRangeControl1.SetDateRange(new DateTime(2025, 02, 03), new DateTime(2025, 06, 23));
             dateRangeControl1.GetFractionOf(DateTime.Now);
-            /*
+            
             var timer = new System.Windows.Forms.Timer();
             timer.Interval = 1000;
             timer.Tick += (obj, eventArgs) => {
                 dateRangeControl1.GetFractionOf(DateTime.Now);
             };
             timer.Start();
-            */
+            
         }
 
         private void SetDateRange(DateTime start, DateTime end)
