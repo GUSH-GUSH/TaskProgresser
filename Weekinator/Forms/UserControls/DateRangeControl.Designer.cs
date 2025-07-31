@@ -43,7 +43,7 @@
             this.MainProgressBar.Location = new System.Drawing.Point(60, 39);
             this.MainProgressBar.Maximum = 10000;
             this.MainProgressBar.Name = "MainProgressBar";
-            this.MainProgressBar.Size = new System.Drawing.Size(310, 23);
+            this.MainProgressBar.Size = new System.Drawing.Size(362, 23);
             this.MainProgressBar.TabIndex = 10;
             this.MainProgressBar.Value = 6000;
             // 
@@ -79,7 +79,7 @@
             this.EndDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.EndDateTimePicker.CustomFormat = "HH:mm dd/MM/yyyy";
             this.EndDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.EndDateTimePicker.Location = new System.Drawing.Point(300, 70);
+            this.EndDateTimePicker.Location = new System.Drawing.Point(352, 70);
             this.EndDateTimePicker.MaxDate = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             this.EndDateTimePicker.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
             this.EndDateTimePicker.Name = "EndDateTimePicker";
@@ -96,7 +96,7 @@
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(430, 90);
+            this.MainPanel.Size = new System.Drawing.Size(482, 90);
             this.MainPanel.TabIndex = 10;
             // 
             // DateRangeControl
@@ -104,8 +104,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.MainPanel);
+            this.MinimumSize = new System.Drawing.Size(300, 90);
             this.Name = "DateRangeControl";
-            this.Size = new System.Drawing.Size(430, 90);
+            this.Size = new System.Drawing.Size(482, 90);
+            this.Load += new System.EventHandler(this.DateRangeControl_Load);
             this.Resize += new System.EventHandler(this.DateRangeControl_Resize);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();

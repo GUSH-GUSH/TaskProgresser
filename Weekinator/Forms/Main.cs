@@ -18,8 +18,7 @@ namespace Weekinator
 {
     public partial class Main : Form
     {
-        private DateRange dateRange;
-        private double fract;
+        
         public Main()
         {
             InitializeComponent();
@@ -59,77 +58,18 @@ namespace Weekinator
             };
             timer.Start();*/
 
+
+            
             dateRangeControl1.SetDateRange(new DateTime(2025, 02, 03), new DateTime(2025, 06, 23));
-            dateRangeControl1.GetFractionOf(DateTime.Now);
+            dateRangeControl1.UpdateValue(DateTime.Now);
             
             var timer = new System.Windows.Forms.Timer();
-            timer.Interval = 1000;
+            timer.Interval = 100;
             timer.Tick += (obj, eventArgs) => {
-                dateRangeControl1.GetFractionOf(DateTime.Now);
+                dateRangeControl1.UpdateValue(DateTime.Now);
             };
             timer.Start();
             
-        }
-
-        private void SetDateRange(DateTime start, DateTime end)
-        {
-            dateRange = new DateRange(start, end);
-            StartDate.MinDate = DateTimePicker.MinimumDateTime;
-            StartDate.MaxDate = DateTime.Now;
-            StartDate.Value = start;
-
-            EndDate.MinDate = DateTime.Now.AddDays(1);
-            EndDate.MaxDate = DateTimePicker.MaximumDateTime; 
-            EndDate.Value = end;
-        }
-        private void UpdatePrecentLabelText(byte digits = 5)
-        {
-            PrecentLabel.Text = $"{Math.Round(fract * 100, digits)}%";
-        }
-        private void UpdatePrecentLabelLocation()
-        {
-            PrecentLabel.Location = new Point(
-                (int)(MainProgressBar.Location.X - PrecentLabel.Size.Width / 2 + MainProgressBar.Size.Width * fract),
-                PrecentLabel.Location.Y);
-        }
-        private void UpdateMainProgressBarValue()
-        {
-            MainProgressBar.Value = (int)(fract * MainProgressBar.Maximum);
-        }
-
-        private void panel1_Resize(object sender, EventArgs e)
-        {
-            UpdatePrecentLabelLocation();
-        }
-
-        private void StartDate_ValueChanged(object sender, EventArgs e)
-        {
-            SetDateRange(StartDate.Value, dateRange.End);
-            fract = dateRange.GetFractionOf(DateTime.Now); //Очень условно пока-что
-            UpdatePrecentLabelText();
-            UpdatePrecentLabelLocation();
-            UpdateMainProgressBarValue();
-        }
-
-        private void EndDate_ValueChanged(object sender, EventArgs e)
-        {
-            //if(StartDate.Value > ...) Проверка, что выбранная дата не уходит за диапазон
-            //Эта проверка уже не нужна, т.к. все проерки сделаны путём ограничения выбора даты
-            SetDateRange(dateRange.Start, EndDate.Value);
-            fract = dateRange.GetFractionOf(DateTime.Now); //Очень условно пока-что
-            UpdatePrecentLabelText();
-            UpdatePrecentLabelLocation();
-            UpdateMainProgressBarValue();
-        }
-
-        private void Update()
-        {
-            DateTime point = DateTime.Now;
-            fract = dateRange.GetFractionOf(point);
-
-            UpdatePrecentLabelText();
-            UpdatePrecentLabelLocation();
-            UpdateMainProgressBarValue();
         }
 
         private void label_update() {
