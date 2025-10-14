@@ -15,6 +15,7 @@ namespace Weekinator
             InProgress
         }
 
+
         #region --- fields ---
 
         private DateTimePickersRangeController pickersController;
@@ -25,6 +26,7 @@ namespace Weekinator
         private DateRangeControlState state = DateRangeControlState.Unstarted;
 
         #endregion
+
 
         #region --- properties ---
 
@@ -78,6 +80,7 @@ namespace Weekinator
 
         #endregion
 
+
         #region --- setup ---
 
         public DateRangeControl()
@@ -102,10 +105,12 @@ namespace Weekinator
                     ),
                     DateTimeToolKit.Extensions.Truncate.TruncateLevel.Minute
                 );
+                pickersController.OnValueChanged += (o, a) => this.OnValueChanged?.Invoke(this, a);
             }
         }
 
         #endregion
+
 
         #region --- logic ---
 
@@ -131,11 +136,12 @@ namespace Weekinator
                     Fract = DateRange.GetFractionOf(point);
                     return;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(point), point, null);
+                    throw new ArgumentOutOfRangeException("point", point, null);
             }
         }
 
         #endregion
+
 
         #region --- visual ---
 
@@ -158,5 +164,11 @@ namespace Weekinator
 
         #endregion
 
+
+        #region --- events ---
+
+        public event EventHandler OnValueChanged;
+
+        #endregion
     }
 }
