@@ -19,11 +19,15 @@ namespace Weekinator
         #region --- fields ---
 
         private DateTimePickersRangeController pickersController;
-        //private DateRange dateRange; // Диапазон дат
-        private double fract; // Доля текущей даты в диапазоне от 0 до 1 (0% - начало, 1 - конец диапазона)
+        private double fract; // Доля текущей даты в диапазоне от 0 до 1 (0 - начало, 1 - конец диапазона)
         private byte digits = 3; // Количество знаков после запятой для процентов
 
         private DateRangeControlState state = DateRangeControlState.Unstarted;
+
+        public static readonly DateRange DefaultDateRange = new DateRange(
+                        DateTimePicker.MinimumDateTime,
+                        DateTimePicker.MaximumDateTime
+                    );
 
         #endregion
 
@@ -86,6 +90,13 @@ namespace Weekinator
         public DateRangeControl()
         {
             InitializeComponent();
+            pickersController = new DateTimePickersRangeController(
+                StartDateTimePicker,
+                EndDateTimePicker,
+                DefaultDateRange,
+                DateTimeToolKit.Extensions.Truncate.TruncateLevel.Minute
+            );
+            pickersController.OnValueChanged += (o, a) => this.OnValueChanged?.Invoke(this, a);
         }
 
         public DateRangeControl(DateTime start, DateTime end) : this() => SetDateRange(start, end);
@@ -94,19 +105,7 @@ namespace Weekinator
 
         private void DateRangeControl_Load(object sender, EventArgs e)
         {
-            if (!DesignMode)
-            {
-                pickersController = new DateTimePickersRangeController(
-                    StartDateTimePicker,
-                    EndDateTimePicker,
-                    new DateRange(
-                        DateTimePicker.MinimumDateTime,
-                        DateTimePicker.MaximumDateTime
-                    ),
-                    DateTimeToolKit.Extensions.Truncate.TruncateLevel.Minute
-                );
-                pickersController.OnValueChanged += (o, a) => this.OnValueChanged?.Invoke(this, a);
-            }
+     
         }
 
         #endregion

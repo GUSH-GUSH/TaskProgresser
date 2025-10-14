@@ -22,6 +22,7 @@ namespace Weekinator
 {
     public partial class MainForm : Form
     {
+        private System.Windows.Forms.Timer timer;
 
         public MainForm()
         {
@@ -72,7 +73,7 @@ namespace Weekinator
 
             //LoadData();
 
-            var timer = new System.Windows.Forms.Timer();
+            timer = new System.Windows.Forms.Timer();
             timer.Interval = 100;
             timer.Tick += (obj, eventArgs) => UpdateTimers();
             timer.Start();
@@ -81,45 +82,73 @@ namespace Weekinator
         public void UpdateTimers() {
             DateRangeControl.UpdateValue(DateTime.Now);
             UpdateIcon();
+            CurrentDateTime_Label.Text = DateTime.Now.ToString();
         }
 
         public void UpdateIcon()
         {
             string iconText = DateRangeControl.Precent.ToString();
+            PrecentIcon.Text = iconText;
             if (iconText.Length > 4) iconText = iconText.Substring(0, 4);
             PrecentIcon.Icon = IconGenerator.GetDefaultIcon(iconText);
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string result = JsonSerializer.Serialize(DateRangeControl.DateRange, new JsonSerializerOptions() { WriteIndented = true });
-
-            if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
-
-            using (FileStream stream = new FileStream(Path.Combine(directory, file), FileMode.OpenOrCreate))
-            using (StreamWriter streamWriter = new StreamWriter(stream))
-                streamWriter.WriteLine(result);
-
-            MessageBox.Show($"Диапазон успешно сохранён!");
-        }
-
-        private void LoadData()
-        {
-            if (!File.Exists(Path.Combine(directory, file))) return;
-
-            using (StreamReader streamReader = new StreamReader(Path.Combine(directory, file)))
-            {
-                DateRangeControl.DateRange = JsonSerializer.Deserialize<DateRange>(streamReader.ReadToEnd());
-            }
-
-        }
-
-        string directory = "user-data";
-        string file = "date-range.json";
-
+    
         private void openTestIconForm_Button_Click(object sender, EventArgs e)
         {
             new Forms.DebugForms.TextIconTestForm().Show(this);
         }
+
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = e.CloseReason == CloseReason.UserClosing;
+            this.Visible = false;
+            
+        }
+
+        private void PrecentIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Visible = Visible == true ? false : true;
+        }
+
+        private void IconMainMenu_CloseItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void IconMainMenu_OpenItem_Click(object sender, EventArgs e)
+        {
+            Show();
+        }
+
+
+        /*
+    private void button1_Click(object sender, EventArgs e)
+    {
+        string result = JsonSerializer.Serialize(DateRangeControl.DateRange, new JsonSerializerOptions() { WriteIndented = true });
+
+        if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+        using (FileStream stream = new FileStream(Path.Combine(directory, file), FileMode.OpenOrCreate))
+        using (StreamWriter streamWriter = new StreamWriter(stream))
+            streamWriter.WriteLine(result);
+
+        MessageBox.Show($"Диапазон успешно сохранён!");
+    }
+
+    private void LoadData()
+    {
+        if (!File.Exists(Path.Combine(directory, file))) return;
+
+        using (StreamReader streamReader = new StreamReader(Path.Combine(directory, file)))
+        {
+            DateRangeControl.DateRange = JsonSerializer.Deserialize<DateRange>(streamReader.ReadToEnd());
+        }
+
+    }
+
+    string directory = "user-data";
+    string file = "date-range.json";
+    */
     }
 }
