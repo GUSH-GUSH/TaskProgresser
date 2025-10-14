@@ -24,9 +24,23 @@ namespace Weekinator
     {
         private System.Windows.Forms.Timer timer;
 
+        public enum WeekMark {
+            Numerator,      //Числитель
+            Denominator     //Знаменатель
+        }
+
+        private readonly Dictionary<WeekMark, Icon> WeekMarkIcons;
+
+
         public MainForm()
         {
             InitializeComponent();
+
+            Font iconFont = new Font("Arial Black", 24, FontStyle.Bold);
+            WeekMarkIcons = new Dictionary<WeekMark, Icon> {
+                { WeekMark.Numerator, IconGenerator.GetIcon("Ч", iconFont, new Size (32, 32)) },
+                { WeekMark.Denominator, IconGenerator.GetIcon("З", iconFont, new Size (32, 32)) }
+            };
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -77,6 +91,12 @@ namespace Weekinator
             timer.Interval = 100;
             timer.Tick += (obj, eventArgs) => UpdateTimers();
             timer.Start();
+
+            Precision_NumericUpDown.Value = DateRangeControl.Precision;
+
+            UpdateWeekmarkIcon();
+
+            MessageBox.Show(GetStatistics());
         }
 
         public void UpdateTimers() {
@@ -88,11 +108,25 @@ namespace Weekinator
         public void UpdateIcon()
         {
             string iconText = DateRangeControl.Precent.ToString();
-            PrecentIcon.Text = iconText;
+            Precent_Icon.Text = $"Текущий процент - {iconText}%\n\n";
             if (iconText.Length > 4) iconText = iconText.Substring(0, 4);
-            PrecentIcon.Icon = IconGenerator.GetDefaultIcon(iconText);
+            Icon oldIcon = Precent_Icon.Icon;
+            Precent_Icon.Icon = IconGenerator.GetDefaultIcon(iconText);
+            oldIcon?.Dispose();
         }
-    
+
+        public void UpdateWeekmarkIcon() {
+            DateRange dateRange = DateRangeControl.DateRange;
+            int currentWeek = dateRange.GetWeekOf(DateTime.Now);
+            int totalWeeks = dateRange.TotalWeeks;
+            WeekMark_Icon.Text = $"Неделя {currentWeek} из {totalWeeks}";
+
+            WeekMark weekMark = currentWeek % 2 == 1 ? WeekMark.Numerator : WeekMark.Denominator;
+            Icon oldIcon = WeekMark_Icon.Icon;
+            WeekMark_Icon.Icon = WeekMarkIcons[weekMark];
+            oldIcon?.Dispose();
+        }
+
         private void openTestIconForm_Button_Click(object sender, EventArgs e)
         {
             new Forms.DebugForms.TextIconTestForm().Show(this);
@@ -119,6 +153,23 @@ namespace Weekinator
         private void IconMainMenu_OpenItem_Click(object sender, EventArgs e)
         {
             Show();
+        }
+
+        private void Precission_NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            DateRangeControl.Precision = (byte)Precision_NumericUpDown.Value;
+        }
+
+        private string GetStatistics() {
+            double precentPerSecond = 100.0 / DateRangeControl.DateRange.Length.TotalSeconds;
+            double precentPerMinute = 100.0 / DateRangeControl.DateRange.Length.TotalMinutes;
+            double precentPerDay = 100.0 / DateRangeControl.DateRange.Length.TotalDays;
+            double precentPerWeek = 100.0 / DateRangeControl.DateRange.TotalWeeks;
+
+            return $"Процент в секунду = {precentPerSecond.ToString("F6")}\n" +
+                   $"Процент в минуту = {precentPerMinute.ToString("F6")}\n" +
+                   $"Процент в день = {precentPerDay.ToString("F6")}\n" +
+                   $"Процент в неделю = {precentPerWeek.ToString("F6")}";
         }
 
 

@@ -67,7 +67,7 @@ namespace Weekinator
 
         public double Precent
         {
-            get => Math.Round(fract * 100, digits);
+            get => GetPrecent(digits);
         }
 
         private double Fract
@@ -80,6 +80,11 @@ namespace Weekinator
                 fract = value;
                 UpdateVisual();
             }
+        }
+
+        public byte Precision {
+            get => digits;
+            set { digits = value; UpdateVisual(); }
         }
 
         #endregion
@@ -167,6 +172,13 @@ namespace Weekinator
         #region --- events ---
 
         public event EventHandler OnValueChanged;
+
+        #endregion
+
+
+        #region --- getters ---
+
+        public double GetPrecent(int accuracy) => Math.Round(fract * 100, accuracy);
 
         #endregion
     }
