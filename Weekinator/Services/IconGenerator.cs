@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace Weekinator.Services
 {
@@ -13,6 +14,9 @@ namespace Weekinator.Services
         public static readonly Size DefaultSize = new Size(32, 32);
         public static readonly Font DefaultFont =
                                 new Font("Bahnschrift SemiBold Condensed", 18, FontStyle.Regular);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern bool DestroyIcon(IntPtr handle);
 
         public static Icon GetIcon(string text, Font font, Size iconSize)
         {
@@ -37,7 +41,8 @@ namespace Weekinator.Services
 
                 // Создаём Icon из Bitmap. Это и есть решение!
                 IntPtr hIcon = bitmap.GetHicon();
-                Icon icon = Icon.FromHandle(hIcon);
+                Icon icon = (Icon)Icon.FromHandle(hIcon).Clone();
+                DestroyIcon(hIcon);
                 return icon;
             }
         }

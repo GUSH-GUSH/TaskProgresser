@@ -88,7 +88,7 @@ namespace Weekinator
             //LoadData();
 
             timer = new System.Windows.Forms.Timer();
-            timer.Interval = 100;
+            timer.Interval = 500;
             timer.Tick += (obj, eventArgs) => UpdateTimers();
             timer.Start();
 
@@ -96,7 +96,6 @@ namespace Weekinator
 
             UpdateWeekmarkIcon();
 
-            MessageBox.Show(GetStatistics());
         }
 
         public void UpdateTimers() {
@@ -107,12 +106,12 @@ namespace Weekinator
 
         public void UpdateIcon()
         {
-            string iconText = DateRangeControl.Precent.ToString();
-            Precent_Icon.Text = $"Текущий процент - {iconText}%\n\n";
-            if (iconText.Length > 4) iconText = iconText.Substring(0, 4);
-            Icon oldIcon = Precent_Icon.Icon;
-            Precent_Icon.Icon = IconGenerator.GetDefaultIcon(iconText);
-            oldIcon?.Dispose();
+            double precent = DateRangeControl.Precent;
+            Precent_Icon.Text = $"Текущий процент - {precent}%\n\n";
+
+            double roundedPrecent = Math.Round(precent, 1);
+            Precent_Icon.Icon?.Dispose();
+            Precent_Icon.Icon = IconGenerator.GetDefaultIcon(roundedPrecent.ToString());
         }
 
         public void UpdateWeekmarkIcon() {
@@ -122,9 +121,8 @@ namespace Weekinator
             WeekMark_Icon.Text = $"Неделя {currentWeek} из {totalWeeks}";
 
             WeekMark weekMark = currentWeek % 2 == 1 ? WeekMark.Numerator : WeekMark.Denominator;
-            Icon oldIcon = WeekMark_Icon.Icon;
+            WeekMark_Icon.Icon?.Dispose();
             WeekMark_Icon.Icon = WeekMarkIcons[weekMark];
-            oldIcon?.Dispose();
         }
 
         private void openTestIconForm_Button_Click(object sender, EventArgs e)
@@ -142,7 +140,12 @@ namespace Weekinator
 
         private void PrecentIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Visible = Visible == true ? false : true;
+            if (Visible == true)
+            {
+                this.Hide();
+                //WeekMark_Icon.ShowBalloonTip(5000, "Weekinator активен!", "Приложение работает в фоновом режиме!", ToolTipIcon.None);
+            }
+            else this.Show();
         }
 
         private void IconMainMenu_CloseItem_Click(object sender, EventArgs e)
@@ -170,6 +173,11 @@ namespace Weekinator
                    $"Процент в минуту = {precentPerMinute.ToString("F6")}\n" +
                    $"Процент в день = {precentPerDay.ToString("F6")}\n" +
                    $"Процент в неделю = {precentPerWeek.ToString("F6")}";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(GetStatistics());
         }
 
 

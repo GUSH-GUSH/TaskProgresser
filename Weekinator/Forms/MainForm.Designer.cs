@@ -33,6 +33,7 @@
             System.Windows.Forms.Label label1;
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Precision_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.DateRangeControl = new Weekinator.DateRangeControl();
             this.Precent_Icon = new System.Windows.Forms.NotifyIcon(this.components);
             this.IconMainMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -43,13 +44,13 @@
             this.TopPanel = new System.Windows.Forms.Panel();
             this.CurrentDateTime_Label = new System.Windows.Forms.Label();
             this.WeekMark_Icon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.Precision_NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.button2 = new System.Windows.Forms.Button();
             CurrentDateTimeTitle_Label = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).BeginInit();
             this.IconMainMenuStrip.SuspendLayout();
             this.TopPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // CurrentDateTimeTitle_Label
@@ -60,6 +61,15 @@
             CurrentDateTimeTitle_Label.Size = new System.Drawing.Size(125, 13);
             CurrentDateTimeTitle_Label.TabIndex = 8;
             CurrentDateTimeTitle_Label.Text = "Текущая дата и время:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(18, 140);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(57, 13);
+            label1.TabIndex = 10;
+            label1.Text = "Точность:";
             // 
             // button1
             // 
@@ -73,6 +83,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(label1);
             this.groupBox1.Controls.Add(this.Precision_NumericUpDown);
             this.groupBox1.Controls.Add(this.DateRangeControl);
@@ -84,12 +95,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Семестр 4.1";
             // 
+            // Precision_NumericUpDown
+            // 
+            this.Precision_NumericUpDown.Location = new System.Drawing.Point(81, 137);
+            this.Precision_NumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.Precision_NumericUpDown.Name = "Precision_NumericUpDown";
+            this.Precision_NumericUpDown.Size = new System.Drawing.Size(36, 20);
+            this.Precision_NumericUpDown.TabIndex = 6;
+            this.Precision_NumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Precision_NumericUpDown.ValueChanged += new System.EventHandler(this.Precission_NumericUpDown_ValueChanged);
+            // 
             // DateRangeControl
             // 
             this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.DateRangeControl.Location = new System.Drawing.Point(18, 38);
             this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
             this.DateRangeControl.Name = "DateRangeControl";
+            this.DateRangeControl.Precision = ((byte)(3));
             this.DateRangeControl.Size = new System.Drawing.Size(482, 90);
             this.DateRangeControl.TabIndex = 0;
             // 
@@ -175,28 +201,15 @@
             this.WeekMark_Icon.Text = "Weekinator";
             this.WeekMark_Icon.Visible = true;
             // 
-            // Precission_NumericUpDown
+            // button2
             // 
-            this.Precision_NumericUpDown.Location = new System.Drawing.Point(81, 137);
-            this.Precision_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.Precision_NumericUpDown.Name = "Precission_NumericUpDown";
-            this.Precision_NumericUpDown.Size = new System.Drawing.Size(36, 20);
-            this.Precision_NumericUpDown.TabIndex = 6;
-            this.Precision_NumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Precision_NumericUpDown.ValueChanged += new System.EventHandler(this.Precission_NumericUpDown_ValueChanged);
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(18, 140);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(57, 13);
-            label1.TabIndex = 10;
-            label1.Text = "Точность:";
+            this.button2.Location = new System.Drawing.Point(222, 134);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Get Info";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -213,10 +226,10 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).EndInit();
             this.IconMainMenuStrip.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -236,6 +249,7 @@
         private System.Windows.Forms.ToolStripMenuItem IconMainMenu_CloseItem;
         private System.Windows.Forms.NotifyIcon WeekMark_Icon;
         private System.Windows.Forms.NumericUpDown Precision_NumericUpDown;
+        private System.Windows.Forms.Button button2;
     }
 }
 
