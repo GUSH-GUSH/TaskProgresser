@@ -15,7 +15,6 @@ namespace Weekinator
             InProgress
         }
 
-
         #region --- fields ---
 
         private DateTimePickersRangeController pickersController;
@@ -28,6 +27,8 @@ namespace Weekinator
                         DateTimePicker.MinimumDateTime,
                         DateTimePicker.MaximumDateTime
                     );
+
+        public event EventHandler OnValueChanged;
 
         #endregion
 
@@ -42,7 +43,7 @@ namespace Weekinator
 
         public DateRangeControlState State
         {
-            get { return state; }
+            get => state;
             private set
             {
                 state = value;
@@ -118,10 +119,7 @@ namespace Weekinator
 
         #region --- logic ---
 
-        public void SetDateRange(DateRange dateRange)
-        {
-            pickersController.SetDateRange(dateRange);
-        }
+        public void SetDateRange(DateRange dateRange) => pickersController.SetDateRange(dateRange);
 
         public void SetDateRange(DateTime start, DateTime end) => SetDateRange(new DateRange(start, end));
 
@@ -164,14 +162,12 @@ namespace Weekinator
             );
         }
 
-        private void DateRangeControl_Resize(object sender, EventArgs e) => UpdatePrecentLabelLocation();
-
         #endregion
 
 
         #region --- events ---
 
-        public event EventHandler OnValueChanged;
+        private void DateRangeControl_Resize(object sender, EventArgs e) => UpdatePrecentLabelLocation();
 
         #endregion
 

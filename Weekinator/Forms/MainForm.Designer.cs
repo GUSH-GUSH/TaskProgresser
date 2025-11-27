@@ -33,18 +33,17 @@
             System.Windows.Forms.Label label1;
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.Precision_NumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.DateRangeControl = new Weekinator.DateRangeControl();
             this.Precent_Icon = new System.Windows.Forms.NotifyIcon(this.components);
             this.IconMainMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.IconMainMenu_OpenItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IconMainMenu_CloseItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Precent = new System.Windows.Forms.NotifyIcon(this.components);
             this.openTestIconForm_Button = new System.Windows.Forms.Button();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.CurrentDateTime_Label = new System.Windows.Forms.Label();
             this.WeekMark_Icon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.button2 = new System.Windows.Forms.Button();
+            this.DateRangeControl = new Weekinator.DateRangeControl();
             CurrentDateTimeTitle_Label = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -95,6 +94,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Семестр 4.1";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(222, 134);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Get Info";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Precision_NumericUpDown
             // 
             this.Precision_NumericUpDown.Location = new System.Drawing.Point(81, 137);
@@ -108,16 +117,6 @@
             this.Precision_NumericUpDown.TabIndex = 6;
             this.Precision_NumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Precision_NumericUpDown.ValueChanged += new System.EventHandler(this.Precission_NumericUpDown_ValueChanged);
-            // 
-            // DateRangeControl
-            // 
-            this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DateRangeControl.Location = new System.Drawing.Point(18, 38);
-            this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
-            this.DateRangeControl.Name = "DateRangeControl";
-            this.DateRangeControl.Precision = ((byte)(3));
-            this.DateRangeControl.Size = new System.Drawing.Size(482, 90);
-            this.DateRangeControl.TabIndex = 0;
             // 
             // Precent_Icon
             // 
@@ -155,11 +154,6 @@
             this.IconMainMenu_CloseItem.Size = new System.Drawing.Size(124, 22);
             this.IconMainMenu_CloseItem.Text = "Закрыть";
             this.IconMainMenu_CloseItem.Click += new System.EventHandler(this.IconMainMenu_CloseItem_Click);
-            // 
-            // Precent
-            // 
-            this.Precent.Text = "Weekinator";
-            this.Precent.Visible = true;
             // 
             // openTestIconForm_Button
             // 
@@ -201,15 +195,15 @@
             this.WeekMark_Icon.Text = "Weekinator";
             this.WeekMark_Icon.Visible = true;
             // 
-            // button2
+            // DateRangeControl
             // 
-            this.button2.Location = new System.Drawing.Point(222, 134);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Get Info";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DateRangeControl.Location = new System.Drawing.Point(18, 38);
+            this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
+            this.DateRangeControl.Name = "DateRangeControl";
+            this.DateRangeControl.Precision = ((byte)(3));
+            this.DateRangeControl.Size = new System.Drawing.Size(482, 90);
+            this.DateRangeControl.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -240,7 +234,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NotifyIcon Precent_Icon;
-        private System.Windows.Forms.NotifyIcon Precent;
         private System.Windows.Forms.Button openTestIconForm_Button;
         private System.Windows.Forms.Panel TopPanel;
         private System.Windows.Forms.Label CurrentDateTime_Label;
