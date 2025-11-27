@@ -28,27 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label CurrentDateTimeTitle_Label;
             System.Windows.Forms.Label label1;
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.Precision_NumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.Precent_Icon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.IconMainMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.IconMainMenu_OpenItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.IconMainMenu_CloseItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DateRangeControl = new Weekinator.DateRangeControl();
             this.openTestIconForm_Button = new System.Windows.Forms.Button();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.CurrentDateTime_Label = new System.Windows.Forms.Label();
-            this.WeekMark_Icon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.DateRangeControl = new Weekinator.DateRangeControl();
             CurrentDateTimeTitle_Label = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).BeginInit();
-            this.IconMainMenuStrip.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,42 +111,15 @@
             this.Precision_NumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Precision_NumericUpDown.ValueChanged += new System.EventHandler(this.Precission_NumericUpDown_ValueChanged);
             // 
-            // Precent_Icon
+            // DateRangeControl
             // 
-            this.Precent_Icon.ContextMenuStrip = this.IconMainMenuStrip;
-            this.Precent_Icon.Text = "Weekinator";
-            this.Precent_Icon.Visible = true;
-            this.Precent_Icon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PrecentIcon_MouseDoubleClick);
-            // 
-            // IconMainMenuStrip
-            // 
-            this.IconMainMenuStrip.BackColor = System.Drawing.SystemColors.ControlText;
-            this.IconMainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.IconMainMenu_OpenItem,
-            this.IconMainMenu_CloseItem});
-            this.IconMainMenuStrip.Name = "IconMainMenuStrip";
-            this.IconMainMenuStrip.ShowImageMargin = false;
-            this.IconMainMenuStrip.Size = new System.Drawing.Size(125, 48);
-            this.IconMainMenuStrip.Text = "Меню";
-            // 
-            // IconMainMenu_OpenItem
-            // 
-            this.IconMainMenu_OpenItem.BackColor = System.Drawing.SystemColors.ControlText;
-            this.IconMainMenu_OpenItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.IconMainMenu_OpenItem.Name = "IconMainMenu_OpenItem";
-            this.IconMainMenu_OpenItem.Size = new System.Drawing.Size(124, 22);
-            this.IconMainMenu_OpenItem.Text = "Главное окно";
-            this.IconMainMenu_OpenItem.Click += new System.EventHandler(this.IconMainMenu_OpenItem_Click);
-            // 
-            // IconMainMenu_CloseItem
-            // 
-            this.IconMainMenu_CloseItem.BackColor = System.Drawing.SystemColors.ControlText;
-            this.IconMainMenu_CloseItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.IconMainMenu_CloseItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.IconMainMenu_CloseItem.Name = "IconMainMenu_CloseItem";
-            this.IconMainMenu_CloseItem.Size = new System.Drawing.Size(124, 22);
-            this.IconMainMenu_CloseItem.Text = "Закрыть";
-            this.IconMainMenu_CloseItem.Click += new System.EventHandler(this.IconMainMenu_CloseItem_Click);
+            this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DateRangeControl.Location = new System.Drawing.Point(18, 38);
+            this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
+            this.DateRangeControl.Name = "DateRangeControl";
+            this.DateRangeControl.Precision = ((byte)(3));
+            this.DateRangeControl.Size = new System.Drawing.Size(482, 90);
+            this.DateRangeControl.TabIndex = 0;
             // 
             // openTestIconForm_Button
             // 
@@ -189,22 +155,6 @@
             this.CurrentDateTime_Label.TabIndex = 9;
             this.CurrentDateTime_Label.Text = "11.05.2005 08:00 AM";
             // 
-            // WeekMark_Icon
-            // 
-            this.WeekMark_Icon.ContextMenuStrip = this.IconMainMenuStrip;
-            this.WeekMark_Icon.Text = "Weekinator";
-            this.WeekMark_Icon.Visible = true;
-            // 
-            // DateRangeControl
-            // 
-            this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DateRangeControl.Location = new System.Drawing.Point(18, 38);
-            this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
-            this.DateRangeControl.Name = "DateRangeControl";
-            this.DateRangeControl.Precision = ((byte)(3));
-            this.DateRangeControl.Size = new System.Drawing.Size(482, 90);
-            this.DateRangeControl.TabIndex = 0;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,7 +171,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).EndInit();
-            this.IconMainMenuStrip.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -233,14 +182,9 @@
         private DateRangeControl DateRangeControl;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.NotifyIcon Precent_Icon;
         private System.Windows.Forms.Button openTestIconForm_Button;
         private System.Windows.Forms.Panel TopPanel;
         private System.Windows.Forms.Label CurrentDateTime_Label;
-        private System.Windows.Forms.ContextMenuStrip IconMainMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem IconMainMenu_OpenItem;
-        private System.Windows.Forms.ToolStripMenuItem IconMainMenu_CloseItem;
-        private System.Windows.Forms.NotifyIcon WeekMark_Icon;
         private System.Windows.Forms.NumericUpDown Precision_NumericUpDown;
         private System.Windows.Forms.Button button2;
     }

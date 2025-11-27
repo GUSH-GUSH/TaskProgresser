@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.MainProgressBar = new System.Windows.Forms.ProgressBar();
             this.PrecentLabel = new System.Windows.Forms.Label();
             this.StartDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.PrecentIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.WeekMarkIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.IconMainMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.IconMainMenu_OpenItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.IconMainMenu_CloseItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainPanel.SuspendLayout();
+            this.IconMainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainProgressBar
@@ -99,6 +106,46 @@
             this.MainPanel.Size = new System.Drawing.Size(482, 90);
             this.MainPanel.TabIndex = 10;
             // 
+            // PrecentIcon
+            // 
+            this.PrecentIcon.ContextMenuStrip = this.IconMainMenuStrip;
+            this.PrecentIcon.Text = "Weekinator";
+            this.PrecentIcon.Visible = true;
+            // 
+            // WeekMarkIcon
+            // 
+            this.WeekMarkIcon.ContextMenuStrip = this.IconMainMenuStrip;
+            this.WeekMarkIcon.Text = "Weekinator";
+            this.WeekMarkIcon.Visible = true;
+            // 
+            // IconMainMenuStrip
+            // 
+            this.IconMainMenuStrip.BackColor = System.Drawing.SystemColors.ControlText;
+            this.IconMainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.IconMainMenu_OpenItem,
+            this.IconMainMenu_CloseItem});
+            this.IconMainMenuStrip.Name = "IconMainMenuStrip";
+            this.IconMainMenuStrip.ShowImageMargin = false;
+            this.IconMainMenuStrip.Size = new System.Drawing.Size(125, 48);
+            this.IconMainMenuStrip.Text = "Меню";
+            // 
+            // IconMainMenu_OpenItem
+            // 
+            this.IconMainMenu_OpenItem.BackColor = System.Drawing.SystemColors.ControlText;
+            this.IconMainMenu_OpenItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.IconMainMenu_OpenItem.Name = "IconMainMenu_OpenItem";
+            this.IconMainMenu_OpenItem.Size = new System.Drawing.Size(124, 22);
+            this.IconMainMenu_OpenItem.Text = "Главное окно";
+            // 
+            // IconMainMenu_CloseItem
+            // 
+            this.IconMainMenu_CloseItem.BackColor = System.Drawing.SystemColors.ControlText;
+            this.IconMainMenu_CloseItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.IconMainMenu_CloseItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.IconMainMenu_CloseItem.Name = "IconMainMenu_CloseItem";
+            this.IconMainMenu_CloseItem.Size = new System.Drawing.Size(124, 22);
+            this.IconMainMenu_CloseItem.Text = "Закрыть";
+            // 
             // DateRangeControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -111,6 +158,7 @@
             this.Resize += new System.EventHandler(this.DateRangeControl_Resize);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
+            this.IconMainMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -122,5 +170,10 @@
         private System.Windows.Forms.DateTimePicker StartDateTimePicker;
         private System.Windows.Forms.DateTimePicker EndDateTimePicker;
         private System.Windows.Forms.Panel MainPanel;
+        public System.Windows.Forms.NotifyIcon PrecentIcon;
+        public System.Windows.Forms.NotifyIcon WeekMarkIcon;
+        public System.Windows.Forms.ContextMenuStrip IconMainMenuStrip;
+        public System.Windows.Forms.ToolStripMenuItem IconMainMenu_OpenItem;
+        public System.Windows.Forms.ToolStripMenuItem IconMainMenu_CloseItem;
     }
 }

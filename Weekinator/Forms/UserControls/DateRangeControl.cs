@@ -1,19 +1,43 @@
-﻿using System;
+﻿using DateTimeToolKit.Models.DateRange;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using DateTimeToolKit.Models.DateRange;
+using Weekinator.Services;
 using WinFormsExtensions;
 
 namespace Weekinator
 {
     public partial class DateRangeControl : UserControl
     {
+        #region --- data structs ---
+
+        public enum WeekMark
+        {
+            Numerator,      //Числитель
+            Denominator     //Знаменатель
+        }
+
         public enum DateRangeControlState
         {
             Unstarted,
             Finished,
             InProgress
         }
+
+        #endregion
+
+
+        #region --- static ---
+
+        static Font iconFont = new Font("Arial Black", 24, FontStyle.Bold);
+        static Dictionary<WeekMark, Icon> WeekMarkIcons = new Dictionary<WeekMark, Icon>() {
+                { WeekMark.Numerator, IconGenerator.GetIcon("Ч", iconFont, new Size(32, 32)) },
+                { WeekMark.Denominator, IconGenerator.GetIcon("З", iconFont, new Size(32, 32)) }
+            };
+
+        #endregion
+
 
         #region --- fields ---
 
@@ -83,7 +107,8 @@ namespace Weekinator
             }
         }
 
-        public byte Precision {
+        public byte Precision
+        {
             get => digits;
             set { digits = value; UpdateVisual(); }
         }
@@ -111,7 +136,6 @@ namespace Weekinator
 
         private void DateRangeControl_Load(object sender, EventArgs e)
         {
-     
         }
 
         #endregion
@@ -152,6 +176,9 @@ namespace Weekinator
             MainProgressBar.Value = (int)(Fract * MainProgressBar.Maximum);
             PrecentLabel.Text = $"{Precent}%";
             UpdatePrecentLabelLocation();
+
+            UpdateIcon();
+            UpdateWeekmarkIcon(); // слишком часто
         }
 
         private void UpdatePrecentLabelLocation()
@@ -160,6 +187,28 @@ namespace Weekinator
                 x: (int)(MainProgressBar.Location.X - PrecentLabel.Size.Width / 2 + MainProgressBar.Size.Width * fract),
                 y: PrecentLabel.Location.Y
             );
+        }
+
+        public void UpdateIcon()
+        {
+            double precent = Precent;
+            PrecentIcon.Text = $"Текущий процент - {precent}%\n\n";
+
+            double roundedPrecent = Math.Round(precent, 1);
+            PrecentIcon.Icon?.Dispose();
+            PrecentIcon.Icon = IconGenerator.GetDefaultIcon(roundedPrecent.ToString());
+        }
+
+        public void UpdateWeekmarkIcon()
+        {
+            DateRange dateRange = DateRange;
+            int currentWeek = dateRange.GetWeekOf(DateTime.Now);
+            int totalWeeks = dateRange.TotalWeeks;
+            WeekMarkIcon.Text = $"Неделя {currentWeek} из {totalWeeks}";
+
+            WeekMark weekMark = currentWeek % 2 == 1 ? WeekMark.Numerator : WeekMark.Denominator;
+            WeekMarkIcon.Icon?.Dispose();
+            WeekMarkIcon.Icon = WeekMarkIcons[weekMark];
         }
 
         #endregion
