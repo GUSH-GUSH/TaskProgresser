@@ -35,10 +35,10 @@
             this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.PrecentIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.WeekMarkIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.IconMainMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.IconMainMenu_OpenItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IconMainMenu_CloseItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WeekMarkIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.MainPanel.SuspendLayout();
             this.IconMainMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -110,13 +110,6 @@
             // 
             this.PrecentIcon.ContextMenuStrip = this.IconMainMenuStrip;
             this.PrecentIcon.Text = "Weekinator";
-            this.PrecentIcon.Visible = true;
-            // 
-            // WeekMarkIcon
-            // 
-            this.WeekMarkIcon.ContextMenuStrip = this.IconMainMenuStrip;
-            this.WeekMarkIcon.Text = "Weekinator";
-            this.WeekMarkIcon.Visible = true;
             // 
             // IconMainMenuStrip
             // 
@@ -145,6 +138,11 @@
             this.IconMainMenu_CloseItem.Name = "IconMainMenu_CloseItem";
             this.IconMainMenu_CloseItem.Size = new System.Drawing.Size(124, 22);
             this.IconMainMenu_CloseItem.Text = "Закрыть";
+            // 
+            // WeekMarkIcon
+            // 
+            this.WeekMarkIcon.ContextMenuStrip = this.IconMainMenuStrip;
+            this.WeekMarkIcon.Text = "Weekinator";
             // 
             // DateRangeControl
             // 

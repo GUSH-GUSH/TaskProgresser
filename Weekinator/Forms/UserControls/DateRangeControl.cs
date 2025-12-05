@@ -136,6 +136,9 @@ namespace Weekinator
 
         private void DateRangeControl_Load(object sender, EventArgs e)
         {
+            WeekMarkIcon.Text = $"WeekMark {DateTime.Now.ToString()}";
+            PrecentIcon.Text = $"Precent {DateTime.Now.ToString()}";
+            WeekMarkIcon.Visible = PrecentIcon.Visible = true;
         }
 
         #endregion
@@ -207,7 +210,6 @@ namespace Weekinator
             WeekMarkIcon.Text = $"Неделя {currentWeek} из {totalWeeks}";
 
             WeekMark weekMark = currentWeek % 2 == 1 ? WeekMark.Numerator : WeekMark.Denominator;
-            WeekMarkIcon.Icon?.Dispose();
             WeekMarkIcon.Icon = WeekMarkIcons[weekMark];
         }
 

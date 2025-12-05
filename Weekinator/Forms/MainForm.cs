@@ -38,6 +38,8 @@ namespace Weekinator
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //КУРС 4.1
+
             DateTime start = new DateTime(2025, 09, 01, 8, 0, 0);
             DateTime end = new DateTime(2025, 12, 19, 17, 0, 0);
             DateRange dateRange = new DateRange(start, end);
@@ -46,14 +48,24 @@ namespace Weekinator
             DateRangeControl.SetDateRange(dateRange);
             DateRangeControl.UpdateValue(DateTime.Now);
 
+  
+            IconsSetup();
+
+            //Бакалавриат
+            DateTime start1 = new DateTime(2022, 09, 01, 8, 0, 0);
+            DateTime end1 = new DateTime(2026, 06, 30, 17, 0, 0);
+            DateRange dateRange1 = new DateRange(start1, end1);
+
+
+            dateRangeControl1.SetDateRange(dateRange1);
+            dateRangeControl1.UpdateValue(DateTime.Now);
+
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 500;
             timer.Tick += (obj, eventArgs) => UpdateTimers();
             timer.Start();
 
             Precision_NumericUpDown.Value = DateRangeControl.Precision;
-
-            IconsSetup();
         }
 
         private void IconsSetup() {
@@ -72,6 +84,8 @@ namespace Weekinator
         public void UpdateTimers()
         {
             DateRangeControl.UpdateValue(DateTime.Now);
+            dateRangeControl1.UpdateValue(DateTime.Now);
+
             CurrentDateTime_Label.Text = DateTime.Now.ToString();
         }
 
