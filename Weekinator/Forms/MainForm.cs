@@ -48,7 +48,7 @@ namespace Weekinator
             DateRangeControl.SetDateRange(dateRange);
             DateRangeControl.UpdateValue(DateTime.Now);
 
-  
+
             IconsSetup();
 
             //Бакалавриат
@@ -57,18 +57,19 @@ namespace Weekinator
             DateRange dateRange1 = new DateRange(start1, end1);
 
 
-            dateRangeControl1.SetDateRange(dateRange1);
-            dateRangeControl1.UpdateValue(DateTime.Now);
+            TSKCNTRL_Bakalavr.DateRangeControl.SetDateRange(dateRange1);
+            TSKCNTRL_Bakalavr.DateRangeControl.UpdateValue(DateTime.Now);
 
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 500;
             timer.Tick += (obj, eventArgs) => UpdateTimers();
             timer.Start();
 
-            Precision_NumericUpDown.Value = DateRangeControl.Precision;
+            TSKCNTRL_Bakalavr.Size = new Size(518, 150);
         }
 
-        private void IconsSetup() {
+        private void IconsSetup()
+        {
             DateRangeControl.PrecentIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
             DateRangeControl.WeekMarkIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
 
@@ -84,7 +85,7 @@ namespace Weekinator
         public void UpdateTimers()
         {
             DateRangeControl.UpdateValue(DateTime.Now);
-            dateRangeControl1.UpdateValue(DateTime.Now);
+            TSKCNTRL_Bakalavr.DateRangeControl.UpdateValue(DateTime.Now);
 
             CurrentDateTime_Label.Text = DateTime.Now.ToString();
         }
@@ -104,8 +105,6 @@ namespace Weekinator
                 //WeekMark_Icon.ShowBalloonTip(5000, "Weekinator активен!", "Приложение работает в фоновом режиме!", ToolTipIcon.None);
             }
             else this.Show();
-
-
         }
 
         private void IconMainMenu_CloseItem_Click(object sender, EventArgs e) => Application.Exit();
@@ -124,76 +123,7 @@ namespace Weekinator
             new Forms.DebugForms.TextIconTestForm().Show(this);
         }
 
-        private void Precission_NumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            DateRangeControl.Precision = (byte)Precision_NumericUpDown.Value;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(GetStatistics());
-        }
-
         #endregion
 
-
-        #region --- debug ---
-
-        private string GetStatistics()
-        {
-            double precentPerSecond = 100.0 / DateRangeControl.DateRange.Length.TotalSeconds;
-            double precentPerMinute = 100.0 / DateRangeControl.DateRange.Length.TotalMinutes;
-            double precentPerDay = 100.0 / DateRangeControl.DateRange.Length.TotalDays;
-            double precentPerWeek = 100.0 / DateRangeControl.DateRange.TotalWeeks;
-
-            return $"Процент в секунду = {precentPerSecond.ToString("F6")}\n" +
-                   $"Процент в минуту = {precentPerMinute.ToString("F6")}\n" +
-                   $"Процент в день = {precentPerDay.ToString("F6")}\n" +
-                   $"Процент в неделю = {precentPerWeek.ToString("F6")}";
-        }
-
-        void debug_info(DateRange dateRange, DateTime point)
-        {
-
-            Debug.WriteLine($"Range: {dateRange}");
-            Debug.WriteLine($"Date: {point}");
-            Debug.WriteLine($"Day of semester: {dateRange.GetDayOf(point)}/{dateRange.TotalDays}");
-            Debug.WriteLine($"Num of week: {dateRange.GetWeekOf(point)}/{dateRange.TotalWeeks}");
-            Debug.WriteLine($"Day of week: {point.DayOfWeek}");
-            Debug.WriteLine($"Total precent: {Math.Round(dateRange.GetFractionOf(point) * 100, 3)}%");
-            Debug.WriteLine($"Week mark: " + ((dateRange.GetWeekOf(point) % 2 == 0) ? "Znamenyk" : "Chiselnyk"));
-
-        }
-
-        #endregion
-
-        /*
-    private void button1_Click(object sender, EventArgs e)
-    {
-        string result = JsonSerializer.Serialize(DateRangeControl.DateRange, new JsonSerializerOptions() { WriteIndented = true });
-
-        if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
-
-        using (FileStream stream = new FileStream(Path.Combine(directory, file), FileMode.OpenOrCreate))
-        using (StreamWriter streamWriter = new StreamWriter(stream))
-            streamWriter.WriteLine(result);
-
-        MessageBox.Show($"Диапазон успешно сохранён!");
-    }
-
-    private void LoadData()
-    {
-        if (!File.Exists(Path.Combine(directory, file))) return;
-
-        using (StreamReader streamReader = new StreamReader(Path.Combine(directory, file)))
-        {
-            DateRangeControl.DateRange = JsonSerializer.Deserialize<DateRange>(streamReader.ReadToEnd());
-        }
-
-    }
-
-    string directory = "user-data";
-    string file = "date-range.json";
-    */
     }
 }

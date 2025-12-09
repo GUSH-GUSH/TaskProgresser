@@ -30,28 +30,20 @@
         {
             System.Windows.Forms.Label CurrentDateTimeTitle_Label;
             System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label2;
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.Precision_NumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.DateRangeControl = new Weekinator.DateRangeControl();
             this.openTestIconForm_Button = new System.Windows.Forms.Button();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.CurrentDateTime_Label = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.dateRangeControl1 = new Weekinator.DateRangeControl();
-            this.button4 = new System.Windows.Forms.Button();
+            this.TSKCNTRL_Bakalavr = new Weekinator.Forms.UserControls.TaskControl();
+            this.DateRangeControl = new Weekinator.DateRangeControl();
             CurrentDateTimeTitle_Label = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).BeginInit();
             this.TopPanel.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // CurrentDateTimeTitle_Label
@@ -104,7 +96,6 @@
             this.button2.TabIndex = 11;
             this.button2.Text = "Get Info";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Precision_NumericUpDown
             // 
@@ -118,17 +109,6 @@
             this.Precision_NumericUpDown.Size = new System.Drawing.Size(36, 20);
             this.Precision_NumericUpDown.TabIndex = 6;
             this.Precision_NumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Precision_NumericUpDown.ValueChanged += new System.EventHandler(this.Precission_NumericUpDown_ValueChanged);
-            // 
-            // DateRangeControl
-            // 
-            this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DateRangeControl.Location = new System.Drawing.Point(18, 38);
-            this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
-            this.DateRangeControl.Name = "DateRangeControl";
-            this.DateRangeControl.Precision = ((byte)(3));
-            this.DateRangeControl.Size = new System.Drawing.Size(482, 90);
-            this.DateRangeControl.TabIndex = 0;
             // 
             // openTestIconForm_Button
             // 
@@ -164,70 +144,25 @@
             this.CurrentDateTime_Label.TabIndex = 9;
             this.CurrentDateTime_Label.Text = "11.05.2005 08:00 AM";
             // 
-            // groupBox2
+            // TSKCNTRL_Bakalavr
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(label2);
-            this.groupBox2.Controls.Add(this.numericUpDown1);
-            this.groupBox2.Controls.Add(this.dateRangeControl1);
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Location = new System.Drawing.Point(110, 247);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(518, 169);
-            this.groupBox2.TabIndex = 12;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Семестр 4.1";
+            this.TSKCNTRL_Bakalavr.Location = new System.Drawing.Point(110, 251);
+            this.TSKCNTRL_Bakalavr.MaximumSize = new System.Drawing.Size(0, 150);
+            this.TSKCNTRL_Bakalavr.MinimumSize = new System.Drawing.Size(340, 150);
+            this.TSKCNTRL_Bakalavr.Name = "TSKCNTRL_Bakalavr";
+            this.TSKCNTRL_Bakalavr.Size = new System.Drawing.Size(518, 150);
+            this.TSKCNTRL_Bakalavr.TabIndex = 9;
+            this.TSKCNTRL_Bakalavr.Title = "Бакалавриат";
             // 
-            // button3
+            // DateRangeControl
             // 
-            this.button3.Location = new System.Drawing.Point(222, 134);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Get Info";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(18, 140);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(57, 13);
-            label2.TabIndex = 10;
-            label2.Text = "Точность:";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(81, 137);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(36, 20);
-            this.numericUpDown1.TabIndex = 6;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // dateRangeControl1
-            // 
-            this.dateRangeControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.dateRangeControl1.Location = new System.Drawing.Point(18, 38);
-            this.dateRangeControl1.MinimumSize = new System.Drawing.Size(300, 90);
-            this.dateRangeControl1.Name = "dateRangeControl1";
-            this.dateRangeControl1.Precision = ((byte)(3));
-            this.dateRangeControl1.Size = new System.Drawing.Size(482, 90);
-            this.dateRangeControl1.TabIndex = 0;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(425, 134);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Save";
-            this.button4.UseVisualStyleBackColor = true;
+            this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DateRangeControl.Location = new System.Drawing.Point(18, 38);
+            this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
+            this.DateRangeControl.Name = "DateRangeControl";
+            this.DateRangeControl.Precision = ((byte)(3));
+            this.DateRangeControl.Size = new System.Drawing.Size(482, 90);
+            this.DateRangeControl.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -235,7 +170,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(711, 428);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.TSKCNTRL_Bakalavr);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.TopPanel);
             this.MinimumSize = new System.Drawing.Size(526, 200);
@@ -248,9 +183,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).EndInit();
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -265,11 +197,7 @@
         private System.Windows.Forms.Label CurrentDateTime_Label;
         private System.Windows.Forms.NumericUpDown Precision_NumericUpDown;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private DateRangeControl dateRangeControl1;
-        private System.Windows.Forms.Button button4;
+        private Forms.UserControls.TaskControl TSKCNTRL_Bakalavr;
     }
 }
 
