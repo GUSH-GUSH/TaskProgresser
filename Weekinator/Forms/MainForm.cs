@@ -45,8 +45,8 @@ namespace Weekinator
             DateRange dateRange = new DateRange(start, end);
 
 
-            DateRangeControl.SetDateRange(dateRange);
-            DateRangeControl.UpdateValue(DateTime.Now);
+            TSKCTRL_Semestr.DateRangeControl.SetDateRange(dateRange);
+            TSKCTRL_Semestr.DateRangeControl.UpdateValue(DateTime.Now);
 
 
             IconsSetup();
@@ -64,17 +64,15 @@ namespace Weekinator
             timer.Interval = 500;
             timer.Tick += (obj, eventArgs) => UpdateTimers();
             timer.Start();
-
-            TSKCNTRL_Bakalavr.Size = new Size(518, 150);
         }
 
         private void IconsSetup()
         {
-            DateRangeControl.PrecentIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
-            DateRangeControl.WeekMarkIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
+            TSKCTRL_Semestr.DateRangeControl.PrecentIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
+            TSKCTRL_Semestr.DateRangeControl.WeekMarkIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
 
-            DateRangeControl.IconMainMenu_CloseItem.Click += IconMainMenu_CloseItem_Click;
-            DateRangeControl.IconMainMenu_OpenItem.Click += IconMainMenu_OpenItem_Click;
+            TSKCTRL_Semestr.DateRangeControl.IconMainMenu_CloseItem.Click += IconMainMenu_CloseItem_Click;
+            TSKCTRL_Semestr.DateRangeControl.IconMainMenu_OpenItem.Click += IconMainMenu_OpenItem_Click;
         }
 
         #endregion
@@ -84,7 +82,7 @@ namespace Weekinator
 
         public void UpdateTimers()
         {
-            DateRangeControl.UpdateValue(DateTime.Now);
+            TSKCTRL_Semestr.DateRangeControl.UpdateValue(DateTime.Now);
             TSKCNTRL_Bakalavr.DateRangeControl.UpdateValue(DateTime.Now);
 
             CurrentDateTime_Label.Text = DateTime.Now.ToString();

@@ -13,6 +13,8 @@ namespace Weekinator.Forms.UserControls
             set => GroupBox.Text = value;
         }
 
+        #region --- SETUP ---
+
         public TaskControl()
         {
             InitializeComponent();
@@ -22,7 +24,7 @@ namespace Weekinator.Forms.UserControls
             NUD_Accurancy.Value = DateRangeControl.Precision;
         }
 
-
+        #endregion
 
 
         #region --- EVENTS ---
@@ -102,7 +104,6 @@ string file = "date-range.json";
         }
 
         #endregion
-
 
     }
 }

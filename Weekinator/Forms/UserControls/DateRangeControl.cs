@@ -35,6 +35,10 @@ namespace Weekinator
                 { WeekMark.Numerator, IconGenerator.GetIcon("Ч", iconFont, new Size(32, 32)) },
                 { WeekMark.Denominator, IconGenerator.GetIcon("З", iconFont, new Size(32, 32)) }
             };
+        public static readonly DateRange DefaultDateRange = new DateRange(
+                        DateTimePicker.MinimumDateTime,
+                        DateTimePicker.MaximumDateTime
+                    );
 
         #endregion
 
@@ -46,11 +50,6 @@ namespace Weekinator
         private byte digits = 3; // Количество знаков после запятой для процентов
 
         private DateRangeControlState state = DateRangeControlState.Unstarted;
-
-        public static readonly DateRange DefaultDateRange = new DateRange(
-                        DateTimePicker.MinimumDateTime,
-                        DateTimePicker.MaximumDateTime
-                    );
 
         public event EventHandler OnValueChanged;
 
@@ -128,6 +127,10 @@ namespace Weekinator
                 DateTimeToolKit.Extensions.Truncate.TruncateLevel.Minute
             );
             pickersController.OnValueChanged += (o, a) => this.OnValueChanged?.Invoke(this, a);
+            
+            WeekMarkIcon.Text = $"WeekMark ID={this.GetHashCode()}";
+            PrecentIcon.Text = $"Precent ID={this.GetHashCode()}";
+            WeekMarkIcon.Visible = PrecentIcon.Visible = true;
         }
 
         public DateRangeControl(DateTime start, DateTime end) : this() => SetDateRange(start, end);
@@ -136,9 +139,7 @@ namespace Weekinator
 
         private void DateRangeControl_Load(object sender, EventArgs e)
         {
-            WeekMarkIcon.Text = $"WeekMark {DateTime.Now.ToString()}";
-            PrecentIcon.Text = $"Precent {DateTime.Now.ToString()}";
-            WeekMarkIcon.Visible = PrecentIcon.Visible = true;
+
         }
 
         #endregion

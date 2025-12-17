@@ -32,8 +32,8 @@
             this.GroupBox = new System.Windows.Forms.GroupBox();
             this.BTN_GetInfo = new System.Windows.Forms.Button();
             this.NUD_Accurancy = new System.Windows.Forms.NumericUpDown();
-            this.DateRangeControl = new Weekinator.DateRangeControl();
             this.BTN_Save = new System.Windows.Forms.Button();
+            this.DateRangeControl = new Weekinator.DateRangeControl();
             LBL_Accurancy = new System.Windows.Forms.Label();
             this.GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Accurancy)).BeginInit();
@@ -60,7 +60,7 @@
             this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBox.Location = new System.Drawing.Point(0, 0);
             this.GroupBox.Name = "GroupBox";
-            this.GroupBox.Size = new System.Drawing.Size(395, 150);
+            this.GroupBox.Size = new System.Drawing.Size(340, 150);
             this.GroupBox.TabIndex = 13;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Семестр 4.1";
@@ -68,7 +68,7 @@
             // BTN_GetInfo
             // 
             this.BTN_GetInfo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BTN_GetInfo.Location = new System.Drawing.Point(159, 114);
+            this.BTN_GetInfo.Location = new System.Drawing.Point(132, 114);
             this.BTN_GetInfo.Name = "BTN_GetInfo";
             this.BTN_GetInfo.Size = new System.Drawing.Size(75, 23);
             this.BTN_GetInfo.TabIndex = 11;
@@ -91,6 +91,16 @@
             this.NUD_Accurancy.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NUD_Accurancy.ValueChanged += new System.EventHandler(this.NUD_Accurancy_ValueChanged);
             // 
+            // BTN_Save
+            // 
+            this.BTN_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Save.Location = new System.Drawing.Point(245, 114);
+            this.BTN_Save.Name = "BTN_Save";
+            this.BTN_Save.Size = new System.Drawing.Size(75, 23);
+            this.BTN_Save.TabIndex = 5;
+            this.BTN_Save.Text = "Save";
+            this.BTN_Save.UseVisualStyleBackColor = true;
+            // 
             // DateRangeControl
             // 
             this.DateRangeControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -100,28 +110,18 @@
             this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
             this.DateRangeControl.Name = "DateRangeControl";
             this.DateRangeControl.Precision = ((byte)(3));
-            this.DateRangeControl.Size = new System.Drawing.Size(357, 90);
+            this.DateRangeControl.Size = new System.Drawing.Size(302, 90);
             this.DateRangeControl.TabIndex = 0;
-            // 
-            // BTN_Save
-            // 
-            this.BTN_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Save.Location = new System.Drawing.Point(300, 114);
-            this.BTN_Save.Name = "BTN_Save";
-            this.BTN_Save.Size = new System.Drawing.Size(75, 23);
-            this.BTN_Save.TabIndex = 5;
-            this.BTN_Save.Text = "Save";
-            this.BTN_Save.UseVisualStyleBackColor = true;
             // 
             // TaskControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.GroupBox);
-            this.MaximumSize = new System.Drawing.Size(0, 150);
+            this.MaximumSize = new System.Drawing.Size(10000, 150);
             this.MinimumSize = new System.Drawing.Size(340, 150);
             this.Name = "TaskControl";
-            this.Size = new System.Drawing.Size(395, 150);
+            this.Size = new System.Drawing.Size(340, 150);
             this.Load += new System.EventHandler(this.TaskControl_Load);
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();

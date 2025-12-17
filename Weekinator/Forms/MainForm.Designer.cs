@@ -29,20 +29,12 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Label CurrentDateTimeTitle_Label;
-            System.Windows.Forms.Label label1;
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.Precision_NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.openTestIconForm_Button = new System.Windows.Forms.Button();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.CurrentDateTime_Label = new System.Windows.Forms.Label();
+            this.TSKCTRL_Semestr = new Weekinator.Forms.UserControls.TaskControl();
             this.TSKCNTRL_Bakalavr = new Weekinator.Forms.UserControls.TaskControl();
-            this.DateRangeControl = new Weekinator.DateRangeControl();
             CurrentDateTimeTitle_Label = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).BeginInit();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,61 +46,6 @@
             CurrentDateTimeTitle_Label.Size = new System.Drawing.Size(125, 13);
             CurrentDateTimeTitle_Label.TabIndex = 8;
             CurrentDateTimeTitle_Label.Text = "Текущая дата и время:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(18, 140);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(57, 13);
-            label1.TabIndex = 10;
-            label1.Text = "Точность:";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(425, 134);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(label1);
-            this.groupBox1.Controls.Add(this.Precision_NumericUpDown);
-            this.groupBox1.Controls.Add(this.DateRangeControl);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(110, 65);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(518, 169);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Семестр 4.1";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(222, 134);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Get Info";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // Precision_NumericUpDown
-            // 
-            this.Precision_NumericUpDown.Location = new System.Drawing.Point(81, 137);
-            this.Precision_NumericUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.Precision_NumericUpDown.Name = "Precision_NumericUpDown";
-            this.Precision_NumericUpDown.Size = new System.Drawing.Size(36, 20);
-            this.Precision_NumericUpDown.TabIndex = 6;
-            this.Precision_NumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // openTestIconForm_Button
             // 
@@ -144,25 +81,25 @@
             this.CurrentDateTime_Label.TabIndex = 9;
             this.CurrentDateTime_Label.Text = "11.05.2005 08:00 AM";
             // 
+            // TSKCTRL_Semestr
+            // 
+            this.TSKCTRL_Semestr.Location = new System.Drawing.Point(110, 73);
+            this.TSKCTRL_Semestr.MaximumSize = new System.Drawing.Size(10000, 150);
+            this.TSKCTRL_Semestr.MinimumSize = new System.Drawing.Size(340, 150);
+            this.TSKCTRL_Semestr.Name = "TSKCTRL_Semestr";
+            this.TSKCTRL_Semestr.Size = new System.Drawing.Size(518, 150);
+            this.TSKCTRL_Semestr.TabIndex = 10;
+            this.TSKCTRL_Semestr.Title = "Семестр 4.1";
+            // 
             // TSKCNTRL_Bakalavr
             // 
             this.TSKCNTRL_Bakalavr.Location = new System.Drawing.Point(110, 251);
-            this.TSKCNTRL_Bakalavr.MaximumSize = new System.Drawing.Size(0, 150);
+            this.TSKCNTRL_Bakalavr.MaximumSize = new System.Drawing.Size(10000, 150);
             this.TSKCNTRL_Bakalavr.MinimumSize = new System.Drawing.Size(340, 150);
             this.TSKCNTRL_Bakalavr.Name = "TSKCNTRL_Bakalavr";
             this.TSKCNTRL_Bakalavr.Size = new System.Drawing.Size(518, 150);
             this.TSKCNTRL_Bakalavr.TabIndex = 9;
             this.TSKCNTRL_Bakalavr.Title = "Бакалавриат";
-            // 
-            // DateRangeControl
-            // 
-            this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DateRangeControl.Location = new System.Drawing.Point(18, 38);
-            this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
-            this.DateRangeControl.Name = "DateRangeControl";
-            this.DateRangeControl.Precision = ((byte)(3));
-            this.DateRangeControl.Size = new System.Drawing.Size(482, 90);
-            this.DateRangeControl.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -170,17 +107,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(711, 428);
+            this.Controls.Add(this.TSKCTRL_Semestr);
             this.Controls.Add(this.TSKCNTRL_Bakalavr);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.TopPanel);
             this.MinimumSize = new System.Drawing.Size(526, 200);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Precision_NumericUpDown)).EndInit();
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -188,16 +122,11 @@
         }
 
         #endregion
-
-        private DateRangeControl DateRangeControl;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button openTestIconForm_Button;
         private System.Windows.Forms.Panel TopPanel;
         private System.Windows.Forms.Label CurrentDateTime_Label;
-        private System.Windows.Forms.NumericUpDown Precision_NumericUpDown;
-        private System.Windows.Forms.Button button2;
         private Forms.UserControls.TaskControl TSKCNTRL_Bakalavr;
+        private Forms.UserControls.TaskControl TSKCTRL_Semestr;
     }
 }
 
