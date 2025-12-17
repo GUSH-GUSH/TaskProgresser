@@ -41,7 +41,9 @@ namespace Weekinator.Forms.DebugForms
                                             fontStyle_ComboBox.SelectedValue?.ToString() ?? "Regular"
                                         )
                                 ),
-                                IconSize
+                                IconSize,
+                                Color.White,
+                                Color.Black
                             );
         }
 

@@ -68,8 +68,8 @@ namespace Weekinator
 
         private void IconsSetup()
         {
-            TSKCTRL_Semestr.DateRangeControl.PrecentIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
-            TSKCTRL_Semestr.DateRangeControl.WeekMarkIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
+         //   TSKCTRL_Semestr.DateRangeControl.PrecentIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
+         //   TSKCTRL_Semestr.DateRangeControl.WeekMarkIcon.MouseDoubleClick += PrecentIcon_MouseDoubleClick;
 
             TSKCTRL_Semestr.DateRangeControl.IconMainMenu_CloseItem.Click += IconMainMenu_CloseItem_Click;
             TSKCTRL_Semestr.DateRangeControl.IconMainMenu_OpenItem.Click += IconMainMenu_OpenItem_Click;

@@ -89,6 +89,9 @@
     <Compile Include="Forms\DebugForms\TextIconTestForm.Designer.cs">
       <DependentUpon>TextIconTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DynamicTextNotifyIcon.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\UserControls\DateRangeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

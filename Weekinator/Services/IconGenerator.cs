@@ -18,7 +18,7 @@ namespace Weekinator.Services
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern bool DestroyIcon(IntPtr handle);
 
-        public static Icon GetIcon(string text, Font font, Size iconSize)
+        public static Icon GetIcon(string text, Font font, Size iconSize, Color textColor, Color BackgroundColor)
         {
             using (Bitmap bitmap = new Bitmap(
                             iconSize.Width,
@@ -27,9 +27,9 @@ namespace Weekinator.Services
             {
                 using (Graphics g = Graphics.FromImage(bitmap))
                 {
-                    g.Clear(Color.Transparent); // Очищаем фон, делаем его прозрачным
+                    g.Clear(BackgroundColor); // Очищаем фон, делаем его прозрачным
 
-                    using (SolidBrush brush = new SolidBrush(Color.White))
+                    using (SolidBrush brush = new SolidBrush(textColor))
                     {
                         // Рисуем текст в центре
                         SizeF textSize = g.MeasureString(text, font);
@@ -48,7 +48,7 @@ namespace Weekinator.Services
         }
 
         public static Icon GetDefaultIcon(string text) {
-            return GetIcon(text, DefaultFont, DefaultSize);   
+            return GetIcon(text, DefaultFont, DefaultSize, Color.White, Color.Black);
         }
     }
 }

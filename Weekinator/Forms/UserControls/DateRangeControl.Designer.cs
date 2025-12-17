@@ -29,19 +29,47 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.IconMainMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.IconMainMenu_OpenItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.IconMainMenu_CloseItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainProgressBar = new System.Windows.Forms.ProgressBar();
             this.PrecentLabel = new System.Windows.Forms.Label();
             this.StartDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.PrecentIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.IconMainMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.IconMainMenu_OpenItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.IconMainMenu_CloseItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.WeekMarkIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.MainPanel.SuspendLayout();
+            this.PrecentIcon = new Weekinator.DynamicTextNotifyIcon(this.components);
+            this.WeekmarkIcon = new Weekinator.DynamicTextNotifyIcon(this.components);
             this.IconMainMenuStrip.SuspendLayout();
+            this.MainPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // IconMainMenuStrip
+            // 
+            this.IconMainMenuStrip.BackColor = System.Drawing.SystemColors.ControlText;
+            this.IconMainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.IconMainMenu_OpenItem,
+            this.IconMainMenu_CloseItem});
+            this.IconMainMenuStrip.Name = "IconMainMenuStrip";
+            this.IconMainMenuStrip.ShowImageMargin = false;
+            this.IconMainMenuStrip.Size = new System.Drawing.Size(125, 48);
+            this.IconMainMenuStrip.Text = "Меню";
+            // 
+            // IconMainMenu_OpenItem
+            // 
+            this.IconMainMenu_OpenItem.BackColor = System.Drawing.SystemColors.ControlText;
+            this.IconMainMenu_OpenItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.IconMainMenu_OpenItem.Name = "IconMainMenu_OpenItem";
+            this.IconMainMenu_OpenItem.Size = new System.Drawing.Size(124, 22);
+            this.IconMainMenu_OpenItem.Text = "Главное окно";
+            // 
+            // IconMainMenu_CloseItem
+            // 
+            this.IconMainMenu_CloseItem.BackColor = System.Drawing.SystemColors.ControlText;
+            this.IconMainMenu_CloseItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.IconMainMenu_CloseItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.IconMainMenu_CloseItem.Name = "IconMainMenu_CloseItem";
+            this.IconMainMenu_CloseItem.Size = new System.Drawing.Size(124, 22);
+            this.IconMainMenu_CloseItem.Text = "Закрыть";
             // 
             // MainProgressBar
             // 
@@ -108,41 +136,23 @@
             // 
             // PrecentIcon
             // 
+            this.PrecentIcon.BaloonTipIcon = System.Windows.Forms.ToolTipIcon.None;
+            this.PrecentIcon.BaloonTipText = "";
+            this.PrecentIcon.BaloonTipTitle = "";
             this.PrecentIcon.ContextMenuStrip = this.IconMainMenuStrip;
-            this.PrecentIcon.Text = "Weekinator";
+            this.PrecentIcon.DisplayText = "0";
+            this.PrecentIcon.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 18F);
+            this.PrecentIcon.Visible = true;
             // 
-            // IconMainMenuStrip
+            // WeekmarkIcon
             // 
-            this.IconMainMenuStrip.BackColor = System.Drawing.SystemColors.ControlText;
-            this.IconMainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.IconMainMenu_OpenItem,
-            this.IconMainMenu_CloseItem});
-            this.IconMainMenuStrip.Name = "IconMainMenuStrip";
-            this.IconMainMenuStrip.ShowImageMargin = false;
-            this.IconMainMenuStrip.Size = new System.Drawing.Size(125, 48);
-            this.IconMainMenuStrip.Text = "Меню";
-            // 
-            // IconMainMenu_OpenItem
-            // 
-            this.IconMainMenu_OpenItem.BackColor = System.Drawing.SystemColors.ControlText;
-            this.IconMainMenu_OpenItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.IconMainMenu_OpenItem.Name = "IconMainMenu_OpenItem";
-            this.IconMainMenu_OpenItem.Size = new System.Drawing.Size(124, 22);
-            this.IconMainMenu_OpenItem.Text = "Главное окно";
-            // 
-            // IconMainMenu_CloseItem
-            // 
-            this.IconMainMenu_CloseItem.BackColor = System.Drawing.SystemColors.ControlText;
-            this.IconMainMenu_CloseItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.IconMainMenu_CloseItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.IconMainMenu_CloseItem.Name = "IconMainMenu_CloseItem";
-            this.IconMainMenu_CloseItem.Size = new System.Drawing.Size(124, 22);
-            this.IconMainMenu_CloseItem.Text = "Закрыть";
-            // 
-            // WeekMarkIcon
-            // 
-            this.WeekMarkIcon.ContextMenuStrip = this.IconMainMenuStrip;
-            this.WeekMarkIcon.Text = "Weekinator";
+            this.WeekmarkIcon.BaloonTipIcon = System.Windows.Forms.ToolTipIcon.None;
+            this.WeekmarkIcon.BaloonTipText = "";
+            this.WeekmarkIcon.BaloonTipTitle = "";
+            this.WeekmarkIcon.ContextMenuStrip = this.IconMainMenuStrip;
+            this.WeekmarkIcon.DisplayText = "0";
+            this.WeekmarkIcon.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 18F);
+            this.WeekmarkIcon.Visible = true;
             // 
             // DateRangeControl
             // 
@@ -154,24 +164,23 @@
             this.Size = new System.Drawing.Size(482, 90);
             this.Load += new System.EventHandler(this.DateRangeControl_Load);
             this.Resize += new System.EventHandler(this.DateRangeControl_Resize);
+            this.IconMainMenuStrip.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
-            this.IconMainMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
+        public System.Windows.Forms.ContextMenuStrip IconMainMenuStrip;
+        public System.Windows.Forms.ToolStripMenuItem IconMainMenu_OpenItem;
+        public System.Windows.Forms.ToolStripMenuItem IconMainMenu_CloseItem;
+        private DynamicTextNotifyIcon PrecentIcon;
         private System.Windows.Forms.ProgressBar MainProgressBar;
         private System.Windows.Forms.Label PrecentLabel;
         private System.Windows.Forms.DateTimePicker StartDateTimePicker;
         private System.Windows.Forms.DateTimePicker EndDateTimePicker;
         private System.Windows.Forms.Panel MainPanel;
-        public System.Windows.Forms.NotifyIcon PrecentIcon;
-        public System.Windows.Forms.NotifyIcon WeekMarkIcon;
-        public System.Windows.Forms.ContextMenuStrip IconMainMenuStrip;
-        public System.Windows.Forms.ToolStripMenuItem IconMainMenu_OpenItem;
-        public System.Windows.Forms.ToolStripMenuItem IconMainMenu_CloseItem;
+        private DynamicTextNotifyIcon WeekmarkIcon;
     }
 }

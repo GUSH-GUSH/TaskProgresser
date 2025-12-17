@@ -30,10 +30,10 @@ namespace Weekinator
 
         #region --- static ---
 
-        static Font iconFont = new Font("Arial Black", 24, FontStyle.Bold);
-        static Dictionary<WeekMark, Icon> WeekMarkIcons = new Dictionary<WeekMark, Icon>() {
-                { WeekMark.Numerator, IconGenerator.GetIcon("Ч", iconFont, new Size(32, 32)) },
-                { WeekMark.Denominator, IconGenerator.GetIcon("З", iconFont, new Size(32, 32)) }
+        static Font WeekmarkIconFont = new Font("Arial Black", 24, FontStyle.Bold);
+        static Dictionary<WeekMark, string> WeekMarkLabels = new Dictionary<WeekMark, string>() {
+                { WeekMark.Numerator, "Ч" },
+                { WeekMark.Denominator, "З" }
             };
         public static readonly DateRange DefaultDateRange = new DateRange(
                         DateTimePicker.MinimumDateTime,
@@ -127,10 +127,13 @@ namespace Weekinator
                 DateTimeToolKit.Extensions.Truncate.TruncateLevel.Minute
             );
             pickersController.OnValueChanged += (o, a) => this.OnValueChanged?.Invoke(this, a);
-            
-            WeekMarkIcon.Text = $"WeekMark ID={this.GetHashCode()}";
-            PrecentIcon.Text = $"Precent ID={this.GetHashCode()}";
-            WeekMarkIcon.Visible = PrecentIcon.Visible = true;
+
+
+            WeekmarkIcon.Font = WeekmarkIconFont;
+            PrecentIcon.Font = IconGenerator.DefaultFont;
+            //WeekMarkIcon.Text = $"WeekMark ID={this.GetHashCode()}";
+            //PrecentIcon.Text = $"Precent ID={this.GetHashCode()}";
+            //WeekMarkIcon.Visible = PrecentIcon.Visible = true;
         }
 
         public DateRangeControl(DateTime start, DateTime end) : this() => SetDateRange(start, end);
@@ -181,8 +184,8 @@ namespace Weekinator
             PrecentLabel.Text = $"{Precent}%";
             UpdatePrecentLabelLocation();
 
-            UpdateIcon();
-            UpdateWeekmarkIcon(); // слишком часто
+            UpdatePrecentIcon();
+            UpdateWeekmarkIcon();
         }
 
         private void UpdatePrecentLabelLocation()
@@ -193,27 +196,24 @@ namespace Weekinator
             );
         }
 
-        public void UpdateIcon()
+        public void UpdatePrecentIcon()
         {
             double precent = Precent;
-            PrecentIcon.Text = $"Текущий процент - {precent}%\n\n";
-
-            double roundedPrecent = Math.Round(precent, 1);
-            PrecentIcon.Icon?.Dispose();
-            PrecentIcon.Icon = IconGenerator.GetDefaultIcon(roundedPrecent.ToString());
+          //  PrecentIcon.HeaderText = $"Текущий процент - {precent}%\n\n";
+            PrecentIcon.DisplayText = Math.Round(precent, 1).ToString();
         }
-
+        
         public void UpdateWeekmarkIcon()
         {
             DateRange dateRange = DateRange;
             int currentWeek = dateRange.GetWeekOf(DateTime.Now);
             int totalWeeks = dateRange.TotalWeeks;
-            WeekMarkIcon.Text = $"Неделя {currentWeek} из {totalWeeks}";
+            //WeekmarkIcon.HeaderText = $"Неделя {currentWeek} из {totalWeeks}";
 
             WeekMark weekMark = currentWeek % 2 == 1 ? WeekMark.Numerator : WeekMark.Denominator;
-            WeekMarkIcon.Icon = WeekMarkIcons[weekMark];
+            WeekmarkIcon.DisplayText = WeekMarkLabels[weekMark];
         }
-
+        
         #endregion
 
 
@@ -229,5 +229,6 @@ namespace Weekinator
         public double GetPrecent(int accuracy) => Math.Round(fract * 100, accuracy);
 
         #endregion
+
     }
 }
