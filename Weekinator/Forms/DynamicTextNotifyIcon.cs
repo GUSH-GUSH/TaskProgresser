@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Linq;
-using Weekinator.Services;
+using System.Reflection;
 using System.Text;
+using System.Windows.Forms;
+using Weekinator.Services;
 
 
 namespace Weekinator
@@ -59,7 +60,7 @@ namespace Weekinator
         [Description("Текст, отображаемый при наведении")]
         public string HeaderText {
             get => _notifyIcon.Text;
-            //set => _notifyIcon.Text = value + _instanceSuffix;
+            set => _notifyIcon.Text = value + _instanceSuffix;
         }
 
         [Description("Текст, который будет отображаться на иконке")]
@@ -101,7 +102,7 @@ namespace Weekinator
             
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Visible = false;
-            _notifyIcon.Text = GetHashCode().ToString();
+            HeaderText = GetHashCode().ToString();
 
             UpdateIcon();
         }
@@ -144,8 +145,7 @@ namespace Weekinator
 
         private const char IDENTIFIER = '\t';
         private static int instanceCount = 0;
-        
-        #endregion
 
+        #endregion
     }
 }

@@ -199,7 +199,7 @@ namespace Weekinator
         public void UpdatePrecentIcon()
         {
             double precent = Precent;
-          //  PrecentIcon.HeaderText = $"Текущий процент - {precent}%\n\n";
+            PrecentIcon.HeaderText = $"Текущий процент - {precent}%\n\n";
             PrecentIcon.DisplayText = Math.Round(precent, 1).ToString();
         }
         
@@ -208,7 +208,7 @@ namespace Weekinator
             DateRange dateRange = DateRange;
             int currentWeek = dateRange.GetWeekOf(DateTime.Now);
             int totalWeeks = dateRange.TotalWeeks;
-            //WeekmarkIcon.HeaderText = $"Неделя {currentWeek} из {totalWeeks}";
+            WeekmarkIcon.HeaderText = $"Неделя {currentWeek} из {totalWeeks}";
 
             WeekMark weekMark = currentWeek % 2 == 1 ? WeekMark.Numerator : WeekMark.Denominator;
             WeekmarkIcon.DisplayText = WeekMarkLabels[weekMark];
