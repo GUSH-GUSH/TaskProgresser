@@ -40,8 +40,8 @@ namespace Weekinator
         {
             //КУРС 4.1
 
-            DateTime start = new DateTime(2025, 09, 01, 8, 0, 0);
-            DateTime end = new DateTime(2025, 12, 19, 17, 0, 0);
+            DateTime start = new DateTime(2026, 02, 02, 8, 0, 0);
+            DateTime end = new DateTime(2026, 02, 28, 17, 0, 0);
             DateRange dateRange = new DateRange(start, end);
 
 

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Weekinator.Services;
 using WinFormsExtensions;
+using static Weekinator.DateRangeControl;
 
 namespace Weekinator
 {
@@ -202,18 +203,26 @@ namespace Weekinator
             PrecentIcon.HeaderText = $"Текущий процент - {precent}%\n\n";
             PrecentIcon.DisplayText = Math.Round(precent, 1).ToString();
         }
-        
+
         public void UpdateWeekmarkIcon()
         {
-            DateRange dateRange = DateRange;
-            int currentWeek = dateRange.GetWeekOf(DateTime.Now);
-            int totalWeeks = dateRange.TotalWeeks;
-            WeekmarkIcon.HeaderText = $"Неделя {currentWeek} из {totalWeeks}";
+            if (state == DateRangeControlState.InProgress)
+            {
+                DateRange dateRange = DateRange;
+                int currentWeek = dateRange.GetWeekOf(DateTime.Now);
+                int totalWeeks = dateRange.TotalWeeks;
+                WeekmarkIcon.HeaderText = $"Неделя {currentWeek} из {totalWeeks}";
 
-            WeekMark weekMark = currentWeek % 2 == 1 ? WeekMark.Numerator : WeekMark.Denominator;
-            WeekmarkIcon.DisplayText = WeekMarkLabels[weekMark];
+                WeekMark weekMark = currentWeek % 2 == 1 ? WeekMark.Numerator : WeekMark.Denominator;
+                WeekmarkIcon.DisplayText = WeekMarkLabels[weekMark];
+            }
+            else
+            {
+                WeekmarkIcon.DisplayText = "N";
+                WeekmarkIcon.HeaderText = "Диапазон " + (state == DateRangeControlState.Finished ? "закончился" : "не начался");
+            }
         }
-        
+
         #endregion
 
 

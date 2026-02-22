@@ -13,6 +13,23 @@ namespace Weekinator.Forms.UserControls
             set => GroupBox.Text = value;
         }
 
+        public DateRange DateRange {
+            get => DateRangeControl.DateRange;
+            set => DateRangeControl.DateRange = value;
+        }
+
+        public DateTime Start {
+            get => DateRangeControl.DateRange.Start;
+            set => DateRangeControl.DateRange.SetDateRange(value, End);
+        }
+
+        public DateTime End
+        {
+            get => DateRangeControl.DateRange.End;
+            set => DateRangeControl.DateRange.SetDateRange(Start, value);
+        }
+
+
         #region --- SETUP ---
 
         public TaskControl()

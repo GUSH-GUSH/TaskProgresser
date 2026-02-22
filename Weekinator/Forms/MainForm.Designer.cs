@@ -83,21 +83,25 @@
             // 
             // TSKCTRL_Semestr
             // 
+            this.TSKCTRL_Semestr.End = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.TSKCTRL_Semestr.Location = new System.Drawing.Point(110, 73);
             this.TSKCTRL_Semestr.MaximumSize = new System.Drawing.Size(10000, 150);
             this.TSKCTRL_Semestr.MinimumSize = new System.Drawing.Size(340, 150);
             this.TSKCTRL_Semestr.Name = "TSKCTRL_Semestr";
             this.TSKCTRL_Semestr.Size = new System.Drawing.Size(518, 150);
+            this.TSKCTRL_Semestr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.TSKCTRL_Semestr.TabIndex = 10;
-            this.TSKCTRL_Semestr.Title = "Семестр 4.1";
+            this.TSKCTRL_Semestr.Title = "Практика";
             // 
             // TSKCNTRL_Bakalavr
             // 
+            this.TSKCNTRL_Bakalavr.End = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.TSKCNTRL_Bakalavr.Location = new System.Drawing.Point(110, 251);
             this.TSKCNTRL_Bakalavr.MaximumSize = new System.Drawing.Size(10000, 150);
             this.TSKCNTRL_Bakalavr.MinimumSize = new System.Drawing.Size(340, 150);
             this.TSKCNTRL_Bakalavr.Name = "TSKCNTRL_Bakalavr";
             this.TSKCNTRL_Bakalavr.Size = new System.Drawing.Size(518, 150);
+            this.TSKCNTRL_Bakalavr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.TSKCNTRL_Bakalavr.TabIndex = 9;
             this.TSKCNTRL_Bakalavr.Title = "Бакалавриат";
             // 
