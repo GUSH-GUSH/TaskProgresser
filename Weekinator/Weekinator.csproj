@@ -120,6 +120,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IconGenerator.cs" />
+    <Compile Include="Services\ProgressUpdaterService.cs" />
     <Compile Include="Utils\DateTimeToolKit\Extensions\Truncate\TruncateExtensions.cs" />
     <Compile Include="Utils\DateTimeToolKit\Extensions\Truncate\TruncateLevel.cs" />
     <Compile Include="Utils\DateTimeToolKit\Models\DateRange.cs" />

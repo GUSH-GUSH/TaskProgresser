@@ -25,7 +25,7 @@ namespace Weekinator
     {
         #region --- fields ---
 
-        private System.Windows.Forms.Timer timer;
+        //private System.Windows.Forms.Timer timer;
 
         #endregion
 
@@ -61,10 +61,12 @@ namespace Weekinator
             TSKCNTRL_Bakalavr.DateRangeControl.SetDateRange(dateRange1);
             TSKCNTRL_Bakalavr.DateRangeControl.UpdateValue(DateTime.Now);
 
-            timer = new System.Windows.Forms.Timer();
-            timer.Interval = 500;
-            timer.Tick += (obj, eventArgs) => UpdateTimers();
-            timer.Start();
+            //timer = new System.Windows.Forms.Timer();
+            //timer.Interval = 500;
+            //timer.Tick += (obj, eventArgs) => UpdateTimers();
+            //timer.Start();
+
+            ProgressUpdaterService.Start();
         }
 
         private void IconsSetup()

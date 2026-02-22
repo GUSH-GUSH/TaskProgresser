@@ -143,7 +143,7 @@ namespace Weekinator
 
         private void DateRangeControl_Load(object sender, EventArgs e)
         {
-
+            //ProgressUpdaterService.AddDateRangeControl(this);
         }
 
         #endregion
