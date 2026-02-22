@@ -38,7 +38,6 @@
             this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.PrecentIcon = new Weekinator.DynamicTextNotifyIcon(this.components);
-            this.WeekmarkIcon = new Weekinator.DynamicTextNotifyIcon(this.components);
             this.IconMainMenuStrip.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.SuspendLayout();
@@ -144,16 +143,6 @@
             this.PrecentIcon.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 18F);
             this.PrecentIcon.Visible = true;
             // 
-            // WeekmarkIcon
-            // 
-            this.WeekmarkIcon.BaloonTipIcon = System.Windows.Forms.ToolTipIcon.None;
-            this.WeekmarkIcon.BaloonTipText = "";
-            this.WeekmarkIcon.BaloonTipTitle = "";
-            this.WeekmarkIcon.ContextMenuStrip = this.IconMainMenuStrip;
-            this.WeekmarkIcon.DisplayText = "0";
-            this.WeekmarkIcon.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 18F);
-            this.WeekmarkIcon.Visible = true;
-            // 
             // DateRangeControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -181,6 +170,5 @@
         private System.Windows.Forms.DateTimePicker StartDateTimePicker;
         private System.Windows.Forms.DateTimePicker EndDateTimePicker;
         private System.Windows.Forms.Panel MainPanel;
-        private DynamicTextNotifyIcon WeekmarkIcon;
     }
 }
