@@ -2,10 +2,11 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Weekinator.Controls;
 
 namespace Weekinator.Forms.UserControls
 {
-    public partial class TaskControl : UserControl
+    public partial class TaskControl : ClickableUserControl
     {
         public string Title
         {

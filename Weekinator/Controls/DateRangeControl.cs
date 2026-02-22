@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Weekinator.Controls;
 using Weekinator.Services;
 using WinFormsExtensions;
-using static Weekinator.DateRangeControl;
 
 namespace Weekinator
 {
-    public partial class DateRangeControl : UserControl
+    public partial class DateRangeControl : ClickableUserControl
     {
         #region --- data structs ---
 

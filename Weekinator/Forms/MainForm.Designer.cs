@@ -92,6 +92,7 @@
             this.TSKCTRL_Semestr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.TSKCTRL_Semestr.TabIndex = 10;
             this.TSKCTRL_Semestr.Title = "Практика";
+            this.TSKCTRL_Semestr.DoubleClick += new System.EventHandler(this.TSKCTRL_Semestr_DoubleClick);
             // 
             // TSKCNTRL_Bakalavr
             // 

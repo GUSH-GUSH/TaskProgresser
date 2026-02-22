@@ -15,8 +15,9 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using Weekinator.Forms;
 using Weekinator.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace Weekinator
 {
@@ -123,5 +124,22 @@ namespace Weekinator
 
         #endregion
 
+        private void TSKCTRL_Semestr_DoubleClick(object sender, EventArgs e)
+        {
+            Rectangle workingArea = Screen.PrimaryScreen.WorkingArea;
+
+            TrayFlayoutTaskForm _flyoutForm = new TrayFlayoutTaskForm(new Models.TaskItem() { Title = TSKCTRL_Semestr.Title,
+                                                                                            StartDate = TSKCTRL_Semestr.DateRange.Start,                
+                                                                                            EndDate = TSKCTRL_Semestr.DateRange.End,
+            });
+
+            int x = workingArea.Right - _flyoutForm.Width;
+            int y = workingArea.Bottom - _flyoutForm.Height;
+
+            _flyoutForm.Location = new Point(x, y);
+
+            _flyoutForm.Show();
+            _flyoutForm.Activate();
+        }
     }
 }
