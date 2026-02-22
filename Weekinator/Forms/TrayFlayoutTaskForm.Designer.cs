@@ -37,6 +37,7 @@
             this.DateRangeControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DateRangeControl.EnableIcon = false;
             this.DateRangeControl.Location = new System.Drawing.Point(2, 8);
             this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
             this.DateRangeControl.Name = "DateRangeControl";
@@ -71,6 +72,7 @@
             this.Text = "TrayFlayoutTaskForm";
             this.TopMost = true;
             this.Deactivate += new System.EventHandler(this.TrayFlayoutTaskForm_Deactivate);
+            this.Load += new System.EventHandler(this.TrayFlayoutTaskForm_Load);
             this.ResumeLayout(false);
 
         }

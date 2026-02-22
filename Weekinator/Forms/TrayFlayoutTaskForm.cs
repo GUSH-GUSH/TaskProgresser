@@ -30,6 +30,11 @@ namespace Weekinator.Forms
 
         #region --- EVENTS ---
 
+        private void TrayFlayoutTaskForm_Load(object sender, EventArgs e)
+        {
+            DateRangeControl.UpdateValue(DateTime.Now);
+        }
+
         private void TrayFlayoutTaskForm_Deactivate(object sender, EventArgs e)
         {
             this.Close();
@@ -56,5 +61,6 @@ namespace Weekinator.Forms
 
         #endregion
 
+    
     }
 }

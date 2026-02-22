@@ -40,10 +40,12 @@ namespace Weekinator
         private DateTimePickersRangeController pickersController;
         private double fract; // Доля текущей даты в диапазоне от 0 до 1 (0 - начало, 1 - конец диапазона)
         private byte digits = 3; // Количество знаков после запятой для процентов
+        private bool _enableIcon;
 
         private DateRangeControlState state = DateRangeControlState.Unstarted;
 
         public event EventHandler OnValueChanged;
+
 
         #endregion
 
@@ -104,14 +106,14 @@ namespace Weekinator
             set { digits = value; UpdateVisual(); }
         }
 
-        public bool EnableIcon { get; set; }
+        public bool EnableIcon { get => _enableIcon; set { _enableIcon = PrecentIcon.Visible = value; } }
 
         #endregion
 
 
         #region --- setup ---
 
-        public DateRangeControl(bool enableIcon = false)
+        public DateRangeControl()
         {
             InitializeComponent();
             pickersController = new DateTimePickersRangeController(
@@ -124,7 +126,8 @@ namespace Weekinator
 
 
             PrecentIcon.Font = IconGenerator.DefaultFont;
-            EnableIcon = enableIcon;
+            
+            EnableIcon = false;
             //PrecentIcon.Text = $"Precent ID={this.GetHashCode()}";
             //WeekMarkIcon.Visible = PrecentIcon.Visible = true;
         }
