@@ -21,7 +21,7 @@ namespace Weekinator.Forms.UserControls
 
         public DateTime Start {
             get => DateRangeControl.DateRange.Start;
-            set => DateRangeControl.DateRange.SetDateRange(value, End);
+            set => DateRangeControl.SetDateRange(value, End);
         }
 
         public DateTime End

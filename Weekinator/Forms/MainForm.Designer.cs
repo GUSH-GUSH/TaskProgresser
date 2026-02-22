@@ -32,8 +32,10 @@
             this.openTestIconForm_Button = new System.Windows.Forms.Button();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.CurrentDateTime_Label = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.TSKCTRL_Semestr = new Weekinator.Forms.UserControls.TaskControl();
             this.TSKCNTRL_Bakalavr = new Weekinator.Forms.UserControls.TaskControl();
+            this.button2 = new System.Windows.Forms.Button();
             CurrentDateTimeTitle_Label = new System.Windows.Forms.Label();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +65,8 @@
             // TopPanel
             // 
             this.TopPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.TopPanel.Controls.Add(this.button2);
+            this.TopPanel.Controls.Add(this.button1);
             this.TopPanel.Controls.Add(this.CurrentDateTime_Label);
             this.TopPanel.Controls.Add(CurrentDateTimeTitle_Label);
             this.TopPanel.Controls.Add(this.openTestIconForm_Button);
@@ -80,6 +84,19 @@
             this.CurrentDateTime_Label.Size = new System.Drawing.Size(110, 13);
             this.CurrentDateTime_Label.TabIndex = 9;
             this.CurrentDateTime_Label.Text = "11.05.2005 08:00 AM";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.AutoSize = true;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button1.Location = new System.Drawing.Point(466, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(62, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // TSKCTRL_Semestr
             // 
@@ -105,6 +122,19 @@
             this.TSKCNTRL_Bakalavr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.TSKCNTRL_Bakalavr.TabIndex = 9;
             this.TSKCNTRL_Bakalavr.Title = "Бакалавриат";
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.AutoSize = true;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button2.Location = new System.Drawing.Point(534, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(62, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Load";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -132,6 +162,8 @@
         private System.Windows.Forms.Label CurrentDateTime_Label;
         private Forms.UserControls.TaskControl TSKCNTRL_Bakalavr;
         private Forms.UserControls.TaskControl TSKCTRL_Semestr;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

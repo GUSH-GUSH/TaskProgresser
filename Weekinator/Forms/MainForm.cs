@@ -11,13 +11,14 @@ using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Weekinator.Forms;
 using Weekinator.Services;
+using Weekinator.Repositories;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using Weekinator.Models;
 
 namespace Weekinator
 {
@@ -142,6 +143,26 @@ namespace Weekinator
 
             _flyoutForm.Show();
             _flyoutForm.Activate();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            JsonTaskSeializer.SaveTasks(new List<TaskItem>() {
+                    new TaskItem {
+                        Title = TSKCTRL_Semestr.Title,
+                        Description = "",
+                        StartDate = TSKCTRL_Semestr.Start,
+                        EndDate = TSKCTRL_Semestr.End,
+                        IsCompleted = false
+                    }
+                });
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var taskItems = JsonTaskSeializer.LoadTasks();
+            TSKCTRL_Semestr.Title = taskItems[0].Title;
+            TSKCTRL_Semestr.Start = taskItems[0].StartDate;
         }
     }
 }
