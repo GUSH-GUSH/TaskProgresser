@@ -38,8 +38,8 @@
             this.FlowPanel_Completed = new System.Windows.Forms.FlowLayoutPanel();
             this.TabPage_Active = new System.Windows.Forms.TabPage();
             this.FlowPanel_Active = new System.Windows.Forms.FlowLayoutPanel();
-            this.TSKCTRL_Semestr = new Weekinator.Forms.UserControls.TaskControl();
             this.TSKCNTRL_Bakalavr = new Weekinator.Forms.UserControls.TaskControl();
+            this.TSKCTRL_Semestr = new Weekinator.Forms.UserControls.TaskControl();
             this.TabControl = new System.Windows.Forms.TabControl();
             Label_CurDateTimeTitle = new System.Windows.Forms.Label();
             this.BottomPanel.SuspendLayout();
@@ -69,7 +69,7 @@
             this.BTN_OpenTestIconForm.TabIndex = 7;
             this.BTN_OpenTestIconForm.Text = "Test Icon Form";
             this.BTN_OpenTestIconForm.UseVisualStyleBackColor = true;
-            this.BTN_OpenTestIconForm.Click += new System.EventHandler(this.openTestIconForm_Button_Click);
+            this.BTN_OpenTestIconForm.Click += new System.EventHandler(this.BTN_OpenTestIconForm_Click);
             // 
             // BottomPanel
             // 
@@ -125,7 +125,7 @@
             this.TabPage_Completed.Controls.Add(this.FlowPanel_Completed);
             this.TabPage_Completed.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Completed.Name = "TabPage_Completed";
-            this.TabPage_Completed.Size = new System.Drawing.Size(603, 381);
+            this.TabPage_Completed.Size = new System.Drawing.Size(656, 380);
             this.TabPage_Completed.TabIndex = 2;
             this.TabPage_Completed.Text = "Завершені задачі";
             this.TabPage_Completed.UseVisualStyleBackColor = true;
@@ -138,7 +138,7 @@
             this.FlowPanel_Completed.Location = new System.Drawing.Point(0, 0);
             this.FlowPanel_Completed.Name = "FlowPanel_Completed";
             this.FlowPanel_Completed.Padding = new System.Windows.Forms.Padding(3);
-            this.FlowPanel_Completed.Size = new System.Drawing.Size(603, 381);
+            this.FlowPanel_Completed.Size = new System.Drawing.Size(656, 380);
             this.FlowPanel_Completed.TabIndex = 9;
             // 
             // TabPage_Active
@@ -167,20 +167,6 @@
             this.FlowPanel_Active.TabIndex = 7;
             this.FlowPanel_Active.WrapContents = false;
             // 
-            // TSKCTRL_Semestr
-            // 
-            this.TSKCTRL_Semestr.End = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.TSKCTRL_Semestr.Location = new System.Drawing.Point(6, 162);
-            this.TSKCTRL_Semestr.MaximumSize = new System.Drawing.Size(10000, 150);
-            this.TSKCTRL_Semestr.MinimumSize = new System.Drawing.Size(340, 150);
-            this.TSKCTRL_Semestr.Name = "TSKCTRL_Semestr";
-            this.TSKCTRL_Semestr.Size = new System.Drawing.Size(639, 150);
-            this.TSKCTRL_Semestr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.TSKCTRL_Semestr.TabIndex = 10;
-            this.TSKCTRL_Semestr.Task = null;
-            this.TSKCTRL_Semestr.Title = "Практика";
-            this.TSKCTRL_Semestr.DoubleClick += new System.EventHandler(this.TSKCTRL_Semestr_DoubleClick);
-            // 
             // TSKCNTRL_Bakalavr
             // 
             this.TSKCNTRL_Bakalavr.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -194,6 +180,20 @@
             this.TSKCNTRL_Bakalavr.TabIndex = 9;
             this.TSKCNTRL_Bakalavr.Task = null;
             this.TSKCNTRL_Bakalavr.Title = "Бакалавриат";
+            // 
+            // TSKCTRL_Semestr
+            // 
+            this.TSKCTRL_Semestr.End = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.TSKCTRL_Semestr.Location = new System.Drawing.Point(6, 162);
+            this.TSKCTRL_Semestr.MaximumSize = new System.Drawing.Size(10000, 150);
+            this.TSKCTRL_Semestr.MinimumSize = new System.Drawing.Size(340, 150);
+            this.TSKCTRL_Semestr.Name = "TSKCTRL_Semestr";
+            this.TSKCTRL_Semestr.Size = new System.Drawing.Size(639, 150);
+            this.TSKCTRL_Semestr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.TSKCTRL_Semestr.TabIndex = 10;
+            this.TSKCTRL_Semestr.Task = null;
+            this.TSKCTRL_Semestr.Title = "Практика";
+            this.TSKCTRL_Semestr.DoubleClick += new System.EventHandler(this.TSKCTRL_Semestr_DoubleClick);
             // 
             // TabControl
             // 
