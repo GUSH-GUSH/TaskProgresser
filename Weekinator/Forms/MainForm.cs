@@ -153,7 +153,6 @@ namespace Weekinator
                         Description = "",
                         StartDate = TSKCTRL_Semestr.Start,
                         EndDate = TSKCTRL_Semestr.End,
-                        IsCompleted = false
                     }
                 });
         }

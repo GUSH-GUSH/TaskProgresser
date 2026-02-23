@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DateTimeToolKit.Models.DateRange;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,17 @@ namespace Weekinator.Models
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public bool IsCompleted { get; set; }
+        public DateTime? CompletedAt { get; set; }
+
+        [JsonIgnore]
+        public bool IsCompleted => CompletedAt.HasValue;
+        [JsonIgnore]
+        public double EfficiencyPercentage
+        {
+            get
+            {
+                return new DateRange(StartDate, EndDate).GetFractionOf(CompletedAt ?? DateTime.Now);
+            }
+        }
     }
 }

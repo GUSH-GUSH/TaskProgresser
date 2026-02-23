@@ -54,12 +54,12 @@ namespace CourseWork.Forms
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Назва:";
             // 
-            // txtName
+            // txtTitle
             // 
             this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitle.Location = new System.Drawing.Point(15, 31);
-            this.txtTitle.Name = "txtName";
+            this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(527, 20);
             this.txtTitle.TabIndex = 1;
             // 
@@ -86,7 +86,7 @@ namespace CourseWork.Forms
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(360, 277);
+            this.btnSave.Location = new System.Drawing.Point(372, 279);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 30);
             this.btnSave.TabIndex = 10;
@@ -96,7 +96,7 @@ namespace CourseWork.Forms
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(450, 277);
+            this.btnCancel.Location = new System.Drawing.Point(462, 279);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(80, 30);
             this.btnCancel.TabIndex = 11;
