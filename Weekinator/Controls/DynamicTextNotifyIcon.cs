@@ -23,7 +23,7 @@ namespace Weekinator
         private Color _textColor = Color.White;
         private Color _backgroundColor = Color.Transparent;
 
-        private string _instanceSuffix; //for identification icon in tray;
+        //private string _instanceSuffix; //for identification icon in tray;
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace Weekinator
         [Description("Текст, отображаемый при наведении")]
         public string HeaderText {
             get => _notifyIcon.Text;
-            set => _notifyIcon.Text = value + _instanceSuffix;
+            set => _notifyIcon.Text = value;// + _instanceSuffix;
         }
 
         [Description("Текст, который будет отображаться на иконке")]
@@ -96,9 +96,9 @@ namespace Weekinator
         public DynamicTextNotifyIcon()
         {
             //Суффикс-идентификатор, который добавляется в HeaderText для того, чтобы винда отличала иконки
-            StringBuilder sb = new StringBuilder(++instanceCount);
-            for (int i = 0; i < instanceCount; i++) sb.Append(IDENTIFIER);
-            _instanceSuffix = sb.ToString();
+            //StringBuilder sb = new StringBuilder(++instanceCount);
+           // for (int i = 0; i < instanceCount; i++) sb.Append(IDENTIFIER);
+           // _instanceSuffix = sb.ToString();
             
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Visible = false;
@@ -143,8 +143,8 @@ namespace Weekinator
 
         #region --- STATIC ---
 
-        private const char IDENTIFIER = '\t';
-        private static int instanceCount = 0;
+        //private const char IDENTIFIER = '\t';
+        //private static int instanceCount = 0;
 
         #endregion
     }

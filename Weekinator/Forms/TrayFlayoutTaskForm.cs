@@ -28,7 +28,7 @@ namespace Weekinator.Forms
 
         #endregion
 
-        #region --- EVENTS ---
+        #region--- Events Handlers ---
 
         private void TrayFlayoutTaskForm_Load(object sender, EventArgs e)
         {

@@ -10,8 +10,14 @@ namespace Weekinator.Forms.UserControls
 {
     public partial class TaskControl : ClickableUserControl
     {
+        
+        #region --- Fields ---
+
         private TaskItem _task;
 
+        #endregion
+
+        #region --- Properties ---
 
         public TaskItem Task
         {
@@ -36,12 +42,14 @@ namespace Weekinator.Forms.UserControls
             set => GroupBox.Text = value;
         }
 
-        public DateRange DateRange {
+        public DateRange DateRange
+        {
             get => DateRangeControl.DateRange;
             set => DateRangeControl.DateRange = value;
         }
 
-        public DateTime Start {
+        public DateTime Start
+        {
             get => DateRangeControl.DateRange.Start;
             set => DateRangeControl.SetDateRange(value, End);
         }
@@ -52,6 +60,7 @@ namespace Weekinator.Forms.UserControls
             set => DateRangeControl.DateRange.SetDateRange(Start, value);
         }
 
+        #endregion
 
         #region --- SETUP ---
 
@@ -78,8 +87,7 @@ namespace Weekinator.Forms.UserControls
 
         #endregion
 
-
-        #region --- EVENTS ---
+        #region --- EVENTS HANDLERS ---
 
         private void NUD_Accurancy_ValueChanged(object sender, EventArgs e)
         {
@@ -89,6 +97,17 @@ namespace Weekinator.Forms.UserControls
         private void BTN_GetInfo_Click(object sender, EventArgs e)
         {
             MessageBox.Show(GetStatistics());
+        }
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            if (new AddEditTaskForm(Task).ShowDialog() == DialogResult.OK) {
+                TaskEdited?.Invoke(Task);
+            }
+        }
+
+        private void BTN_Delete_Click(object sender, EventArgs e)
+        {
+            TaskDeleted?.Invoke(Task);
         }
 
         #endregion
@@ -123,9 +142,14 @@ namespace Weekinator.Forms.UserControls
 
         #endregion
 
-        private void BtnEdit_Click(object sender, EventArgs e)
-        {
-            new AddEditTaskForm(Task).ShowDialog();
-        }
+
+        #region --- EVENTS ---
+
+        public event Action<TaskItem> TaskDeleted;
+        public event Action<TaskItem> TaskCompleted;
+        public event Action<TaskItem> TaskEdited;
+
+        #endregion
+
     }
 }

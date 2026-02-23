@@ -30,10 +30,11 @@
         {
             System.Windows.Forms.Label LBL_Accurancy;
             this.GroupBox = new System.Windows.Forms.GroupBox();
+            this.BTN_Delete = new System.Windows.Forms.Button();
+            this.BtnEdit = new System.Windows.Forms.Button();
             this.BTN_GetInfo = new System.Windows.Forms.Button();
             this.NUD_Accurancy = new System.Windows.Forms.NumericUpDown();
             this.DateRangeControl = new Weekinator.DateRangeControl();
-            this.BtnEdit = new System.Windows.Forms.Button();
             LBL_Accurancy = new System.Windows.Forms.Label();
             this.GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Accurancy)).BeginInit();
@@ -52,6 +53,7 @@
             // GroupBox
             // 
             this.GroupBox.BackColor = System.Drawing.SystemColors.Control;
+            this.GroupBox.Controls.Add(this.BTN_Delete);
             this.GroupBox.Controls.Add(this.BtnEdit);
             this.GroupBox.Controls.Add(this.BTN_GetInfo);
             this.GroupBox.Controls.Add(LBL_Accurancy);
@@ -60,15 +62,37 @@
             this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBox.Location = new System.Drawing.Point(0, 0);
             this.GroupBox.Name = "GroupBox";
-            this.GroupBox.Size = new System.Drawing.Size(340, 150);
+            this.GroupBox.Size = new System.Drawing.Size(477, 150);
             this.GroupBox.TabIndex = 13;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Семестр 4.1";
             // 
+            // BTN_Delete
+            // 
+            this.BTN_Delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Delete.Location = new System.Drawing.Point(393, 114);
+            this.BTN_Delete.Name = "BTN_Delete";
+            this.BTN_Delete.Size = new System.Drawing.Size(64, 23);
+            this.BTN_Delete.TabIndex = 13;
+            this.BTN_Delete.Text = "Видалити";
+            this.BTN_Delete.UseVisualStyleBackColor = true;
+            this.BTN_Delete.Click += new System.EventHandler(this.BTN_Delete_Click);
+            // 
+            // BtnEdit
+            // 
+            this.BtnEdit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BtnEdit.Location = new System.Drawing.Point(238, 114);
+            this.BtnEdit.Name = "BtnEdit";
+            this.BtnEdit.Size = new System.Drawing.Size(75, 23);
+            this.BtnEdit.TabIndex = 12;
+            this.BtnEdit.Text = "Детальніше";
+            this.BtnEdit.UseVisualStyleBackColor = true;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
             // BTN_GetInfo
             // 
             this.BTN_GetInfo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BTN_GetInfo.Location = new System.Drawing.Point(137, 114);
+            this.BTN_GetInfo.Location = new System.Drawing.Point(157, 114);
             this.BTN_GetInfo.Name = "BTN_GetInfo";
             this.BTN_GetInfo.Size = new System.Drawing.Size(75, 23);
             this.BTN_GetInfo.TabIndex = 11;
@@ -101,19 +125,8 @@
             this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
             this.DateRangeControl.Name = "DateRangeControl";
             this.DateRangeControl.Precision = ((byte)(3));
-            this.DateRangeControl.Size = new System.Drawing.Size(302, 90);
+            this.DateRangeControl.Size = new System.Drawing.Size(439, 90);
             this.DateRangeControl.TabIndex = 0;
-            // 
-            // BtnEdit
-            // 
-            this.BtnEdit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BtnEdit.Location = new System.Drawing.Point(245, 114);
-            this.BtnEdit.Name = "BtnEdit";
-            this.BtnEdit.Size = new System.Drawing.Size(75, 23);
-            this.BtnEdit.TabIndex = 12;
-            this.BtnEdit.Text = "Детальніше";
-            this.BtnEdit.UseVisualStyleBackColor = true;
-            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // TaskControl
             // 
@@ -123,7 +136,7 @@
             this.MaximumSize = new System.Drawing.Size(10000, 150);
             this.MinimumSize = new System.Drawing.Size(340, 150);
             this.Name = "TaskControl";
-            this.Size = new System.Drawing.Size(340, 150);
+            this.Size = new System.Drawing.Size(477, 150);
             this.Load += new System.EventHandler(this.TaskControl_Load);
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();
@@ -139,5 +152,6 @@
         public System.Windows.Forms.NumericUpDown NUD_Accurancy;
         public DateRangeControl DateRangeControl;
         public System.Windows.Forms.Button BtnEdit;
+        public System.Windows.Forms.Button BTN_Delete;
     }
 }

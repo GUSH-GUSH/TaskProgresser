@@ -35,13 +35,10 @@ namespace CourseWork.Forms
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lblCourseHours = new System.Windows.Forms.Label();
-            this.nudCourseHours = new System.Windows.Forms.NumericUpDown();
-            this.nudCourseECTS = new System.Windows.Forms.NumericUpDown();
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.DateRangeControl = new Weekinator.DateRangeControl();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCourseHours)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCourseECTS)).BeginInit();
+            this.lblStartDate = new System.Windows.Forms.Label();
+            this.lblEndDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,9 +47,9 @@ namespace CourseWork.Forms
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(12, 15);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(42, 13);
+            this.lblName.Size = new System.Drawing.Size(46, 13);
             this.lblName.TabIndex = 0;
-            this.lblName.Text = "Назва:";
+            this.lblName.Text = "Назва*:";
             // 
             // txtTitle
             // 
@@ -60,7 +57,7 @@ namespace CourseWork.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitle.Location = new System.Drawing.Point(15, 31);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(527, 20);
+            this.txtTitle.Size = new System.Drawing.Size(578, 20);
             this.txtTitle.TabIndex = 1;
             // 
             // lblDescription
@@ -74,19 +71,20 @@ namespace CourseWork.Forms
             // 
             // txtDescription
             // 
-            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescription.Location = new System.Drawing.Point(12, 78);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescription.Size = new System.Drawing.Size(530, 80);
+            this.txtDescription.Size = new System.Drawing.Size(581, 80);
             this.txtDescription.TabIndex = 3;
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(372, 279);
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSave.Location = new System.Drawing.Point(219, 279);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 30);
             this.btnSave.TabIndex = 10;
@@ -95,62 +93,13 @@ namespace CourseWork.Forms
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(462, 279);
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnCancel.Location = new System.Drawing.Point(305, 279);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(80, 30);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // lblCourseHours
-            // 
-            this.lblCourseHours.AutoSize = true;
-            this.lblCourseHours.Location = new System.Drawing.Point(19, 520);
-            this.lblCourseHours.Name = "lblCourseHours";
-            this.lblCourseHours.Size = new System.Drawing.Size(132, 13);
-            this.lblCourseHours.TabIndex = 20;
-            this.lblCourseHours.Text = "Довжина курсу (години):";
-            // 
-            // nudCourseHours
-            // 
-            this.nudCourseHours.Location = new System.Drawing.Point(154, 518);
-            this.nudCourseHours.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nudCourseHours.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudCourseHours.Name = "nudCourseHours";
-            this.nudCourseHours.Size = new System.Drawing.Size(45, 20);
-            this.nudCourseHours.TabIndex = 8;
-            this.nudCourseHours.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // nudCourseECTS
-            // 
-            this.nudCourseECTS.DecimalPlaces = 1;
-            this.nudCourseECTS.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudCourseECTS.Location = new System.Drawing.Point(309, 518);
-            this.nudCourseECTS.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.nudCourseECTS.Name = "nudCourseECTS";
-            this.nudCourseECTS.Size = new System.Drawing.Size(45, 20);
-            this.nudCourseECTS.TabIndex = 9;
             // 
             // ErrorProvider
             // 
@@ -167,16 +116,35 @@ namespace CourseWork.Forms
             this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
             this.DateRangeControl.Name = "DateRangeControl";
             this.DateRangeControl.Precision = ((byte)(3));
-            this.DateRangeControl.Size = new System.Drawing.Size(530, 90);
+            this.DateRangeControl.Size = new System.Drawing.Size(581, 90);
             this.DateRangeControl.TabIndex = 21;
+            // 
+            // lblStartDate
+            // 
+            this.lblStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStartDate.AutoSize = true;
+            this.lblStartDate.Location = new System.Drawing.Point(23, 261);
+            this.lblStartDate.Name = "lblStartDate";
+            this.lblStartDate.Size = new System.Drawing.Size(101, 13);
+            this.lblStartDate.TabIndex = 22;
+            this.lblStartDate.Text = "Дата призначення";
+            // 
+            // lblEndDate
+            // 
+            this.lblEndDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEndDate.AutoSize = true;
+            this.lblEndDate.Location = new System.Drawing.Point(479, 259);
+            this.lblEndDate.Name = "lblEndDate";
+            this.lblEndDate.Size = new System.Drawing.Size(98, 13);
+            this.lblEndDate.TabIndex = 23;
+            this.lblEndDate.Text = "Дата завершення";
             // 
             // AddEditTaskForm
             // 
-            this.ClientSize = new System.Drawing.Size(554, 321);
+            this.ClientSize = new System.Drawing.Size(605, 321);
+            this.Controls.Add(this.lblEndDate);
+            this.Controls.Add(this.lblStartDate);
             this.Controls.Add(this.DateRangeControl);
-            this.Controls.Add(this.nudCourseECTS);
-            this.Controls.Add(this.lblCourseHours);
-            this.Controls.Add(this.nudCourseHours);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.lblDescription);
@@ -187,18 +155,15 @@ namespace CourseWork.Forms
             this.MinimumSize = new System.Drawing.Size(340, 360);
             this.Name = "AddEditTaskForm";
             this.Text = "Задача";
-            ((System.ComponentModel.ISupportInitialize)(this.nudCourseHours)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCourseECTS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-        private Label lblCourseHours;
-        private NumericUpDown nudCourseHours;
-        private NumericUpDown nudCourseECTS;
         private ErrorProvider ErrorProvider;
         private Weekinator.DateRangeControl DateRangeControl;
+        private Label lblEndDate;
+        private Label lblStartDate;
     }
 }
 

@@ -205,7 +205,7 @@ namespace Weekinator
         #endregion
 
 
-        #region --- events ---
+        #region--- Events Handlers ---
 
         private void DateRangeControl_Resize(object sender, EventArgs e) => UpdatePrecentLabelLocation();
 

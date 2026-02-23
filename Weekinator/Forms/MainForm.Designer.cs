@@ -41,6 +41,7 @@
             this.TSKCNTRL_Bakalavr = new Weekinator.Forms.UserControls.TaskControl();
             this.TSKCTRL_Semestr = new Weekinator.Forms.UserControls.TaskControl();
             this.TabControl = new System.Windows.Forms.TabControl();
+            this.BTN_Add = new System.Windows.Forms.Button();
             Label_CurDateTimeTitle = new System.Windows.Forms.Label();
             this.BottomPanel.SuspendLayout();
             this.TabPage_Completed.SuspendLayout();
@@ -74,6 +75,7 @@
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.BottomPanel.Controls.Add(this.BTN_Add);
             this.BottomPanel.Controls.Add(this.BTN_Load);
             this.BottomPanel.Controls.Add(this.BTN_Save);
             this.BottomPanel.Controls.Add(this.Label_CurrentDateTime);
@@ -193,7 +195,6 @@
             this.TSKCTRL_Semestr.TabIndex = 10;
             this.TSKCTRL_Semestr.Task = null;
             this.TSKCTRL_Semestr.Title = "Практика";
-            this.TSKCTRL_Semestr.DoubleClick += new System.EventHandler(this.TSKCTRL_Semestr_DoubleClick);
             // 
             // TabControl
             // 
@@ -206,6 +207,19 @@
             this.TabControl.SelectedIndex = 0;
             this.TabControl.Size = new System.Drawing.Size(664, 406);
             this.TabControl.TabIndex = 14;
+            // 
+            // BTN_Add
+            // 
+            this.BTN_Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Add.AutoSize = true;
+            this.BTN_Add.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BTN_Add.Location = new System.Drawing.Point(547, 12);
+            this.BTN_Add.Name = "BTN_Add";
+            this.BTN_Add.Size = new System.Drawing.Size(110, 23);
+            this.BTN_Add.TabIndex = 12;
+            this.BTN_Add.Text = "Додати задачу";
+            this.BTN_Add.UseVisualStyleBackColor = true;
+            this.BTN_Add.Click += new System.EventHandler(this.BTN_Add_Click);
             // 
             // MainForm
             // 
@@ -244,6 +258,7 @@
         private Forms.UserControls.TaskControl TSKCNTRL_Bakalavr;
         private Forms.UserControls.TaskControl TSKCTRL_Semestr;
         private System.Windows.Forms.TabControl TabControl;
+        private System.Windows.Forms.Button BTN_Add;
     }
 }
 

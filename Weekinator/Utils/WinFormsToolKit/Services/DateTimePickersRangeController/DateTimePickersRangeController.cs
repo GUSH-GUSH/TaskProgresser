@@ -55,7 +55,7 @@ namespace WinFormsExtensions
 
         #endregion
 
-        #region --- events ---
+        #region--- Events Handlers ---
 
         public event EventHandler OnValueChanged;
 

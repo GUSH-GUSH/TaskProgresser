@@ -1,4 +1,5 @@
-﻿using DateTimeToolKit.Models.DateRange;
+﻿using CourseWork.Forms;
+using DateTimeToolKit.Models.DateRange;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,7 +54,7 @@ namespace Weekinator
 
         #endregion
 
-        #region --- Events ---
+        #region--- Events Handlers ---
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -69,26 +70,33 @@ namespace Weekinator
         private void BTN_Save_Click(object sender, EventArgs e) => SaveAllData();
 
         private void BTN_Load_Click(object sender, EventArgs e) => LoadData();
-
-        private void TSKCTRL_Semestr_DoubleClick(object sender, EventArgs e)
+        
+        private void BTN_Add_Click(object sender, EventArgs e)
         {
-            Rectangle workingArea = Screen.PrimaryScreen.WorkingArea;
-
-            TrayFlayoutTaskForm _flyoutForm = new TrayFlayoutTaskForm(new Models.TaskItem()
-            {
-                Title = TSKCTRL_Semestr.Title,
-                StartDate = TSKCTRL_Semestr.DateRange.Start,
-                EndDate = TSKCTRL_Semestr.DateRange.End,
-            });
-
-            int x = workingArea.Right - _flyoutForm.Width;
-            int y = workingArea.Bottom - _flyoutForm.Height;
-
-            _flyoutForm.Location = new Point(x, y);
-
-            _flyoutForm.Show();
-            _flyoutForm.Activate();
+            var addForm = new AddEditTaskForm();
+            if (addForm.ShowDialog() == DialogResult.OK)
+                AddTask(addForm.Task);
         }
+
+        //private void TSKCTRL_Semestr_DoubleClick(object sender, EventArgs e)
+        //{
+        //    Rectangle workingArea = Screen.PrimaryScreen.WorkingArea;
+
+        //    TrayFlayoutTaskForm _flyoutForm = new TrayFlayoutTaskForm(new Models.TaskItem()
+        //    {
+        //        Title = TSKCTRL_Semestr.Title,
+        //        StartDate = TSKCTRL_Semestr.DateRange.Start,
+        //        EndDate = TSKCTRL_Semestr.DateRange.End,
+        //    });
+
+        //    int x = workingArea.Right - _flyoutForm.Width;
+        //    int y = workingArea.Bottom - _flyoutForm.Height;
+
+        //    _flyoutForm.Location = new Point(x, y);
+
+        //    _flyoutForm.Show();
+        //    _flyoutForm.Activate();
+        //}
 
         #endregion
 
@@ -96,16 +104,27 @@ namespace Weekinator
 
         private void AddTask(TaskItem newTask)
         {
-            _allTasks.Add(newTask);
-            RenderTasks(); // Обновляем UI
-            SaveAllData(); // Сразу пишем в файл
+            _allTasks = _allTasks.Prepend(newTask).ToList();
+            RenderTasks();
+            SaveAllData();
+            MessageBox.Show("Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void UpdateTask(TaskItem newTask) {
+            RenderTasks();
+            SaveAllData();
+            MessageBox.Show("Дані успішно оновлені!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void DeleteTask(TaskItem taskToRemove)
         {
-            _allTasks.Remove(taskToRemove);
-            RenderTasks();
-            SaveAllData(); // Сразу пишем в файл
+            if (MessageBox.Show("Ви дійсно хочете видалити задачу?", "Увага!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                _allTasks.Remove(taskToRemove);
+                RenderTasks();
+                SaveAllData();
+                MessageBox.Show("Видалення успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         #endregion
@@ -149,6 +168,8 @@ namespace Weekinator
             foreach (var taskModel in _allTasks)
             {
                 TaskControl taskControl = new TaskControl(taskModel);
+                taskControl.TaskEdited += UpdateTask;
+                taskControl.TaskDeleted += DeleteTask;
 
                 if (taskModel.IsCompleted)
                     FlowPanel_Completed.Controls.Add(taskControl);
@@ -165,5 +186,6 @@ namespace Weekinator
 
         #endregion
 
+  
     }
 }
