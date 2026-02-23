@@ -30,7 +30,6 @@ namespace Weekinator
 
         #endregion
 
-
         #region --- setup ---
 
         public MainForm()
@@ -89,7 +88,7 @@ namespace Weekinator
             TSKCTRL_Semestr.DateRangeControl.UpdateValue(DateTime.Now);
             TSKCNTRL_Bakalavr.DateRangeControl.UpdateValue(DateTime.Now);
 
-            CurrentDateTime_Label.Text = DateTime.Now.ToString();
+            Label_CurrentDateTime.Text = DateTime.Now.ToString();
         }
 
         #endregion

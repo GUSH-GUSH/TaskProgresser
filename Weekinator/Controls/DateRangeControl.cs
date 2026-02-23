@@ -27,10 +27,14 @@ namespace Weekinator
 
         static Font WeekmarkIconFont = new Font("Arial Black", 24, FontStyle.Bold);
 
-        public static readonly DateRange DefaultDateRange = new DateRange(
+        public static DateRange DefaultDateRange => new DateRange(
                         DateTimePicker.MinimumDateTime,
                         DateTimePicker.MaximumDateTime
                     );
+        public static DateTime MinValue => DateTimePicker.MinimumDateTime;
+        public static DateTime MaxValue => DateTimePicker.MaximumDateTime;
+
+
 
         #endregion
 

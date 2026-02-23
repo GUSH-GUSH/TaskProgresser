@@ -18,12 +18,15 @@ namespace Weekinator.Forms.UserControls
             get => _task;
             set
             {
-                if (value == null) throw new ArgumentNullException(nameof(value));
-
                 _task = value;
 
-                Title = Task.Title;
-                DateRange = new DateRange(Task.StartDate, Task.EndDate);
+                if (value != null)
+                {
+
+                    Title = Task.Title;
+                    DateRange = new DateRange(Task.StartDate, Task.EndDate);
+                }
+                else SetupDefaultValue();
             }
         }
 
@@ -58,12 +61,19 @@ namespace Weekinator.Forms.UserControls
         }
 
         public TaskControl(TaskItem task) : this() {
-           Task = task;
+            Setup(task);
         }
 
         private void TaskControl_Load(object sender, EventArgs e)
         {
             NUD_Accurancy.Value = DateRangeControl.Precision;
+        }
+
+        public void Setup(TaskItem task) => Task = task;
+
+        private void SetupDefaultValue() {
+            Title = "Назва";
+            DateRange = DateRangeControl.DefaultDateRange;
         }
 
         #endregion
