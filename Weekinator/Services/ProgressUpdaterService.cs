@@ -12,8 +12,7 @@ namespace Weekinator.Services
         private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         static ProgressUpdaterService() {
-            timer.Tick += (obj, eventArgs) => UpdateProgress();
-            timer.Tick += (obj, eventArgs) => Tick?.Invoke(obj, eventArgs);
+            timer.Tick += (obj, eventArgs) => ExecuteOnce();
         }
 
         #region --- MANAGING TIMER ---
@@ -21,6 +20,7 @@ namespace Weekinator.Services
         public static void Start(int interval = 1000)
         {
             timer.Interval = interval;
+            ExecuteOnce();
             timer.Start();
         }
 
@@ -45,6 +45,11 @@ namespace Weekinator.Services
 
             foreach (var control in rangeControls)
                 control.UpdateValue(now);
+        }
+
+        public static void ExecuteOnce() {
+            UpdateProgress();
+            Tick?.Invoke(null, new EventArgs());
         }
 
         #endregion

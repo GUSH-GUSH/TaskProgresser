@@ -96,7 +96,7 @@
             this.BTN_Load.TabIndex = 11;
             this.BTN_Load.Text = "Load";
             this.BTN_Load.UseVisualStyleBackColor = true;
-            this.BTN_Load.Click += new System.EventHandler(this.button2_Click);
+            this.BTN_Load.Click += new System.EventHandler(this.BTN_Load_Click);
             // 
             // BTN_Save
             // 
@@ -109,7 +109,7 @@
             this.BTN_Save.TabIndex = 10;
             this.BTN_Save.Text = "Save";
             this.BTN_Save.UseVisualStyleBackColor = true;
-            this.BTN_Save.Click += new System.EventHandler(this.button1_Click);
+            this.BTN_Save.Click += new System.EventHandler(this.BTN_Save_Click);
             // 
             // Label_CurrentDateTime
             // 

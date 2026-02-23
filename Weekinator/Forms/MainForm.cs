@@ -15,10 +15,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Weekinator.Forms;
-using Weekinator.Services;
-using Weekinator.Repositories;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using Weekinator.Forms.UserControls;
 using Weekinator.Models;
+using Weekinator.Repositories;
+using Weekinator.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace Weekinator
 {
@@ -27,7 +28,10 @@ namespace Weekinator
         #region --- fields ---
 
         //private System.Windows.Forms.Timer timer;
+        // Предполагаю, что у тебя есть общий список всех задач
+        private List<TaskItem> _allTasks = new List<TaskItem>();
 
+        
         #endregion
 
         #region --- setup ---
@@ -39,6 +43,8 @@ namespace Weekinator
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            /*
             //КУРС 4.1
 
             DateTime start = new DateTime(2026, 02, 02, 8, 0, 0);
@@ -50,7 +56,6 @@ namespace Weekinator
             TSKCTRL_Semestr.DateRangeControl.UpdateValue(DateTime.Now);
 
 
-            IconsSetup();
 
             //Бакалавриат
             DateTime start1 = new DateTime(2022, 09, 01, 8, 0, 0);
@@ -66,6 +71,11 @@ namespace Weekinator
             //timer.Tick += (obj, eventArgs) => UpdateTimers();
             //timer.Start();
 
+            //IconsSetup();
+            */
+
+            LoadData();
+
             ProgressUpdaterService.Start();
         }
 
@@ -76,6 +86,32 @@ namespace Weekinator
 
             TSKCTRL_Semestr.DateRangeControl.IconMainMenu_CloseItem.Click += IconMainMenu_CloseItem_Click;
             TSKCTRL_Semestr.DateRangeControl.IconMainMenu_OpenItem.Click += IconMainMenu_OpenItem_Click;
+        }
+        
+        private void LoadData()
+        {
+            _allTasks = JsonTaskSeializer.LoadTasks();
+            RenderTasks();
+        }
+
+        // Метод, который отрисовывает задачи на экране
+        private void RenderTasks()
+        {
+            // (По-хорошему тут еще нужно вызывать .Dispose() для старых контролов, но для MVP пока оставим так)
+            FlowPanel_Active.Controls.Clear();
+            FlowPanel_Completed.Controls.Clear();
+
+            foreach (var taskModel in _allTasks)
+            {
+                TaskControl taskControl = new TaskControl(taskModel);
+
+                if (taskModel.IsCompleted)
+                    FlowPanel_Completed.Controls.Add(taskControl);
+                else
+                    FlowPanel_Active.Controls.Add(taskControl);
+                
+                //UpdateWidth();
+            }
         }
 
         #endregion
@@ -144,7 +180,7 @@ namespace Weekinator
             _flyoutForm.Activate();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BTN_Save_Click(object sender, EventArgs e)
         {
             JsonTaskSeializer.SaveTasks(new List<TaskItem>() {
                     new TaskItem {
@@ -152,15 +188,20 @@ namespace Weekinator
                         Description = "",
                         StartDate = TSKCTRL_Semestr.Start,
                         EndDate = TSKCTRL_Semestr.End,
+                    },
+                    new TaskItem {
+                        Title = TSKCNTRL_Bakalavr.Title,
+                        Description = "",
+                        StartDate = TSKCNTRL_Bakalavr.Start,
+                        EndDate = TSKCNTRL_Bakalavr.End,
                     }
                 });
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void BTN_Load_Click(object sender, EventArgs e)
         {
-            var taskItems = JsonTaskSeializer.LoadTasks();
-            TSKCTRL_Semestr.Title = taskItems[0].Title;
-            TSKCTRL_Semestr.Start = taskItems[0].StartDate;
+            LoadData();
         }
+        
     }
 }
