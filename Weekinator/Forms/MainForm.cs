@@ -43,6 +43,7 @@ namespace Weekinator
         {
             LoadData();
 
+            ProgressUpdaterService.Tick += () => Label_CurrentDateTime.Text = DateTime.Now.ToString();
             ProgressUpdaterService.Start();
         }
 

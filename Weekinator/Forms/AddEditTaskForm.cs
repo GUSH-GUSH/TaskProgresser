@@ -50,6 +50,8 @@ namespace CourseWork.Forms
                 isEditMode = true;
                 this.Task = task;
             }
+
+            DateRangeControl.UpdateValue(DateTime.Now);
         }
 
         #endregion

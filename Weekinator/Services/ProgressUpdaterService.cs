@@ -49,13 +49,13 @@ namespace Weekinator.Services
 
         public static void ExecuteOnce() {
             UpdateProgress();
-            Tick?.Invoke(null, new EventArgs());
+            Tick?.Invoke();
         }
 
         #endregion
 
         static List<DateRangeControl> rangeControls = new List<DateRangeControl>();
 
-        public static event EventHandler Tick;
+        public static event Action Tick;
     }
 }

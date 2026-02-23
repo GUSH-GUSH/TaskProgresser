@@ -105,7 +105,10 @@ namespace Weekinator.Forms.UserControls
                 TaskEdited?.Invoke(Task);
             }
         }
-
+        private void BTN_Complete_Click(object sender, EventArgs e)
+        {
+            TaskCompleted?.Invoke(Task);
+        }
         private void BTN_Delete_Click(object sender, EventArgs e)
         {
             TaskDeleted?.Invoke(Task);
@@ -142,7 +145,6 @@ namespace Weekinator.Forms.UserControls
         }
 
         #endregion
-
 
         #region --- EVENTS ---
 
