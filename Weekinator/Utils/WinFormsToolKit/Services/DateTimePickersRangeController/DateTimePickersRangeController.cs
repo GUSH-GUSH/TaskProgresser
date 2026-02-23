@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using DateTimeToolKit.Extensions.Truncate;
 using DateTimeToolKit.Models.DateRange;
+using Weekinator;
 
 namespace WinFormsExtensions
 {
@@ -97,6 +98,9 @@ namespace WinFormsExtensions
             ResetPickersBounds();
             var start = range.Start.TruncateTo(TruncateLevel);
             var end = range.End.TruncateTo(TruncateLevel);
+
+            if (start < DateTimePicker.MinimumDateTime) start = DateTimePicker.MinimumDateTime;
+            if (end < DateTimePicker.MinimumDateTime) end = DateTimePicker.MaximumDateTime;
 
             startPicker.Value = start;
             endPicker.Value = end;

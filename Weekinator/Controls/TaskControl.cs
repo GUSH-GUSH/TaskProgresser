@@ -1,13 +1,32 @@
-﻿using DateTimeToolKit.Models.DateRange;
+﻿using CourseWork.Forms;
+using DateTimeToolKit.Models.DateRange;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Weekinator.Controls;
+using Weekinator.Models;
 
 namespace Weekinator.Forms.UserControls
 {
     public partial class TaskControl : ClickableUserControl
     {
+        private TaskItem _task;
+
+
+        public TaskItem Task
+        {
+            get => _task;
+            set
+            {
+                if (value == null) throw new ArgumentNullException(nameof(value));
+
+                _task = value;
+
+                Title = Task.Title;
+                DateRange = new DateRange(Task.StartDate, Task.EndDate);
+            }
+        }
+
         public string Title
         {
             get => GroupBox.Text;
@@ -37,6 +56,11 @@ namespace Weekinator.Forms.UserControls
         {
             InitializeComponent();
         }
+
+        public TaskControl(TaskItem task) : this() {
+           Task = task;
+        }
+
         private void TaskControl_Load(object sender, EventArgs e)
         {
             NUD_Accurancy.Value = DateRangeControl.Precision;
@@ -58,40 +82,6 @@ namespace Weekinator.Forms.UserControls
         }
 
         #endregion
-
-
-        #region --- SAVE TO FILE ---
-
-        /*
-private void button1_Click(object sender, EventArgs e)
-{
-string result = JsonSerializer.Serialize(DateRangeControl.DateRange, new JsonSerializerOptions() { WriteIndented = true });
-
-if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
-
-using (FileStream stream = new FileStream(Path.Combine(directory, file), FileMode.OpenOrCreate))
-using (StreamWriter streamWriter = new StreamWriter(stream))
-    streamWriter.WriteLine(result);
-
-MessageBox.Show($"Диапазон успешно сохранён!");
-}
-
-private void LoadData()
-{
-if (!File.Exists(Path.Combine(directory, file))) return;
-
-using (StreamReader streamReader = new StreamReader(Path.Combine(directory, file)))
-{
-    DateRangeControl.DateRange = JsonSerializer.Deserialize<DateRange>(streamReader.ReadToEnd());
-}
-
-}
-
-string directory = "user-data";
-string file = "date-range.json";
-*/
-        #endregion
-
 
         #region --- DEBUG ---
 
@@ -123,5 +113,9 @@ string file = "date-range.json";
 
         #endregion
 
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            new AddEditTaskForm(Task).ShowDialog();
+        }
     }
 }

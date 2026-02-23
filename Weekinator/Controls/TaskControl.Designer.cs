@@ -32,8 +32,8 @@
             this.GroupBox = new System.Windows.Forms.GroupBox();
             this.BTN_GetInfo = new System.Windows.Forms.Button();
             this.NUD_Accurancy = new System.Windows.Forms.NumericUpDown();
-            this.BTN_Save = new System.Windows.Forms.Button();
             this.DateRangeControl = new Weekinator.DateRangeControl();
+            this.BtnEdit = new System.Windows.Forms.Button();
             LBL_Accurancy = new System.Windows.Forms.Label();
             this.GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Accurancy)).BeginInit();
@@ -52,11 +52,11 @@
             // GroupBox
             // 
             this.GroupBox.BackColor = System.Drawing.SystemColors.Control;
+            this.GroupBox.Controls.Add(this.BtnEdit);
             this.GroupBox.Controls.Add(this.BTN_GetInfo);
             this.GroupBox.Controls.Add(LBL_Accurancy);
             this.GroupBox.Controls.Add(this.NUD_Accurancy);
             this.GroupBox.Controls.Add(this.DateRangeControl);
-            this.GroupBox.Controls.Add(this.BTN_Save);
             this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBox.Location = new System.Drawing.Point(0, 0);
             this.GroupBox.Name = "GroupBox";
@@ -68,7 +68,7 @@
             // BTN_GetInfo
             // 
             this.BTN_GetInfo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BTN_GetInfo.Location = new System.Drawing.Point(132, 114);
+            this.BTN_GetInfo.Location = new System.Drawing.Point(137, 114);
             this.BTN_GetInfo.Name = "BTN_GetInfo";
             this.BTN_GetInfo.Size = new System.Drawing.Size(75, 23);
             this.BTN_GetInfo.TabIndex = 11;
@@ -91,27 +91,29 @@
             this.NUD_Accurancy.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NUD_Accurancy.ValueChanged += new System.EventHandler(this.NUD_Accurancy_ValueChanged);
             // 
-            // BTN_Save
-            // 
-            this.BTN_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Save.Location = new System.Drawing.Point(245, 114);
-            this.BTN_Save.Name = "BTN_Save";
-            this.BTN_Save.Size = new System.Drawing.Size(75, 23);
-            this.BTN_Save.TabIndex = 5;
-            this.BTN_Save.Text = "Save";
-            this.BTN_Save.UseVisualStyleBackColor = true;
-            // 
             // DateRangeControl
             // 
             this.DateRangeControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DateRangeControl.EnableIcon = false;
             this.DateRangeControl.Location = new System.Drawing.Point(18, 18);
             this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
             this.DateRangeControl.Name = "DateRangeControl";
             this.DateRangeControl.Precision = ((byte)(3));
             this.DateRangeControl.Size = new System.Drawing.Size(302, 90);
             this.DateRangeControl.TabIndex = 0;
+            // 
+            // BtnEdit
+            // 
+            this.BtnEdit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BtnEdit.Location = new System.Drawing.Point(245, 114);
+            this.BtnEdit.Name = "BtnEdit";
+            this.BtnEdit.Size = new System.Drawing.Size(75, 23);
+            this.BtnEdit.TabIndex = 12;
+            this.BtnEdit.Text = "Детальніше";
+            this.BtnEdit.UseVisualStyleBackColor = true;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // TaskControl
             // 
@@ -136,6 +138,6 @@
         public System.Windows.Forms.Button BTN_GetInfo;
         public System.Windows.Forms.NumericUpDown NUD_Accurancy;
         public DateRangeControl DateRangeControl;
-        public System.Windows.Forms.Button BTN_Save;
+        public System.Windows.Forms.Button BtnEdit;
     }
 }
