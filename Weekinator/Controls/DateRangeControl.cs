@@ -45,6 +45,7 @@ namespace Weekinator
         private double fract; // Доля текущей даты в диапазоне от 0 до 1 (0 - начало, 1 - конец диапазона)
         private byte digits = 3; // Количество знаков после запятой для процентов
         private bool _enableIcon;
+        private bool _enableEdit;
 
         private DateRangeControlState state = DateRangeControlState.Unstarted;
 
@@ -110,7 +111,20 @@ namespace Weekinator
             set { digits = value; UpdateVisual(); }
         }
 
-        public bool EnableIcon { get => _enableIcon; set { _enableIcon = PrecentIcon.Visible = value; } }
+        public bool EnableIcon {
+            get => _enableIcon;
+            set {
+                _enableIcon = PrecentIcon.Visible = value;
+            }
+        }
+
+        public bool EnableEdit {
+            get => _enableEdit;
+            set {
+                _enableEdit = StartDateTimePicker.Enabled = EndDateTimePicker.Enabled = value;
+            }
+        }
+
 
         #endregion
 
@@ -132,6 +146,7 @@ namespace Weekinator
             PrecentIcon.Font = IconGenerator.DefaultFont;
             
             EnableIcon = false;
+            EnableEdit = false;
             //PrecentIcon.Text = $"Precent ID={this.GetHashCode()}";
             //WeekMarkIcon.Visible = PrecentIcon.Visible = true;
         }

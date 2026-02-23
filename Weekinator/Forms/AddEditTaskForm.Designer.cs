@@ -111,6 +111,7 @@ namespace CourseWork.Forms
             this.DateRangeControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DateRangeControl.EnableEdit = true;
             this.DateRangeControl.EnableIcon = false;
             this.DateRangeControl.Location = new System.Drawing.Point(12, 166);
             this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);

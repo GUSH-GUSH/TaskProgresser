@@ -32,7 +32,6 @@
             this.GroupBox = new System.Windows.Forms.GroupBox();
             this.BTN_Delete = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
-            this.BTN_GetInfo = new System.Windows.Forms.Button();
             this.NUD_Accurancy = new System.Windows.Forms.NumericUpDown();
             this.DateRangeControl = new Weekinator.DateRangeControl();
             LBL_Accurancy = new System.Windows.Forms.Label();
@@ -55,7 +54,6 @@
             this.GroupBox.BackColor = System.Drawing.SystemColors.Control;
             this.GroupBox.Controls.Add(this.BTN_Delete);
             this.GroupBox.Controls.Add(this.BtnEdit);
-            this.GroupBox.Controls.Add(this.BTN_GetInfo);
             this.GroupBox.Controls.Add(LBL_Accurancy);
             this.GroupBox.Controls.Add(this.NUD_Accurancy);
             this.GroupBox.Controls.Add(this.DateRangeControl);
@@ -81,24 +79,13 @@
             // BtnEdit
             // 
             this.BtnEdit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BtnEdit.Location = new System.Drawing.Point(238, 114);
+            this.BtnEdit.Location = new System.Drawing.Point(201, 114);
             this.BtnEdit.Name = "BtnEdit";
             this.BtnEdit.Size = new System.Drawing.Size(75, 23);
             this.BtnEdit.TabIndex = 12;
             this.BtnEdit.Text = "Детальніше";
             this.BtnEdit.UseVisualStyleBackColor = true;
             this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
-            // 
-            // BTN_GetInfo
-            // 
-            this.BTN_GetInfo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BTN_GetInfo.Location = new System.Drawing.Point(157, 114);
-            this.BTN_GetInfo.Name = "BTN_GetInfo";
-            this.BTN_GetInfo.Size = new System.Drawing.Size(75, 23);
-            this.BTN_GetInfo.TabIndex = 11;
-            this.BTN_GetInfo.Text = "Get Info";
-            this.BTN_GetInfo.UseVisualStyleBackColor = true;
-            this.BTN_GetInfo.Click += new System.EventHandler(this.BTN_GetInfo_Click);
             // 
             // NUD_Accurancy
             // 
@@ -148,7 +135,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox GroupBox;
-        public System.Windows.Forms.Button BTN_GetInfo;
         public System.Windows.Forms.NumericUpDown NUD_Accurancy;
         public DateRangeControl DateRangeControl;
         public System.Windows.Forms.Button BtnEdit;
