@@ -59,8 +59,20 @@ namespace Weekinator
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = e.CloseReason == CloseReason.UserClosing;
-            this.Visible = false;
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show("Бажаєте залишити програму працювати у фоні?", "Закриття", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    e.Cancel = true;
+
+                    this.Hide();
+
+                    MainIcon.ShowBalloonTip(3000, "", "Програма продовжує роботу у фоновому режимі!", ToolTipIcon.Info);
+                }
+                else if (result == DialogResult.Cancel) e.Cancel = true;
+            }
         }
 
         private void BTN_OpenTestIconForm_Click(object sender, EventArgs e)
@@ -80,26 +92,15 @@ namespace Weekinator
             addForm.Close();
         }
 
-        //private void TSKCTRL_Semestr_DoubleClick(object sender, EventArgs e)
-        //{
-        //    Rectangle workingArea = Screen.PrimaryScreen.WorkingArea;
+        private void ToolStripMenuItem_OpenMainWindow_Click(object sender, EventArgs e) => RestoreWindow();
+    
+        private void ToolStripMenuItem_CloseApp_Click(object sender, EventArgs e) => Application.Exit();
 
-        //    TrayFlayoutTaskForm _flyoutForm = new TrayFlayoutTaskForm(new Models.TaskItem()
-        //    {
-        //        Title = TSKCTRL_Semestr.Title,
-        //        StartDate = TSKCTRL_Semestr.DateRange.Start,
-        //        EndDate = TSKCTRL_Semestr.DateRange.End,
-        //    });
-
-        //    int x = workingArea.Right - _flyoutForm.Width;
-        //    int y = workingArea.Bottom - _flyoutForm.Height;
-
-        //    _flyoutForm.Location = new Point(x, y);
-
-        //    _flyoutForm.Show();
-        //    _flyoutForm.Activate();
-        //}
-
+        private void MainIcon_MouseDoubleClick(object sender, MouseEventArgs e) {
+            if (this.Visible) this.Hide();
+            else RestoreWindow();
+        }
+    
         #endregion
 
         #region --- Task Control --- (move to a separate class)
@@ -156,9 +157,14 @@ namespace Weekinator
 
         #endregion
 
-        void SaveAllData() {
+        #region --- Utils ---
+
+        void SaveAllData()
+        {
             JsonTaskSeializer.SaveTasks(_allTasks);
         }
+
+        #endregion
 
         #region --- Visual ---
 
@@ -208,6 +214,13 @@ namespace Weekinator
                 FlowPanel_Active.ResumeLayout();
                 FlowPanel_Completed.ResumeLayout();
             }
+        }
+
+        private void RestoreWindow()
+        {
+            this.Show(); // Показываем форму
+            this.WindowState = FormWindowState.Normal; // Восстанавливаем размер
+            this.Activate(); // Выводим на передний план
         }
 
         #endregion
