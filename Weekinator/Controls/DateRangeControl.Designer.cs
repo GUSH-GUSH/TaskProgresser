@@ -141,7 +141,9 @@
             this.PrecentIcon.ContextMenuStrip = this.IconMainMenuStrip;
             this.PrecentIcon.DisplayText = "0";
             this.PrecentIcon.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 18F);
-            this.PrecentIcon.Visible = true;
+            this.PrecentIcon.Visible = false;
+            this.PrecentIcon.Click += new System.EventHandler(this.PrecentIcon_Click);
+            this.PrecentIcon.DoubleClick += new System.EventHandler(this.PrecentIcon_DoubleClick);
             // 
             // DateRangeControl
             // 

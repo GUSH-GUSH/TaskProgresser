@@ -115,7 +115,7 @@
             this.BtnEdit.UseVisualStyleBackColor = true;
             this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
-            // NUD_Accurancy
+            // NUD_Precision
             // 
             this.NUD_Precision.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.NUD_Precision.Location = new System.Drawing.Point(157, 117);
@@ -124,7 +124,7 @@
             0,
             0,
             0});
-            this.NUD_Precision.Name = "NUD_Accurancy";
+            this.NUD_Precision.Name = "NUD_Precision";
             this.NUD_Precision.Size = new System.Drawing.Size(36, 20);
             this.NUD_Precision.TabIndex = 6;
             this.NUD_Precision.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -143,6 +143,7 @@
             this.DateRangeControl.Precision = ((byte)(3));
             this.DateRangeControl.Size = new System.Drawing.Size(520, 90);
             this.DateRangeControl.TabIndex = 0;
+            this.DateRangeControl.IconClick += new System.Action(this.DateRangeControl_IconClick);
             // 
             // TaskControl
             // 

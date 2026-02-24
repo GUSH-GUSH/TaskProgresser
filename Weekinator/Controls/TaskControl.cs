@@ -165,6 +165,11 @@ namespace Weekinator.Forms.UserControls
 
         #endregion
 
- 
+        private void DateRangeControl_IconClick()
+        {
+            var trayForm = new TrayFlayoutTaskForm(Task);
+            trayForm.Show();
+            trayForm.Activate();
+        }
     }
 }

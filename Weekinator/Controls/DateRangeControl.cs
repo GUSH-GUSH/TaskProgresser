@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Weekinator.Controls;
+using Weekinator.Forms;
 using Weekinator.Services;
 using WinFormsExtensions;
 
@@ -49,7 +50,6 @@ namespace Weekinator
 
         private DateRangeControlState state = DateRangeControlState.Unstarted;
 
-        public event EventHandler OnValueChanged;
 
 
         #endregion
@@ -144,7 +144,7 @@ namespace Weekinator
 
 
             PrecentIcon.Font = IconGenerator.DefaultFont;
-            
+
             EnableIcon = false;
             EnableEdit = false;
             //PrecentIcon.Text = $"Precent ID={this.GetHashCode()}";
@@ -199,7 +199,7 @@ namespace Weekinator
             PrecentLabel.Text = $"{Precent}%";
             UpdatePrecentLabelLocation();
 
-            if(EnableIcon) UpdatePrecentIcon();
+            if (EnableIcon) UpdatePrecentIcon();
         }
 
         private void UpdatePrecentLabelLocation()
@@ -223,6 +223,8 @@ namespace Weekinator
         #region--- Events Handlers ---
 
         private void DateRangeControl_Resize(object sender, EventArgs e) => UpdatePrecentLabelLocation();
+        private void PrecentIcon_Click(object sender, EventArgs e) => IconClick?.Invoke();
+        private void PrecentIcon_DoubleClick(object sender, EventArgs e) => IconDoubleClick?.Invoke();
 
         #endregion
 
@@ -230,6 +232,15 @@ namespace Weekinator
         #region --- getters ---
 
         public double GetPrecent(int accuracy) => Math.Round(fract * 100, accuracy);
+
+        #endregion
+
+
+        #region --- events ---
+
+        public event EventHandler OnValueChanged;
+        public event Action IconClick;
+        public event Action IconDoubleClick;
 
         #endregion
 

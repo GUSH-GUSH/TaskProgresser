@@ -102,6 +102,10 @@ namespace Weekinator
             
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Visible = false;
+            _notifyIcon.Click += (o, e) => Click?.Invoke(o, e);
+            _notifyIcon.DoubleClick += (o, e) => DoubleClick?.Invoke(o, e);
+            
+            
             HeaderText = GetHashCode().ToString();
 
             UpdateIcon();
@@ -137,6 +141,14 @@ namespace Weekinator
             }
             base.Dispose(disposing);
         }
+
+        #endregion
+
+
+        #region --- EVENTS ---
+        
+        public event EventHandler Click;
+        public event EventHandler DoubleClick;
 
         #endregion
 

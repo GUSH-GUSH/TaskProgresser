@@ -19,11 +19,21 @@ namespace Weekinator.Forms
         public TrayFlayoutTaskForm()
         {
             InitializeComponent();
+            SetDefaultPosition();
         }
 
         public TrayFlayoutTaskForm(TaskItem task) : this()
         {
             Task = task;
+        }
+
+        private void SetDefaultPosition() {
+            var screenSize = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+
+            Location = new Point(
+                screenSize.Width - this.Size.Width,
+                screenSize.Height - this.Size.Height
+                );
         }
 
         #endregion
@@ -56,11 +66,11 @@ namespace Weekinator.Forms
 
                 Title.Text = Task.Title;
                 DateRangeControl.SetDateRange(Task.StartDate, Task.EndDate);
+                DateRangeControl.Precision = (byte)Task.Precision;
             }
         }
 
         #endregion
-
     
     }
 }
