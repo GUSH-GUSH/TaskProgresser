@@ -111,10 +111,13 @@ namespace Weekinator
             MessageBox.Show("Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void UpdateTask(TaskItem newTask) {
-            RenderTasks();
+        private void UpdateTask(TaskItem task) {
             SaveAllData();
-            MessageBox.Show("Дані успішно оновлені!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (task != null)
+            {
+                RenderTasks();
+                MessageBox.Show("Дані успішно оновлені!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void DeleteTask(TaskItem taskToRemove)
@@ -163,8 +166,11 @@ namespace Weekinator
             FlowPanel_Completed.SuspendLayout();
 
             // (По-хорошему тут еще нужно вызывать .Dispose() для старых контролов, но для MVP пока оставим так)
-            FlowPanel_Active.Controls.Clear();
-            FlowPanel_Completed.Controls.Clear();
+            while (FlowPanel_Active.Controls.Count > 0)
+                FlowPanel_Active.Controls[0].Dispose();
+            
+            while (FlowPanel_Completed.Controls.Count > 0)
+                FlowPanel_Completed.Controls[0].Dispose();
 
             foreach (var taskModel in _allTasks)
             {

@@ -16,6 +16,8 @@ namespace Weekinator.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime? CompletedAt { get; set; }
+        public int Precision { get; set; } = 3;
+        public bool ShowInTray { get; set; } = false;
 
         [JsonIgnore]
         public bool IsCompleted => CompletedAt.HasValue;

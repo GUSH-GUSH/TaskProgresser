@@ -31,6 +31,8 @@ namespace Weekinator.Forms.UserControls
 
                     Title = Task.Title;
                     DateRange = new DateRange(Task.StartDate, Task.EndDate);
+                    CHB_AddToTray.Checked = Task.ShowInTray;
+                    NUD_Precision.Value = Task.Precision;
                 }
                 else SetupDefaultValue();
             }
@@ -67,6 +69,7 @@ namespace Weekinator.Forms.UserControls
         public TaskControl()
         {
             InitializeComponent();
+            Task = new TaskItem();
         }
 
         public TaskControl(TaskItem task) : this() {
@@ -76,7 +79,7 @@ namespace Weekinator.Forms.UserControls
 
         private void TaskControl_Load(object sender, EventArgs e)
         {
-            NUD_Accurancy.Value = DateRangeControl.Precision;
+            NUD_Precision.Value = DateRangeControl.Precision;
         }
 
         public void Setup(TaskItem task) => Task = task;
@@ -84,6 +87,8 @@ namespace Weekinator.Forms.UserControls
         private void SetupDefaultValue() {
             Title = "Назва";
             DateRange = DateRangeControl.DefaultDateRange;
+            CHB_AddToTray.Checked = false;
+            NUD_Precision.Value = 3;
         }
 
         #endregion
@@ -92,7 +97,8 @@ namespace Weekinator.Forms.UserControls
 
         private void NUD_Accurancy_ValueChanged(object sender, EventArgs e)
         {
-            DateRangeControl.Precision = (byte)NUD_Accurancy.Value;
+            Task.Precision = DateRangeControl.Precision = (byte)NUD_Precision.Value;
+            TaskEdited?.Invoke(null);
         }
 
         private void BTN_GetInfo_Click(object sender, EventArgs e)
@@ -112,6 +118,11 @@ namespace Weekinator.Forms.UserControls
         private void BTN_Delete_Click(object sender, EventArgs e)
         {
             TaskDeleted?.Invoke(Task);
+        }
+        private void CHB_AddToTray_CheckedChanged(object sender, EventArgs e)
+        {
+            DateRangeControl.EnableIcon = Task.ShowInTray = CHB_AddToTray.Checked;
+            TaskEdited?.Invoke(null);
         }
 
         #endregion
@@ -154,5 +165,6 @@ namespace Weekinator.Forms.UserControls
 
         #endregion
 
+ 
     }
 }
