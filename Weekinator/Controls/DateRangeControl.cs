@@ -57,6 +57,8 @@ namespace Weekinator
 
         #region --- properties ---
 
+        public string RangeName { get; set; }
+
         public DateRange DateRange
         {
             get => pickersController.DateRange;
@@ -213,7 +215,7 @@ namespace Weekinator
         public void UpdatePrecentIcon()
         {
             double precent = Precent;
-            PrecentIcon.HeaderText = $"Текущий процент - {precent}%\n\n";
+            PrecentIcon.HeaderText = $"{RangeName}: {precent}%\n\n";
             PrecentIcon.DisplayText = Math.Round(precent, 1).ToString();
         }
 

@@ -33,6 +33,8 @@ namespace Weekinator.Forms.UserControls
                     DateRange = new DateRange(Task.StartDate, Task.EndDate);
                     CHB_AddToTray.Checked = Task.ShowInTray;
                     NUD_Precision.Value = Task.Precision;
+                    DateRangeControl.RangeName = Task.Title;
+
                 }
                 else SetupDefaultValue();
             }
@@ -87,6 +89,7 @@ namespace Weekinator.Forms.UserControls
         private void SetupDefaultValue() {
             Title = "Назва";
             DateRange = DateRangeControl.DefaultDateRange;
+            DateRangeControl.RangeName = Title;
             CHB_AddToTray.Checked = false;
             NUD_Precision.Value = 3;
         }
