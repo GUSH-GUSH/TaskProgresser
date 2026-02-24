@@ -44,8 +44,8 @@ namespace Weekinator.Forms.UserControls
 
         public string Title
         {
-            get => GroupBox.Text;
-            set => GroupBox.Text = value;
+            get => LBL_Title.Text;
+            set => LBL_Title.Text = value;
         }
 
         public DateRange DateRange
@@ -106,7 +106,7 @@ namespace Weekinator.Forms.UserControls
         private void NUD_Accurancy_ValueChanged(object sender, EventArgs e)
         {
             Task.Precision = DateRangeControl.Precision = (byte)NUD_Precision.Value;
-            if(Task.IsCompleted) UpdateCompetePrecentage();
+            if(Task.IsCompleted) UpdateCompletePrecentage();
             TaskEdited?.Invoke(null);
         }
         private void BTN_GetInfo_Click(object sender, EventArgs e)
@@ -187,27 +187,26 @@ namespace Weekinator.Forms.UserControls
             if (Task?.IsCompleted ?? false) // CHACK: Task may be not null
             {
                 // --- РЕЖИМ ВИКОНАНОЇ ЗАДАЧІ ЗАДАЧИ ---
-                DateRangeControl.Visible = false;
+                ResultPanel.Visible = true;
                 CHB_AddToTray.Visible = false;
                 BTN_Complete.Text = "Скасувати виконання";
                 BTN_Complete.ForeColor = Color.Black;
-
-                UpdateCompetePrecentage();
-                LBL_CompleteAt.Visible = true;
+                DateRangeControl.AutoUpdate = false;
+                Lbl_CompletedAt.Text = $"Дата виконання: {Task.CompletedAt?.ToString("g")}";
+                UpdateCompletePrecentage();
             }
             else
             {
                 // --- РЕЖИМ АКТИВНОЇ ЗАДАЧІ ---
-                DateRangeControl.Visible = true;
+                ResultPanel.Visible = false;
                 CHB_AddToTray.Visible = true;
                 BTN_Complete.Text = "Виконати";
                 BTN_Complete.ForeColor = Color.Green;
-
-                LBL_CompleteAt.Visible = false;
+                DateRangeControl.AutoUpdate = true;
             }
         }
 
-        void UpdateCompetePrecentage() => LBL_CompleteAt.Text = $"Виконано за {Task.EfficiencyPercentage}% відведеного часу!";
+        void UpdateCompletePrecentage() => LBL_Еfficiency.Text = $"Виконано за {Task.EfficiencyPercentage}% відведеного часу!";
 
         #endregion
 

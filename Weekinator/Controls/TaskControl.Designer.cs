@@ -30,7 +30,10 @@
         {
             System.Windows.Forms.Label LBL_Accurancy;
             this.GroupBox = new System.Windows.Forms.GroupBox();
-            this.LBL_CompleteAt = new System.Windows.Forms.Label();
+            this.ResultPanel = new System.Windows.Forms.Panel();
+            this.LBL_Еfficiency = new System.Windows.Forms.Label();
+            this.Lbl_CompletedAt = new System.Windows.Forms.Label();
+            this.LBL_Title = new System.Windows.Forms.Label();
             this.CHB_AddToTray = new System.Windows.Forms.CheckBox();
             this.BTN_Complete = new System.Windows.Forms.Button();
             this.BTN_Delete = new System.Windows.Forms.Button();
@@ -39,6 +42,7 @@
             this.DateRangeControl = new Weekinator.DateRangeControl();
             LBL_Accurancy = new System.Windows.Forms.Label();
             this.GroupBox.SuspendLayout();
+            this.ResultPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Precision)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +60,8 @@
             // GroupBox
             // 
             this.GroupBox.BackColor = System.Drawing.SystemColors.Control;
-            this.GroupBox.Controls.Add(this.LBL_CompleteAt);
+            this.GroupBox.Controls.Add(this.ResultPanel);
+            this.GroupBox.Controls.Add(this.LBL_Title);
             this.GroupBox.Controls.Add(this.CHB_AddToTray);
             this.GroupBox.Controls.Add(this.BTN_Complete);
             this.GroupBox.Controls.Add(this.BTN_Delete);
@@ -72,18 +77,56 @@
             this.GroupBox.Size = new System.Drawing.Size(744, 185);
             this.GroupBox.TabIndex = 13;
             this.GroupBox.TabStop = false;
-            this.GroupBox.Text = "Семестр 4.1";
             // 
-            // LBL_CompleteAt
+            // ResultPanel
             // 
-            this.LBL_CompleteAt.AutoSize = true;
-            this.LBL_CompleteAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LBL_CompleteAt.ForeColor = System.Drawing.Color.Green;
-            this.LBL_CompleteAt.Location = new System.Drawing.Point(27, 78);
-            this.LBL_CompleteAt.Name = "LBL_CompleteAt";
-            this.LBL_CompleteAt.Size = new System.Drawing.Size(337, 25);
-            this.LBL_CompleteAt.TabIndex = 16;
-            this.LBL_CompleteAt.Text = "Виконано за 89% відведеного часу!";
+            this.ResultPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResultPanel.Controls.Add(this.LBL_Еfficiency);
+            this.ResultPanel.Controls.Add(this.Lbl_CompletedAt);
+            this.ResultPanel.Location = new System.Drawing.Point(0, 33);
+            this.ResultPanel.Name = "ResultPanel";
+            this.ResultPanel.Size = new System.Drawing.Size(744, 75);
+            this.ResultPanel.TabIndex = 19;
+            // 
+            // LBL_Еfficiency
+            // 
+            this.LBL_Еfficiency.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LBL_Еfficiency.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LBL_Еfficiency.ForeColor = System.Drawing.Color.Green;
+            this.LBL_Еfficiency.Location = new System.Drawing.Point(0, 13);
+            this.LBL_Еfficiency.Name = "LBL_Еfficiency";
+            this.LBL_Еfficiency.Size = new System.Drawing.Size(744, 27);
+            this.LBL_Еfficiency.TabIndex = 16;
+            this.LBL_Еfficiency.Text = "Виконано за 89% відведеного часу!";
+            this.LBL_Еfficiency.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Lbl_CompletedAt
+            // 
+            this.Lbl_CompletedAt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lbl_CompletedAt.Location = new System.Drawing.Point(0, 48);
+            this.Lbl_CompletedAt.Name = "Lbl_CompletedAt";
+            this.Lbl_CompletedAt.Size = new System.Drawing.Size(744, 20);
+            this.Lbl_CompletedAt.TabIndex = 18;
+            this.Lbl_CompletedAt.Text = "Дата виконаня: 15/02/2026 8:00 PM";
+            this.Lbl_CompletedAt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LBL_Title
+            // 
+            this.LBL_Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LBL_Title.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBL_Title.Location = new System.Drawing.Point(0, 9);
+            this.LBL_Title.Name = "LBL_Title";
+            this.LBL_Title.Size = new System.Drawing.Size(744, 29);
+            this.LBL_Title.TabIndex = 17;
+            this.LBL_Title.Text = "Назва";
+            this.LBL_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CHB_AddToTray
             // 
@@ -158,6 +201,7 @@
             this.DateRangeControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DateRangeControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DateRangeControl.AutoUpdate = true;
             this.DateRangeControl.EnableEdit = false;
             this.DateRangeControl.EnableIcon = false;
             this.DateRangeControl.Location = new System.Drawing.Point(24, 22);
@@ -183,6 +227,7 @@
             this.Load += new System.EventHandler(this.TaskControl_Load);
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();
+            this.ResultPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Precision)).EndInit();
             this.ResumeLayout(false);
 
@@ -197,6 +242,9 @@
         public System.Windows.Forms.Button BTN_Delete;
         public System.Windows.Forms.Button BTN_Complete;
         private System.Windows.Forms.CheckBox CHB_AddToTray;
-        private System.Windows.Forms.Label LBL_CompleteAt;
+        private System.Windows.Forms.Label LBL_Еfficiency;
+        private System.Windows.Forms.Label LBL_Title;
+        private System.Windows.Forms.Label Lbl_CompletedAt;
+        private System.Windows.Forms.Panel ResultPanel;
     }
 }

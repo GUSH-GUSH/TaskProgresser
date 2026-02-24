@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -27,10 +28,11 @@ namespace CourseWork.Forms
                 txtTitle.Text = Task.Title;
                 txtDescription.Text = Task.Description;
                 DateRangeControl.SetDateRange(Task.StartDate, Task.EndDate);
+                DateRangeControl.Precision = (byte)Task.Precision;
             }
         }
 
-        #region --- setup ---
+        #region --- SETUP ---
 
         public AddEditTaskForm(TaskItem task = null)
         {
@@ -56,12 +58,7 @@ namespace CourseWork.Forms
 
         private void AddEditTaskForm_Load(object sender, EventArgs e)
         {
-            if (Task?.IsCompleted ?? false)
-            {
-                DateRangeControl.AutoUpdate = false;
-                DateRangeControl.UpdateValue(Task.CompletedAt ?? DateTime.Now);
-                DateRangeControl.OnValueChanged += (o, a) => DateRangeControl.UpdateValue(Task.CompletedAt ?? DateTime.Now);
-            }
+            ApplyVisualState();
         }
 
         #endregion
@@ -115,6 +112,35 @@ namespace CourseWork.Forms
         }
 
         #endregion
+
+        private void ApplyVisualState()
+        {
+            if (Task?.IsCompleted ?? false) // CHACK: Task may be not null
+            {
+                // --- РЕЖИМ ВИКОНАНОЇ ЗАДАЧІ ЗАДАЧИ ---
+                LBL_Еfficiency.Visible = true;
+                Lbl_CompletedAt.Visible = true;
+                DateRangeControl.AutoUpdate = false;
+                DateRangeControl.AutoUpdate = false;
+                DateRangeControl.UpdateValue(Task.CompletedAt ?? DateTime.Now);
+                DateRangeControl.OnValueChanged += (o, a) =>
+                {
+                    DateRangeControl.UpdateValue(Task.CompletedAt ?? DateTime.Now);
+                    LBL_Еfficiency.Text = $"Виконано за {DateRangeControl.Precent}% відведеного часу!";
+                };
+                Lbl_CompletedAt.Text = $"Дата виконання: {Task.CompletedAt?.ToString("g")}";
+
+                UpdateCompletePrecentage();
+            }
+            else
+            {
+                // --- РЕЖИМ АКТИВНОЇ ЗАДАЧІ ---
+                LBL_Еfficiency.Visible = false;
+                Lbl_CompletedAt.Visible = false;
+            }
+        }
+
+        void UpdateCompletePrecentage() => LBL_Еfficiency.Text = $"Виконано за {Task.EfficiencyPercentage}% відведеного часу!";
 
     }
 }
