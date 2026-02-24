@@ -97,8 +97,6 @@ namespace Weekinator.Forms.UserControls
             ApplyVisualState();
         }
 
-  
-
         #endregion
 
         #region --- EVENTS HANDLERS ---
@@ -115,9 +113,9 @@ namespace Weekinator.Forms.UserControls
         }
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            if (new AddEditTaskForm(Task).ShowDialog() == DialogResult.OK) {
-                TaskEdited?.Invoke(Task);
-            }
+            var editForm = new AddEditTaskForm(Task);
+            if (editForm.ShowDialog() == DialogResult.OK) TaskEdited?.Invoke(Task);
+            editForm.Close();
         }
         private void BTN_Complete_Click(object sender, EventArgs e)
         {

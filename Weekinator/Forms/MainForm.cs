@@ -77,6 +77,7 @@ namespace Weekinator
             var addForm = new AddEditTaskForm();
             if (addForm.ShowDialog() == DialogResult.OK)
                 AddTask(addForm.Task);
+            addForm.Close();
         }
 
         //private void TSKCTRL_Semestr_DoubleClick(object sender, EventArgs e)

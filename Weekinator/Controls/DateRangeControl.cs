@@ -149,8 +149,6 @@ namespace Weekinator
 
             EnableIcon = false;
             EnableEdit = false;
-            //PrecentIcon.Text = $"Precent ID={this.GetHashCode()}";
-            //WeekMarkIcon.Visible = PrecentIcon.Visible = true;
         }
 
         public DateRangeControl(DateTime start, DateTime end) : this() => SetDateRange(start, end);
@@ -160,6 +158,13 @@ namespace Weekinator
         private void DateRangeControl_Load(object sender, EventArgs e)
         {
             ProgressUpdaterService.AddDateRangeControl(this);
+            this.Disposed += DateRangeControl_Disposed; ;
+        }
+
+        private void DateRangeControl_Disposed(object sender, EventArgs e)
+        {
+            ProgressUpdaterService.RemoveDateRangeControl(this);
+            this.Disposed -= DateRangeControl_Disposed;
         }
 
         #endregion

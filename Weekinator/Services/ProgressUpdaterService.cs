@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,8 @@ namespace Weekinator.Services
 
         private static void UpdateProgress() {
             var now = DateTime.Now;
+
+            Debug.WriteLine($"Количество подписок: {rangeControls.Count}");
 
             foreach (var control in rangeControls)
                 control.UpdateValue(now);

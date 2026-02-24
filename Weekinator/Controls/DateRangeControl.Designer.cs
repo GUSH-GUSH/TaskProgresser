@@ -45,12 +45,13 @@
             // IconMainMenuStrip
             // 
             this.IconMainMenuStrip.BackColor = System.Drawing.SystemColors.ControlText;
+            this.IconMainMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.IconMainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.IconMainMenu_OpenItem,
             this.IconMainMenu_CloseItem});
             this.IconMainMenuStrip.Name = "IconMainMenuStrip";
             this.IconMainMenuStrip.ShowImageMargin = false;
-            this.IconMainMenuStrip.Size = new System.Drawing.Size(125, 48);
+            this.IconMainMenuStrip.Size = new System.Drawing.Size(149, 52);
             this.IconMainMenuStrip.Text = "Меню";
             // 
             // IconMainMenu_OpenItem
@@ -58,7 +59,7 @@
             this.IconMainMenu_OpenItem.BackColor = System.Drawing.SystemColors.ControlText;
             this.IconMainMenu_OpenItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.IconMainMenu_OpenItem.Name = "IconMainMenu_OpenItem";
-            this.IconMainMenu_OpenItem.Size = new System.Drawing.Size(124, 22);
+            this.IconMainMenu_OpenItem.Size = new System.Drawing.Size(148, 24);
             this.IconMainMenu_OpenItem.Text = "Главное окно";
             // 
             // IconMainMenu_CloseItem
@@ -67,7 +68,7 @@
             this.IconMainMenu_CloseItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.IconMainMenu_CloseItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.IconMainMenu_CloseItem.Name = "IconMainMenu_CloseItem";
-            this.IconMainMenu_CloseItem.Size = new System.Drawing.Size(124, 22);
+            this.IconMainMenu_CloseItem.Size = new System.Drawing.Size(148, 24);
             this.IconMainMenu_CloseItem.Text = "Закрыть";
             // 
             // MainProgressBar
@@ -90,7 +91,7 @@
             this.PrecentLabel.Location = new System.Drawing.Point(195, 16);
             this.PrecentLabel.Margin = new System.Windows.Forms.Padding(0);
             this.PrecentLabel.Name = "PrecentLabel";
-            this.PrecentLabel.Size = new System.Drawing.Size(41, 20);
+            this.PrecentLabel.Size = new System.Drawing.Size(52, 25);
             this.PrecentLabel.TabIndex = 11;
             this.PrecentLabel.Text = "59%";
             // 
@@ -104,7 +105,7 @@
             this.StartDateTimePicker.MaxDate = new System.DateTime(2026, 6, 17, 0, 0, 0, 0);
             this.StartDateTimePicker.MinDate = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
             this.StartDateTimePicker.Name = "StartDateTimePicker";
-            this.StartDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.StartDateTimePicker.Size = new System.Drawing.Size(130, 22);
             this.StartDateTimePicker.TabIndex = 12;
             this.StartDateTimePicker.Value = new System.DateTime(2025, 4, 10, 0, 0, 0, 0);
             // 
@@ -117,7 +118,7 @@
             this.EndDateTimePicker.MaxDate = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             this.EndDateTimePicker.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
             this.EndDateTimePicker.Name = "EndDateTimePicker";
-            this.EndDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.EndDateTimePicker.Size = new System.Drawing.Size(130, 22);
             this.EndDateTimePicker.TabIndex = 13;
             this.EndDateTimePicker.Value = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             // 
