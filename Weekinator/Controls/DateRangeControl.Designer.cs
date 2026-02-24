@@ -46,6 +46,23 @@ namespace Weekinator
             this.MainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
+            // PrecentIconMenuItem_HideIcon
+            // 
+            PrecentIconMenuItem_HideIcon.BackColor = System.Drawing.SystemColors.ControlText;
+            PrecentIconMenuItem_HideIcon.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            PrecentIconMenuItem_HideIcon.Name = "PrecentIconMenuItem_HideIcon";
+            PrecentIconMenuItem_HideIcon.Size = new System.Drawing.Size(219, 24);
+            PrecentIconMenuItem_HideIcon.Text = "Сховати значок";
+            PrecentIconMenuItem_HideIcon.Click += new System.EventHandler(this.PrecentIconMenuItem_HideIcon_Click);
+            // 
+            // PrecentIconMenuItem_ShowFlyoutForm
+            // 
+            PrecentIconMenuItem_ShowFlyoutForm.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            PrecentIconMenuItem_ShowFlyoutForm.Name = "PrecentIconMenuItem_ShowFlyoutForm";
+            PrecentIconMenuItem_ShowFlyoutForm.Size = new System.Drawing.Size(219, 24);
+            PrecentIconMenuItem_ShowFlyoutForm.Text = "Показати вікно-превью";
+            PrecentIconMenuItem_ShowFlyoutForm.Click += new System.EventHandler(this.PrecentIconMenuItem_ShowFlyoutForm_Click);
+            // 
             // IconMainMenuStrip
             // 
             this.IconMainMenuStrip.BackColor = System.Drawing.SystemColors.ControlText;
@@ -55,25 +72,8 @@ namespace Weekinator
             PrecentIconMenuItem_HideIcon});
             this.IconMainMenuStrip.Name = "IconMainMenuStrip";
             this.IconMainMenuStrip.ShowImageMargin = false;
-            this.IconMainMenuStrip.Size = new System.Drawing.Size(180, 70);
+            this.IconMainMenuStrip.Size = new System.Drawing.Size(220, 52);
             this.IconMainMenuStrip.Text = "Меню";
-            // 
-            // PrecentIconMenuItem_HideIcon
-            // 
-            PrecentIconMenuItem_HideIcon.BackColor = System.Drawing.SystemColors.ControlText;
-            PrecentIconMenuItem_HideIcon.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            PrecentIconMenuItem_HideIcon.Name = "PrecentIconMenuItem_HideIcon";
-            PrecentIconMenuItem_HideIcon.Size = new System.Drawing.Size(179, 22);
-            PrecentIconMenuItem_HideIcon.Text = "Сховати значок";
-            PrecentIconMenuItem_HideIcon.Click += new System.EventHandler(this.PrecentIconMenuItem_HideIcon_Click);
-            // 
-            // PrecentIconMenuItem_ShowFlyoutForm
-            // 
-            PrecentIconMenuItem_ShowFlyoutForm.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            PrecentIconMenuItem_ShowFlyoutForm.Name = "PrecentIconMenuItem_ShowFlyoutForm";
-            PrecentIconMenuItem_ShowFlyoutForm.Size = new System.Drawing.Size(179, 22);
-            PrecentIconMenuItem_ShowFlyoutForm.Text = "Показати вікно-превью";
-            PrecentIconMenuItem_ShowFlyoutForm.Click += new System.EventHandler(this.PrecentIconMenuItem_ShowFlyoutForm_Click);
             // 
             // MainProgressBar
             // 
@@ -91,11 +91,12 @@ namespace Weekinator
             this.PrecentLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PrecentLabel.AutoSize = true;
+            this.PrecentLabel.BackColor = System.Drawing.Color.Transparent;
             this.PrecentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PrecentLabel.Location = new System.Drawing.Point(195, 16);
             this.PrecentLabel.Margin = new System.Windows.Forms.Padding(0);
             this.PrecentLabel.Name = "PrecentLabel";
-            this.PrecentLabel.Size = new System.Drawing.Size(41, 20);
+            this.PrecentLabel.Size = new System.Drawing.Size(52, 25);
             this.PrecentLabel.TabIndex = 11;
             this.PrecentLabel.Text = "59%";
             // 
@@ -109,7 +110,7 @@ namespace Weekinator
             this.StartDateTimePicker.MaxDate = new System.DateTime(2026, 6, 17, 0, 0, 0, 0);
             this.StartDateTimePicker.MinDate = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
             this.StartDateTimePicker.Name = "StartDateTimePicker";
-            this.StartDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.StartDateTimePicker.Size = new System.Drawing.Size(130, 22);
             this.StartDateTimePicker.TabIndex = 12;
             this.StartDateTimePicker.Value = new System.DateTime(2025, 4, 10, 0, 0, 0, 0);
             // 
@@ -122,7 +123,7 @@ namespace Weekinator
             this.EndDateTimePicker.MaxDate = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             this.EndDateTimePicker.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
             this.EndDateTimePicker.Name = "EndDateTimePicker";
-            this.EndDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.EndDateTimePicker.Size = new System.Drawing.Size(130, 22);
             this.EndDateTimePicker.TabIndex = 13;
             this.EndDateTimePicker.Value = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             // 
@@ -130,8 +131,8 @@ namespace Weekinator
             // 
             this.MainPanel.Controls.Add(this.EndDateTimePicker);
             this.MainPanel.Controls.Add(this.StartDateTimePicker);
-            this.MainPanel.Controls.Add(this.PrecentLabel);
             this.MainPanel.Controls.Add(this.MainProgressBar);
+            this.MainPanel.Controls.Add(this.PrecentLabel);
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Name = "MainPanel";
