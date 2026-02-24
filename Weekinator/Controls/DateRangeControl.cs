@@ -160,6 +160,13 @@ namespace Weekinator
         private void DateRangeControl_Load(object sender, EventArgs e)
         {
             ProgressUpdaterService.AddDateRangeControl(this);
+            this.Disposed += DateRangeControl_Disposed; ;
+        }
+
+        private void DateRangeControl_Disposed(object sender, EventArgs e)
+        {
+            ProgressUpdaterService.RemoveDateRangeControl(this);
+            this.Disposed -= DateRangeControl_Disposed;
         }
 
         #endregion
