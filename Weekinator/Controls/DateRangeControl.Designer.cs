@@ -1,4 +1,6 @@
-﻿namespace Weekinator
+﻿using System;
+
+namespace Weekinator
 {
     partial class DateRangeControl
     {
@@ -29,15 +31,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ToolStripMenuItem PrecentIconMenuItem_HideIcon;
+            System.Windows.Forms.ToolStripMenuItem PrecentIconMenuItem_ShowFlyoutForm;
             this.IconMainMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.IconMainMenu_OpenItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.IconMainMenu_CloseItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainProgressBar = new System.Windows.Forms.ProgressBar();
             this.PrecentLabel = new System.Windows.Forms.Label();
             this.StartDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.PrecentIcon = new Weekinator.DynamicTextNotifyIcon(this.components);
+            PrecentIconMenuItem_HideIcon = new System.Windows.Forms.ToolStripMenuItem();
+            PrecentIconMenuItem_ShowFlyoutForm = new System.Windows.Forms.ToolStripMenuItem();
             this.IconMainMenuStrip.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.SuspendLayout();
@@ -47,29 +51,29 @@
             this.IconMainMenuStrip.BackColor = System.Drawing.SystemColors.ControlText;
             this.IconMainMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.IconMainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.IconMainMenu_OpenItem,
-            this.IconMainMenu_CloseItem});
+            PrecentIconMenuItem_ShowFlyoutForm,
+            PrecentIconMenuItem_HideIcon});
             this.IconMainMenuStrip.Name = "IconMainMenuStrip";
             this.IconMainMenuStrip.ShowImageMargin = false;
-            this.IconMainMenuStrip.Size = new System.Drawing.Size(149, 52);
+            this.IconMainMenuStrip.Size = new System.Drawing.Size(180, 70);
             this.IconMainMenuStrip.Text = "Меню";
             // 
-            // IconMainMenu_OpenItem
+            // PrecentIconMenuItem_HideIcon
             // 
-            this.IconMainMenu_OpenItem.BackColor = System.Drawing.SystemColors.ControlText;
-            this.IconMainMenu_OpenItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.IconMainMenu_OpenItem.Name = "IconMainMenu_OpenItem";
-            this.IconMainMenu_OpenItem.Size = new System.Drawing.Size(148, 24);
-            this.IconMainMenu_OpenItem.Text = "Главное окно";
+            PrecentIconMenuItem_HideIcon.BackColor = System.Drawing.SystemColors.ControlText;
+            PrecentIconMenuItem_HideIcon.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            PrecentIconMenuItem_HideIcon.Name = "PrecentIconMenuItem_HideIcon";
+            PrecentIconMenuItem_HideIcon.Size = new System.Drawing.Size(179, 22);
+            PrecentIconMenuItem_HideIcon.Text = "Сховати значок";
+            PrecentIconMenuItem_HideIcon.Click += new System.EventHandler(this.PrecentIconMenuItem_HideIcon_Click);
             // 
-            // IconMainMenu_CloseItem
+            // PrecentIconMenuItem_ShowFlyoutForm
             // 
-            this.IconMainMenu_CloseItem.BackColor = System.Drawing.SystemColors.ControlText;
-            this.IconMainMenu_CloseItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.IconMainMenu_CloseItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.IconMainMenu_CloseItem.Name = "IconMainMenu_CloseItem";
-            this.IconMainMenu_CloseItem.Size = new System.Drawing.Size(148, 24);
-            this.IconMainMenu_CloseItem.Text = "Закрыть";
+            PrecentIconMenuItem_ShowFlyoutForm.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            PrecentIconMenuItem_ShowFlyoutForm.Name = "PrecentIconMenuItem_ShowFlyoutForm";
+            PrecentIconMenuItem_ShowFlyoutForm.Size = new System.Drawing.Size(179, 22);
+            PrecentIconMenuItem_ShowFlyoutForm.Text = "Показати вікно-превью";
+            PrecentIconMenuItem_ShowFlyoutForm.Click += new System.EventHandler(this.PrecentIconMenuItem_ShowFlyoutForm_Click);
             // 
             // MainProgressBar
             // 
@@ -91,7 +95,7 @@
             this.PrecentLabel.Location = new System.Drawing.Point(195, 16);
             this.PrecentLabel.Margin = new System.Windows.Forms.Padding(0);
             this.PrecentLabel.Name = "PrecentLabel";
-            this.PrecentLabel.Size = new System.Drawing.Size(52, 25);
+            this.PrecentLabel.Size = new System.Drawing.Size(41, 20);
             this.PrecentLabel.TabIndex = 11;
             this.PrecentLabel.Text = "59%";
             // 
@@ -105,7 +109,7 @@
             this.StartDateTimePicker.MaxDate = new System.DateTime(2026, 6, 17, 0, 0, 0, 0);
             this.StartDateTimePicker.MinDate = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
             this.StartDateTimePicker.Name = "StartDateTimePicker";
-            this.StartDateTimePicker.Size = new System.Drawing.Size(130, 22);
+            this.StartDateTimePicker.Size = new System.Drawing.Size(130, 20);
             this.StartDateTimePicker.TabIndex = 12;
             this.StartDateTimePicker.Value = new System.DateTime(2025, 4, 10, 0, 0, 0, 0);
             // 
@@ -118,7 +122,7 @@
             this.EndDateTimePicker.MaxDate = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             this.EndDateTimePicker.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
             this.EndDateTimePicker.Name = "EndDateTimePicker";
-            this.EndDateTimePicker.Size = new System.Drawing.Size(130, 22);
+            this.EndDateTimePicker.Size = new System.Drawing.Size(130, 20);
             this.EndDateTimePicker.TabIndex = 13;
             this.EndDateTimePicker.Value = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             // 
@@ -165,8 +169,6 @@
 
         #endregion
         public System.Windows.Forms.ContextMenuStrip IconMainMenuStrip;
-        public System.Windows.Forms.ToolStripMenuItem IconMainMenu_OpenItem;
-        public System.Windows.Forms.ToolStripMenuItem IconMainMenu_CloseItem;
         private DynamicTextNotifyIcon PrecentIcon;
         private System.Windows.Forms.ProgressBar MainProgressBar;
         private System.Windows.Forms.Label PrecentLabel;

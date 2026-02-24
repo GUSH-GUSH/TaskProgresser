@@ -248,8 +248,12 @@ namespace Weekinator
         public event EventHandler OnValueChanged;
         public event Action IconClick;
         public event Action IconDoubleClick;
+        public event Action HideIcon;
 
         #endregion
 
+        private void PrecentIconMenuItem_HideIcon_Click(object sender, EventArgs e) => HideIcon?.Invoke();
+
+        private void PrecentIconMenuItem_ShowFlyoutForm_Click(object sender, EventArgs e) => IconClick?.Invoke();
     }
 }

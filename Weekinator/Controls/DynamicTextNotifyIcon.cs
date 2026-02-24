@@ -102,7 +102,10 @@ namespace Weekinator
             
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Visible = false;
-            _notifyIcon.Click += (o, e) => Click?.Invoke(o, e);
+            _notifyIcon.MouseClick += (o, e) =>
+            {
+                if (e.Button == MouseButtons.Left) Click?.Invoke(o, e);
+            };
             _notifyIcon.DoubleClick += (o, e) => DoubleClick?.Invoke(o, e);
             
             

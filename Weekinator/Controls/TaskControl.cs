@@ -78,12 +78,14 @@ namespace Weekinator.Forms.UserControls
 
         public TaskControl(TaskItem task) : this() {
             Setup(task);
-            DateRangeControl.OnValueChanged += (o,e) => Debug.WriteLine("ValueChanged");
         }
 
         private void TaskControl_Load(object sender, EventArgs e)
         {
             NUD_Precision.Value = DateRangeControl.Precision;
+            DateRangeControl.HideIcon += () => {
+                CHB_AddToTray.Checked = false;
+            };
         }
 
         public void Setup(TaskItem task) => Task = task;
