@@ -63,8 +63,6 @@ namespace WinFormsExtensions
 
         public event EventHandler OnEndPickerLimitReached;
 
-        public event EventHandler OnValueEquals;
-
         #endregion
 
         #region --- setup ---

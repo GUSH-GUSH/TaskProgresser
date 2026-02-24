@@ -131,6 +131,28 @@ namespace Weekinator
             }
         }
 
+        private void CompleteTask(TaskItem task)
+        {
+            if (!task.IsCompleted)
+            {
+                if (MessageBox.Show("Ви дійсно хочете завершити задачу?", "Підтвердженя операції!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    task.CompletedAt = DateTime.Now;
+                    RenderTasks();
+                    SaveAllData();
+                    MessageBox.Show($"Задачу успішно виконано за {task.EfficiencyPercentage}% часу!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                }
+            }
+            else if (MessageBox.Show("Ви дійсно хочете скасувати виконання задачі?", "Підтвердженя операції!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                task.CompletedAt = null;
+                RenderTasks();
+                SaveAllData();
+                MessageBox.Show($"Задачу додано в активні!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None);
+            }
+        }
+
+
         #endregion
 
         void SaveAllData() {
@@ -146,26 +168,21 @@ namespace Weekinator
 
             int margin = 12;
 
-            // Пробегаемся по всем элементам внутри панели FlowPanel_Active
             foreach (Control control in FlowPanel_Active.Controls)
                 control.Width = FlowPanel_Active.ClientSize.Width - margin;
 
-            // Пробегаемся по всем элементам внутри панели FlowPanel_Completed
             foreach (Control control in FlowPanel_Completed.Controls)
                 control.Width = FlowPanel_Completed.ClientSize.Width - margin;
 
-            // Включаем перерисовку обратно
             FlowPanel_Active.ResumeLayout();
             FlowPanel_Completed.ResumeLayout();
         }
 
-        // Метод, который отрисовывает задачи на экране
         private void RenderTasks()
         {
             FlowPanel_Active.SuspendLayout();
             FlowPanel_Completed.SuspendLayout();
 
-            // (По-хорошему тут еще нужно вызывать .Dispose() для старых контролов, но для MVP пока оставим так)
             while (FlowPanel_Active.Controls.Count > 0)
                 FlowPanel_Active.Controls[0].Dispose();
             
@@ -177,6 +194,7 @@ namespace Weekinator
                 TaskControl taskControl = new TaskControl(taskModel);
                 taskControl.TaskEdited += UpdateTask;
                 taskControl.TaskDeleted += DeleteTask;
+                taskControl.TaskCompleted += CompleteTask;
 
                 if (taskModel.IsCompleted)
                     FlowPanel_Completed.Controls.Add(taskControl);
@@ -193,6 +211,5 @@ namespace Weekinator
 
         #endregion
 
-  
     }
 }

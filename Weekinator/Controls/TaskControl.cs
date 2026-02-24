@@ -2,9 +2,11 @@
 using DateTimeToolKit.Models.DateRange;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using Weekinator.Controls;
 using Weekinator.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Weekinator.Forms.UserControls
 {
@@ -34,7 +36,7 @@ namespace Weekinator.Forms.UserControls
                     CHB_AddToTray.Checked = Task.ShowInTray;
                     NUD_Precision.Value = Task.Precision;
                     DateRangeControl.RangeName = Task.Title;
-
+                    ApplyVisualState();
                 }
                 else SetupDefaultValue();
             }
@@ -92,7 +94,10 @@ namespace Weekinator.Forms.UserControls
             DateRangeControl.RangeName = Title;
             CHB_AddToTray.Checked = false;
             NUD_Precision.Value = 3;
+            ApplyVisualState();
         }
+
+  
 
         #endregion
 
@@ -101,9 +106,9 @@ namespace Weekinator.Forms.UserControls
         private void NUD_Accurancy_ValueChanged(object sender, EventArgs e)
         {
             Task.Precision = DateRangeControl.Precision = (byte)NUD_Precision.Value;
+            if(Task.IsCompleted) UpdateCompetePrecentage();
             TaskEdited?.Invoke(null);
         }
-
         private void BTN_GetInfo_Click(object sender, EventArgs e)
         {
             MessageBox.Show(GetStatistics());
@@ -126,6 +131,13 @@ namespace Weekinator.Forms.UserControls
         {
             DateRangeControl.EnableIcon = Task.ShowInTray = CHB_AddToTray.Checked;
             TaskEdited?.Invoke(null);
+        }
+
+        private void DateRangeControl_IconClick()
+        {
+            var trayForm = new TrayFlayoutTaskForm(Task);
+            trayForm.Show();
+            trayForm.Activate();
         }
 
         #endregion
@@ -168,11 +180,36 @@ namespace Weekinator.Forms.UserControls
 
         #endregion
 
-        private void DateRangeControl_IconClick()
+        #region --- VISUAL ---
+
+        private void ApplyVisualState()
         {
-            var trayForm = new TrayFlayoutTaskForm(Task);
-            trayForm.Show();
-            trayForm.Activate();
+            if (Task?.IsCompleted ?? false) // CHACK: Task may be not null
+            {
+                // --- РЕЖИМ ВИКОНАНОЇ ЗАДАЧІ ЗАДАЧИ ---
+                DateRangeControl.Visible = false;
+                CHB_AddToTray.Visible = false;
+                BTN_Complete.Text = "Скасувати виконання";
+                BTN_Complete.ForeColor = Color.Black;
+
+                UpdateCompetePrecentage();
+                LBL_CompleteAt.Visible = true;
+            }
+            else
+            {
+                // --- РЕЖИМ АКТИВНОЇ ЗАДАЧІ ---
+                DateRangeControl.Visible = true;
+                CHB_AddToTray.Visible = true;
+                BTN_Complete.Text = "Виконати";
+                BTN_Complete.ForeColor = Color.Green;
+
+                LBL_CompleteAt.Visible = false;
+            }
         }
+
+        void UpdateCompetePrecentage() => LBL_CompleteAt.Text = $"Виконано за {Task.EfficiencyPercentage}% відведеного часу!";
+
+        #endregion
+
     }
 }

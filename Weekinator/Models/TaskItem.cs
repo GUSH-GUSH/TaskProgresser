@@ -22,12 +22,6 @@ namespace Weekinator.Models
         [JsonIgnore]
         public bool IsCompleted => CompletedAt.HasValue;
         [JsonIgnore]
-        public double EfficiencyPercentage
-        {
-            get
-            {
-                return new DateRange(StartDate, EndDate).GetFractionOf(CompletedAt ?? DateTime.Now);
-            }
-        }
+        public double EfficiencyPercentage => Math.Round(new DateRange(StartDate, EndDate).GetFractionOf(CompletedAt ?? DateTime.Now) * 100, Precision);
     }
 }
