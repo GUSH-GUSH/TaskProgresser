@@ -47,6 +47,7 @@ namespace Weekinator
         private byte digits = 3; // Количество знаков после запятой для процентов
         private bool _enableIcon;
         private bool _enableEdit;
+        private bool _autoUpdate;
 
         private DateRangeControlState state = DateRangeControlState.Unstarted;
 
@@ -90,10 +91,7 @@ namespace Weekinator
             }
         }
 
-        public double Precent
-        {
-            get => GetPrecent(digits);
-        }
+        public double Precent => GetPrecent(digits);
 
         private double Fract
         {
@@ -115,18 +113,25 @@ namespace Weekinator
 
         public bool EnableIcon {
             get => _enableIcon;
-            set {
-                _enableIcon = PrecentIcon.Visible = value;
-            }
+            set => _enableIcon = PrecentIcon.Visible = value;
         }
 
         public bool EnableEdit {
             get => _enableEdit;
-            set {
-                _enableEdit = StartDateTimePicker.Enabled = EndDateTimePicker.Enabled = value;
-            }
+            set => _enableEdit = StartDateTimePicker.Enabled = EndDateTimePicker.Enabled = value;
         }
 
+        public bool AutoUpdate
+        {
+            get => _autoUpdate;
+            set
+            {
+                if(value == _autoUpdate) return;
+                _autoUpdate = value;
+                if (value) ProgressUpdaterService.AddDateRangeControl(this);
+                else ProgressUpdaterService.RemoveDateRangeControl(this);
+            }
+        }
 
         #endregion
 
@@ -157,13 +162,13 @@ namespace Weekinator
 
         private void DateRangeControl_Load(object sender, EventArgs e)
         {
-            ProgressUpdaterService.AddDateRangeControl(this);
-            this.Disposed += DateRangeControl_Disposed; ;
+            AutoUpdate = true;
+            this.Disposed += DateRangeControl_Disposed;
         }
 
         private void DateRangeControl_Disposed(object sender, EventArgs e)
         {
-            ProgressUpdaterService.RemoveDateRangeControl(this);
+            AutoUpdate = false;
             this.Disposed -= DateRangeControl_Disposed;
         }
 
@@ -232,7 +237,9 @@ namespace Weekinator
         private void DateRangeControl_Resize(object sender, EventArgs e) => UpdatePrecentLabelLocation();
         private void PrecentIcon_Click(object sender, EventArgs e) => IconClick?.Invoke();
         private void PrecentIcon_DoubleClick(object sender, EventArgs e) => IconDoubleClick?.Invoke();
-
+        private void PrecentIconMenuItem_HideIcon_Click(object sender, EventArgs e) => HideIcon?.Invoke();
+        private void PrecentIconMenuItem_ShowFlyoutForm_Click(object sender, EventArgs e) => IconClick?.Invoke();
+        
         #endregion
 
 
@@ -252,8 +259,5 @@ namespace Weekinator
 
         #endregion
 
-        private void PrecentIconMenuItem_HideIcon_Click(object sender, EventArgs e) => HideIcon?.Invoke();
-
-        private void PrecentIconMenuItem_ShowFlyoutForm_Click(object sender, EventArgs e) => IconClick?.Invoke();
     }
 }

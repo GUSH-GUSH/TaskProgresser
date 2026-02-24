@@ -54,7 +54,18 @@ namespace CourseWork.Forms
             DateRangeControl.UpdateValue(DateTime.Now);
         }
 
+        private void AddEditTaskForm_Load(object sender, EventArgs e)
+        {
+            if (Task?.IsCompleted ?? false)
+            {
+                DateRangeControl.AutoUpdate = false;
+                DateRangeControl.UpdateValue(Task.CompletedAt ?? DateTime.Now);
+                DateRangeControl.OnValueChanged += (o, a) => DateRangeControl.UpdateValue(Task.CompletedAt ?? DateTime.Now);
+            }
+        }
+
         #endregion
+
 
         #region --- VALIDATION ---
 
@@ -104,5 +115,6 @@ namespace CourseWork.Forms
         }
 
         #endregion
+
     }
 }
