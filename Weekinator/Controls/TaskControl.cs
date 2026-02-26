@@ -192,6 +192,7 @@ namespace Weekinator.Forms.UserControls
                 BTN_Complete.Text = "Скасувати виконання";
                 BTN_Complete.ForeColor = Color.Black;
                 DateRangeControl.AutoUpdate = false;
+                DateRangeControl.EnableIcon = false;
                 Lbl_CompletedAt.Text = $"Дата виконання: {Task.CompletedAt?.ToString("g")}";
                 UpdateCompletePrecentage();
             }
