@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Runtime.InteropServices;
 
 namespace Weekinator.Services
@@ -27,11 +24,10 @@ namespace Weekinator.Services
             {
                 using (Graphics g = Graphics.FromImage(bitmap))
                 {
-                    g.Clear(BackgroundColor); // Очищаем фон, делаем его прозрачным
+                    g.Clear(BackgroundColor);
 
                     using (SolidBrush brush = new SolidBrush(textColor))
                     {
-                        // Рисуем текст в центре
                         SizeF textSize = g.MeasureString(text, font);
                         float x = iconSize.Width / 2 - textSize.Width / 2;
                         float y = iconSize.Height / 2 - textSize.Height / 2;
@@ -39,7 +35,6 @@ namespace Weekinator.Services
                     }
                 }
 
-                // Создаём Icon из Bitmap. Это и есть решение!
                 IntPtr hIcon = bitmap.GetHicon();
                 Icon icon = (Icon)Icon.FromHandle(hIcon).Clone();
                 DestroyIcon(hIcon);
