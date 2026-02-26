@@ -1,4 +1,4 @@
-﻿namespace Weekinator.Forms
+﻿namespace TaskProgresser.Forms
 {
     partial class TrayFlayoutTaskForm
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DateRangeControl = new Weekinator.DateRangeControl();
+            this.DateRangeControl = new TaskProgresser.DateRangeControl();
             this.Title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 

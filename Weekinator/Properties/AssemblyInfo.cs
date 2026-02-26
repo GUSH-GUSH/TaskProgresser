@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("Weekinator")]
+[assembly: AssemblyTitle("Task Progresser")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Weekinator")]
-[assembly: AssemblyCopyright("Copyright ©  2025")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("GUSH PRODUCTION")]
+[assembly: AssemblyProduct("Task Progresser")]
+[assembly: AssemblyCopyright("Copyright GUSH PRODUCTION© 2026")]
+[assembly: AssemblyTrademark("GUSH PRODUCTION")]
 [assembly: AssemblyCulture("")]
 
 // Установка значения False для параметра ComVisible делает типы в этой сборке невидимыми

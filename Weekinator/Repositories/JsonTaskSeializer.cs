@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Weekinator.Models;
+using TaskProgresser.Models;
 using System.IO;
 
-namespace Weekinator.Repositories
+namespace TaskProgresser.Repositories
 {
     internal static class JsonTaskSeializer
     {

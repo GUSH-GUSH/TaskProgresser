@@ -1,10 +1,11 @@
-﻿using System;
+﻿using AutoUpdaterDotNET;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Weekinator
+namespace TaskProgresser
 {
     internal static class Program
     {
@@ -16,6 +17,7 @@ namespace Weekinator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            AutoUpdater.Start("https://raw.githubusercontent.com/GUSH-GUSH/Weekinator/main/update.xml");
             Application.Run(new MainForm());
         }
     }

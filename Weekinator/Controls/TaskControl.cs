@@ -4,11 +4,11 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using Weekinator.Controls;
-using Weekinator.Models;
+using TaskProgresser.Controls;
+using TaskProgresser.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace Weekinator.Forms.UserControls
+namespace TaskProgresser.Forms.UserControls
 {
     public partial class TaskControl : ClickableUserControl
     {

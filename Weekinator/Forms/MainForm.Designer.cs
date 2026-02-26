@@ -1,4 +1,4 @@
-﻿namespace Weekinator
+﻿namespace TaskProgresser
 {
     partial class MainForm
     {
@@ -41,8 +41,8 @@
             this.FlowPanel_Completed = new System.Windows.Forms.FlowLayoutPanel();
             this.TabPage_Active = new System.Windows.Forms.TabPage();
             this.FlowPanel_Active = new System.Windows.Forms.FlowLayoutPanel();
-            this.TSKCNTRL_Bakalavr = new Weekinator.Forms.UserControls.TaskControl();
-            this.TSKCTRL_Semestr = new Weekinator.Forms.UserControls.TaskControl();
+            this.TSKCNTRL_Bakalavr = new TaskProgresser.Forms.UserControls.TaskControl();
+            this.TSKCTRL_Semestr = new TaskProgresser.Forms.UserControls.TaskControl();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.MainIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.MainContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);

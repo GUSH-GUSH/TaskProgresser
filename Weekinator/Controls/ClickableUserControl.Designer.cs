@@ -1,4 +1,4 @@
-﻿namespace Weekinator.Controls
+﻿namespace TaskProgresser.Controls
 {
     partial class ClickableUserControl
     {

@@ -15,14 +15,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Weekinator.Forms;
-using Weekinator.Forms.UserControls;
-using Weekinator.Models;
-using Weekinator.Repositories;
-using Weekinator.Services;
+using TaskProgresser.Forms;
+using TaskProgresser.Forms.UserControls;
+using TaskProgresser.Models;
+using TaskProgresser.Repositories;
+using TaskProgresser.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
-namespace Weekinator
+namespace TaskProgresser
 {
     public partial class MainForm : Form
     {

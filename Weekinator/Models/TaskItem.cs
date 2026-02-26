@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System;
 
-namespace Weekinator.Models
+namespace TaskProgresser.Models
 {
     public class TaskItem
     {

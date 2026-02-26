@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Weekinator.Services
+namespace TaskProgresser.Services
 {
     internal static class ProgressUpdaterService
     {

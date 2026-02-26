@@ -1,4 +1,4 @@
-﻿namespace Weekinator.Forms.UserControls
+﻿namespace TaskProgresser.Forms.UserControls
 {
     partial class TaskControl
     {
@@ -39,7 +39,7 @@
             this.BTN_Delete = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
             this.NUD_Precision = new System.Windows.Forms.NumericUpDown();
-            this.DateRangeControl = new Weekinator.DateRangeControl();
+            this.DateRangeControl = new TaskProgresser.DateRangeControl();
             LBL_Accurancy = new System.Windows.Forms.Label();
             this.GroupBox.SuspendLayout();
             this.ResultPanel.SuspendLayout();

@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Weekinator.Services;
+using TaskProgresser.Services;
 
-namespace Weekinator.Forms.DebugForms
+namespace TaskProgresser.Forms.DebugForms
 {
     public partial class TextIconTestForm : Form
     {

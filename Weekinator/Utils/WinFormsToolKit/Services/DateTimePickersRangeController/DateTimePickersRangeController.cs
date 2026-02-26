@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using DateTimeToolKit.Extensions.Truncate;
 using DateTimeToolKit.Models.DateRange;
-using Weekinator;
+using TaskProgresser;
 
 namespace WinFormsExtensions
 {

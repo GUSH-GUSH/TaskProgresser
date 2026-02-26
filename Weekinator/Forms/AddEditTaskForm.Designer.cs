@@ -40,7 +40,7 @@ namespace CourseWork.Forms
             this.lblEndDate = new System.Windows.Forms.Label();
             this.Lbl_CompletedAt = new System.Windows.Forms.Label();
             this.LBL_Еfficiency = new System.Windows.Forms.Label();
-            this.DateRangeControl = new Weekinator.DateRangeControl();
+            this.DateRangeControl = new TaskProgresser.DateRangeControl();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,7 +194,7 @@ namespace CourseWork.Forms
 
         }
         private ErrorProvider ErrorProvider;
-        private Weekinator.DateRangeControl DateRangeControl;
+        private TaskProgresser.DateRangeControl DateRangeControl;
         private Label lblEndDate;
         private Label lblStartDate;
         private Label Lbl_CompletedAt;

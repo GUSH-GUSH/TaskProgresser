@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Weekinator.Controls;
-using Weekinator.Forms;
-using Weekinator.Services;
+using TaskProgresser.Controls;
+using TaskProgresser.Forms;
+using TaskProgresser.Services;
 using WinFormsExtensions;
 
-namespace Weekinator
+namespace TaskProgresser
 {
     public partial class DateRangeControl : ClickableUserControl
     {

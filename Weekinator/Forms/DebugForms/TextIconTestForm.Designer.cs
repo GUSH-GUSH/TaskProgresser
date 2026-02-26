@@ -1,4 +1,4 @@
-﻿namespace Weekinator.Forms.DebugForms
+﻿namespace TaskProgresser.Forms.DebugForms
 {
     partial class TextIconTestForm
     {

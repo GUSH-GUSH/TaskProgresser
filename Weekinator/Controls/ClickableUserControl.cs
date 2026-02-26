@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Weekinator.Controls
+namespace TaskProgresser.Controls
 {
     public partial class ClickableUserControl : UserControl
     {

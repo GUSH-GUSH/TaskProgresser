@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Weekinator.Models;
+using TaskProgresser.Models;
 
-namespace Weekinator.Forms
+namespace TaskProgresser.Forms
 {
     public partial class TrayFlayoutTaskForm : Form
     {

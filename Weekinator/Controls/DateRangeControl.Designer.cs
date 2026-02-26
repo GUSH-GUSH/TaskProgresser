@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Weekinator
+namespace TaskProgresser
 {
     partial class DateRangeControl
     {
@@ -39,7 +39,7 @@ namespace Weekinator
             this.StartDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.PrecentIcon = new Weekinator.DynamicTextNotifyIcon(this.components);
+            this.PrecentIcon = new TaskProgresser.DynamicTextNotifyIcon(this.components);
             PrecentIconMenuItem_HideIcon = new System.Windows.Forms.ToolStripMenuItem();
             PrecentIconMenuItem_ShowFlyoutForm = new System.Windows.Forms.ToolStripMenuItem();
             this.IconMainMenuStrip.SuspendLayout();

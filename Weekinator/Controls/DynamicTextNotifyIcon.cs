@@ -5,10 +5,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using Weekinator.Services;
+using TaskProgresser.Services;
 
 
-namespace Weekinator
+namespace TaskProgresser
 {
     public class DynamicTextNotifyIcon : Component
     {
