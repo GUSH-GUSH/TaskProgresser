@@ -204,6 +204,7 @@
   <ItemGroup>
     <Content Include="percentage-128.ico" />
     <Content Include="ToDo.txt" />
+    <Content Include="update.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
