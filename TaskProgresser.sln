@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskProgresser.WinForms", "TaskProgresser.WinForms\TaskProgresser.WinForms.csproj", "{33945848-4662-46B6-A187-A09373BBF7BB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{523EE359-45A1-44D2-A023-95132F5C5B5E} = {523EE359-45A1-44D2-A023-95132F5C5B5E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskProgresser.Core", "TaskProgresser.Core\TaskProgresser.Core.csproj", "{523EE359-45A1-44D2-A023-95132F5C5B5E}"
 EndProject

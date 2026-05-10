@@ -5,7 +5,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using TaskProgresser.WinForms.Controls;
-using TaskProgresser.WinForms.Models;
+using TaskProgresser.Core.Models;
+using TaskProgresser.Core.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TaskProgresser.WinForms.Forms.UserControls
@@ -207,7 +208,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
             }
         }
 
-        void UpdateCompletePrecentage() => LBL_Еfficiency.Text = $"Виконано за {Task.EfficiencyPercentage}% відведеного часу!";
+        void UpdateCompletePrecentage() => LBL_Еfficiency.Text = $"Виконано за {TaskAnalyticsService.CalculateEfficiency(Task)}% відведеного часу!";
 
         #endregion
 

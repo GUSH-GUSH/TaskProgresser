@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.IO;
 using System.Collections.Generic;
-using TaskProgresser.WinForms.Models;
-using System.IO;
+
+using TaskProgresser.Core.Models;
+using TaskProgresser.Core.Services;
+using System.Linq;
 
 namespace TaskProgresser.WinForms.Repositories
 {
@@ -11,7 +13,7 @@ namespace TaskProgresser.WinForms.Repositories
 
         public static void SaveTasks(List<TaskItem> tasks)
         {
-            string json = JsonConvert.SerializeObject(tasks, Formatting.Indented);
+            string json = TaskConverter.ToJson(tasks);
             File.WriteAllText(FilePath, json);
         }
 
@@ -23,7 +25,7 @@ namespace TaskProgresser.WinForms.Repositories
             }
 
             string json = File.ReadAllText(FilePath);
-            return JsonConvert.DeserializeObject<List<TaskItem>>(json) ?? new List<TaskItem>();
+            return TaskConverter.FromJsonArray(json).ToList();
         }
     }
 }

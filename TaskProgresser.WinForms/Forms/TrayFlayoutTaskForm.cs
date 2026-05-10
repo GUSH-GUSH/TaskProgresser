@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TaskProgresser.WinForms.Models;
+using TaskProgresser.Core.Models;
 
 namespace TaskProgresser.WinForms.Forms
 {
