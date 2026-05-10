@@ -6,7 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using TaskProgresser.WinForms.Models;
+
+using TaskProgresser.Core.Models;
+using TaskProgresser.Core.Services;
+
 
 namespace CourseWork.Forms
 {
@@ -140,7 +143,7 @@ namespace CourseWork.Forms
             }
         }
 
-        void UpdateCompletePrecentage() => LBL_Еfficiency.Text = $"Виконано за {Task.EfficiencyPercentage}% відведеного часу!";
+        void UpdateCompletePrecentage() => LBL_Еfficiency.Text = $"Виконано за {TaskAnalyticsService.CalculateEfficiency(Task)}% відведеного часу!";
 
     }
 }

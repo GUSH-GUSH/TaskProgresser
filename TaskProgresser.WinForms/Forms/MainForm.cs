@@ -17,9 +17,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskProgresser.WinForms.Forms;
 using TaskProgresser.WinForms.Forms.UserControls;
-using TaskProgresser.WinForms.Models;
 using TaskProgresser.WinForms.Repositories;
 using TaskProgresser.WinForms.Services;
+
+using TaskProgresser.Core.Models;
+using TaskProgresser.Core.Services;
+
+
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace TaskProgresser.WinForms
@@ -142,7 +146,7 @@ namespace TaskProgresser.WinForms
                     task.CompletedAt = DateTime.Now;
                     RenderTasks();
                     SaveAllData();
-                    MessageBox.Show($"Задачу успішно виконано за {task.EfficiencyPercentage}% часу!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    MessageBox.Show($"Задачу успішно виконано за {TaskAnalyticsService.CalculateEfficiency(task)}% часу!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None);
                 }
             }
             else if (MessageBox.Show("Ви дійсно хочете скасувати виконання задачі?", "Підтвердженя операції!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

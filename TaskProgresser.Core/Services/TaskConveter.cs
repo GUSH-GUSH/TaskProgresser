@@ -12,8 +12,17 @@ namespace TaskProgresser.Core.Services
         {
             return JsonSerializer.Deserialize<TaskItem>(json);
         }
+        public static IEnumerable<TaskItem> FromJsonArray(string json)
+        {
+            return JsonSerializer.Deserialize<IEnumerable<TaskItem>>(json);
+        }
 
         public static string ToJson(TaskItem item) {
+            return JsonSerializer.SerializeToDocument(item).ToString();
+        }
+        
+        public static string ToJson(IEnumerable<TaskItem> item)
+        {
             return JsonSerializer.SerializeToDocument(item).ToString();
         }
     }
