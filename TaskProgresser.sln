@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskProgresser.Core", "TaskProgresser.Core\TaskProgresser.Core.csproj", "{523EE359-45A1-44D2-A023-95132F5C5B5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskProgresser.Api", "TaskProgresser.Api\TaskProgresser.Api.csproj", "{C34D4943-EC0A-4D5A-A58B-C93B88FB0E34}"
+	ProjectSection(ProjectDependencies) = postProject
+		{523EE359-45A1-44D2-A023-95132F5C5B5E} = {523EE359-45A1-44D2-A023-95132F5C5B5E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

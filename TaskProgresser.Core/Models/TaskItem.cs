@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace TaskProgresser.WinForms.Models
+namespace TaskProgresser.Core.Models
 {
     public class TaskItem
     {
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
