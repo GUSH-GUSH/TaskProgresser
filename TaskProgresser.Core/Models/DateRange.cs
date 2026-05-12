@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DateTimeToolKit.Models.DateRange
+namespace TaskProgresser.Core.Models
 {
     public class DateRange
     {

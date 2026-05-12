@@ -1,10 +1,8 @@
-﻿using DateTimeToolKit.Models.DateRange;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using TaskProgresser.Core.Models;
 using TaskProgresser.WinForms.Controls;
-using TaskProgresser.WinForms.Forms;
 using TaskProgresser.WinForms.Services;
 using WinFormsExtensions;
 
@@ -35,8 +33,6 @@ namespace TaskProgresser.WinForms
         public static DateTime MinValue => DateTimePicker.MinimumDateTime;
         public static DateTime MaxValue => DateTimePicker.MaximumDateTime;
 
-
-
         #endregion
 
 
@@ -50,8 +46,6 @@ namespace TaskProgresser.WinForms
         private bool _autoUpdate;
 
         private DateRangeControlState state = DateRangeControlState.Unstarted;
-
-
 
         #endregion
 
@@ -145,7 +139,7 @@ namespace TaskProgresser.WinForms
                 StartDateTimePicker,
                 EndDateTimePicker,
                 DefaultDateRange,
-                DateTimeToolKit.Extensions.Truncate.TruncateLevel.Minute
+                TaskProgresser.Core.Extensions.Truncate.TruncateLevel.Minute
             );
             pickersController.OnValueChanged += (o, a) => this.OnValueChanged?.Invoke(this, a);
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DateTimeToolKit.Extensions.Truncate
+namespace TaskProgresser.Core.Extensions.Truncate
 {
     public static class DateTimeTruncateExtensions
     {

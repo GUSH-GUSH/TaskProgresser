@@ -1,4 +1,4 @@
-﻿namespace DateTimeToolKit.Extensions.Truncate
+﻿namespace TaskProgresser.Core.Extensions.Truncate
 {
     public enum TruncateLevel
     {

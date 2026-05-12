@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using DateTimeToolKit.Extensions.Truncate;
-using DateTimeToolKit.Models.DateRange;
-using TaskProgresser.WinForms;
+using TaskProgresser.Core.Extensions.Truncate;
+using TaskProgresser.Core.Models;
 
 namespace WinFormsExtensions
 {

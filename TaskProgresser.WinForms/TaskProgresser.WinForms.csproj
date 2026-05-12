@@ -151,10 +151,7 @@
     <Compile Include="Repositories\JsonTaskSeializer.cs" />
     <Compile Include="Services\IconGenerator.cs" />
     <Compile Include="Services\ProgressUpdaterService.cs" />
-    <Compile Include="Utils\DateTimeToolKit\Extensions\Truncate\TruncateExtensions.cs" />
-    <Compile Include="Utils\DateTimeToolKit\Extensions\Truncate\TruncateLevel.cs" />
-    <Compile Include="Utils\DateTimeToolKit\Models\DateRange.cs" />
-    <Compile Include="Utils\WinFormsToolKit\Services\DateTimePickersRangeController\DateTimePickersRangeController.cs" />
+    <Compile Include="Services\DateTimePickersRangeController.cs" />
     <EmbeddedResource Include="Controls\ClickableUserControl.resx">
       <DependentUpon>ClickableUserControl.cs</DependentUpon>
     </EmbeddedResource>

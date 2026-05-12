@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using TaskProgresser.Core.Models;
-using DateTimeToolKit.Models.DateRange;
 
 namespace TaskProgresser.Core.Services
 {

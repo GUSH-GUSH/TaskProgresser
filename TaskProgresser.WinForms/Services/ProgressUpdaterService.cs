@@ -6,24 +6,36 @@ namespace TaskProgresser.WinForms.Services
 {
     internal static class ProgressUpdaterService
     {
+
+        #region --- FIELDS ---
+        
         private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        static ProgressUpdaterService() {
+        private static List<DateRangeControl> rangeControls = new List<DateRangeControl>();
+
+        #endregion --- FIELDS ---
+
+        #region --- SETUP ---
+
+        static ProgressUpdaterService()
+        {
             timer.Tick += (obj, eventArgs) => ExecuteOnce();
         }
+
+        #endregion --- SETUP ---
 
         #region --- MANAGING TIMER ---
 
         public static void Start(int interval = 1000)
         {
-            timer.Interval = interval;
             ExecuteOnce();
+            timer.Interval = interval;
             timer.Start();
         }
 
         public static void Stop() => timer.Stop();
 
-        #endregion
+        #endregion --- MANAGING TIMER ---
 
         #region --- MANAGING DATERANGECONTROLS ITEM ---
 
@@ -33,27 +45,23 @@ namespace TaskProgresser.WinForms.Services
 
         public static void ClearDateRangeControls() => rangeControls.Clear();
 
-        #endregion
+        #endregion --- MANAGING DATERANGECONTROLS ITEM ---
 
-        #region --- LOGIC ---
+        #region --- UPDATE LOGIC ---
 
-        private static void UpdateProgress() {
-            var now = DateTime.Now;
-
-            Debug.WriteLine($"Количество подписок: {rangeControls.Count}");
-
-            foreach (var control in rangeControls)
-                control.UpdateValue(now);
+        private static void UpdateProgress()
+        {
+            //Debug.WriteLine($"Количество подписок: {rangeControls.Count}");
+            foreach (var control in rangeControls) control.UpdateValue(DateTime.Now);
         }
 
-        public static void ExecuteOnce() {
+        public static void ExecuteOnce()
+        {
             UpdateProgress();
             Tick?.Invoke();
         }
 
         #endregion
-
-        static List<DateRangeControl> rangeControls = new List<DateRangeControl>();
 
         public static event Action Tick;
     }
