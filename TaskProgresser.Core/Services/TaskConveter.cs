@@ -33,11 +33,11 @@ namespace TaskProgresser.Core.Services
         {
             return JsonSerializer.Deserialize<TaskItem>(json);
         }
-        public static IEnumerable<TaskItem> FromJsonArray(string json)
+        public static List<TaskItem> FromJsonArray(string json)
         {
             try
             {
-                return JsonSerializer.Deserialize<IEnumerable<TaskItem>>(json);
+                return JsonSerializer.Deserialize<List<TaskItem>>(json);
             }
             catch { return new List<TaskItem>(); }
         }

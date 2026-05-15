@@ -32,8 +32,13 @@ namespace TaskProgresser.WinForms
         #region --- Fields ---
 
         private List<TaskItem> _allTasks = new List<TaskItem>();
-        
+
         #endregion
+
+        #region --- Properties ---
+        private bool IsLocalStorage { get => CHB_IsLocalData.Checked; set => CHB_IsLocalData.Checked = value; }
+
+        #endregion --- Properties ---
 
         #region --- Setup ---
 
@@ -48,12 +53,6 @@ namespace TaskProgresser.WinForms
 
             ProgressUpdaterService.Tick += () => Label_CurrentDateTime.Text = DateTime.Now.ToString();
             ProgressUpdaterService.Start();
-        }
-
-        private void LoadData()
-        {
-            _allTasks = JsonTaskSeializer.LoadTasks();
-            RenderTasks();
         }
 
         #endregion
@@ -86,7 +85,7 @@ namespace TaskProgresser.WinForms
         private void BTN_Save_Click(object sender, EventArgs e) => SaveAllData();
 
         private void BTN_Load_Click(object sender, EventArgs e) => LoadData();
-        
+
         private void BTN_Add_Click(object sender, EventArgs e)
         {
             var addForm = new AddEditTaskForm();
@@ -96,14 +95,15 @@ namespace TaskProgresser.WinForms
         }
 
         private void ToolStripMenuItem_OpenMainWindow_Click(object sender, EventArgs e) => RestoreWindow();
-    
+
         private void ToolStripMenuItem_CloseApp_Click(object sender, EventArgs e) => Application.Exit();
 
-        private void MainIcon_MouseDoubleClick(object sender, MouseEventArgs e) {
+        private void MainIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
             if (this.Visible) this.Hide();
             else RestoreWindow();
         }
-    
+
         #endregion
 
         #region --- Task Control --- (move to a separate class)
@@ -116,7 +116,8 @@ namespace TaskProgresser.WinForms
             MessageBox.Show("Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void UpdateTask(TaskItem task) {
+        private void UpdateTask(TaskItem task)
+        {
             SaveAllData();
             if (task != null)
             {
@@ -160,11 +161,21 @@ namespace TaskProgresser.WinForms
 
         #endregion
 
-        #region --- Utils ---
+        #region --- Work with data ---
 
-        void SaveAllData()
+        private async void LoadData()
         {
-            JsonTaskSeializer.SaveTasks(_allTasks);
+
+            if (IsLocalStorage) _allTasks = JsonTaskSeializer.LoadTasks();
+            else _allTasks = await TaskApiClient.GetAllTasksAsync();
+            
+            RenderTasks();
+        }
+
+        private async void SaveAllData()
+        {
+            if (IsLocalStorage) JsonTaskSeializer.SaveTasks(_allTasks);
+            else await TaskApiClient.SaveAllData(_allTasks);
         }
 
         #endregion
@@ -195,7 +206,7 @@ namespace TaskProgresser.WinForms
 
             while (FlowPanel_Active.Controls.Count > 0)
                 FlowPanel_Active.Controls[0].Dispose();
-            
+
             while (FlowPanel_Completed.Controls.Count > 0)
                 FlowPanel_Completed.Controls[0].Dispose();
 
@@ -228,5 +239,9 @@ namespace TaskProgresser.WinForms
 
         #endregion
 
+        private void CHB_IsLocalData_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }

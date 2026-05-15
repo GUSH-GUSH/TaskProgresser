@@ -35,17 +35,18 @@
             System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_CloseApp;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.BottomPanel = new System.Windows.Forms.Panel();
+            this.CHB_IsLocalData = new System.Windows.Forms.CheckBox();
             this.BTN_Add = new System.Windows.Forms.Button();
             this.Label_CurrentDateTime = new System.Windows.Forms.Label();
             this.TabPage_Completed = new System.Windows.Forms.TabPage();
             this.FlowPanel_Completed = new System.Windows.Forms.FlowLayoutPanel();
             this.TabPage_Active = new System.Windows.Forms.TabPage();
             this.FlowPanel_Active = new System.Windows.Forms.FlowLayoutPanel();
-            this.TSKCNTRL_Bakalavr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
-            this.TSKCTRL_Semestr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.MainIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.MainContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.TSKCNTRL_Bakalavr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
+            this.TSKCTRL_Semestr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
             Label_CurDateTimeTitle = new System.Windows.Forms.Label();
             ToolStripMenuItem_OpenMainWindow = new System.Windows.Forms.ToolStripMenuItem();
             ToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -89,6 +90,7 @@
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.BottomPanel.Controls.Add(this.CHB_IsLocalData);
             this.BottomPanel.Controls.Add(this.BTN_Add);
             this.BottomPanel.Controls.Add(this.Label_CurrentDateTime);
             this.BottomPanel.Controls.Add(Label_CurDateTimeTitle);
@@ -97,6 +99,19 @@
             this.BottomPanel.Name = "BottomPanel";
             this.BottomPanel.Size = new System.Drawing.Size(664, 45);
             this.BottomPanel.TabIndex = 8;
+            // 
+            // CHB_IsLocalData
+            // 
+            this.CHB_IsLocalData.AutoSize = true;
+            this.CHB_IsLocalData.Checked = true;
+            this.CHB_IsLocalData.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CHB_IsLocalData.Location = new System.Drawing.Point(369, 12);
+            this.CHB_IsLocalData.Name = "CHB_IsLocalData";
+            this.CHB_IsLocalData.Size = new System.Drawing.Size(141, 17);
+            this.CHB_IsLocalData.TabIndex = 13;
+            this.CHB_IsLocalData.Text = "Локальное хранилище";
+            this.CHB_IsLocalData.UseVisualStyleBackColor = true;
+            this.CHB_IsLocalData.CheckedChanged += new System.EventHandler(this.CHB_IsLocalData_CheckedChanged);
             // 
             // BTN_Add
             // 
@@ -125,7 +140,7 @@
             this.TabPage_Completed.Controls.Add(this.FlowPanel_Completed);
             this.TabPage_Completed.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Completed.Name = "TabPage_Completed";
-            this.TabPage_Completed.Size = new System.Drawing.Size(654, 372);
+            this.TabPage_Completed.Size = new System.Drawing.Size(656, 378);
             this.TabPage_Completed.TabIndex = 2;
             this.TabPage_Completed.Text = "Завершені задачі";
             this.TabPage_Completed.UseVisualStyleBackColor = true;
@@ -137,8 +152,8 @@
             this.FlowPanel_Completed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowPanel_Completed.Location = new System.Drawing.Point(0, 0);
             this.FlowPanel_Completed.Name = "FlowPanel_Completed";
-            this.FlowPanel_Completed.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.FlowPanel_Completed.Size = new System.Drawing.Size(654, 372);
+            this.FlowPanel_Completed.Padding = new System.Windows.Forms.Padding(3);
+            this.FlowPanel_Completed.Size = new System.Drawing.Size(656, 378);
             this.FlowPanel_Completed.TabIndex = 9;
             // 
             // TabPage_Active
@@ -146,7 +161,7 @@
             this.TabPage_Active.Controls.Add(this.FlowPanel_Active);
             this.TabPage_Active.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Active.Name = "TabPage_Active";
-            this.TabPage_Active.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.TabPage_Active.Padding = new System.Windows.Forms.Padding(3);
             this.TabPage_Active.Size = new System.Drawing.Size(656, 378);
             this.TabPage_Active.TabIndex = 0;
             this.TabPage_Active.Text = "Активні задачі";
@@ -162,39 +177,10 @@
             this.FlowPanel_Active.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.FlowPanel_Active.Location = new System.Drawing.Point(3, 3);
             this.FlowPanel_Active.Name = "FlowPanel_Active";
-            this.FlowPanel_Active.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.FlowPanel_Active.Padding = new System.Windows.Forms.Padding(3);
             this.FlowPanel_Active.Size = new System.Drawing.Size(650, 372);
             this.FlowPanel_Active.TabIndex = 7;
             this.FlowPanel_Active.WrapContents = false;
-            // 
-            // TSKCNTRL_Bakalavr
-            // 
-            this.TSKCNTRL_Bakalavr.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.TSKCNTRL_Bakalavr.End = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.TSKCNTRL_Bakalavr.Location = new System.Drawing.Point(8, 8);
-            this.TSKCNTRL_Bakalavr.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.TSKCNTRL_Bakalavr.MaximumSize = new System.Drawing.Size(10000, 150);
-            this.TSKCNTRL_Bakalavr.MinimumSize = new System.Drawing.Size(340, 150);
-            this.TSKCNTRL_Bakalavr.Name = "TSKCNTRL_Bakalavr";
-            this.TSKCNTRL_Bakalavr.Size = new System.Drawing.Size(639, 150);
-            this.TSKCNTRL_Bakalavr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.TSKCNTRL_Bakalavr.TabIndex = 9;
-            this.TSKCNTRL_Bakalavr.Task = null;
-            this.TSKCNTRL_Bakalavr.Title = "Бакалавриат";
-            // 
-            // TSKCTRL_Semestr
-            // 
-            this.TSKCTRL_Semestr.End = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.TSKCTRL_Semestr.Location = new System.Drawing.Point(8, 168);
-            this.TSKCTRL_Semestr.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.TSKCTRL_Semestr.MaximumSize = new System.Drawing.Size(10000, 150);
-            this.TSKCTRL_Semestr.MinimumSize = new System.Drawing.Size(340, 150);
-            this.TSKCTRL_Semestr.Name = "TSKCTRL_Semestr";
-            this.TSKCTRL_Semestr.Size = new System.Drawing.Size(639, 150);
-            this.TSKCTRL_Semestr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.TSKCTRL_Semestr.TabIndex = 10;
-            this.TSKCTRL_Semestr.Task = null;
-            this.TSKCTRL_Semestr.Title = "Практика";
             // 
             // TabControl
             // 
@@ -225,6 +211,35 @@
             ToolStripMenuItem_CloseApp});
             this.MainContextMenu.Name = "MainContextMenu";
             this.MainContextMenu.Size = new System.Drawing.Size(177, 54);
+            // 
+            // TSKCNTRL_Bakalavr
+            // 
+            this.TSKCNTRL_Bakalavr.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.TSKCNTRL_Bakalavr.End = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.TSKCNTRL_Bakalavr.Location = new System.Drawing.Point(8, 8);
+            this.TSKCNTRL_Bakalavr.Margin = new System.Windows.Forms.Padding(5);
+            this.TSKCNTRL_Bakalavr.MaximumSize = new System.Drawing.Size(10000, 150);
+            this.TSKCNTRL_Bakalavr.MinimumSize = new System.Drawing.Size(340, 150);
+            this.TSKCNTRL_Bakalavr.Name = "TSKCNTRL_Bakalavr";
+            this.TSKCNTRL_Bakalavr.Size = new System.Drawing.Size(639, 150);
+            this.TSKCNTRL_Bakalavr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.TSKCNTRL_Bakalavr.TabIndex = 9;
+            this.TSKCNTRL_Bakalavr.Task = null;
+            this.TSKCNTRL_Bakalavr.Title = "Бакалавриат";
+            // 
+            // TSKCTRL_Semestr
+            // 
+            this.TSKCTRL_Semestr.End = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.TSKCTRL_Semestr.Location = new System.Drawing.Point(8, 168);
+            this.TSKCTRL_Semestr.Margin = new System.Windows.Forms.Padding(5);
+            this.TSKCTRL_Semestr.MaximumSize = new System.Drawing.Size(10000, 150);
+            this.TSKCTRL_Semestr.MinimumSize = new System.Drawing.Size(340, 150);
+            this.TSKCTRL_Semestr.Name = "TSKCTRL_Semestr";
+            this.TSKCTRL_Semestr.Size = new System.Drawing.Size(639, 150);
+            this.TSKCTRL_Semestr.Start = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.TSKCTRL_Semestr.TabIndex = 10;
+            this.TSKCTRL_Semestr.Task = null;
+            this.TSKCTRL_Semestr.Title = "Практика";
             // 
             // MainForm
             // 
@@ -265,6 +280,7 @@
         private System.Windows.Forms.Button BTN_Add;
         private System.Windows.Forms.NotifyIcon MainIcon;
         private System.Windows.Forms.ContextMenuStrip MainContextMenu;
+        private System.Windows.Forms.CheckBox CHB_IsLocalData;
     }
 }
 

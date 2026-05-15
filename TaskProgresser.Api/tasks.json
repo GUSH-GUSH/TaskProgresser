@@ -1,0 +1,62 @@
+[
+  {
+    "Id": "6c210b03-f067-4527-baaf-cd531e028653",
+    "Title": "Q4QER",
+    "Description": "EWRWERWER",
+    "StartDate": "2026-05-15T23:40:00",
+    "EndDate": "2026-05-22T23:40:00",
+    "CompletedAt": null,
+    "Precision": 3,
+    "ShowInTray": false
+  },
+  {
+    "Id": "eb4c53a3-ed30-4be9-8fc6-25dea352b5f5",
+    "Title": null,
+    "Description": null,
+    "StartDate": "0001-01-01T00:00:00",
+    "EndDate": "0001-01-01T00:00:00",
+    "CompletedAt": null,
+    "Precision": 3,
+    "ShowInTray": false
+  },
+  {
+    "Id": "94a4e9e3-f5ca-43b0-ae31-83a5afca57d3",
+    "Title": null,
+    "Description": null,
+    "StartDate": "0001-01-01T00:00:00",
+    "EndDate": "0001-01-01T00:00:00",
+    "CompletedAt": null,
+    "Precision": 3,
+    "ShowInTray": false
+  },
+  {
+    "Id": "a30d56a6-a0d0-4646-b9a6-d74a1e5ac792",
+    "Title": null,
+    "Description": null,
+    "StartDate": "0001-01-01T00:00:00",
+    "EndDate": "0001-01-01T00:00:00",
+    "CompletedAt": null,
+    "Precision": 3,
+    "ShowInTray": false
+  },
+  {
+    "Id": "713aa654-76d2-4f49-b940-efa285ded983",
+    "Title": null,
+    "Description": null,
+    "StartDate": "0001-01-01T00:00:00",
+    "EndDate": "0001-01-01T00:00:00",
+    "CompletedAt": null,
+    "Precision": 3,
+    "ShowInTray": false
+  },
+  {
+    "Id": "bbc44391-559f-416a-bf40-e9ad80fc2b1e",
+    "Title": null,
+    "Description": null,
+    "StartDate": "0001-01-01T00:00:00",
+    "EndDate": "0001-01-01T00:00:00",
+    "CompletedAt": null,
+    "Precision": 3,
+    "ShowInTray": false
+  }
+]

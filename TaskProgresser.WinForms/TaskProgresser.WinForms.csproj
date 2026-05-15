@@ -152,6 +152,7 @@
     <Compile Include="Services\IconGenerator.cs" />
     <Compile Include="Services\ProgressUpdaterService.cs" />
     <Compile Include="Services\DateTimePickersRangeController.cs" />
+    <Compile Include="Repositories\TaskApiClient.cs" />
     <EmbeddedResource Include="Controls\ClickableUserControl.resx">
       <DependentUpon>ClickableUserControl.cs</DependentUpon>
     </EmbeddedResource>
