@@ -27,17 +27,18 @@ namespace TaskProgresser.Core.Services
 {
     public static class TaskConverter
     {
-        private static JsonSerializerOptions options = new JsonSerializerOptions() { WriteIndented = true };
-        
+        private static readonly JsonSerializerOptions options = new JsonSerializerOptions() { WriteIndented = true , PropertyNameCaseInsensitive = true };
+
         public static TaskItem FromJson(string json)
         {
-            return JsonSerializer.Deserialize<TaskItem>(json);
+            return JsonSerializer.Deserialize<TaskItem>(json, options);
         }
+        
         public static List<TaskItem> FromJsonArray(string json)
         {
             try
             {
-                return JsonSerializer.Deserialize<List<TaskItem>>(json);
+                return JsonSerializer.Deserialize<List<TaskItem>>(json, options);
             }
             catch { return new List<TaskItem>(); }
         }
