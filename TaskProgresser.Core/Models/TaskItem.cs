@@ -14,6 +14,8 @@ namespace TaskProgresser.Core.Models
         public int Precision { get; set; } = 3;
         public bool ShowInTray { get; set; } = false;
 
+        public Guid UserId { get; set; }
+
         [JsonIgnore]
         public bool IsCompleted => CompletedAt.HasValue;
         //[JsonIgnore]

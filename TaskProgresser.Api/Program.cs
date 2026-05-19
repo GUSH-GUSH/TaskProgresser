@@ -1,6 +1,18 @@
+using Microsoft.EntityFrameworkCore;
 using TaskProgresser.Api.Services;
+using TaskProgresser.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add DataBase Context
+
+var connectionString = builder.Configuration.GetConnectionString("AivenConnection");
+var serverVersion = new MySqlServerVersion(new Version(8, 4, 8));
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(connectionString, serverVersion)
+           .LogTo(Console.WriteLine, LogLevel.Information) // Отличная штука для отладки: выводит все SQL-запросы в консоль
+);
 
 // Add services to the container.
 

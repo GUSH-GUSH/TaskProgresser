@@ -17,6 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskProgresser.Api", "TaskP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{31A8B10B-E202-4332-9977-CD879C2537DE}"
 	ProjectSection(SolutionItems) = preProject
+		WorkWithMigration.txt = WorkWithMigration.txt
 		_TODO.md = _TODO.md
 	EndProjectSection
 EndProject
