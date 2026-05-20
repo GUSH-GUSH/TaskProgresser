@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.5.11723.231 stable
+VisualStudioVersion = 18.5.11723.231
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskProgresser.WinForms", "TaskProgresser.WinForms\TaskProgresser.WinForms.csproj", "{33945848-4662-46B6-A187-A09373BBF7BB}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 	ProjectSection(SolutionItems) = preProject
 		WorkWithMigration.txt = WorkWithMigration.txt
 		_TODO.md = _TODO.md
+		Добавление регистрации.txt = Добавление регистрации.txt
 	EndProjectSection
 EndProject
 Global
