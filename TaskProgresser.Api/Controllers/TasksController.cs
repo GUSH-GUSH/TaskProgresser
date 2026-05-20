@@ -1,51 +1,44 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using TaskProgresser.Api.Services;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using TaskProgresser.Api.Data;
 using TaskProgresser.Core.Models;
 
 namespace TaskProgresser.Api.Controllers
 {
+    [Authorize] // Защищаем весь контроллер!
     [ApiController]
     [Route("api/[controller]")]
     public class TasksController : ControllerBase
     {
-        private readonly JsonTaskService _taskService;
+        private readonly AppDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public TasksController(JsonTaskService taskService)
+        public TasksController(AppDbContext context, IConfiguration configuration)
         {
-            _taskService = taskService;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var tasks = await _taskService.GetAllTasksAsync();
-            return Ok(tasks);
+            _context = context;
+            _configuration = configuration;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TaskItem task)
         {
-            if (task == null || string.IsNullOrEmpty(task.Title))
+            // МАГИЯ ЗДЕСЬ: Достаем ID пользователя из токена (Claims)
+            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userIdString) || !Guid.TryParse(userIdString, out Guid userId))
             {
-                return BadRequest("Данные задачи некорректны");
+                return Unauthorized("Не удалось определить пользователя из токена.");
             }
 
-            await _taskService.SaveTaskAsync(task);
+            // Жестко привязываем задачу к текущему пользователю
+            task.UserId = userId;
 
-            return CreatedAtAction(nameof(GetAll), new { id = task.Id }, task);
-        }
+            _context.Tasks.Add(task);
+            await _context.SaveChangesAsync();
 
-        [HttpPost("bulk")]
-        public async Task<IActionResult> Create([FromBody] List<TaskItem> tasks)
-        {
-            if (tasks == null)
-            {
-                return BadRequest("Список некорректный");
-            }
-
-            await _taskService.SaveAllTasksAsync(tasks);
-
-            return CreatedAtAction(nameof(GetAll), tasks);
+            return Ok(task);
         }
     }
 }

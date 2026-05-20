@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using TaskProgresser.Api.Services;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 using TaskProgresser.Api.Data;
+using TaskProgresser.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,17 +14,76 @@ var connectionString = builder.Configuration.GetConnectionString("AivenConnectio
 var serverVersion = new MySqlServerVersion(new Version(8, 4, 8));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(connectionString, serverVersion)
+    options.UseMySql(connectionString, serverVersion, mySqlOptions => mySqlOptions.EnableRetryOnFailure()) // <--- Добавили защиту от обрывов связи)
            .LogTo(Console.WriteLine, LogLevel.Information) // Отличная штука для отладки: выводит все SQL-запросы в консоль
 );
+
+// JWT Authentication setup
+
+var secretKey = builder.Configuration["JwtSettings:Secret"];
+var key = Encoding.ASCII.GetBytes(secretKey!);
+
+builder.Services.AddAuthentication(options =>
+{
+    // Говорим ASP.NET по умолчанию использовать JWT Bearer
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    //options.RequireHttpsMetadata = false; // Для тестов на локалке ставим false
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false, // В реальных проектах тут проверяют домен сервера
+        ValidateAudience = false, // А тут домен клиента
+        ClockSkew = TimeSpan.Zero // Точное время истечения токена
+    };
+});
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<JsonTaskService>();
+
+// ... 
+
+// Заменяем стандартный AddSwaggerGen на этот:
+builder.Services.AddSwaggerGen(c =>
+{
+    // 1. Добавляем кнопку "Authorize" и описываем, как она работает
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Введите JWT токен в формате: Bearer {ваш_токен}\n\nПример: Bearer eyJhbGciOiJIUzI1Ni...",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    // 2. Указываем, что этот токен нужно прикреплять ко всем защищенным эндпоинтам
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header,
+            },
+            new List<string>()
+        }
+    });
+});
+
 
 var app = builder.Build();
 
@@ -33,6 +96,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication(); // Добавить эту строку!
 app.UseAuthorization();
 
 app.MapControllers();

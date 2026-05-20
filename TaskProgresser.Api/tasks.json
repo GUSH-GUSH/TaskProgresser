@@ -1,5 +1,16 @@
 [
   {
+    "Id": "fc516768-5a07-415f-8ae8-8523b562e30b",
+    "Title": "ewr",
+    "Description": "",
+    "StartDate": "2026-05-20T12:40:00",
+    "EndDate": "2026-05-27T12:40:00",
+    "CompletedAt": null,
+    "Precision": 3,
+    "ShowInTray": false,
+    "UserId": "00000000-0000-0000-0000-000000000000"
+  },
+  {
     "Id": "062dcc27-b8b7-4927-a015-d8218a898ea1",
     "Title": "Test Data123",
     "Description": "",
@@ -7,7 +18,8 @@
     "EndDate": "2026-05-26T09:35:00",
     "CompletedAt": null,
     "Precision": 3,
-    "ShowInTray": true
+    "ShowInTray": true,
+    "UserId": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Id": "1ed5dd9d-df51-4bf9-ac3f-4f814607fd64",
@@ -17,7 +29,8 @@
     "EndDate": "2026-05-26T06:45:00",
     "CompletedAt": null,
     "Precision": 3,
-    "ShowInTray": false
+    "ShowInTray": false,
+    "UserId": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Id": "d52b6091-c949-4344-9c55-0cf4e9e2683c",
@@ -27,7 +40,8 @@
     "EndDate": "2027-05-11T08:00:00",
     "CompletedAt": null,
     "Precision": 3,
-    "ShowInTray": false
+    "ShowInTray": false,
+    "UserId": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Id": "6c210b03-f067-4527-baaf-cd531e028653",
@@ -37,6 +51,7 @@
     "EndDate": "2026-05-22T23:40:00",
     "CompletedAt": null,
     "Precision": 3,
-    "ShowInTray": false
+    "ShowInTray": false,
+    "UserId": "00000000-0000-0000-0000-000000000000"
   }
 ]
