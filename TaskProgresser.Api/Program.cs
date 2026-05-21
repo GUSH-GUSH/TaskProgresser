@@ -66,7 +66,7 @@ builder.Services.AddSwaggerGen(c =>
 
     // 2. Указываем, что этот токен нужно прикреплять ко всем защищенным эндпоинтам
     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-    {
+    { 
         {
             new OpenApiSecurityScheme
             {

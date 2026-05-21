@@ -13,24 +13,30 @@ namespace TaskProgresser.Api.Controllers
     public class TasksController : ControllerBase
     {
         private readonly AppDbContext _context;
-        private readonly IConfiguration _configuration;
 
-        public TasksController(AppDbContext context, IConfiguration configuration)
+        private const string UNAUTHORIZED_MESSAGE = "Не вдалось визначити користувача з таким токеном!";
+        private const string TASK_NOT_FOUND_MESSAGE = "Задачу не знайдено, або у Вас немає до неї доступу!";
+
+        private Guid CurrentUserId
+        {
+            get
+            {
+                var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                return Guid.TryParse(userIdString, out Guid id) ? id : Guid.Empty;
+            }
+        }
+
+        public TasksController(AppDbContext context)
         {
             _context = context;
-            _configuration = configuration;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TaskItem task)
         {
-            // МАГИЯ ЗДЕСЬ: Достаем ID пользователя из токена (Claims)
-            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(userIdString) || !Guid.TryParse(userIdString, out Guid userId))
-            {
-                return Unauthorized("Не удалось определить пользователя из токена.");
-            }
+            // Достаем ID пользователя из токена
+            var userId = CurrentUserId;
+            if (userId == Guid.Empty) return Unauthorized(UNAUTHORIZED_MESSAGE);
 
             // Жестко привязываем задачу к текущему пользователю
             task.UserId = userId;
@@ -38,6 +44,77 @@ namespace TaskProgresser.Api.Controllers
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
 
+            return Ok(task);
+        }
+
+        // ОБНОВЛЕНИЕ ЗАДАЧИ (PUT api/tasks/{id})
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] TaskItem updatedTask)
+        {
+            var userId = CurrentUserId;
+            if (userId == Guid.Empty) return Unauthorized(UNAUTHORIZED_MESSAGE);
+
+            var existingTask = await _context.Tasks
+                .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
+
+            if (existingTask == null) return NotFound(TASK_NOT_FOUND_MESSAGE);
+
+            // Обновляем поля
+            existingTask.Title = updatedTask.Title;
+            existingTask.Description = updatedTask.Description;
+            existingTask.StartDate = updatedTask.StartDate;
+            existingTask.EndDate = updatedTask.EndDate;
+            existingTask.CompletedAt = updatedTask.CompletedAt;
+            existingTask.Precision = updatedTask.Precision;
+            existingTask.ShowInTray = updatedTask.ShowInTray;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(existingTask);
+        }
+
+        // УДАЛЕНИЕ ЗАДАЧИ (DELETE api/tasks/{id})
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var userId = CurrentUserId;
+            if (userId == Guid.Empty) return Unauthorized();
+
+            var task = await _context.Tasks
+                .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
+
+            if (task == null)
+                return NotFound(TASK_NOT_FOUND_MESSAGE);
+
+            _context.Tasks.Remove(task);
+            await _context.SaveChangesAsync();
+
+            return Ok("Задача успішно видалена!");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var userId = CurrentUserId;
+            if (userId == Guid.Empty) return Unauthorized(UNAUTHORIZED_MESSAGE);
+
+            var tasks = await _context.Tasks
+                .Where(t => t.UserId == userId)
+                .ToListAsync();
+            return Ok(tasks);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var userId = CurrentUserId;
+            if (userId == Guid.Empty) return Unauthorized(UNAUTHORIZED_MESSAGE);
+
+            var task = await _context.Tasks
+                .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
+ 
+            if (task == null) return NotFound(TASK_NOT_FOUND_MESSAGE);
+ 
             return Ok(task);
         }
     }

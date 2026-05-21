@@ -18,7 +18,5 @@ namespace TaskProgresser.Core.Models
 
         [JsonIgnore]
         public bool IsCompleted => CompletedAt.HasValue;
-        //[JsonIgnore]
-        //public double EfficiencyPercentage => Math.Round(new DateRange(StartDate, EndDate).GetFractionOf(CompletedAt ?? DateTime.Now) * 100, Precision);
     }
 }
