@@ -34,11 +34,9 @@ namespace TaskProgresser.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TaskItem task)
         {
-            // Достаем ID пользователя из токена
             var userId = CurrentUserId;
             if (userId == Guid.Empty) return Unauthorized(UNAUTHORIZED_MESSAGE);
 
-            // Жестко привязываем задачу к текущему пользователю
             task.UserId = userId;
 
             _context.Tasks.Add(task);

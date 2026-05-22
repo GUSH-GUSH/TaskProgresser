@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 
 using System.Runtime.InteropServices;
 
-namespace TaskProgresser.WinForms.Services
+namespace TaskProgresser.WinForms.ApiClients
 {
     public static class IconGenerator
     {

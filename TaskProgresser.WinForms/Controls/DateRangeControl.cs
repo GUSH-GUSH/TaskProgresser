@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using TaskProgresser.Core.Models;
 using TaskProgresser.WinForms.Controls;
-using TaskProgresser.WinForms.Services;
+using TaskProgresser.WinForms.ApiClients;
 using WinFormsExtensions;
 
 namespace TaskProgresser.WinForms

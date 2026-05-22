@@ -29,7 +29,7 @@ namespace TaskProgresser.Api.Controllers
         public async Task<IActionResult> Register([FromBody] AuthRequest request)
         {
             if (await _context.Users.AnyAsync(u => u.Username == request.Username))
-                return BadRequest("Имя пользователя уже занято.");
+                return BadRequest($"Ім'я користувача {request.Username} зайнято");
 
             var user = new User
             {
@@ -40,20 +40,17 @@ namespace TaskProgresser.Api.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok("Пользователь успешно зарегистрирован.");
+            return Ok($"Користувача {user.Username} успішно зареєстровано");
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] AuthRequest request)
         {
-            // 1. Ищем пользователя
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
 
-            // 2. Проверяем пароль
             if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-                return Unauthorized("Неверный логин или пароль.");
+                return Unauthorized("Невірний логін або пароль");
             
-            // 3. Если всё ОК - генерируем токен
             var token = GenerateJwtToken(user);
 
             return Ok(new AuthResponse { Token = token, Username = user.Username });

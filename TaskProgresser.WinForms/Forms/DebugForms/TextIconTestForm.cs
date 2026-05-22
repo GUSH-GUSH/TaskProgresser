@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TaskProgresser.WinForms.Services;
+using TaskProgresser.WinForms.ApiClients;
 
 namespace TaskProgresser.WinForms.Forms.DebugForms
 {

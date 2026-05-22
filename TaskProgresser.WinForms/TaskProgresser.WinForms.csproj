@@ -104,6 +104,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiClients\AuthApiClient.cs" />
+    <Compile Include="ApiClients\BaseApiClient.cs" />
     <Compile Include="Controls\ClickableUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,7 +157,7 @@
     <Compile Include="Services\IconGenerator.cs" />
     <Compile Include="Services\ProgressUpdaterService.cs" />
     <Compile Include="Services\DateTimePickersRangeController.cs" />
-    <Compile Include="Repositories\TaskApiClient.cs" />
+    <Compile Include="ApiClients\TasksApiClient.cs" />
     <EmbeddedResource Include="Controls\ClickableUserControl.resx">
       <DependentUpon>ClickableUserControl.cs</DependentUpon>
     </EmbeddedResource>

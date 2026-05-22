@@ -17,7 +17,7 @@ using System.Windows.Forms;
 using TaskProgresser.WinForms.Forms;
 using TaskProgresser.WinForms.Forms.UserControls;
 using TaskProgresser.WinForms.Repositories;
-using TaskProgresser.WinForms.Services;
+using TaskProgresser.WinForms.ApiClients;
 
 using TaskProgresser.Core.Models;
 using TaskProgresser.Core.Services;
@@ -167,7 +167,7 @@ namespace TaskProgresser.WinForms
         {
 
             if (IsLocalStorage) _allTasks = JsonTaskSeializer.LoadTasks();
-            else _allTasks = await TaskApiClient.GetAllTasksAsync();
+            else _allTasks = await TasksApiClient.GetAllTasksAsync();
             
             RenderTasks();
         }
@@ -175,7 +175,7 @@ namespace TaskProgresser.WinForms
         private async void SaveAllData()
         {
             if (IsLocalStorage) JsonTaskSeializer.SaveTasks(_allTasks);
-            else await TaskApiClient.SaveAllData(_allTasks);
+            else await TasksApiClient.SaveAllData(_allTasks);
         }
 
         #endregion

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace TaskProgresser.WinForms.Services
+namespace TaskProgresser.WinForms.ApiClients
 {
     internal static class ProgressUpdaterService
     {
