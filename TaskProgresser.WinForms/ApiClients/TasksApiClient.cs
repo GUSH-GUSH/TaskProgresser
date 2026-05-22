@@ -23,7 +23,6 @@ namespace TaskProgresser.WinForms.ApiClients
             return await Client.GetFromJsonAsync<TaskItem>($"{BaseUrl}/tasks/{id}") ?? new TaskItem();
         }
 
-
         //Post (Create)
         public async Task<TaskItem> AddTaskAsync(TaskItem newTask)
         {

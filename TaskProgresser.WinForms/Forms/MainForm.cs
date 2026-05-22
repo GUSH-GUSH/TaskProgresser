@@ -24,6 +24,7 @@ using TaskProgresser.Core.Services;
 
 
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using System.Windows.Interop;
 
 namespace TaskProgresser.WinForms
 {
@@ -32,6 +33,7 @@ namespace TaskProgresser.WinForms
         #region --- Fields ---
 
         private List<TaskItem> _allTasks = new List<TaskItem>();
+        private TasksApiClient _tasksApiClient = new TasksApiClient();
 
         #endregion
 
@@ -167,15 +169,20 @@ namespace TaskProgresser.WinForms
         {
 
             if (IsLocalStorage) _allTasks = JsonTaskSeializer.LoadTasks();
-            else _allTasks = await TasksApiClient.GetAllTasksAsync();
-            
+            else
+            {
+                try { _allTasks = await _tasksApiClient.GetAllTasksAsync(); }
+                catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"); }
+            } 
             RenderTasks();
+
+            new AuthForm().ShowDialog(this);
         }
 
         private async void SaveAllData()
         {
             if (IsLocalStorage) JsonTaskSeializer.SaveTasks(_allTasks);
-            else await TasksApiClient.SaveAllData(_allTasks);
+            //else await TasksApiClient.(_allTasks);
         }
 
         #endregion
