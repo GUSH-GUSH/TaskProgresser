@@ -33,7 +33,7 @@ namespace TaskProgresser.WinForms
         #region --- Fields ---
 
         private List<TaskItem> _allTasks = new List<TaskItem>();
-        private TasksApiClient _tasksApiClient = new TasksApiClient();
+        private readonly TasksApiClient _tasksApiClient = new TasksApiClient();
 
         #endregion
 
@@ -47,11 +47,24 @@ namespace TaskProgresser.WinForms
         public MainForm()
         {
             InitializeComponent();
+            Autorization();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Autorization()
         {
-            LoadData();
+            var authForm = new AuthForm();
+            if (authForm.ShowDialog(this) == DialogResult.OK)
+            {
+                MessageBox.Show(authForm.Token);
+                MessageBox.Show(BaseApiClient.Token);
+            }
+            else Application.Exit();
+        }
+
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            await LoadData();
+            RenderTasks();
 
             ProgressUpdaterService.Tick += () => Label_CurrentDateTime.Text = DateTime.Now.ToString();
             ProgressUpdaterService.Start();
@@ -83,10 +96,6 @@ namespace TaskProgresser.WinForms
         {
             new Forms.DebugForms.TextIconTestForm().Show(this);
         }
-
-        private void BTN_Save_Click(object sender, EventArgs e) => SaveAllData();
-
-        private void BTN_Load_Click(object sender, EventArgs e) => LoadData();
 
         private void BTN_Add_Click(object sender, EventArgs e)
         {
@@ -165,18 +174,14 @@ namespace TaskProgresser.WinForms
 
         #region --- Work with data ---
 
-        private async void LoadData()
+        private async Task LoadData()
         {
-
             if (IsLocalStorage) _allTasks = JsonTaskSeializer.LoadTasks();
             else
             {
                 try { _allTasks = await _tasksApiClient.GetAllTasksAsync(); }
                 catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"); }
-            } 
-            RenderTasks();
-
-            new AuthForm().ShowDialog(this);
+            }
         }
 
         private async void SaveAllData()
@@ -208,33 +213,47 @@ namespace TaskProgresser.WinForms
 
         private void RenderTasks()
         {
-            FlowPanel_Active.SuspendLayout();
-            FlowPanel_Completed.SuspendLayout();
+        //    if (this.InvokeRequired) throw new Exception ("Invoke required failed!");
 
-            while (FlowPanel_Active.Controls.Count > 0)
-                FlowPanel_Active.Controls[0].Dispose();
-
-            while (FlowPanel_Completed.Controls.Count > 0)
-                FlowPanel_Completed.Controls[0].Dispose();
-
-            foreach (var taskModel in _allTasks)
+            this.Invoke(new Action(() =>
             {
-                TaskControl taskControl = new TaskControl(taskModel);
-                taskControl.TaskEdited += UpdateTask;
-                taskControl.TaskDeleted += DeleteTask;
-                taskControl.TaskCompleted += CompleteTask;
 
-                if (taskModel.IsCompleted)
-                    FlowPanel_Completed.Controls.Add(taskControl);
-                else
-                    FlowPanel_Active.Controls.Add(taskControl);
+                FlowPanel_Active.SuspendLayout();
+                FlowPanel_Completed.SuspendLayout();
 
+                while (FlowPanel_Active.Controls.Count > 0)
+                {
+                    var currentControl = FlowPanel_Active.Controls[0];
+                    FlowPanel_Active.Controls.Remove(currentControl);
+                    currentControl.Dispose();
+                }
+
+                while (FlowPanel_Completed.Controls.Count > 0)
+                {
+                    var currentControl = FlowPanel_Completed.Controls[0];
+                    FlowPanel_Completed.Controls.Remove(currentControl);
+                    currentControl.Dispose();
+                }
+
+
+                foreach (var taskModel in _allTasks)
+                {
+                    TaskControl taskControl = new TaskControl(taskModel);
+                    taskControl.TaskEdited += UpdateTask;
+                    taskControl.TaskDeleted += DeleteTask;
+                    taskControl.TaskCompleted += CompleteTask;
+
+                    if (taskModel.IsCompleted)
+                        FlowPanel_Completed.Controls.Add(taskControl);
+                    else
+                        FlowPanel_Active.Controls.Add(taskControl);
+                }
 
                 UpdateWidthForTaskControls();
 
                 FlowPanel_Active.ResumeLayout();
                 FlowPanel_Completed.ResumeLayout();
-            }
+            }));
         }
 
         private void RestoreWindow()
@@ -246,9 +265,14 @@ namespace TaskProgresser.WinForms
 
         #endregion
 
-        private void CHB_IsLocalData_CheckedChanged(object sender, EventArgs e)
+        private async void CHB_IsLocalData_CheckedChangedAsync(object sender, EventArgs e)
         {
-            LoadData();
+           // if (this.InvokeRequired) throw new Exception("Invoke required failed!");
+
+            await LoadData();
+            //if (this.InvokeRequired) throw new Exception ("Invoke required failed!");
+
+            RenderTasks();
         }
     }
 }

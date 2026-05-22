@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
-using TaskProgresser.Client.ApiClients;
 using System.Net.Http.Json;
 using TaskProgresser.Core.DTOs;
 using System;
 
-namespace TaskProgresser.Client.ApiClients
+namespace TaskProgresser.WinForms.ApiClients
 {
     public class AuthApiClient : BaseApiClient
     {
@@ -30,12 +29,12 @@ namespace TaskProgresser.Client.ApiClients
             throw new Exception($"Помилка входу ({response.StatusCode}) - {errorMessage}");
         }
 
-        public async Task<bool> RegisterAsync(string username, string password)
+        public async Task RegisterAsync(string username, string password)
         {
             var response = await Client.PostAsJsonAsync($"{BaseUrl}/auth/register",
                 new AuthRequest { Username = username, Password = password });
 
-            if (response.IsSuccessStatusCode) return true;
+            if (response.IsSuccessStatusCode) return;
 
             string errorMessage = await response.Content.ReadAsStringAsync();
             throw new Exception($"Помилка реєстрації ({response.StatusCode}) - {errorMessage}");

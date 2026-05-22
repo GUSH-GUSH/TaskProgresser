@@ -111,7 +111,7 @@
             this.CHB_IsLocalData.TabIndex = 13;
             this.CHB_IsLocalData.Text = "Локальное хранилище";
             this.CHB_IsLocalData.UseVisualStyleBackColor = true;
-            this.CHB_IsLocalData.CheckedChanged += new System.EventHandler(this.CHB_IsLocalData_CheckedChanged);
+            this.CHB_IsLocalData.CheckedChanged += new System.EventHandler(this.CHB_IsLocalData_CheckedChangedAsync);
             // 
             // BTN_Add
             // 
@@ -255,7 +255,7 @@
             this.Name = "MainForm";
             this.Text = "TaskProgresser.WinForms";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.BottomPanel.ResumeLayout(false);
             this.BottomPanel.PerformLayout();
             this.TabPage_Completed.ResumeLayout(false);

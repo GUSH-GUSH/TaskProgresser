@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using TaskProgresser.Core.Models;
-using TaskProgresser.Client.ApiClients;
 
 namespace TaskProgresser.WinForms.ApiClients
 {
