@@ -92,16 +92,11 @@ namespace TaskProgresser.WinForms
             }
         }
 
-        private void BTN_OpenTestIconForm_Click(object sender, EventArgs e)
-        {
-            new Forms.DebugForms.TextIconTestForm().Show(this);
-        }
-
-        private void BTN_Add_Click(object sender, EventArgs e)
+        private async void BTN_Add_Click(object sender, EventArgs e)
         {
             var addForm = new AddEditTaskForm();
             if (addForm.ShowDialog() == DialogResult.OK)
-                AddTask(addForm.Task);
+                await AddTask(addForm.Task);
             addForm.Close();
         }
 
@@ -115,60 +110,90 @@ namespace TaskProgresser.WinForms
             else RestoreWindow();
         }
 
+        private async void CHB_IsLocalData_CheckedChangedAsync(object sender, EventArgs e)
+        {
+            // if (this.InvokeRequired) throw new Exception("Invoke required failed!");
+
+            await LoadData();
+            //if (this.InvokeRequired) throw new Exception ("Invoke required failed!");
+
+            RenderTasks();
+        }
+
         #endregion
 
         #region --- Task Control --- (move to a separate class)
 
-        private void AddTask(TaskItem newTask)
+        private async Task AddTask(TaskItem newTask)
         {
             _allTasks = _allTasks.Prepend(newTask).ToList();
-            RenderTasks();
-            SaveAllData();
-            MessageBox.Show("Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                await _tasksApiClient.AddTaskAsync(newTask);
+                RenderTasks();
+                //SaveAllData();
+                Invoke(new Action(() => { MessageBox.Show(this, "Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
+            }
+            catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
         }
 
-        private void UpdateTask(TaskItem task)
+        private async void UpdateTask(TaskItem task)
         {
-            SaveAllData();
+            //SaveAllData();
             if (task != null)
             {
-                RenderTasks();
-                MessageBox.Show("Дані успішно оновлені!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    await _tasksApiClient.UpdateTaskAsync(task);
+                    RenderTasks();
+                    Invoke(new Action(() => { MessageBox.Show(this, "Дані успішно оновлені!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
+                }
+                catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
             }
         }
 
-        private void DeleteTask(TaskItem taskToRemove)
+        private async void DeleteTask(TaskItem taskToRemove)
         {
             if (MessageBox.Show("Ви дійсно хочете видалити задачу?", "Увага!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                _allTasks.Remove(taskToRemove);
-                RenderTasks();
-                SaveAllData();
-                MessageBox.Show("Видалення успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    await _tasksApiClient.DeleteTaskAsync(taskToRemove.Id);
+                    _allTasks.Remove(taskToRemove);
+                    RenderTasks();
+                    //SaveAllData();
+                    Invoke(new Action(() => { MessageBox.Show(this, "Видалення успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
+                }
+                catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
             }
         }
 
-        private void CompleteTask(TaskItem task)
+        private async void CompleteTask(TaskItem task)
         {
-            if (!task.IsCompleted)
+            try
             {
-                if (MessageBox.Show("Ви дійсно хочете завершити задачу?", "Підтвердженя операції!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (!task.IsCompleted)
                 {
-                    task.CompletedAt = DateTime.Now;
+                    if (MessageBox.Show("Ви дійсно хочете завершити задачу?", "Підтвердженя операції!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        task.CompletedAt = DateTime.Now;
+                        await _tasksApiClient.UpdateTaskAsync(task);
+                        RenderTasks();
+                        //SaveAllData();
+                        Invoke(new Action(() => { MessageBox.Show(this, $"Задачу успішно виконано за {TaskAnalyticsService.CalculateEfficiency(task)}% часу!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None); }));
+                    }
+                }
+                else if (MessageBox.Show("Ви дійсно хочете скасувати виконання задачі?", "Підтвердженя операції!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    task.CompletedAt = null;
+                    await _tasksApiClient.UpdateTaskAsync(task);
                     RenderTasks();
-                    SaveAllData();
-                    MessageBox.Show($"Задачу успішно виконано за {TaskAnalyticsService.CalculateEfficiency(task)}% часу!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    //SaveAllData();
+                    Invoke(new Action(() => { MessageBox.Show(this, $"Задачу додано в активні!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None); }));
                 }
             }
-            else if (MessageBox.Show("Ви дійсно хочете скасувати виконання задачі?", "Підтвердженя операції!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                task.CompletedAt = null;
-                RenderTasks();
-                SaveAllData();
-                MessageBox.Show($"Задачу додано в активні!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None);
-            }
+            catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
         }
-
 
         #endregion
 
@@ -213,7 +238,7 @@ namespace TaskProgresser.WinForms
 
         private void RenderTasks()
         {
-        //    if (this.InvokeRequired) throw new Exception ("Invoke required failed!");
+            //    if (this.InvokeRequired) throw new Exception ("Invoke required failed!");
 
             this.Invoke(new Action(() =>
             {
@@ -265,14 +290,5 @@ namespace TaskProgresser.WinForms
 
         #endregion
 
-        private async void CHB_IsLocalData_CheckedChangedAsync(object sender, EventArgs e)
-        {
-           // if (this.InvokeRequired) throw new Exception("Invoke required failed!");
-
-            await LoadData();
-            //if (this.InvokeRequired) throw new Exception ("Invoke required failed!");
-
-            RenderTasks();
-        }
     }
 }
