@@ -148,6 +148,7 @@
             this.MaximizeBox = false;
             this.Name = "AuthForm";
             this.Text = "AuthForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthForm_FormClosed);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
             this.ResumeLayout(false);

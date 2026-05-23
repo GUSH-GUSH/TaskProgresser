@@ -13,14 +13,14 @@ namespace TaskProgresser.WinForms.ApiClients
         
         public static string Token { get; private set; }
         
-        public static void SetToken(string token)
+        public void SetToken(string token)
         {
             if (string.IsNullOrWhiteSpace(token)) throw new ArgumentException("Token cannot be null or empty.", nameof(token));
             Token = token;
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
 
-        public static void ResetToken()
+        public void ResetToken()
         {
             Token = null;
             Client.DefaultRequestHeaders.Authorization = null;

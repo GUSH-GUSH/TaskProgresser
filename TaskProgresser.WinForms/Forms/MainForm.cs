@@ -25,6 +25,7 @@ using TaskProgresser.Core.Services;
 
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 using System.Windows.Interop;
+using System.Net;
 
 namespace TaskProgresser.WinForms
 {
@@ -35,10 +36,10 @@ namespace TaskProgresser.WinForms
         private List<TaskItem> _allTasks = new List<TaskItem>();
         private readonly TasksApiClient _tasksApiClient = new TasksApiClient();
 
-        #endregion
+        #endregion --- Fields ---
 
         #region --- Properties ---
-        private bool IsLocalStorage { get => CHB_IsLocalData.Checked; set => CHB_IsLocalData.Checked = value; }
+        //private bool IsLocalStorage { get => CHB_IsLocalData.Checked; set => CHB_IsLocalData.Checked = value; }
 
         #endregion --- Properties ---
 
@@ -47,22 +48,26 @@ namespace TaskProgresser.WinForms
         public MainForm()
         {
             InitializeComponent();
-            Autorization();
         }
 
-        private void Autorization()
+        private void Authorization()
         {
             var authForm = new AuthForm();
             if (authForm.ShowDialog(this) == DialogResult.OK)
             {
-                MessageBox.Show(authForm.Token);
-                MessageBox.Show(BaseApiClient.Token);
+                LBL_Username.Text = authForm.Username;
+                //MessageBox.Show(authForm.Token);
+                //MessageBox.Show(BaseApiClient.Token);
             }
-            else Application.Exit();
+            else
+            {
+                Application.Exit();
+            }
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
+            Authorization();
             await LoadData();
             RenderTasks();
 
@@ -70,9 +75,9 @@ namespace TaskProgresser.WinForms
             ProgressUpdaterService.Start();
         }
 
-        #endregion
+        #endregion --- Setup ---
 
-        #region--- Events Handlers ---
+        #region --- Events Handlers ---
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -120,7 +125,18 @@ namespace TaskProgresser.WinForms
             RenderTasks();
         }
 
-        #endregion
+        private async void BTN_Logout_Click(object sender, EventArgs e)
+        {
+            Hide();
+            ClearTasks();
+            _tasksApiClient.ResetToken();
+            Authorization();
+            await LoadData();
+            RenderTasks();
+            Show();
+        }
+
+        #endregion --- Events Handlers ---
 
         #region --- Task Control --- (move to a separate class)
 
@@ -195,27 +211,30 @@ namespace TaskProgresser.WinForms
             catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
         }
 
-        #endregion
+        #endregion --- Task Control ---
 
         #region --- Work with data ---
 
         private async Task LoadData()
         {
-            if (IsLocalStorage) _allTasks = JsonTaskSeializer.LoadTasks();
-            else
-            {
-                try { _allTasks = await _tasksApiClient.GetAllTasksAsync(); }
-                catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"); }
+            //if (IsLocalStorage) _allTasks = JsonTaskSeializer.LoadTasks();
+            //else
+            //{
+            try { _allTasks = await _tasksApiClient.GetAllTasksAsync(); }
+            catch (Exception ex) {
+                Invoke(
+                new Action(() => MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"))
+                );
             }
+            //}
         }
 
         private async void SaveAllData()
         {
-            if (IsLocalStorage) JsonTaskSeializer.SaveTasks(_allTasks);
             //else await TasksApiClient.(_allTasks);
         }
 
-        #endregion
+        #endregion --- Work with data ---
 
         #region --- Visual ---
 
@@ -243,23 +262,10 @@ namespace TaskProgresser.WinForms
             this.Invoke(new Action(() =>
             {
 
+                ClearTasks();
+
                 FlowPanel_Active.SuspendLayout();
                 FlowPanel_Completed.SuspendLayout();
-
-                while (FlowPanel_Active.Controls.Count > 0)
-                {
-                    var currentControl = FlowPanel_Active.Controls[0];
-                    FlowPanel_Active.Controls.Remove(currentControl);
-                    currentControl.Dispose();
-                }
-
-                while (FlowPanel_Completed.Controls.Count > 0)
-                {
-                    var currentControl = FlowPanel_Completed.Controls[0];
-                    FlowPanel_Completed.Controls.Remove(currentControl);
-                    currentControl.Dispose();
-                }
-
 
                 foreach (var taskModel in _allTasks)
                 {
@@ -286,6 +292,23 @@ namespace TaskProgresser.WinForms
             this.Show(); // Показываем форму
             this.WindowState = FormWindowState.Normal; // Восстанавливаем размер
             this.Activate(); // Выводим на передний план
+        }
+
+        private void ClearTasks() {
+            FlowPanel_Active.SuspendLayout();
+            FlowPanel_Completed.SuspendLayout();
+
+            while (FlowPanel_Active.Controls.Count > 0)
+                FlowPanel_Active.Controls[0].Dispose();
+
+            while (FlowPanel_Completed.Controls.Count > 0)
+                FlowPanel_Completed.Controls[0].Dispose();
+
+            FlowPanel_Active.Controls.Clear();
+            FlowPanel_Completed.Controls.Clear();
+
+            FlowPanel_Active.ResumeLayout();
+            FlowPanel_Completed.ResumeLayout();
         }
 
         #endregion

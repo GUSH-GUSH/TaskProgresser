@@ -56,5 +56,10 @@ namespace TaskProgresser.WinForms.Forms
             }
             catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Warning); Enabled = true; }
         }
+
+        private void AuthForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(Token  == null) DialogResult = DialogResult.Cancel;
+        }
     }
 }
