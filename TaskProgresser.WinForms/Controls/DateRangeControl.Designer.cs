@@ -51,7 +51,7 @@ namespace TaskProgresser.WinForms
             PrecentIconMenuItem_HideIcon.BackColor = System.Drawing.SystemColors.ControlText;
             PrecentIconMenuItem_HideIcon.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             PrecentIconMenuItem_HideIcon.Name = "PrecentIconMenuItem_HideIcon";
-            PrecentIconMenuItem_HideIcon.Size = new System.Drawing.Size(219, 24);
+            PrecentIconMenuItem_HideIcon.Size = new System.Drawing.Size(179, 22);
             PrecentIconMenuItem_HideIcon.Text = "Сховати значок";
             PrecentIconMenuItem_HideIcon.Click += new System.EventHandler(this.PrecentIconMenuItem_HideIcon_Click);
             // 
@@ -59,7 +59,7 @@ namespace TaskProgresser.WinForms
             // 
             PrecentIconMenuItem_ShowFlyoutForm.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             PrecentIconMenuItem_ShowFlyoutForm.Name = "PrecentIconMenuItem_ShowFlyoutForm";
-            PrecentIconMenuItem_ShowFlyoutForm.Size = new System.Drawing.Size(219, 24);
+            PrecentIconMenuItem_ShowFlyoutForm.Size = new System.Drawing.Size(179, 22);
             PrecentIconMenuItem_ShowFlyoutForm.Text = "Показати вікно-превью";
             PrecentIconMenuItem_ShowFlyoutForm.Click += new System.EventHandler(this.PrecentIconMenuItem_ShowFlyoutForm_Click);
             // 
@@ -72,7 +72,7 @@ namespace TaskProgresser.WinForms
             PrecentIconMenuItem_HideIcon});
             this.IconMainMenuStrip.Name = "IconMainMenuStrip";
             this.IconMainMenuStrip.ShowImageMargin = false;
-            this.IconMainMenuStrip.Size = new System.Drawing.Size(220, 52);
+            this.IconMainMenuStrip.Size = new System.Drawing.Size(180, 48);
             this.IconMainMenuStrip.Text = "Меню";
             // 
             // MainProgressBar
@@ -96,7 +96,7 @@ namespace TaskProgresser.WinForms
             this.PrecentLabel.Location = new System.Drawing.Point(195, 16);
             this.PrecentLabel.Margin = new System.Windows.Forms.Padding(0);
             this.PrecentLabel.Name = "PrecentLabel";
-            this.PrecentLabel.Size = new System.Drawing.Size(52, 25);
+            this.PrecentLabel.Size = new System.Drawing.Size(41, 20);
             this.PrecentLabel.TabIndex = 11;
             this.PrecentLabel.Text = "59%";
             // 
@@ -110,7 +110,7 @@ namespace TaskProgresser.WinForms
             this.StartDateTimePicker.MaxDate = new System.DateTime(2026, 6, 17, 0, 0, 0, 0);
             this.StartDateTimePicker.MinDate = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
             this.StartDateTimePicker.Name = "StartDateTimePicker";
-            this.StartDateTimePicker.Size = new System.Drawing.Size(130, 22);
+            this.StartDateTimePicker.Size = new System.Drawing.Size(130, 20);
             this.StartDateTimePicker.TabIndex = 12;
             this.StartDateTimePicker.Value = new System.DateTime(2025, 4, 10, 0, 0, 0, 0);
             // 
@@ -123,7 +123,7 @@ namespace TaskProgresser.WinForms
             this.EndDateTimePicker.MaxDate = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             this.EndDateTimePicker.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
             this.EndDateTimePicker.Name = "EndDateTimePicker";
-            this.EndDateTimePicker.Size = new System.Drawing.Size(130, 22);
+            this.EndDateTimePicker.Size = new System.Drawing.Size(130, 20);
             this.EndDateTimePicker.TabIndex = 13;
             this.EndDateTimePicker.Value = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             // 

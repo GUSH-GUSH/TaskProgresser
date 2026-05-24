@@ -7,12 +7,13 @@ using TaskProgresser.WinForms.Controls;
 using TaskProgresser.Core.Models;
 using TaskProgresser.Core.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using TaskProgresser.WinForms.ApiClients;
 
 namespace TaskProgresser.WinForms.Forms.UserControls
 {
-    public partial class TaskControl : ClickableUserControl
+    public partial class TaskControl : ClickableUserControl, IDisposable
     {
-        
+
         #region --- Fields ---
 
         private TaskItem _task;
@@ -66,6 +67,8 @@ namespace TaskProgresser.WinForms.Forms.UserControls
             set => DateRangeControl.DateRange.SetDateRange(Start, value);
         }
 
+        public TaskAnalyticsService.TaskState TaskState { get; private set; }
+
         #endregion
 
         #region --- SETUP ---
@@ -76,21 +79,25 @@ namespace TaskProgresser.WinForms.Forms.UserControls
             Task = new TaskItem();
         }
 
-        public TaskControl(TaskItem task) : this() {
+        public TaskControl(TaskItem task) : this()
+        {
             Setup(task);
         }
 
         private void TaskControl_Load(object sender, EventArgs e)
         {
             NUD_Precision.Value = DateRangeControl.Precision;
-            DateRangeControl.HideIcon += () => {
+            DateRangeControl.HideIcon += () =>
+            {
                 CHB_AddToTray.Checked = false;
             };
+            ProgressUpdaterService.Tick += ApplyVisualState;
         }
 
         public void Setup(TaskItem task) => Task = task;
 
-        private void SetupDefaultValue() {
+        private void SetupDefaultValue()
+        {
             Title = "Назва";
             DateRange = DateRangeControl.DefaultDateRange;
             DateRangeControl.RangeName = Title;
@@ -99,20 +106,22 @@ namespace TaskProgresser.WinForms.Forms.UserControls
             ApplyVisualState();
         }
 
+        public new void Dispose() {
+            ProgressUpdaterService.Tick -= ApplyVisualState;
+            base.Dispose();
+        }
         #endregion
 
         #region --- EVENTS HANDLERS ---
 
         private void NUD_Accurancy_ValueChanged(object sender, EventArgs e)
         {
+            if (Task == null) return;
             Task.Precision = DateRangeControl.Precision = (byte)NUD_Precision.Value;
-            if(Task.IsCompleted) UpdateCompletePrecentage();
+            if (Task.IsCompleted) UpdateCompletePrecentage();
             TaskEdited?.Invoke(null);
         }
-        private void BTN_GetInfo_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(GetStatistics());
-        }
+
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             var editForm = new AddEditTaskForm(Task);
@@ -142,36 +151,6 @@ namespace TaskProgresser.WinForms.Forms.UserControls
 
         #endregion
 
-        #region --- DEBUG ---
-
-        private string GetStatistics()
-        {
-            double precentPerSecond = 100.0 / DateRangeControl.DateRange.Length.TotalSeconds;
-            double precentPerMinute = 100.0 / DateRangeControl.DateRange.Length.TotalMinutes;
-            double precentPerDay = 100.0 / DateRangeControl.DateRange.Length.TotalDays;
-            double precentPerWeek = 100.0 / DateRangeControl.DateRange.TotalWeeks;
-
-            return $"Процент в секунду = {precentPerSecond.ToString("F6")}\n" +
-                   $"Процент в минуту = {precentPerMinute.ToString("F6")}\n" +
-                   $"Процент в день = {precentPerDay.ToString("F6")}\n" +
-                   $"Процент в неделю = {precentPerWeek.ToString("F6")}";
-        }
-
-        void debug_info(DateRange dateRange, DateTime point)
-        {
-
-            Debug.WriteLine($"Range: {dateRange}");
-            Debug.WriteLine($"Date: {point}");
-            Debug.WriteLine($"Day of semester: {dateRange.GetDayOf(point)}/{dateRange.TotalDays}");
-            Debug.WriteLine($"Num of week: {dateRange.GetWeekOf(point)}/{dateRange.TotalWeeks}");
-            Debug.WriteLine($"Day of week: {point.DayOfWeek}");
-            Debug.WriteLine($"Total precent: {Math.Round(dateRange.GetFractionOf(point) * 100, 3)}%");
-            Debug.WriteLine($"Week mark: " + ((dateRange.GetWeekOf(point) % 2 == 0) ? "Znamenyk" : "Chiselnyk"));
-
-        }
-
-        #endregion
-
         #region --- EVENTS ---
 
         public event Action<TaskItem> TaskDeleted;
@@ -184,6 +163,71 @@ namespace TaskProgresser.WinForms.Forms.UserControls
 
         private void ApplyVisualState()
         {
+            if (Task == null) return;
+
+            var taskState = TaskAnalyticsService.GetState(Task, DateTime.Now);
+
+            if (taskState == TaskState) return;
+
+            TaskState = taskState;
+
+            LBL_Status.Text = TaskAnalyticsService.TaskStateTitles[taskState];
+
+            switch (taskState)
+            {
+                case TaskAnalyticsService.TaskState.NotStarted:
+                    ResultPanel.Visible = false;
+                    CHB_AddToTray.Visible = true;
+                    BTN_Complete.Text = "Виконати";
+                    BTN_Complete.Enabled = false;
+                    BTN_Complete.ForeColor = Color.Green;
+                    DateRangeControl.AutoUpdate = true;
+                    LBL_Status.ForeColor = Color.Black;
+                    break;
+                case TaskAnalyticsService.TaskState.InProgress:
+                    ResultPanel.Visible = false;
+                    CHB_AddToTray.Visible = true;
+                    BTN_Complete.Text = "Виконати";
+                    BTN_Complete.Enabled = true;
+                    BTN_Complete.ForeColor = Color.Green;
+                    DateRangeControl.AutoUpdate = true;
+                    LBL_Status.ForeColor = Color.Green;
+                    break;
+                case TaskAnalyticsService.TaskState.Overduing:
+                    ResultPanel.Visible = false;
+                    CHB_AddToTray.Visible = true;
+                    BTN_Complete.Text = "Виконати";
+                    BTN_Complete.Enabled = true;
+                    BTN_Complete.ForeColor = Color.Red;
+                    DateRangeControl.AutoUpdate = true;
+                    LBL_Status.ForeColor = Color.Red;
+                    break;
+                case TaskAnalyticsService.TaskState.CompletedOvertime:
+                    ResultPanel.Visible = true;
+                    CHB_AddToTray.Visible = false;
+                    BTN_Complete.Text = "Скасувати виконання";
+                    BTN_Complete.ForeColor = Color.Black;
+                    DateRangeControl.AutoUpdate = false;
+                    DateRangeControl.EnableIcon = false;
+                    Lbl_CompletedAt.Text = $"Дата виконання: {Task.CompletedAt?.ToString("g")}";
+                    LBL_Еfficiency.ForeColor = Color.Red;
+                    LBL_Status.ForeColor = Color.Red;
+                    UpdateCompletePrecentage();
+                    break;
+                case TaskAnalyticsService.TaskState.CompletedInTime:
+                    ResultPanel.Visible = true;
+                    CHB_AddToTray.Visible = false;
+                    BTN_Complete.Text = "Скасувати виконання";
+                    BTN_Complete.ForeColor = Color.Black;
+                    DateRangeControl.AutoUpdate = false;
+                    DateRangeControl.EnableIcon = false;
+                    Lbl_CompletedAt.Text = $"Дата виконання: {Task.CompletedAt?.ToString("g")}";
+                    LBL_Еfficiency.ForeColor = Color.Green;
+                    LBL_Status.ForeColor = Color.Green;
+                    UpdateCompletePrecentage();
+                    break;
+            }
+            /*
             if (Task?.IsCompleted ?? false) // CHACK: Task may be not null
             {
                 // --- РЕЖИМ ВИКОНАНОЇ ЗАДАЧІ ЗАДАЧИ ---
@@ -204,10 +248,15 @@ namespace TaskProgresser.WinForms.Forms.UserControls
                 BTN_Complete.Text = "Виконати";
                 BTN_Complete.ForeColor = Color.Green;
                 DateRangeControl.AutoUpdate = true;
-            }
+            }*/
         }
 
-        void UpdateCompletePrecentage() => LBL_Еfficiency.Text = $"Виконано за {TaskAnalyticsService.CalculateEfficiency(Task)}% відведеного часу!";
+        void UpdateCompletePrecentage()
+        {
+            var duingPrecentage = TaskAnalyticsService.CalculateEfficiency(Task);
+
+            LBL_Еfficiency.Text = $"Виконано за {duingPrecentage}% часу";
+        }
 
         #endregion
 

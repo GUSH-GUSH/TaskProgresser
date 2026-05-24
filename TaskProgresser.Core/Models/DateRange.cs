@@ -55,7 +55,6 @@ namespace TaskProgresser.Core.Models
             return 0;
         }
 
-
         /// <summary>
         /// Принимает временную отметку, и возвращает долю, которую она составляет от текущего диапазона
         /// </summary>
@@ -64,7 +63,7 @@ namespace TaskProgresser.Core.Models
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public double GetFractionOf(DateTime point)
         {
-            VerifyDateTimePoint(point);
+            //VerifyDateTimePoint(point);
             return (point - Start).TotalMilliseconds / Length.TotalMilliseconds;
         }
 
@@ -79,7 +78,6 @@ namespace TaskProgresser.Core.Models
             VerifyDateTimePoint(point);
             return (int)(point - Start).TotalDays;
         }
-
 
         public override string ToString() => $"[{Start}, {End}]";
         public override bool Equals(object obj) => obj?.GetType() == GetType() && obj.ToString() == ToString();

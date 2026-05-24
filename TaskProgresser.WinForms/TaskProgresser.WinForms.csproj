@@ -106,10 +106,10 @@
   <ItemGroup>
     <Compile Include="ApiClients\AuthApiClient.cs" />
     <Compile Include="ApiClients\BaseApiClient.cs" />
-    <Compile Include="ApiClients\Controls\ClickableUserControl.cs">
+    <Compile Include="Controls\ClickableUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ApiClients\Controls\ClickableUserControl.Designer.cs">
+    <Compile Include="Controls\ClickableUserControl.Designer.cs">
       <DependentUpon>ClickableUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddEditTaskForm.cs">
@@ -130,7 +130,7 @@
     <Compile Include="Forms\DebugForms\TextIconTestForm.Designer.cs">
       <DependentUpon>TextIconTestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApiClients\Controls\DynamicTextNotifyIcon.cs">
+    <Compile Include="Controls\DynamicTextNotifyIcon.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\TrayFlayoutTaskForm.cs">
@@ -139,10 +139,10 @@
     <Compile Include="Forms\TrayFlayoutTaskForm.Designer.cs">
       <DependentUpon>TrayFlayoutTaskForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApiClients\Controls\DateRangeControl.cs">
+    <Compile Include="Controls\DateRangeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ApiClients\Controls\DateRangeControl.Designer.cs">
+    <Compile Include="Controls\DateRangeControl.Designer.cs">
       <DependentUpon>DateRangeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
@@ -151,10 +151,10 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApiClients\Controls\TaskControl.cs">
+    <Compile Include="Controls\TaskControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ApiClients\Controls\TaskControl.Designer.cs">
+    <Compile Include="Controls\TaskControl.Designer.cs">
       <DependentUpon>TaskControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -164,7 +164,9 @@
     <Compile Include="Services\ProgressUpdaterService.cs" />
     <Compile Include="Services\DateTimePickersRangeController.cs" />
     <Compile Include="ApiClients\TasksApiClient.cs" />
-    <EmbeddedResource Include="ApiClients\Controls\ClickableUserControl.resx">
+    <Compile Include="Services\TaskFilterService.cs" />
+    <Compile Include="Utils\ProgressBarExtensions.cs" />
+    <EmbeddedResource Include="Controls\ClickableUserControl.resx">
       <DependentUpon>ClickableUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddEditTaskForm.resx">
@@ -179,13 +181,13 @@
     <EmbeddedResource Include="Forms\TrayFlayoutTaskForm.resx">
       <DependentUpon>TrayFlayoutTaskForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApiClients\Controls\DateRangeControl.resx">
+    <EmbeddedResource Include="Controls\DateRangeControl.resx">
       <DependentUpon>DateRangeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApiClients\Controls\TaskControl.resx">
+    <EmbeddedResource Include="Controls\TaskControl.resx">
       <DependentUpon>TaskControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

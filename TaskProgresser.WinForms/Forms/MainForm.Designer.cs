@@ -32,11 +32,14 @@
             System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_OpenMainWindow;
             System.Windows.Forms.ToolStripSeparator ToolStripSeparator;
             System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_CloseApp;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.Label Label_CurDateTimeTitle;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.MainContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.BTN_Logout = new System.Windows.Forms.Button();
+            this.LBL_Username = new System.Windows.Forms.Label();
+            this.LBL_UsernameTitle = new System.Windows.Forms.Label();
             this.Label_CurrentDateTime = new System.Windows.Forms.Label();
             this.BTN_Add = new System.Windows.Forms.Button();
             this.CHB_IsLocalData = new System.Windows.Forms.CheckBox();
@@ -44,13 +47,11 @@
             this.TabControl = new System.Windows.Forms.TabControl();
             this.TabPage_Active = new System.Windows.Forms.TabPage();
             this.FlowPanel_Active = new System.Windows.Forms.FlowLayoutPanel();
-            this.TSKCNTRL_Bakalavr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
-            this.TSKCTRL_Semestr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
             this.TabPage_Completed = new System.Windows.Forms.TabPage();
             this.FlowPanel_Completed = new System.Windows.Forms.FlowLayoutPanel();
-            this.LBL_UsernameTitle = new System.Windows.Forms.Label();
-            this.LBL_Username = new System.Windows.Forms.Label();
-            this.BTN_Logout = new System.Windows.Forms.Button();
+            this.TSKCNTRL_Bakalavr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
+            this.TSKCTRL_Semestr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
+            this.BTN_Update = new System.Windows.Forms.Button();
             ToolStripMenuItem_OpenMainWindow = new System.Windows.Forms.ToolStripMenuItem();
             ToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             ToolStripMenuItem_CloseApp = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,6 +84,15 @@
             ToolStripMenuItem_CloseApp.Text = "Закрити програму";
             ToolStripMenuItem_CloseApp.Click += new System.EventHandler(this.ToolStripMenuItem_CloseApp_Click);
             // 
+            // Label_CurDateTimeTitle
+            // 
+            Label_CurDateTimeTitle.AutoSize = true;
+            Label_CurDateTimeTitle.Location = new System.Drawing.Point(7, 17);
+            Label_CurDateTimeTitle.Name = "Label_CurDateTimeTitle";
+            Label_CurDateTimeTitle.Size = new System.Drawing.Size(112, 13);
+            Label_CurDateTimeTitle.TabIndex = 8;
+            Label_CurDateTimeTitle.Text = "Поточна дата та час:";
+            // 
             // MainIcon
             // 
             this.MainIcon.ContextMenuStrip = this.MainContextMenu;
@@ -113,14 +123,35 @@
             this.TopPanel.Size = new System.Drawing.Size(664, 33);
             this.TopPanel.TabIndex = 15;
             // 
-            // Label_CurDateTimeTitle
+            // BTN_Logout
             // 
-            Label_CurDateTimeTitle.AutoSize = true;
-            Label_CurDateTimeTitle.Location = new System.Drawing.Point(7, 17);
-            Label_CurDateTimeTitle.Name = "Label_CurDateTimeTitle";
-            Label_CurDateTimeTitle.Size = new System.Drawing.Size(112, 13);
-            Label_CurDateTimeTitle.TabIndex = 8;
-            Label_CurDateTimeTitle.Text = "Поточна дата та час:";
+            this.BTN_Logout.Location = new System.Drawing.Point(552, 5);
+            this.BTN_Logout.Name = "BTN_Logout";
+            this.BTN_Logout.Size = new System.Drawing.Size(105, 23);
+            this.BTN_Logout.TabIndex = 2;
+            this.BTN_Logout.Text = "Вихід з аккаунта";
+            this.BTN_Logout.UseVisualStyleBackColor = true;
+            this.BTN_Logout.Click += new System.EventHandler(this.BTN_Logout_Click);
+            // 
+            // LBL_Username
+            // 
+            this.LBL_Username.AutoSize = true;
+            this.LBL_Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LBL_Username.Location = new System.Drawing.Point(96, 9);
+            this.LBL_Username.Name = "LBL_Username";
+            this.LBL_Username.Size = new System.Drawing.Size(33, 16);
+            this.LBL_Username.TabIndex = 1;
+            this.LBL_Username.Text = "ім\'я";
+            // 
+            // LBL_UsernameTitle
+            // 
+            this.LBL_UsernameTitle.AutoSize = true;
+            this.LBL_UsernameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LBL_UsernameTitle.Location = new System.Drawing.Point(3, 9);
+            this.LBL_UsernameTitle.Name = "LBL_UsernameTitle";
+            this.LBL_UsernameTitle.Size = new System.Drawing.Size(95, 16);
+            this.LBL_UsernameTitle.TabIndex = 0;
+            this.LBL_UsernameTitle.Text = "Користувач";
             // 
             // Label_CurrentDateTime
             // 
@@ -148,7 +179,7 @@
             // 
             this.CHB_IsLocalData.AutoSize = true;
             this.CHB_IsLocalData.Enabled = false;
-            this.CHB_IsLocalData.Location = new System.Drawing.Point(369, 12);
+            this.CHB_IsLocalData.Location = new System.Drawing.Point(231, 13);
             this.CHB_IsLocalData.Name = "CHB_IsLocalData";
             this.CHB_IsLocalData.Size = new System.Drawing.Size(141, 17);
             this.CHB_IsLocalData.TabIndex = 13;
@@ -159,6 +190,7 @@
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.BottomPanel.Controls.Add(this.BTN_Update);
             this.BottomPanel.Controls.Add(this.CHB_IsLocalData);
             this.BottomPanel.Controls.Add(this.BTN_Add);
             this.BottomPanel.Controls.Add(this.Label_CurrentDateTime);
@@ -207,6 +239,27 @@
             this.FlowPanel_Active.TabIndex = 8;
             this.FlowPanel_Active.WrapContents = false;
             // 
+            // TabPage_Completed
+            // 
+            this.TabPage_Completed.Controls.Add(this.FlowPanel_Completed);
+            this.TabPage_Completed.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_Completed.Name = "TabPage_Completed";
+            this.TabPage_Completed.Size = new System.Drawing.Size(656, 345);
+            this.TabPage_Completed.TabIndex = 2;
+            this.TabPage_Completed.Text = "Завершені задачі";
+            this.TabPage_Completed.UseVisualStyleBackColor = true;
+            // 
+            // FlowPanel_Completed
+            // 
+            this.FlowPanel_Completed.AutoScroll = true;
+            this.FlowPanel_Completed.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.FlowPanel_Completed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowPanel_Completed.Location = new System.Drawing.Point(0, 0);
+            this.FlowPanel_Completed.Name = "FlowPanel_Completed";
+            this.FlowPanel_Completed.Padding = new System.Windows.Forms.Padding(3);
+            this.FlowPanel_Completed.Size = new System.Drawing.Size(656, 345);
+            this.FlowPanel_Completed.TabIndex = 9;
+            // 
             // TSKCNTRL_Bakalavr
             // 
             this.TSKCNTRL_Bakalavr.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -236,56 +289,18 @@
             this.TSKCTRL_Semestr.Task = null;
             this.TSKCTRL_Semestr.Title = "Практика";
             // 
-            // TabPage_Completed
+            // BTN_Update
             // 
-            this.TabPage_Completed.Controls.Add(this.FlowPanel_Completed);
-            this.TabPage_Completed.Location = new System.Drawing.Point(4, 22);
-            this.TabPage_Completed.Name = "TabPage_Completed";
-            this.TabPage_Completed.Size = new System.Drawing.Size(656, 378);
-            this.TabPage_Completed.TabIndex = 2;
-            this.TabPage_Completed.Text = "Завершені задачі";
-            this.TabPage_Completed.UseVisualStyleBackColor = true;
-            // 
-            // FlowPanel_Completed
-            // 
-            this.FlowPanel_Completed.AutoScroll = true;
-            this.FlowPanel_Completed.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.FlowPanel_Completed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FlowPanel_Completed.Location = new System.Drawing.Point(0, 0);
-            this.FlowPanel_Completed.Name = "FlowPanel_Completed";
-            this.FlowPanel_Completed.Padding = new System.Windows.Forms.Padding(3);
-            this.FlowPanel_Completed.Size = new System.Drawing.Size(656, 378);
-            this.FlowPanel_Completed.TabIndex = 9;
-            // 
-            // LBL_UsernameTitle
-            // 
-            this.LBL_UsernameTitle.AutoSize = true;
-            this.LBL_UsernameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LBL_UsernameTitle.Location = new System.Drawing.Point(3, 9);
-            this.LBL_UsernameTitle.Name = "LBL_UsernameTitle";
-            this.LBL_UsernameTitle.Size = new System.Drawing.Size(95, 16);
-            this.LBL_UsernameTitle.TabIndex = 0;
-            this.LBL_UsernameTitle.Text = "Користувач";
-            // 
-            // LBL_Username
-            // 
-            this.LBL_Username.AutoSize = true;
-            this.LBL_Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LBL_Username.Location = new System.Drawing.Point(96, 9);
-            this.LBL_Username.Name = "LBL_Username";
-            this.LBL_Username.Size = new System.Drawing.Size(33, 16);
-            this.LBL_Username.TabIndex = 1;
-            this.LBL_Username.Text = "ім\'я";
-            // 
-            // BTN_Logout
-            // 
-            this.BTN_Logout.Location = new System.Drawing.Point(552, 5);
-            this.BTN_Logout.Name = "BTN_Logout";
-            this.BTN_Logout.Size = new System.Drawing.Size(105, 23);
-            this.BTN_Logout.TabIndex = 2;
-            this.BTN_Logout.Text = "Вихід з аккаунта";
-            this.BTN_Logout.UseVisualStyleBackColor = true;
-            this.BTN_Logout.Click += new System.EventHandler(this.BTN_Logout_Click);
+            this.BTN_Update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Update.AutoSize = true;
+            this.BTN_Update.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BTN_Update.Location = new System.Drawing.Point(465, 12);
+            this.BTN_Update.Name = "BTN_Update";
+            this.BTN_Update.Size = new System.Drawing.Size(70, 26);
+            this.BTN_Update.TabIndex = 14;
+            this.BTN_Update.Text = "Оновити";
+            this.BTN_Update.UseVisualStyleBackColor = true;
+            this.BTN_Update.Click += new System.EventHandler(this.BTN_Update_Click);
             // 
             // MainForm
             // 
@@ -334,6 +349,7 @@
         private System.Windows.Forms.FlowLayoutPanel FlowPanel_Completed;
         private System.Windows.Forms.Button BTN_Logout;
         private System.Windows.Forms.Label LBL_Username;
+        private System.Windows.Forms.Button BTN_Update;
     }
 }
 

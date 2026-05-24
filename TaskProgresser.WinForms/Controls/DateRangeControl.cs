@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using TaskProgresser.Core.Models;
 using TaskProgresser.WinForms.Controls;
 using TaskProgresser.WinForms.ApiClients;
+//using static TaskProgresser.WinForms.Utils.ProgressBarExtensions;
 using WinFormsExtensions;
 
 namespace TaskProgresser.WinForms
@@ -39,8 +40,8 @@ namespace TaskProgresser.WinForms
         #region --- fields ---
 
         private DateTimePickersRangeController pickersController;
-        private double fract; // Доля текущей даты в диапазоне от 0 до 1 (0 - начало, 1 - конец диапазона)
-        private byte digits = 3; // Количество знаков после запятой для процентов
+        private double fract;
+        private byte digits = 3;
         private bool _enableIcon;
         private bool _enableEdit;
         private bool _autoUpdate;
@@ -70,14 +71,11 @@ namespace TaskProgresser.WinForms
                 {
                     case DateRangeControlState.Unstarted:
                         Fract = 0;
-                        //Enabled = false;
                         break;
                     case DateRangeControlState.Finished:
                         Fract = 1;
-                        //Enabled = false;
                         break;
                     case DateRangeControlState.InProgress:
-                        //Enabled = true;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(value), value, null);
@@ -92,8 +90,8 @@ namespace TaskProgresser.WinForms
             get => fract;
             set
             {
-                if (value < 0 || value > 1)
-                    throw new ArgumentOutOfRangeException(nameof(value), "Fraction must be between 0 and 1.");
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(value), "Fraction must be more than 0");
                 fract = value;
                 UpdateVisual();
             }
@@ -158,6 +156,7 @@ namespace TaskProgresser.WinForms
         {
             AutoUpdate = true;
             this.Disposed += DateRangeControl_Disposed;
+            //ProgressBarColor = ProgressBarColor.Red;
         }
 
         private void DateRangeControl_Disposed(object sender, EventArgs e)
@@ -184,6 +183,7 @@ namespace TaskProgresser.WinForms
                     return;
                 case 1:
                     State = DateRangeControlState.Finished;
+                    Fract = DateRange.GetFractionOf(point);
                     return;
                 case 0:
                     State = DateRangeControlState.InProgress;
@@ -201,8 +201,15 @@ namespace TaskProgresser.WinForms
 
         private void UpdateVisual()
         {
-            MainProgressBar.Value = (int)(Fract * MainProgressBar.Maximum);
+            MainProgressBar.Value = Math.Min(
+                (int)(Fract * MainProgressBar.Maximum),
+                MainProgressBar.Maximum
+            );
             PrecentLabel.Text = $"{Precent}%";
+
+            if ( Fract > 1 ) PrecentLabel.ForeColor = Color.Red;
+            else PrecentLabel.ForeColor = Color.Black;
+
             UpdatePrecentLabelLocation();
 
             if (EnableIcon) UpdatePrecentIcon();
@@ -211,7 +218,7 @@ namespace TaskProgresser.WinForms
         private void UpdatePrecentLabelLocation()
         {
             PrecentLabel.Location = new Point(
-                x: (int)(MainProgressBar.Location.X - PrecentLabel.Size.Width / 2 + MainProgressBar.Size.Width * fract),
+                x: (int)(MainProgressBar.Location.X - PrecentLabel.Size.Width / 2 + MainProgressBar.Size.Width * Math.Min(fract, 1.0)),
                 y: PrecentLabel.Location.Y
             );
         }

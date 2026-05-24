@@ -136,6 +136,13 @@ namespace TaskProgresser.WinForms
             Show();
         }
 
+        private async void BTN_Update_Click(object sender, EventArgs e)
+        {
+            ClearTasks();
+            await LoadData();
+            RenderTasks();
+        }
+
         #endregion --- Events Handlers ---
 
         #region --- Task Control --- (move to a separate class)
@@ -147,7 +154,6 @@ namespace TaskProgresser.WinForms
             {
                 await _tasksApiClient.AddTaskAsync(newTask);
                 RenderTasks();
-                //SaveAllData();
                 Invoke(new Action(() => { MessageBox.Show(this, "Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
             }
             catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
@@ -177,7 +183,6 @@ namespace TaskProgresser.WinForms
                     await _tasksApiClient.DeleteTaskAsync(taskToRemove.Id);
                     _allTasks.Remove(taskToRemove);
                     RenderTasks();
-                    //SaveAllData();
                     Invoke(new Action(() => { MessageBox.Show(this, "Видалення успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
                 }
                 catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
@@ -195,7 +200,6 @@ namespace TaskProgresser.WinForms
                         task.CompletedAt = DateTime.Now;
                         await _tasksApiClient.UpdateTaskAsync(task);
                         RenderTasks();
-                        //SaveAllData();
                         Invoke(new Action(() => { MessageBox.Show(this, $"Задачу успішно виконано за {TaskAnalyticsService.CalculateEfficiency(task)}% часу!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None); }));
                     }
                 }
@@ -204,7 +208,6 @@ namespace TaskProgresser.WinForms
                     task.CompletedAt = null;
                     await _tasksApiClient.UpdateTaskAsync(task);
                     RenderTasks();
-                    //SaveAllData();
                     Invoke(new Action(() => { MessageBox.Show(this, $"Задачу додано в активні!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None); }));
                 }
             }
@@ -217,21 +220,12 @@ namespace TaskProgresser.WinForms
 
         private async Task LoadData()
         {
-            //if (IsLocalStorage) _allTasks = JsonTaskSeializer.LoadTasks();
-            //else
-            //{
             try { _allTasks = await _tasksApiClient.GetAllTasksAsync(); }
             catch (Exception ex) {
                 Invoke(
                 new Action(() => MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"))
                 );
             }
-            //}
-        }
-
-        private async void SaveAllData()
-        {
-            //else await TasksApiClient.(_allTasks);
         }
 
         #endregion --- Work with data ---
@@ -257,8 +251,6 @@ namespace TaskProgresser.WinForms
 
         private void RenderTasks()
         {
-            //    if (this.InvokeRequired) throw new Exception ("Invoke required failed!");
-
             this.Invoke(new Action(() =>
             {
 
