@@ -44,6 +44,7 @@
             this.BTN_Add = new System.Windows.Forms.Button();
             this.CHB_IsLocalData = new System.Windows.Forms.CheckBox();
             this.BottomPanel = new System.Windows.Forms.Panel();
+            this.BTN_Update = new System.Windows.Forms.Button();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.TabPage_Active = new System.Windows.Forms.TabPage();
             this.FlowPanel_Active = new System.Windows.Forms.FlowLayoutPanel();
@@ -51,7 +52,7 @@
             this.FlowPanel_Completed = new System.Windows.Forms.FlowLayoutPanel();
             this.TSKCNTRL_Bakalavr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
             this.TSKCTRL_Semestr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
-            this.BTN_Update = new System.Windows.Forms.Button();
+            this.BTN_Statistics = new System.Windows.Forms.Button();
             ToolStripMenuItem_OpenMainWindow = new System.Windows.Forms.ToolStripMenuItem();
             ToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             ToolStripMenuItem_CloseApp = new System.Windows.Forms.ToolStripMenuItem();
@@ -185,11 +186,13 @@
             this.CHB_IsLocalData.TabIndex = 13;
             this.CHB_IsLocalData.Text = "Локальное хранилище";
             this.CHB_IsLocalData.UseVisualStyleBackColor = true;
+            this.CHB_IsLocalData.Visible = false;
             this.CHB_IsLocalData.CheckedChanged += new System.EventHandler(this.CHB_IsLocalData_CheckedChangedAsync);
             // 
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.BottomPanel.Controls.Add(this.BTN_Statistics);
             this.BottomPanel.Controls.Add(this.BTN_Update);
             this.BottomPanel.Controls.Add(this.CHB_IsLocalData);
             this.BottomPanel.Controls.Add(this.BTN_Add);
@@ -200,6 +203,19 @@
             this.BottomPanel.Name = "BottomPanel";
             this.BottomPanel.Size = new System.Drawing.Size(664, 45);
             this.BottomPanel.TabIndex = 8;
+            // 
+            // BTN_Update
+            // 
+            this.BTN_Update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Update.AutoSize = true;
+            this.BTN_Update.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BTN_Update.Location = new System.Drawing.Point(465, 12);
+            this.BTN_Update.Name = "BTN_Update";
+            this.BTN_Update.Size = new System.Drawing.Size(70, 26);
+            this.BTN_Update.TabIndex = 14;
+            this.BTN_Update.Text = "Оновити";
+            this.BTN_Update.UseVisualStyleBackColor = true;
+            this.BTN_Update.Click += new System.EventHandler(this.BTN_Update_Click);
             // 
             // TabControl
             // 
@@ -289,18 +305,18 @@
             this.TSKCTRL_Semestr.Task = null;
             this.TSKCTRL_Semestr.Title = "Практика";
             // 
-            // BTN_Update
+            // BTN_Statistics
             // 
-            this.BTN_Update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Update.AutoSize = true;
-            this.BTN_Update.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BTN_Update.Location = new System.Drawing.Point(465, 12);
-            this.BTN_Update.Name = "BTN_Update";
-            this.BTN_Update.Size = new System.Drawing.Size(70, 26);
-            this.BTN_Update.TabIndex = 14;
-            this.BTN_Update.Text = "Оновити";
-            this.BTN_Update.UseVisualStyleBackColor = true;
-            this.BTN_Update.Click += new System.EventHandler(this.BTN_Update_Click);
+            this.BTN_Statistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Statistics.AutoSize = true;
+            this.BTN_Statistics.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BTN_Statistics.Location = new System.Drawing.Point(369, 12);
+            this.BTN_Statistics.Name = "BTN_Statistics";
+            this.BTN_Statistics.Size = new System.Drawing.Size(90, 26);
+            this.BTN_Statistics.TabIndex = 15;
+            this.BTN_Statistics.Text = "Статистика";
+            this.BTN_Statistics.UseVisualStyleBackColor = true;
+            this.BTN_Statistics.Click += new System.EventHandler(this.BTN_Statistics_Click);
             // 
             // MainForm
             // 
@@ -350,6 +366,7 @@
         private System.Windows.Forms.Button BTN_Logout;
         private System.Windows.Forms.Label LBL_Username;
         private System.Windows.Forms.Button BTN_Update;
+        private System.Windows.Forms.Button BTN_Statistics;
     }
 }
 

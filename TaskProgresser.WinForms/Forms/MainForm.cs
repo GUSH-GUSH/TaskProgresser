@@ -143,6 +143,17 @@ namespace TaskProgresser.WinForms
             RenderTasks();
         }
 
+        
+        private async void BTN_Statistics_Click(object sender, EventArgs e)
+        {
+            Hide();
+            new StatisticsForm().ShowDialog(this);
+            Show();
+            ClearTasks();
+            await LoadData();
+            RenderTasks();
+        }
+
         #endregion --- Events Handlers ---
 
         #region --- Task Control --- (move to a separate class)

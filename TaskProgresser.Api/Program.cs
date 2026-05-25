@@ -45,9 +45,11 @@ builder.Services.AddAuthentication(options =>
 
 // Add services to the container.
 
+builder.Services.AddScoped<JsonTaskService>();
+builder.Services.AddScoped<StatisticsService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddScoped<JsonTaskService>();
+
 
 // ... 
 
