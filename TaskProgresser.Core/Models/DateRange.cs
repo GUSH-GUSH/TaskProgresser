@@ -16,7 +16,7 @@ namespace TaskProgresser.Core.Models
         public void SetDateRange(DateTime start, DateTime end)
         {
             if (start > end)
-                throw new ArgumentException("The argument \"start\" can't be greater than \"end\"");
+                throw new ArgumentException("The argument \"start\" can't be greater or equal to \"end\"");
 
             Start = start;
             End = end;
@@ -64,6 +64,7 @@ namespace TaskProgresser.Core.Models
         public double GetFractionOf(DateTime point)
         {
             //VerifyDateTimePoint(point);
+            if (Length.TotalMilliseconds == 0) return 0;
             return (point - Start).TotalMilliseconds / Length.TotalMilliseconds;
         }
 
