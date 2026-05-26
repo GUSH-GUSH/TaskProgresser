@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using TaskProgresser.Core.Models;
 using TaskProgresser.WinForms.Controls;
 using TaskProgresser.WinForms.ApiClients;
-//using static TaskProgresser.WinForms.Utils.ProgressBarExtensions;
 using WinFormsExtensions;
 
 namespace TaskProgresser.WinForms

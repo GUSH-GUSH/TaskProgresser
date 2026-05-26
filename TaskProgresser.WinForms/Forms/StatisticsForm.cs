@@ -23,6 +23,11 @@ namespace TaskProgresser.WinForms.Forms
         {
             RenderActiveTasksChart(10, 5, 3);
             RenderCompletedTasksChart(10, 8);
+            SetAvarageCompletedPercent(10);
+        }
+
+        public void SetAvarageCompletedPercent(double percent) {
+            PBWP_AveragePercent.Percent = percent;
         }
 
         public void RenderActiveTasksChart(int notStarted, int inProgress, int overdue)

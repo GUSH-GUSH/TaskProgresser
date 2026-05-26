@@ -44,15 +44,15 @@
             this.BTN_Add = new System.Windows.Forms.Button();
             this.CHB_IsLocalData = new System.Windows.Forms.CheckBox();
             this.BottomPanel = new System.Windows.Forms.Panel();
+            this.BTN_Statistics = new System.Windows.Forms.Button();
             this.BTN_Update = new System.Windows.Forms.Button();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.TabPage_Active = new System.Windows.Forms.TabPage();
             this.FlowPanel_Active = new System.Windows.Forms.FlowLayoutPanel();
-            this.TabPage_Completed = new System.Windows.Forms.TabPage();
-            this.FlowPanel_Completed = new System.Windows.Forms.FlowLayoutPanel();
             this.TSKCNTRL_Bakalavr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
             this.TSKCTRL_Semestr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
-            this.BTN_Statistics = new System.Windows.Forms.Button();
+            this.TabPage_Completed = new System.Windows.Forms.TabPage();
+            this.FlowPanel_Completed = new System.Windows.Forms.FlowLayoutPanel();
             ToolStripMenuItem_OpenMainWindow = new System.Windows.Forms.ToolStripMenuItem();
             ToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             ToolStripMenuItem_CloseApp = new System.Windows.Forms.ToolStripMenuItem();
@@ -204,6 +204,19 @@
             this.BottomPanel.Size = new System.Drawing.Size(664, 45);
             this.BottomPanel.TabIndex = 8;
             // 
+            // BTN_Statistics
+            // 
+            this.BTN_Statistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Statistics.AutoSize = true;
+            this.BTN_Statistics.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BTN_Statistics.Location = new System.Drawing.Point(369, 12);
+            this.BTN_Statistics.Name = "BTN_Statistics";
+            this.BTN_Statistics.Size = new System.Drawing.Size(90, 26);
+            this.BTN_Statistics.TabIndex = 15;
+            this.BTN_Statistics.Text = "Статистика";
+            this.BTN_Statistics.UseVisualStyleBackColor = true;
+            this.BTN_Statistics.Click += new System.EventHandler(this.BTN_Statistics_Click);
+            // 
             // BTN_Update
             // 
             this.BTN_Update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -255,27 +268,6 @@
             this.FlowPanel_Active.TabIndex = 8;
             this.FlowPanel_Active.WrapContents = false;
             // 
-            // TabPage_Completed
-            // 
-            this.TabPage_Completed.Controls.Add(this.FlowPanel_Completed);
-            this.TabPage_Completed.Location = new System.Drawing.Point(4, 22);
-            this.TabPage_Completed.Name = "TabPage_Completed";
-            this.TabPage_Completed.Size = new System.Drawing.Size(656, 345);
-            this.TabPage_Completed.TabIndex = 2;
-            this.TabPage_Completed.Text = "Завершені задачі";
-            this.TabPage_Completed.UseVisualStyleBackColor = true;
-            // 
-            // FlowPanel_Completed
-            // 
-            this.FlowPanel_Completed.AutoScroll = true;
-            this.FlowPanel_Completed.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.FlowPanel_Completed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FlowPanel_Completed.Location = new System.Drawing.Point(0, 0);
-            this.FlowPanel_Completed.Name = "FlowPanel_Completed";
-            this.FlowPanel_Completed.Padding = new System.Windows.Forms.Padding(3);
-            this.FlowPanel_Completed.Size = new System.Drawing.Size(656, 345);
-            this.FlowPanel_Completed.TabIndex = 9;
-            // 
             // TSKCNTRL_Bakalavr
             // 
             this.TSKCNTRL_Bakalavr.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -305,18 +297,26 @@
             this.TSKCTRL_Semestr.Task = null;
             this.TSKCTRL_Semestr.Title = "Практика";
             // 
-            // BTN_Statistics
+            // TabPage_Completed
             // 
-            this.BTN_Statistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BTN_Statistics.AutoSize = true;
-            this.BTN_Statistics.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BTN_Statistics.Location = new System.Drawing.Point(369, 12);
-            this.BTN_Statistics.Name = "BTN_Statistics";
-            this.BTN_Statistics.Size = new System.Drawing.Size(90, 26);
-            this.BTN_Statistics.TabIndex = 15;
-            this.BTN_Statistics.Text = "Статистика";
-            this.BTN_Statistics.UseVisualStyleBackColor = true;
-            this.BTN_Statistics.Click += new System.EventHandler(this.BTN_Statistics_Click);
+            this.TabPage_Completed.Controls.Add(this.FlowPanel_Completed);
+            this.TabPage_Completed.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_Completed.Name = "TabPage_Completed";
+            this.TabPage_Completed.Size = new System.Drawing.Size(656, 345);
+            this.TabPage_Completed.TabIndex = 2;
+            this.TabPage_Completed.Text = "Завершені задачі";
+            this.TabPage_Completed.UseVisualStyleBackColor = true;
+            // 
+            // FlowPanel_Completed
+            // 
+            this.FlowPanel_Completed.AutoScroll = true;
+            this.FlowPanel_Completed.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.FlowPanel_Completed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowPanel_Completed.Location = new System.Drawing.Point(0, 0);
+            this.FlowPanel_Completed.Name = "FlowPanel_Completed";
+            this.FlowPanel_Completed.Padding = new System.Windows.Forms.Padding(3);
+            this.FlowPanel_Completed.Size = new System.Drawing.Size(656, 345);
+            this.FlowPanel_Completed.TabIndex = 9;
             // 
             // MainForm
             // 
@@ -331,6 +331,7 @@
             this.MaximumSize = new System.Drawing.Size(680, 488);
             this.MinimumSize = new System.Drawing.Size(680, 488);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TaskProgresser.WinForms";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);

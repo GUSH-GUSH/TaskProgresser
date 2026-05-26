@@ -49,7 +49,7 @@ namespace CourseWork.Forms
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(12, 15);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(57, 16);
+            this.lblName.Size = new System.Drawing.Size(46, 13);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Назва*:";
             // 
@@ -59,7 +59,7 @@ namespace CourseWork.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitle.Location = new System.Drawing.Point(15, 31);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(615, 22);
+            this.txtTitle.Size = new System.Drawing.Size(615, 20);
             this.txtTitle.TabIndex = 1;
             // 
             // lblDescription
@@ -67,7 +67,7 @@ namespace CourseWork.Forms
             this.lblDescription.AutoSize = true;
             this.lblDescription.Location = new System.Drawing.Point(12, 62);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(43, 16);
+            this.lblDescription.Size = new System.Drawing.Size(36, 13);
             this.lblDescription.TabIndex = 2;
             this.lblDescription.Text = "Опис:";
             // 
@@ -114,7 +114,7 @@ namespace CourseWork.Forms
             this.lblStartDate.AutoSize = true;
             this.lblStartDate.Location = new System.Drawing.Point(20, 292);
             this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(129, 16);
+            this.lblStartDate.Size = new System.Drawing.Size(101, 13);
             this.lblStartDate.TabIndex = 22;
             this.lblStartDate.Text = "Дата призначення";
             // 
@@ -124,7 +124,7 @@ namespace CourseWork.Forms
             this.lblEndDate.AutoSize = true;
             this.lblEndDate.Location = new System.Drawing.Point(517, 291);
             this.lblEndDate.Name = "lblEndDate";
-            this.lblEndDate.Size = new System.Drawing.Size(122, 16);
+            this.lblEndDate.Size = new System.Drawing.Size(98, 13);
             this.lblEndDate.TabIndex = 23;
             this.lblEndDate.Text = "Дата завершення";
             // 
@@ -161,7 +161,7 @@ namespace CourseWork.Forms
             this.DateRangeControl.EnableEdit = true;
             this.DateRangeControl.EnableIcon = false;
             this.DateRangeControl.Location = new System.Drawing.Point(12, 197);
-            this.DateRangeControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DateRangeControl.Margin = new System.Windows.Forms.Padding(4);
             this.DateRangeControl.MinimumSize = new System.Drawing.Size(300, 90);
             this.DateRangeControl.Name = "DateRangeControl";
             this.DateRangeControl.Precision = ((byte)(3));
@@ -186,6 +186,7 @@ namespace CourseWork.Forms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MinimumSize = new System.Drawing.Size(580, 360);
             this.Name = "AddEditTaskForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Задача";
             this.Load += new System.EventHandler(this.AddEditTaskForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();

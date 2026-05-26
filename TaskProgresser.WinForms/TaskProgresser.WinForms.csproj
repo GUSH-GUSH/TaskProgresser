@@ -113,6 +113,12 @@
     <Compile Include="Controls\ClickableUserControl.Designer.cs">
       <DependentUpon>ClickableUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProgressBarWithPrecent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProgressBarWithPrecent.Designer.cs">
+      <DependentUpon>ProgressBarWithPrecent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddEditTaskForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     <Compile Include="Utils\ProgressBarExtensions.cs" />
     <EmbeddedResource Include="Controls\ClickableUserControl.resx">
       <DependentUpon>ClickableUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProgressBarWithPrecent.resx">
+      <DependentUpon>ProgressBarWithPrecent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddEditTaskForm.resx">
       <DependentUpon>AddEditTaskForm.cs</DependentUpon>
