@@ -107,6 +107,7 @@
   <ItemGroup>
     <Compile Include="ApiClients\AuthApiClient.cs" />
     <Compile Include="ApiClients\BaseApiClient.cs" />
+    <Compile Include="ApiClients\StatisticsApiClient.cs" />
     <Compile Include="Controls\ClickableUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

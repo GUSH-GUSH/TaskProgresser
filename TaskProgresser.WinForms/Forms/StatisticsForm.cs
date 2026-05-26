@@ -8,26 +8,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using TaskProgresser.Core.DTOs;
+using TaskProgresser.WinForms.ApiClients;
 
 namespace TaskProgresser.WinForms.Forms
 {
     public partial class StatisticsForm : Form
     {
-        //TODO Сделать Верхние подписи у диаграм частью диаграммы? (Опционально) Может и не надо. Так удобнее менять
+        private StatisticsApiClient _statisticsApiClient;
+
         public StatisticsForm()
         {
             InitializeComponent();
+            _statisticsApiClient = new StatisticsApiClient();
         }
 
-        private void StatisticsForm_Load(object sender, EventArgs e)
+        private async void StatisticsForm_Load(object sender, EventArgs e)
         {
-            RenderActiveTasksChart(10, 5, 3);
-            RenderCompletedTasksChart(10, 8);
-            SetAvarageCompletedPercent(10);
+            await UpdateStatistics();
         }
 
-        public void SetAvarageCompletedPercent(double percent) {
+        public void SetAvarageCompletedPercent(double percent)
+        {
             PBWP_AveragePercent.Percent = percent;
+        }
+
+        public void SetHeader(int active, int completed, int total) {
+            LBL_Active.Text = active.ToString();
+            LBL_Completed.Text = completed.ToString();
+            LBL_Total.Text = total.ToString();
         }
 
         public void RenderActiveTasksChart(int notStarted, int inProgress, int overdue)
@@ -79,36 +88,29 @@ namespace TaskProgresser.WinForms.Forms
             CHRT_ActiveTasks.Series.Add(series);
 
             // 4. ДОБАВЛЕНИЕ ТОЧЕК ДАННЫХ
-            if (notStarted > 0)
-            {
-                int p1 = series.Points.AddXY("Не розпочаті", notStarted);
-                series.Points[p1].Color = Color.DodgerBlue;
-                series.Points[p1].Label = "#PERCENT{P0}";
-                series.Points[p1].LegendText = $"Не розпочаті ({notStarted})";
-            }
-
-            if (inProgress > 0)
-            {
-                int p2 = series.Points.AddXY("В процесі", inProgress);
-                series.Points[p2].Color = Color.Green;
-                series.Points[p2].Label = "#PERCENT{P0}";
-                series.Points[p2].LegendText = $"В процесі ({inProgress})";
-            }
-
-            if (overdue > 0)
-            {
-                int p3 = series.Points.AddXY("Протерміновані", overdue);
-                series.Points[p3].Color = Color.Red;
-                series.Points[p3].Label = "#PERCENT{P0}";
-                series.Points[p3].LegendText = $"Протерміновані ({overdue})";
-            }
 
             if (notStarted == 0 && inProgress == 0 && overdue == 0)
             {
                 int empty = series.Points.AddXY("Немає задач", 1);
                 series.Points[empty].Color = Color.WhiteSmoke;
                 series.Points[empty].IsVisibleInLegend = false;
-                series.Points[empty].Label = "Порожньо";
+                series.Points[empty].Label = " ";
+            }
+            else { 
+                int p1 = series.Points.AddXY("Не розпочаті", notStarted);
+                series.Points[p1].Color = Color.DodgerBlue;
+                series.Points[p1].Label = notStarted !=0 ? "#PERCENT{P0}" : " ";
+                series.Points[p1].LegendText = $"Не розпочаті ({notStarted})";
+
+                int p2 = series.Points.AddXY("В процесі", inProgress);
+                series.Points[p2].Color = Color.Green;
+                series.Points[p2].Label = inProgress != 0 ? "#PERCENT{P0}" : " ";
+                series.Points[p2].LegendText = $"В процесі ({inProgress})";
+
+                int p3 = series.Points.AddXY("Протерміновані", overdue);
+                series.Points[p3].Color = Color.OrangeRed;
+                series.Points[p3].Label = overdue != 0 ? "#PERCENT{P0}" : " ";
+                series.Points[p3].LegendText = $"Протерміновані ({overdue})";
             }
         }
 
@@ -162,29 +164,47 @@ namespace TaskProgresser.WinForms.Forms
 
             // 4. ДОБАВЛЕНИЕ ТОЧЕК ДАННЫХ
 
-            if (completedInTime > 0)
-            {
-                int p2 = series.Points.AddXY("Виконані вчасно", completedInTime);
-                series.Points[p2].Color = Color.Green;
-                series.Points[p2].Label = "#PERCENT{P0}";
-                series.Points[p2].LegendText = $"Виконані вчасно ({completedInTime})";
-            }
-
-            if (completedLate > 0)
-            {
-                int p3 = series.Points.AddXY("Виконані з запізненням", completedLate);
-                series.Points[p3].Color = Color.Red;
-                series.Points[p3].Label = "#PERCENT{P0}";
-                series.Points[p3].LegendText = $"Виконані з запізненням ({completedLate})";
-            }
-
             if (completedInTime == 0 && completedLate == 0)
             {
                 int empty = series.Points.AddXY("Немає задач", 1);
                 series.Points[empty].Color = Color.WhiteSmoke;
                 series.Points[empty].IsVisibleInLegend = false;
-                series.Points[empty].Label = "Порожньо";
+                series.Points[empty].Label = " ";
+            } else { 
+                int p2 = series.Points.AddXY("Виконані вчасно", completedInTime);
+                series.Points[p2].Color = Color.DarkBlue;
+                series.Points[p2].Label = completedInTime != 0 ? "#PERCENT{P0}" : " ";
+                series.Points[p2].LegendText = $"Виконані вчасно ({completedInTime})";
+
+                int p3 = series.Points.AddXY("Виконані з запізненням", completedLate);
+                series.Points[p3].Color = Color.Red;
+                series.Points[p3].Label = completedLate != 0 ? "#PERCENT{P0}" : " ";
+                series.Points[p3].LegendText = $"Виконані з запізненням ({completedLate})";
             }
+        }
+
+        public async Task<TaskStatisticsDto> LoadStatistics()
+        {
+            return await _statisticsApiClient.GetStatistics();
+        }
+
+        public void RenderStatistics(TaskStatisticsDto statistics)
+        {
+            SetHeader(statistics.ActiveTasks, statistics.CompletedTasks, statistics.TotalTasks);
+            SetAvarageCompletedPercent(statistics.AverageCompletionPercent);
+            RenderActiveTasksChart(statistics.NotStarted, statistics.InProgress, statistics.Overdue);
+            RenderCompletedTasksChart(statistics.CompletedInTime, statistics.CompletedLate);
+        }
+
+        public async Task UpdateStatistics()
+        {
+            var statistics = await LoadStatistics();
+            Invoke(new Action<TaskStatisticsDto>(RenderStatistics), statistics);
+       }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            await UpdateStatistics();
         }
     }
 }
