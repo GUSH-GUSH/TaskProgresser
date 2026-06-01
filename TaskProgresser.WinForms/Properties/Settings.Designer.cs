@@ -25,10 +25,22 @@ namespace TaskProgresser.WinForms.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:7239/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://taskprogresser-dnpx.onrender.com/api")]
         public string ApiBaseUrl {
             get {
                 return ((string)(this["ApiBaseUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:7239/api")]
+        public string ApiBaseUrlDebug {
+            get {
+                return ((string)(this["ApiBaseUrlDebug"]));
+            }
+            set {
+                this["ApiBaseUrlDebug"] = value;
             }
         }
     }

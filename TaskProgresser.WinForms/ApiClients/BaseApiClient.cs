@@ -9,8 +9,13 @@ namespace TaskProgresser.WinForms.ApiClients
     public abstract class BaseApiClient
     {
         protected static readonly HttpClient Client = new HttpClient();
+
+        #if DEBUG
+        protected static readonly string BaseUrl = Settings.Default.ApiBaseUrlDebug;
+        #else
         protected static readonly string BaseUrl = Settings.Default.ApiBaseUrl;
-        
+        #endif
+
         public static string Token { get; private set; }
         
         public void SetToken(string token)
