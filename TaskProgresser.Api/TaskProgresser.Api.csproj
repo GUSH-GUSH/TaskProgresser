@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskProgresser.Core\TaskProgresser.Core.csproj" />
-    <ProjectReference Include="..\TaskProgresser.WinForms\TaskProgresser.WinForms.csproj" />
   </ItemGroup>
 
   <ItemGroup>
