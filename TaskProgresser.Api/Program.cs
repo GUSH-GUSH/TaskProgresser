@@ -8,6 +8,15 @@ using TaskProgresser.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// For working on Render.com
+
+#if !DEBUG
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://*:{port}");
+
+#endif
+
 // Add DataBase Context
 
 var connectionString = builder.Configuration.GetConnectionString("AivenConnection");
@@ -68,7 +77,7 @@ builder.Services.AddSwaggerGen(c =>
 
     // 2. Указываем, что этот токен нужно прикреплять ко всем защищенным эндпоинтам
     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-    { 
+    {
         {
             new OpenApiSecurityScheme
             {
@@ -90,11 +99,11 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
 
 app.UseHttpsRedirection();
 
