@@ -34,13 +34,12 @@ var key = Encoding.ASCII.GetBytes(secretKey!);
 
 builder.Services.AddAuthentication(options =>
 {
-    // Говорим ASP.NET по умолчанию использовать JWT Bearer
+    // Вказуємо ASP.NET за замовчуванням використовувати JWT Bearer
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(options =>
 {
-    //options.RequireHttpsMetadata = false; // Для тестов на локалке ставим false
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {

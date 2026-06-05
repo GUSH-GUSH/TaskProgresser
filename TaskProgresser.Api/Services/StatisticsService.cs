@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using TaskProgresser.Core.Models;
 using TaskProgresser.Core.DTOs;
 using TaskProgresser.Core.Services;
 using TaskProgresser.Api.Data;
@@ -27,7 +23,7 @@ namespace TaskProgresser.Api.Services
             if (!tasks.Any())
                 return new TaskStatisticsDto();
 
-            var now = DateTime.Now; //
+            var now = DateTime.Now;
 
             return new TaskStatisticsDto
             {

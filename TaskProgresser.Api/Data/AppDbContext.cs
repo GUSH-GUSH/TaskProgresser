@@ -20,25 +20,25 @@ namespace TaskProgresser.Api.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Настройка таблицы Пользователей
+            // Налаштування таблиці Користувачів
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasKey(u => u.Id);
+                entity.HasKey(u => u.Id); // Первинний ключ
                 entity.Property(u => u.Username).IsRequired().HasMaxLength(50);
                 entity.HasIndex(u => u.Username).IsUnique();
             });
 
-            // Настройка таблицы Задач
+            // Налаштування таблиці Задач
             modelBuilder.Entity<TaskItem>(entity =>
             {
-                entity.HasKey(t => t.Id);
+                entity.HasKey(t => t.Id); // Первинний ключ
                 entity.Property(t => t.Title).IsRequired().HasMaxLength(100);
 
-                // Явно указываем связь: У одной задачи есть один UserId
+                // Зовнішній ключ до таблиці Користувачів
                 entity.HasOne<User>()
                       .WithMany()
                       .HasForeignKey(t => t.UserId)
-                      .OnDelete(DeleteBehavior.Cascade); // Если удалить юзера, удалятся и его задачи
+                      .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

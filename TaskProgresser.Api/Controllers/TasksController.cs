@@ -7,7 +7,7 @@ using TaskProgresser.Core.Models;
 
 namespace TaskProgresser.WinForms.ApiClients
 {
-    [Authorize] // Защищаем весь контроллер!
+    [Authorize] // Захищаємо увесь контролер!
     [ApiController]
     [Route("api/[controller]")]
     public class TasksController : ControllerBase
@@ -57,7 +57,7 @@ namespace TaskProgresser.WinForms.ApiClients
 
             if (existingTask == null) return NotFound(TASK_NOT_FOUND_MESSAGE);
 
-            // Обновляем поля
+            // Оновлюємо поля
             existingTask.Title = updatedTask.Title;
             existingTask.Description = updatedTask.Description;
             existingTask.StartDate = updatedTask.StartDate;

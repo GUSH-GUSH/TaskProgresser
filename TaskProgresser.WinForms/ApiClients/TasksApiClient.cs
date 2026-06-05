@@ -55,21 +55,6 @@ namespace TaskProgresser.WinForms.ApiClients
 
             var message = await response.Content.ReadAsStringAsync();
             throw new Exception($"Помилка при видаленні завдання ({response.StatusCode}): - {message}");
-        }
-       
-        /*
-        public static async Task<bool> SaveAllData(IEnumerable<TaskItem> tasks)
-        {
-            try
-            {
-                HttpResponseMessage response = await _client.PostAsJsonAsync($"{_baseUrl}/bulk", tasks);
-                return response.IsSuccessStatusCode;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка BULK POST: {ex.Message}");
-                return false;
-            }
-        }*/
+        }      
     }
 }

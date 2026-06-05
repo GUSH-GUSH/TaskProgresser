@@ -28,9 +28,11 @@ namespace TaskProgresser.Api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] AuthRequest request)
         {
+            //Певірка, чи існує вже користувач з таким логіном
             if (await _context.Users.AnyAsync(u => u.Username == request.Username))
                 return BadRequest($"Ім'я користувача {request.Username} зайнято");
 
+            //Зберігаємо користувача з захешованим паролем
             var user = new User
             {
                 Username = request.Username,
@@ -46,13 +48,15 @@ namespace TaskProgresser.Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] AuthRequest request)
         {
+            //Пошук відповідного користувача за логіном у базі даних
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
 
+            //Якщо логін не знайдено, або хеші паролів не співпадають - повертаємо помилку авторизації
             if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
                 return Unauthorized("Невірний логін або пароль");
-            
-            var token = GenerateJwtToken(user);
 
+            //Інакше генеруємо JWT токен і повертаємо його клієнту разом з ім'ям користувача
+            var token = GenerateJwtToken(user);
             return Ok(new AuthResponse { Token = token, Username = user.Username });
         }
 
@@ -63,14 +67,15 @@ namespace TaskProgresser.Api.Controllers
 
             var descriptor = new SecurityTokenDescriptor
             {
-                // Вшиваем ID пользователя прямо внутрь токена!
+                // Додаємо ID користувача всередину токена для ідентифікації
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Username)
                 }),
-                Expires = DateTime.UtcNow.AddDays(7), // Токен живет 7 дней
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                Expires = DateTime.UtcNow.AddDays(7), // Термін дії токену - 7 днів
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
+                                                            SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = tokenHandler.CreateToken(descriptor);
