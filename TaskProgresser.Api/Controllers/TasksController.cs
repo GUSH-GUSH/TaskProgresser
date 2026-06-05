@@ -42,7 +42,7 @@ namespace TaskProgresser.WinForms.ApiClients
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
 
-            return Ok(task);
+            return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
         }
 
         // ОБНОВЛЕНИЕ ЗАДАЧИ (PUT api/tasks/{id})

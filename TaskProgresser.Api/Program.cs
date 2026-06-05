@@ -23,8 +23,8 @@ var connectionString = builder.Configuration.GetConnectionString("AivenConnectio
 var serverVersion = new MySqlServerVersion(new Version(8, 4, 8));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(connectionString, serverVersion, mySqlOptions => mySqlOptions.EnableRetryOnFailure()) // <--- Добавили защиту от обрывов связи)
-           .LogTo(Console.WriteLine, LogLevel.Information) // Отличная штука для отладки: выводит все SQL-запросы в консоль
+    options.UseMySql(connectionString, serverVersion, mySqlOptions => mySqlOptions.EnableRetryOnFailure())
+           .LogTo(Console.WriteLine, LogLevel.Information)
 );
 
 // JWT Authentication setup
@@ -53,13 +53,10 @@ builder.Services.AddAuthentication(options =>
 
 // Add services to the container.
 
-builder.Services.AddScoped<JsonTaskService>();
 builder.Services.AddScoped<StatisticsService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-
-// ... 
 
 // Заменяем стандартный AddSwaggerGen на этот:
 builder.Services.AddSwaggerGen(c =>
@@ -106,7 +103,7 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication(); // Добавить эту строку!
+app.UseAuthentication(); // для защищенных эндпоинтов, чтобы ASP.NET знал, что нужно проверять токен
 app.UseAuthorization();
 
 app.MapControllers();
