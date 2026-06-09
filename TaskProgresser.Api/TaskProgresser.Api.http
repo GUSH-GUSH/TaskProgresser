@@ -1,6 +1,0 @@
-@TaskProgresser.Api_HostAddress = http://localhost:5267
-
-GET {{TaskProgresser.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
