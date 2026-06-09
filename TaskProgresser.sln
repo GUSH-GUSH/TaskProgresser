@@ -18,10 +18,51 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{31A8B10B-E202-4332-9977-CD879C2537DE}"
 	ProjectSection(SolutionItems) = preProject
 		DockerFile = DockerFile
-		WorkWithMigration.txt = WorkWithMigration.txt
-		_TODO.md = _TODO.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "#Archive notes", "#Archive notes", "{C1AD4085-8FF6-4513-84AC-8BFE252FA432}"
+	ProjectSection(SolutionItems) = preProject
+		1. Начало разработки.txt = 1. Начало разработки.txt
+		TaskProgresser.WinForms\ToDo.txt = TaskProgresser.WinForms\ToDo.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Заметки по иконкам", "Заметки по иконкам", "{BD41A6E0-6A51-497E-9FE1-1929413C089C}"
+	ProjectSection(SolutionItems) = preProject
+		Заметки по иконкам.txt = Заметки по иконкам.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Work log", "Work log", "{C4477DFB-F015-4403-A248-D00CE7C63309}"
+	ProjectSection(SolutionItems) = preProject
+		1. Начало разработки.txt = 1. Начало разработки.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notes", "notes", "{D93D8712-9DDD-4CD3-A40B-8AEE5C4D8DCE}"
+	ProjectSection(SolutionItems) = preProject
 		Добавление регистрации.txt = Добавление регистрации.txt
-		Сортировка.txt = Сортировка.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "#Instruction", "#Instruction", "{BEDA52AD-2317-46B4-85DB-9754BB00B3E4}"
+	ProjectSection(SolutionItems) = preProject
+		GitCommits.md = GitCommits.md
+		WorkWithMigration.txt = WorkWithMigration.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{1B3EBB89-AD66-4312-B2F4-34080D4DA630}"
+	ProjectSection(SolutionItems) = preProject
+		GeneralNotes.md = GeneralNotes.md
+		GeneralNotes_Archive.txt = GeneralNotes_Archive.txt
+		TODO_Archive.md = TODO_Archive.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToDo", "ToDo", "{3CA429DD-CA0F-42F3-95F2-8656FB60AFD7}"
+	ProjectSection(SolutionItems) = preProject
+		TODO.md = TODO.md
+		TODO_Archive.md = TODO_Archive.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worklog", "Worklog", "{492DCB0C-0F37-4693-8697-46712CFC5226}"
+	ProjectSection(SolutionItems) = preProject
+		Worklog.md = Worklog.md
 	EndProjectSection
 EndProject
 Global
@@ -45,6 +86,16 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C1AD4085-8FF6-4513-84AC-8BFE252FA432} = {31A8B10B-E202-4332-9977-CD879C2537DE}
+		{BD41A6E0-6A51-497E-9FE1-1929413C089C} = {C1AD4085-8FF6-4513-84AC-8BFE252FA432}
+		{C4477DFB-F015-4403-A248-D00CE7C63309} = {C1AD4085-8FF6-4513-84AC-8BFE252FA432}
+		{D93D8712-9DDD-4CD3-A40B-8AEE5C4D8DCE} = {C1AD4085-8FF6-4513-84AC-8BFE252FA432}
+		{BEDA52AD-2317-46B4-85DB-9754BB00B3E4} = {31A8B10B-E202-4332-9977-CD879C2537DE}
+		{1B3EBB89-AD66-4312-B2F4-34080D4DA630} = {31A8B10B-E202-4332-9977-CD879C2537DE}
+		{3CA429DD-CA0F-42F3-95F2-8656FB60AFD7} = {31A8B10B-E202-4332-9977-CD879C2537DE}
+		{492DCB0C-0F37-4693-8697-46712CFC5226} = {31A8B10B-E202-4332-9977-CD879C2537DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9666932-9B3D-4545-AA42-804373208EEF}
