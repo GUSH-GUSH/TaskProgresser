@@ -247,14 +247,19 @@ namespace TaskProgresser.WinForms
         {
             FlowPanel_Active.SuspendLayout();
             FlowPanel_Completed.SuspendLayout();
+            
+            int active_margin = 12;
+            int completed_margin = 12;
 
-            int margin = 12;
+            // FIX - если больше двух задач, отступ меняется (костыль, надо переделать)
+            if (FlowPanel_Active.Controls.Count > 2) active_margin = 30;
+            if (FlowPanel_Completed.Controls.Count > 2) completed_margin = 30;
 
             foreach (Control control in FlowPanel_Active.Controls)
-                control.Width = FlowPanel_Active.ClientSize.Width - margin;
+                control.Width = FlowPanel_Active.ClientSize.Width - active_margin;
 
             foreach (Control control in FlowPanel_Completed.Controls)
-                control.Width = FlowPanel_Completed.ClientSize.Width - margin;
+                control.Width = FlowPanel_Completed.ClientSize.Width - completed_margin;
 
             FlowPanel_Active.ResumeLayout();
             FlowPanel_Completed.ResumeLayout();
