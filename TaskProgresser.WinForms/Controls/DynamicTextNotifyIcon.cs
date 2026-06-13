@@ -126,6 +126,7 @@ namespace TaskProgresser.WinForms
 
         private void UpdateIcon()
         {
+            if (_notifyIcon?.Icon == null) return;
             _notifyIcon.Icon?.Dispose();
             _notifyIcon.Icon = IconGenerator.GetIcon(_displayText, Font, _size, _textColor, _backgroundColor);
         }
