@@ -1,0 +1,5 @@
+CompanyName GUSH PRODUCTION
+AppName: Task Progresser
+
+last published version: 2.0.0
+Date: 17.06.2026

@@ -48,6 +48,7 @@ namespace TaskProgresser.WinForms
         public MainForm()
         {
             InitializeComponent();
+            ClearTasks();
         }
 
         private void Authorization()
