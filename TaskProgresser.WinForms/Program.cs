@@ -17,7 +17,7 @@ namespace TaskProgresser.WinForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            AutoUpdater.Start("https://raw.githubusercontent.com/GUSH-GUSH/Weekinator/refs/heads/Practice/update.xml");
+            AutoUpdater.Start("https://raw.githubusercontent.com/GUSH-GUSH/TaskProgresser/refs/heads/main/update.xml");
             Application.Run(new MainForm());
         }
     }
