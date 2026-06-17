@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 	ProjectSection(SolutionItems) = preProject
 		DockerFile = DockerFile
 		TextFile1.txt = TextFile1.txt
+		update.xml = update.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "#Archive notes", "#Archive notes", "{C1AD4085-8FF6-4513-84AC-8BFE252FA432}"
