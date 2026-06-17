@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.GroupBox groupBox1;
+            System.Windows.Forms.GroupBox GPBX_Header;
             System.Windows.Forms.Label LBL_CompletedTitle;
             System.Windows.Forms.Label LBL_ActiveTitle;
             System.Windows.Forms.Label LBL_TotalTitle;
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.LBL_Completed = new System.Windows.Forms.Label();
             this.LBL_Active = new System.Windows.Forms.Label();
             this.LBL_Total = new System.Windows.Forms.Label();
             this.LBL_ActiveChartTitle = new System.Windows.Forms.Label();
             this.LBL_CompletedChartActive = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.BTN_Update = new System.Windows.Forms.Button();
+            this.LBL_AvarageTitle = new System.Windows.Forms.Label();
+            this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.CHRT_CompletedTasks = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CHRT_ActiveTasks = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.BTN_Update = new System.Windows.Forms.Button();
             this.PBWP_AveragePercent = new TaskProgresser.WinForms.Controls.ProgressBarWithPrecent();
-            groupBox1 = new System.Windows.Forms.GroupBox();
+            GPBX_Header = new System.Windows.Forms.GroupBox();
             LBL_CompletedTitle = new System.Windows.Forms.Label();
             LBL_ActiveTitle = new System.Windows.Forms.Label();
             LBL_TotalTitle = new System.Windows.Forms.Label();
-            groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            GPBX_Header.SuspendLayout();
+            this.TableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CHRT_CompletedTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CHRT_ActiveTasks)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // GPBX_Header
             // 
-            groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            GPBX_Header.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            groupBox1.Controls.Add(this.LBL_Completed);
-            groupBox1.Controls.Add(this.LBL_Active);
-            groupBox1.Controls.Add(this.LBL_Total);
-            groupBox1.Controls.Add(LBL_CompletedTitle);
-            groupBox1.Controls.Add(LBL_ActiveTitle);
-            groupBox1.Controls.Add(LBL_TotalTitle);
-            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            groupBox1.Location = new System.Drawing.Point(12, 24);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(740, 102);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Задачі";
+            GPBX_Header.Controls.Add(this.LBL_Completed);
+            GPBX_Header.Controls.Add(this.LBL_Active);
+            GPBX_Header.Controls.Add(this.LBL_Total);
+            GPBX_Header.Controls.Add(LBL_CompletedTitle);
+            GPBX_Header.Controls.Add(LBL_ActiveTitle);
+            GPBX_Header.Controls.Add(LBL_TotalTitle);
+            GPBX_Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            GPBX_Header.Location = new System.Drawing.Point(12, 24);
+            GPBX_Header.Name = "GPBX_Header";
+            GPBX_Header.Size = new System.Drawing.Size(740, 102);
+            GPBX_Header.TabIndex = 0;
+            GPBX_Header.TabStop = false;
+            GPBX_Header.Text = "Задачі";
             // 
             // LBL_Completed
             // 
@@ -175,85 +175,87 @@
             this.LBL_CompletedChartActive.Text = "Виконані";
             this.LBL_CompletedChartActive.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // LBL_AvarageTitle
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(127, 161);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(510, 33);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Середній час виконання завдання";
+            this.LBL_AvarageTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LBL_AvarageTitle.AutoSize = true;
+            this.LBL_AvarageTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LBL_AvarageTitle.Location = new System.Drawing.Point(127, 161);
+            this.LBL_AvarageTitle.Name = "LBL_AvarageTitle";
+            this.LBL_AvarageTitle.Size = new System.Drawing.Size(510, 33);
+            this.LBL_AvarageTitle.TabIndex = 6;
+            this.LBL_AvarageTitle.Text = "Середній час виконання завдання";
             // 
-            // tableLayoutPanel1
+            // TableLayoutPanel
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.CHRT_CompletedTasks, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.LBL_ActiveChartTitle, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.LBL_CompletedChartActive, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.CHRT_ActiveTasks, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 273);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(736, 436);
-            this.tableLayoutPanel1.TabIndex = 7;
+            this.TableLayoutPanel.ColumnCount = 2;
+            this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.TableLayoutPanel.Controls.Add(this.CHRT_CompletedTasks, 1, 1);
+            this.TableLayoutPanel.Controls.Add(this.LBL_ActiveChartTitle, 0, 0);
+            this.TableLayoutPanel.Controls.Add(this.LBL_CompletedChartActive, 1, 0);
+            this.TableLayoutPanel.Controls.Add(this.CHRT_ActiveTasks, 0, 1);
+            this.TableLayoutPanel.Location = new System.Drawing.Point(12, 273);
+            this.TableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.TableLayoutPanel.Name = "TableLayoutPanel";
+            this.TableLayoutPanel.RowCount = 2;
+            this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TableLayoutPanel.Size = new System.Drawing.Size(736, 436);
+            this.TableLayoutPanel.TabIndex = 7;
+            // 
+            // CHRT_CompletedTasks
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.CHRT_CompletedTasks.ChartAreas.Add(chartArea1);
+            this.CHRT_CompletedTasks.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            this.CHRT_CompletedTasks.Legends.Add(legend1);
+            this.CHRT_CompletedTasks.Location = new System.Drawing.Point(371, 45);
+            this.CHRT_CompletedTasks.Name = "CHRT_CompletedTasks";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.CHRT_CompletedTasks.Series.Add(series1);
+            this.CHRT_CompletedTasks.Size = new System.Drawing.Size(362, 388);
+            this.CHRT_CompletedTasks.TabIndex = 11;
+            this.CHRT_CompletedTasks.TabStop = false;
+            // 
+            // CHRT_ActiveTasks
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.CHRT_ActiveTasks.ChartAreas.Add(chartArea2);
+            this.CHRT_ActiveTasks.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.Alignment = System.Drawing.StringAlignment.Center;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend2.Name = "Legend1";
+            this.CHRT_ActiveTasks.Legends.Add(legend2);
+            this.CHRT_ActiveTasks.Location = new System.Drawing.Point(3, 45);
+            this.CHRT_ActiveTasks.Name = "CHRT_ActiveTasks";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.CHRT_ActiveTasks.Series.Add(series2);
+            this.CHRT_ActiveTasks.Size = new System.Drawing.Size(362, 388);
+            this.CHRT_ActiveTasks.TabIndex = 2;
+            this.CHRT_ActiveTasks.TabStop = false;
             // 
             // BTN_Update
             // 
             this.BTN_Update.Location = new System.Drawing.Point(670, 712);
             this.BTN_Update.Name = "BTN_Update";
             this.BTN_Update.Size = new System.Drawing.Size(75, 23);
-            this.BTN_Update.TabIndex = 8;
+            this.BTN_Update.TabIndex = 1;
             this.BTN_Update.Text = "Оновити";
             this.BTN_Update.UseVisualStyleBackColor = true;
             this.BTN_Update.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // CHRT_CompletedTasks
-            // 
-            chartArea3.Name = "ChartArea1";
-            this.CHRT_CompletedTasks.ChartAreas.Add(chartArea3);
-            this.CHRT_CompletedTasks.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Alignment = System.Drawing.StringAlignment.Center;
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend3.Name = "Legend1";
-            this.CHRT_CompletedTasks.Legends.Add(legend3);
-            this.CHRT_CompletedTasks.Location = new System.Drawing.Point(371, 45);
-            this.CHRT_CompletedTasks.Name = "CHRT_CompletedTasks";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.CHRT_CompletedTasks.Series.Add(series3);
-            this.CHRT_CompletedTasks.Size = new System.Drawing.Size(362, 388);
-            this.CHRT_CompletedTasks.TabIndex = 11;
-            // 
-            // CHRT_ActiveTasks
-            // 
-            chartArea4.Name = "ChartArea1";
-            this.CHRT_ActiveTasks.ChartAreas.Add(chartArea4);
-            this.CHRT_ActiveTasks.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Alignment = System.Drawing.StringAlignment.Center;
-            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend4.Name = "Legend1";
-            this.CHRT_ActiveTasks.Legends.Add(legend4);
-            this.CHRT_ActiveTasks.Location = new System.Drawing.Point(3, 45);
-            this.CHRT_ActiveTasks.Name = "CHRT_ActiveTasks";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.CHRT_ActiveTasks.Series.Add(series4);
-            this.CHRT_ActiveTasks.Size = new System.Drawing.Size(362, 388);
-            this.CHRT_ActiveTasks.TabIndex = 2;
             // 
             // PBWP_AveragePercent
             // 
@@ -264,6 +266,7 @@
             this.PBWP_AveragePercent.Percent = 0D;
             this.PBWP_AveragePercent.Size = new System.Drawing.Size(728, 52);
             this.PBWP_AveragePercent.TabIndex = 5;
+            this.PBWP_AveragePercent.TabStop = false;
             // 
             // StatisticsForm
             // 
@@ -271,18 +274,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 741);
             this.Controls.Add(this.BTN_Update);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LBL_AvarageTitle);
             this.Controls.Add(this.PBWP_AveragePercent);
-            this.Controls.Add(groupBox1);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(GPBX_Header);
+            this.Controls.Add(this.TableLayoutPanel);
             this.MinimumSize = new System.Drawing.Size(780, 780);
             this.Name = "StatisticsForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "StatisticsForm";
+            this.Text = "Статистика";
             this.Load += new System.EventHandler(this.StatisticsForm_Load);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            GPBX_Header.ResumeLayout(false);
+            GPBX_Header.PerformLayout();
+            this.TableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CHRT_CompletedTasks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CHRT_ActiveTasks)).EndInit();
             this.ResumeLayout(false);
@@ -294,8 +298,8 @@
         private System.Windows.Forms.Label LBL_ActiveChartTitle;
         private System.Windows.Forms.Label LBL_CompletedChartActive;
         private Controls.ProgressBarWithPrecent PBWP_AveragePercent;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label LBL_AvarageTitle;
+        private System.Windows.Forms.TableLayoutPanel TableLayoutPanel;
         private System.Windows.Forms.Button BTN_Update;
         private System.Windows.Forms.Label LBL_Completed;
         private System.Windows.Forms.Label LBL_Active;

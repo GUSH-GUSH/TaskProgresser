@@ -122,14 +122,14 @@
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(664, 33);
-            this.TopPanel.TabIndex = 15;
+            this.TopPanel.TabIndex = 1;
             // 
             // BTN_Logout
             // 
             this.BTN_Logout.Location = new System.Drawing.Point(552, 5);
             this.BTN_Logout.Name = "BTN_Logout";
             this.BTN_Logout.Size = new System.Drawing.Size(105, 23);
-            this.BTN_Logout.TabIndex = 2;
+            this.BTN_Logout.TabIndex = 1;
             this.BTN_Logout.Text = "Вихід з аккаунта";
             this.BTN_Logout.UseVisualStyleBackColor = true;
             this.BTN_Logout.Click += new System.EventHandler(this.BTN_Logout_Click);
@@ -171,7 +171,7 @@
             this.BTN_Add.Location = new System.Drawing.Point(541, 12);
             this.BTN_Add.Name = "BTN_Add";
             this.BTN_Add.Size = new System.Drawing.Size(116, 26);
-            this.BTN_Add.TabIndex = 12;
+            this.BTN_Add.TabIndex = 3;
             this.BTN_Add.Text = "Додати задачу";
             this.BTN_Add.UseVisualStyleBackColor = true;
             this.BTN_Add.Click += new System.EventHandler(this.BTN_Add_Click);
@@ -202,7 +202,7 @@
             this.BottomPanel.Location = new System.Drawing.Point(0, 404);
             this.BottomPanel.Name = "BottomPanel";
             this.BottomPanel.Size = new System.Drawing.Size(664, 45);
-            this.BottomPanel.TabIndex = 8;
+            this.BottomPanel.TabIndex = 2;
             // 
             // BTN_Statistics
             // 
@@ -212,7 +212,7 @@
             this.BTN_Statistics.Location = new System.Drawing.Point(369, 12);
             this.BTN_Statistics.Name = "BTN_Statistics";
             this.BTN_Statistics.Size = new System.Drawing.Size(90, 26);
-            this.BTN_Statistics.TabIndex = 15;
+            this.BTN_Statistics.TabIndex = 1;
             this.BTN_Statistics.Text = "Статистика";
             this.BTN_Statistics.UseVisualStyleBackColor = true;
             this.BTN_Statistics.Click += new System.EventHandler(this.BTN_Statistics_Click);
@@ -225,7 +225,7 @@
             this.BTN_Update.Location = new System.Drawing.Point(465, 12);
             this.BTN_Update.Name = "BTN_Update";
             this.BTN_Update.Size = new System.Drawing.Size(70, 26);
-            this.BTN_Update.TabIndex = 14;
+            this.BTN_Update.TabIndex = 2;
             this.BTN_Update.Text = "Оновити";
             this.BTN_Update.UseVisualStyleBackColor = true;
             this.BTN_Update.Click += new System.EventHandler(this.BTN_Update_Click);
@@ -240,7 +240,7 @@
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
             this.TabControl.Size = new System.Drawing.Size(664, 371);
-            this.TabControl.TabIndex = 16;
+            this.TabControl.TabIndex = 3;
             // 
             // TabPage_Active
             // 
@@ -332,7 +332,7 @@
             this.MinimumSize = new System.Drawing.Size(680, 488);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TaskProgresser.WinForms";
+            this.Text = "Task Progresser";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainContextMenu.ResumeLayout(false);

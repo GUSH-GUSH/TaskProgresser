@@ -48,7 +48,7 @@
             this.TBOX_Username.Location = new System.Drawing.Point(0, 35);
             this.TBOX_Username.Name = "TBOX_Username";
             this.TBOX_Username.Size = new System.Drawing.Size(200, 26);
-            this.TBOX_Username.TabIndex = 0;
+            this.TBOX_Username.TabIndex = 1;
             // 
             // TBOX_Password
             // 
@@ -59,7 +59,7 @@
             this.TBOX_Password.Name = "TBOX_Password";
             this.TBOX_Password.PasswordChar = '*';
             this.TBOX_Password.Size = new System.Drawing.Size(200, 26);
-            this.TBOX_Password.TabIndex = 1;
+            this.TBOX_Password.TabIndex = 2;
             // 
             // BTN_Login
             // 
@@ -68,7 +68,7 @@
             this.BTN_Login.Location = new System.Drawing.Point(47, 198);
             this.BTN_Login.Name = "BTN_Login";
             this.BTN_Login.Size = new System.Drawing.Size(200, 36);
-            this.BTN_Login.TabIndex = 2;
+            this.BTN_Login.TabIndex = 4;
             this.BTN_Login.Text = "Увійти";
             this.BTN_Login.UseVisualStyleBackColor = true;
             this.BTN_Login.Click += new System.EventHandler(this.BTN_Login_Click);
@@ -80,7 +80,7 @@
             this.BTN_Reg.Location = new System.Drawing.Point(47, 241);
             this.BTN_Reg.Name = "BTN_Reg";
             this.BTN_Reg.Size = new System.Drawing.Size(200, 36);
-            this.BTN_Reg.TabIndex = 3;
+            this.BTN_Reg.TabIndex = 5;
             this.BTN_Reg.Text = "Зареєструватися";
             this.BTN_Reg.UseVisualStyleBackColor = true;
             this.BTN_Reg.Click += new System.EventHandler(this.BTN_Reg_Click);
@@ -120,7 +120,7 @@
             this.MainPanel.Location = new System.Drawing.Point(47, 30);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(200, 143);
-            this.MainPanel.TabIndex = 6;
+            this.MainPanel.TabIndex = 0;
             // 
             // CHB_ShowPass
             // 
@@ -129,7 +129,7 @@
             this.CHB_ShowPass.Location = new System.Drawing.Point(3, 119);
             this.CHB_ShowPass.Name = "CHB_ShowPass";
             this.CHB_ShowPass.Size = new System.Drawing.Size(90, 20);
-            this.CHB_ShowPass.TabIndex = 7;
+            this.CHB_ShowPass.TabIndex = 3;
             this.CHB_ShowPass.Text = "Показати";
             this.CHB_ShowPass.UseVisualStyleBackColor = true;
             this.CHB_ShowPass.CheckedChanged += new System.EventHandler(this.CHB_ShowPass_CheckedChanged);
@@ -148,7 +148,7 @@
             this.MaximizeBox = false;
             this.Name = "AuthForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AuthForm";
+            this.Text = "Авторизація";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthForm_FormClosed);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();

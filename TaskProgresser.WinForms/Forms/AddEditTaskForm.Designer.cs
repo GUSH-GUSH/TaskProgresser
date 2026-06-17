@@ -81,7 +81,7 @@ namespace CourseWork.Forms
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtDescription.Size = new System.Drawing.Size(618, 111);
-            this.txtDescription.TabIndex = 3;
+            this.txtDescription.TabIndex = 2;
             // 
             // btnSave
             // 
@@ -89,7 +89,7 @@ namespace CourseWork.Forms
             this.btnSave.Location = new System.Drawing.Point(238, 310);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 30);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Сохранить";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -99,7 +99,7 @@ namespace CourseWork.Forms
             this.btnCancel.Location = new System.Drawing.Point(324, 310);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(80, 30);
-            this.btnCancel.TabIndex = 11;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -167,7 +167,7 @@ namespace CourseWork.Forms
             this.DateRangeControl.Precision = ((byte)(3));
             this.DateRangeControl.RangeName = null;
             this.DateRangeControl.Size = new System.Drawing.Size(618, 90);
-            this.DateRangeControl.TabIndex = 21;
+            this.DateRangeControl.TabIndex = 3;
             // 
             // AddEditTaskForm
             // 

@@ -111,7 +111,7 @@ namespace TaskProgresser.WinForms
             this.StartDateTimePicker.MinDate = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
             this.StartDateTimePicker.Name = "StartDateTimePicker";
             this.StartDateTimePicker.Size = new System.Drawing.Size(130, 20);
-            this.StartDateTimePicker.TabIndex = 12;
+            this.StartDateTimePicker.TabIndex = 1;
             this.StartDateTimePicker.Value = new System.DateTime(2025, 4, 10, 0, 0, 0, 0);
             // 
             // EndDateTimePicker
@@ -124,7 +124,7 @@ namespace TaskProgresser.WinForms
             this.EndDateTimePicker.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
             this.EndDateTimePicker.Name = "EndDateTimePicker";
             this.EndDateTimePicker.Size = new System.Drawing.Size(130, 20);
-            this.EndDateTimePicker.TabIndex = 13;
+            this.EndDateTimePicker.TabIndex = 2;
             this.EndDateTimePicker.Value = new System.DateTime(2025, 6, 17, 0, 0, 0, 0);
             // 
             // MainPanel

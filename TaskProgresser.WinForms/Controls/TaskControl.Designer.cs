@@ -30,7 +30,6 @@
         {
             System.Windows.Forms.Label LBL_Accurancy;
             this.GroupBox = new System.Windows.Forms.GroupBox();
-            this.LBL_Status = new System.Windows.Forms.Label();
             this.ResultPanel = new System.Windows.Forms.Panel();
             this.LBL_Еfficiency = new System.Windows.Forms.Label();
             this.Lbl_CompletedAt = new System.Windows.Forms.Label();
@@ -41,6 +40,7 @@
             this.BtnEdit = new System.Windows.Forms.Button();
             this.NUD_Precision = new System.Windows.Forms.NumericUpDown();
             this.DateRangeControl = new TaskProgresser.WinForms.DateRangeControl();
+            this.LBL_Status = new System.Windows.Forms.Label();
             LBL_Accurancy = new System.Windows.Forms.Label();
             this.GroupBox.SuspendLayout();
             this.ResultPanel.SuspendLayout();
@@ -76,19 +76,6 @@
             this.GroupBox.Size = new System.Drawing.Size(558, 160);
             this.GroupBox.TabIndex = 13;
             this.GroupBox.TabStop = false;
-            // 
-            // LBL_Status
-            // 
-            this.LBL_Status.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LBL_Status.Font = new System.Drawing.Font("Calibri", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LBL_Status.Location = new System.Drawing.Point(27, 0);
-            this.LBL_Status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LBL_Status.Name = "LBL_Status";
-            this.LBL_Status.Size = new System.Drawing.Size(526, 31);
-            this.LBL_Status.TabIndex = 20;
-            this.LBL_Status.Text = "Статус";
-            this.LBL_Status.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // ResultPanel
             // 
@@ -150,7 +137,7 @@
             this.CHB_AddToTray.Location = new System.Drawing.Point(275, 129);
             this.CHB_AddToTray.Name = "CHB_AddToTray";
             this.CHB_AddToTray.Size = new System.Drawing.Size(98, 17);
-            this.CHB_AddToTray.TabIndex = 15;
+            this.CHB_AddToTray.TabIndex = 4;
             this.CHB_AddToTray.Text = "Додати у трей";
             this.CHB_AddToTray.UseVisualStyleBackColor = true;
             this.CHB_AddToTray.CheckedChanged += new System.EventHandler(this.CHB_AddToTray_CheckedChanged);
@@ -165,7 +152,7 @@
             this.BTN_Complete.Location = new System.Drawing.Point(17, 124);
             this.BTN_Complete.Name = "BTN_Complete";
             this.BTN_Complete.Size = new System.Drawing.Size(146, 23);
-            this.BTN_Complete.TabIndex = 14;
+            this.BTN_Complete.TabIndex = 1;
             this.BTN_Complete.Text = "Скасувати виконання";
             this.BTN_Complete.UseVisualStyleBackColor = true;
             this.BTN_Complete.Click += new System.EventHandler(this.BTN_Complete_Click);
@@ -176,7 +163,7 @@
             this.BTN_Delete.Location = new System.Drawing.Point(476, 124);
             this.BTN_Delete.Name = "BTN_Delete";
             this.BTN_Delete.Size = new System.Drawing.Size(64, 23);
-            this.BTN_Delete.TabIndex = 13;
+            this.BTN_Delete.TabIndex = 6;
             this.BTN_Delete.Text = "Видалити";
             this.BTN_Delete.UseVisualStyleBackColor = true;
             this.BTN_Delete.Click += new System.EventHandler(this.BTN_Delete_Click);
@@ -187,7 +174,7 @@
             this.BtnEdit.Location = new System.Drawing.Point(398, 124);
             this.BtnEdit.Name = "BtnEdit";
             this.BtnEdit.Size = new System.Drawing.Size(75, 23);
-            this.BtnEdit.TabIndex = 12;
+            this.BtnEdit.TabIndex = 5;
             this.BtnEdit.Text = "Детальніше";
             this.BtnEdit.UseVisualStyleBackColor = true;
             this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
@@ -203,7 +190,7 @@
             0});
             this.NUD_Precision.Name = "NUD_Precision";
             this.NUD_Precision.Size = new System.Drawing.Size(36, 20);
-            this.NUD_Precision.TabIndex = 6;
+            this.NUD_Precision.TabIndex = 3;
             this.NUD_Precision.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NUD_Precision.ValueChanged += new System.EventHandler(this.NUD_Accurancy_ValueChanged);
             // 
@@ -222,8 +209,22 @@
             this.DateRangeControl.Precision = ((byte)(3));
             this.DateRangeControl.RangeName = null;
             this.DateRangeControl.Size = new System.Drawing.Size(521, 90);
-            this.DateRangeControl.TabIndex = 0;
+            this.DateRangeControl.TabIndex = 2;
+            this.DateRangeControl.TabStop = false;
             this.DateRangeControl.IconClick += new System.Action(this.DateRangeControl_IconClick);
+            // 
+            // LBL_Status
+            // 
+            this.LBL_Status.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LBL_Status.Font = new System.Drawing.Font("Calibri", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LBL_Status.Location = new System.Drawing.Point(27, 0);
+            this.LBL_Status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LBL_Status.Name = "LBL_Status";
+            this.LBL_Status.Size = new System.Drawing.Size(526, 31);
+            this.LBL_Status.TabIndex = 20;
+            this.LBL_Status.Text = "Статус";
+            this.LBL_Status.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // TaskControl
             // 
