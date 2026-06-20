@@ -5,7 +5,7 @@
 	<url>https://github.com/GUSH-GUSH/TaskProgresser/releases/download/V2.0.1/TaskProgresser_Release_2.0.1.zip</url>
 	
 	
-	<mandatory>false</mandatory>
+	<mandatory>true</mandatory>
 </item>
 
 
