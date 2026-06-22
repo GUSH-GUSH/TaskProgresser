@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthForm));
             this.TBOX_Username = new System.Windows.Forms.TextBox();
             this.TBOX_Password = new System.Windows.Forms.TextBox();
@@ -37,29 +38,31 @@
             this.LBL_Pass = new System.Windows.Forms.Label();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.CHB_ShowPass = new System.Windows.Forms.CheckBox();
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.MainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // TBOX_Username
             // 
-            this.TBOX_Username.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TBOX_Username.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.TBOX_Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TBOX_Username.Location = new System.Drawing.Point(0, 35);
+            this.TBOX_Username.Location = new System.Drawing.Point(47, 35);
             this.TBOX_Username.Name = "TBOX_Username";
             this.TBOX_Username.Size = new System.Drawing.Size(200, 26);
             this.TBOX_Username.TabIndex = 1;
+            this.TBOX_Username.TextChanged += new System.EventHandler(this.TBOX_Username_TextChanged);
             // 
             // TBOX_Password
             // 
-            this.TBOX_Password.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TBOX_Password.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.TBOX_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TBOX_Password.Location = new System.Drawing.Point(0, 90);
+            this.TBOX_Password.Location = new System.Drawing.Point(47, 90);
             this.TBOX_Password.Name = "TBOX_Password";
             this.TBOX_Password.PasswordChar = '*';
             this.TBOX_Password.Size = new System.Drawing.Size(200, 26);
             this.TBOX_Password.TabIndex = 2;
+            this.TBOX_Password.TextChanged += new System.EventHandler(this.TBOX_Password_TextChanged);
             // 
             // BTN_Login
             // 
@@ -87,11 +90,10 @@
             // 
             // LBL_Username
             // 
-            this.LBL_Username.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.LBL_Username.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LBL_Username.AutoSize = true;
             this.LBL_Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LBL_Username.Location = new System.Drawing.Point(-1, 10);
+            this.LBL_Username.Location = new System.Drawing.Point(46, 10);
             this.LBL_Username.Name = "LBL_Username";
             this.LBL_Username.Size = new System.Drawing.Size(49, 20);
             this.LBL_Username.TabIndex = 4;
@@ -99,11 +101,10 @@
             // 
             // LBL_Pass
             // 
-            this.LBL_Pass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.LBL_Pass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LBL_Pass.AutoSize = true;
             this.LBL_Pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LBL_Pass.Location = new System.Drawing.Point(-1, 65);
+            this.LBL_Pass.Location = new System.Drawing.Point(46, 65);
             this.LBL_Pass.Name = "LBL_Pass";
             this.LBL_Pass.Size = new System.Drawing.Size(67, 20);
             this.LBL_Pass.TabIndex = 5;
@@ -117,22 +118,28 @@
             this.MainPanel.Controls.Add(this.LBL_Pass);
             this.MainPanel.Controls.Add(this.TBOX_Password);
             this.MainPanel.Controls.Add(this.LBL_Username);
-            this.MainPanel.Location = new System.Drawing.Point(47, 30);
+            this.MainPanel.Location = new System.Drawing.Point(0, 30);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(200, 143);
+            this.MainPanel.Size = new System.Drawing.Size(294, 143);
             this.MainPanel.TabIndex = 0;
             // 
             // CHB_ShowPass
             // 
+            this.CHB_ShowPass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CHB_ShowPass.AutoSize = true;
             this.CHB_ShowPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CHB_ShowPass.Location = new System.Drawing.Point(3, 119);
+            this.CHB_ShowPass.Location = new System.Drawing.Point(50, 119);
             this.CHB_ShowPass.Name = "CHB_ShowPass";
             this.CHB_ShowPass.Size = new System.Drawing.Size(90, 20);
             this.CHB_ShowPass.TabIndex = 3;
             this.CHB_ShowPass.Text = "Показати";
             this.CHB_ShowPass.UseVisualStyleBackColor = true;
             this.CHB_ShowPass.CheckedChanged += new System.EventHandler(this.CHB_ShowPass_CheckedChanged);
+            // 
+            // ErrorProvider
+            // 
+            this.ErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.ErrorProvider.ContainerControl = this;
             // 
             // AuthForm
             // 
@@ -152,6 +159,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthForm_FormClosed);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -166,5 +174,6 @@
         private System.Windows.Forms.Label LBL_Pass;
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.CheckBox CHB_ShowPass;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
     }
 }
