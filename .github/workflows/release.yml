@@ -1,0 +1,50 @@
+name: Release TaskProgresser Client
+
+# Робот просыпается только при отправке тега "v*"
+on:
+  push:
+    tags:
+      - 'v*' 
+
+jobs:
+  build-client:
+    runs-on: windows-latest
+
+    steps:
+    # ШАГ 1: Скачиваем весь код
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # ШАГ 2: Устанавливаем NuGet (нужен для скачивания AutoUpdater и других библиотек)
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+
+    # ШАГ 3: Устанавливаем MSBuild
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    # ШАГ 4: Восстанавливаем пакеты для всего решения 
+    # (Это безопасно. Он скачает зависимости для всех проектов, включая API, но ничего собирать пока не будет)
+    # ВНИМАНИЕ: Замени "TaskProgresser.sln" на точное имя твоего файла решения!
+    - name: Restore Packages
+      run: nuget restore TaskProgresser.sln
+
+    # ШАГ 5: СБОРКА ТОЛЬКО НУЖНЫХ ЧАСТЕЙ
+    # Мы натравливаем компилятор ТОЛЬКО на проект WinForms. 
+    # Он автоматически скомпилирует Core (.NET Standard 2.0) и подтянет его как DLL,
+    # а проект API (.NET 8.0) будет полностью проигнорирован.
+    # ВНИМАНИЕ: Проверь путь к файлу .csproj! (Папка\Файл.csproj)
+    - name: Build WinForms & Core
+      run: msbuild TaskProgresser.WinForms\TaskProgresser.WinForms.csproj /p:Configuration=Release /p:Platform="AnyCPU"
+
+    # ШАГ 6: Архивируем только папку релиза WinForms
+    # Там уже будут лежать твой .exe и скомпилированная TaskProgresser.Core.dll
+    - name: Zip the Build
+      run: Compress-Archive -Path "TaskProgresser.WinForms\bin\Release\*" -DestinationPath "update.zip"
+
+    # ШАГ 7: Создаем Релиз на GitHub
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: update.zip
+        generate_release_notes: true
