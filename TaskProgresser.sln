@@ -67,6 +67,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worklog", "Worklog", "{492D
 		Worklog.md = Worklog.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Issues", "Issues", "{33AF5533-9C5D-4630-AC84-ACBBB0884920}"
+	ProjectSection(SolutionItems) = preProject
+		Issues.md = Issues.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +103,7 @@ Global
 		{1B3EBB89-AD66-4312-B2F4-34080D4DA630} = {31A8B10B-E202-4332-9977-CD879C2537DE}
 		{3CA429DD-CA0F-42F3-95F2-8656FB60AFD7} = {31A8B10B-E202-4332-9977-CD879C2537DE}
 		{492DCB0C-0F37-4693-8697-46712CFC5226} = {31A8B10B-E202-4332-9977-CD879C2537DE}
+		{33AF5533-9C5D-4630-AC84-ACBBB0884920} = {31A8B10B-E202-4332-9977-CD879C2537DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9666932-9B3D-4545-AA42-804373208EEF}
