@@ -9,6 +9,7 @@ using System.Text;
 using TaskProgresser.Api.Data;
 using TaskProgresser.Core.DTOs;
 using TaskProgresser.Core.Models;
+using TaskProgresser.Core.Validators;
 
 namespace TaskProgresser.Api.Controllers
 {
@@ -28,6 +29,13 @@ namespace TaskProgresser.Api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] AuthRequest request)
         {
+            //Валідація логіну та паролю
+            if (!AuthValidator.ValidateLogin(request.Username))
+                return BadRequest(AuthValidator.LOGIN_ERROR_MESSAGE);
+
+            if (!AuthValidator.ValidatePassword(request.Password))
+                return BadRequest(AuthValidator.PASSWORD_ERROR_MESSAGE);
+
             //Певірка, чи існує вже користувач з таким логіном
             if (await _context.Users.AnyAsync(u => u.Username == request.Username))
                 return BadRequest($"Ім'я користувача {request.Username} зайнято");
