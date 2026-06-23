@@ -10,10 +10,11 @@ namespace TaskProgresser.WinForms.Services
 {
     internal static class VersionGetter
     {
-        private static readonly Version Version = Assembly.GetExecutingAssembly().GetName().Version;
-
-        public static string FullVersion { get => Version.ToString(); }
-        public static string ShortVersion { get => $"{Version.Major}.{Version.Minor}{(Version.Build !=0 || Version.Revision != 0 ? $".{Version.Build}" : "")}{(Version.Revision != 0 ? $".{Version.Revision}" : "")}"; }
+        private static readonly Version _version = Assembly.GetExecutingAssembly().GetName().Version;
+        
+        public static Version Version { get => _version; }
+        public static string FullVersion { get => _version.ToString(); }
+        public static string ShortVersion { get => $"{_version.Major}.{_version.Minor}{(_version.Build !=0 || _version.Revision != 0 ? $".{_version.Build}" : "")}{(_version.Revision != 0 ? $".{_version.Revision}" : "")}"; }
 
     }
 }
