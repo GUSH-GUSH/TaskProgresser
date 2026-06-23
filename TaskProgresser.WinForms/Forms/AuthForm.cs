@@ -9,8 +9,6 @@ namespace TaskProgresser.WinForms.Forms
     public partial class AuthForm : Form
     {
         private readonly AuthApiClient _authApiClient = new AuthApiClient();
-        private (bool username, bool password) _isCorrect = (false, false);
-
 
 
         public string Username => TBOX_Username.Text;
@@ -19,12 +17,7 @@ namespace TaskProgresser.WinForms.Forms
         public string Token { get; private set; }
 
         private (bool username, bool password) isCorrect {
-            get => _isCorrect;
-            set
-            {
-                _isCorrect = value;
-                EnabledButtons = value.username && value.password;
-            }
+            get => (AuthValidator.ValidateLogin(TBOX_Username.Text), AuthValidator.ValidatePassword(TBOX_Password.Text));
         }
 
         private bool EnabledButtons {
@@ -40,7 +33,7 @@ namespace TaskProgresser.WinForms.Forms
         public AuthForm()
         {
             InitializeComponent();
-            EnabledButtons = false;
+            EnabledButtons = true;
         }
 
         private async void BTN_Login_Click(object sender, EventArgs e)
@@ -52,12 +45,20 @@ namespace TaskProgresser.WinForms.Forms
                 DialogResult = DialogResult.OK;
                 Close();
             }
-            catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка входу!", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             finally { Enabled = true; }
         }
 
         private async void BTN_Reg_Click(object sender, EventArgs e)
         {
+            if(!(isCorrect.username && isCorrect.password))
+            {
+                UpdateUsernameError();
+                UpdatePasswordError();
+                MessageBox.Show(this, $"Будь ласка, заповніть усі поля правильно.\n\n{AuthValidator.LOGIN_ERROR_MESSAGE}\n\n{AuthValidator.PASSWORD_ERROR_MESSAGE}", "Помилка реєстрації!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 Enabled = false;
@@ -65,7 +66,7 @@ namespace TaskProgresser.WinForms.Forms
                 MessageBox.Show(this, $"Аккаунт {Username} успішно створено!", "Успіх!");
                 BTN_Login_Click(this, new EventArgs());
             }
-            catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Warning); Enabled = true; }
+            catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка реєстрації!", MessageBoxButtons.OK, MessageBoxIcon.Warning); Enabled = true; }
         }
 
         private void CHB_ShowPass_CheckedChanged(object sender, EventArgs e)
@@ -82,35 +83,22 @@ namespace TaskProgresser.WinForms.Forms
 
         #region --- VALIDATION ---
 
-        private void TBOX_Username_TextChanged(object sender, EventArgs e)
-        {
-            if(!AuthValidator.ValidateLogin(TBOX_Username.Text))
-            {
-                ErrorProvider.SetError(TBOX_Username, AuthValidator.LOGIN_ERROR_MESSAGE);
-                isCorrect = (false, isCorrect.password);
-            }
-            else
-            {
-                ErrorProvider.SetError(TBOX_Username, string.Empty);
-                isCorrect = (true, isCorrect.password);
-            }
-        }
+        private void TBOX_Username_TextChanged(object sender, EventArgs e) => UpdateUsernameError();
 
-        private void TBOX_Password_TextChanged(object sender, EventArgs e)
-        {
-            if (!AuthValidator.ValidatePassword(TBOX_Password.Text))
-            {
-                ErrorProvider.SetError(TBOX_Password, AuthValidator.PASSWORD_ERROR_MESSAGE);
-                isCorrect = (isCorrect.username, false);
-            }
-            else
-            {
-                ErrorProvider.SetError(TBOX_Password, string.Empty);
-                isCorrect = (isCorrect.username, true);
-            }
-        }
-
+        private void TBOX_Password_TextChanged(object sender, EventArgs e) => UpdatePasswordError();
         
+        private void UpdateUsernameError()
+        {
+            if (!isCorrect.username) ErrorProvider.SetError(TBOX_Username, AuthValidator.LOGIN_ERROR_MESSAGE);
+            else ErrorProvider.SetError(TBOX_Username, string.Empty);
+        }
+
+        private void UpdatePasswordError()
+        {
+            if (!isCorrect.password) ErrorProvider.SetError(TBOX_Password, AuthValidator.PASSWORD_ERROR_MESSAGE);
+            else ErrorProvider.SetError(TBOX_Password, string.Empty);
+        }
+
         #endregion --- VALIDATION ---
 
     }
