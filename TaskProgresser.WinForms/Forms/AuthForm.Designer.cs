@@ -39,6 +39,7 @@
             this.MainPanel = new System.Windows.Forms.Panel();
             this.CHB_ShowPass = new System.Windows.Forms.CheckBox();
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.LBL_Version = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
@@ -141,12 +142,23 @@
             this.ErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.ErrorProvider.ContainerControl = this;
             // 
+            // LBL_Version
+            // 
+            this.LBL_Version.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LBL_Version.Location = new System.Drawing.Point(0, 280);
+            this.LBL_Version.Name = "LBL_Version";
+            this.LBL_Version.Size = new System.Drawing.Size(295, 25);
+            this.LBL_Version.TabIndex = 6;
+            this.LBL_Version.Text = "Версія 0.0.0";
+            this.LBL_Version.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // AuthForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(295, 305);
+            this.Controls.Add(this.LBL_Version);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.BTN_Reg);
             this.Controls.Add(this.BTN_Login);
@@ -175,5 +187,6 @@
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.CheckBox CHB_ShowPass;
         private System.Windows.Forms.ErrorProvider ErrorProvider;
+        private System.Windows.Forms.Label LBL_Version;
     }
 }

@@ -194,6 +194,7 @@
     <Compile Include="Services\DateTimePickersRangeController.cs" />
     <Compile Include="ApiClients\TasksApiClient.cs" />
     <Compile Include="Services\TaskFilterService.cs" />
+    <Compile Include="Services\VersionGetter.cs" />
     <Compile Include="Utils\ProgressBarExtensions.cs" />
     <EmbeddedResource Include="Controls\ClickableUserControl.resx">
       <DependentUpon>ClickableUserControl.cs</DependentUpon>
