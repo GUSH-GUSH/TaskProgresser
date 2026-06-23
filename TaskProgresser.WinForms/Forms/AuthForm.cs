@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using TaskProgresser.Core.Validators;
+using TaskProgresser.WinForms.Services;
 
 using TaskProgresser.WinForms.ApiClients;
 
@@ -20,20 +21,11 @@ namespace TaskProgresser.WinForms.Forms
             get => (AuthValidator.ValidateLogin(TBOX_Username.Text), AuthValidator.ValidatePassword(TBOX_Password.Text));
         }
 
-        private bool EnabledButtons {
-            set
-            {
-                BTN_Login.Enabled = value;
-                BTN_Reg.Enabled = value;
-            }
-        }
-
-
 
         public AuthForm()
         {
             InitializeComponent();
-            EnabledButtons = true;
+            LBL_Version.Text = $"Версія {VersionGetter.ShortVersion}";
         }
 
         private async void BTN_Login_Click(object sender, EventArgs e)
