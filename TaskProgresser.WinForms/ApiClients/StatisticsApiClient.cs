@@ -10,9 +10,13 @@ namespace TaskProgresser.WinForms.ApiClients
 {
     public class StatisticsApiClient : BaseApiClient
     {
+        private static readonly string StatisticsEndPoint = $"{BaseUrl}/statistics";
+
         public async Task<TaskStatisticsDto> GetStatistics()
         {
-            return await Client.GetFromJsonAsync<TaskStatisticsDto>($"{BaseUrl}/statistics") ?? new TaskStatisticsDto();
+            var response = await Client.GetAsync(StatisticsEndPoint);
+            EnsureValidResponse(response);
+            return await response.Content.ReadFromJsonAsync<TaskStatisticsDto>() ?? new TaskStatisticsDto();
         }
     }
 }

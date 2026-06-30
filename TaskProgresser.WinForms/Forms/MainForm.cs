@@ -26,6 +26,7 @@ using TaskProgresser.Core.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 using System.Windows.Interop;
 using System.Net;
+using System.Web;
 
 namespace TaskProgresser.WinForms
 {
@@ -49,21 +50,7 @@ namespace TaskProgresser.WinForms
         {
             InitializeComponent();
             ClearTasks();
-        }
-
-        private void Authorization()
-        {
-            var authForm = new AuthForm();
-            if (authForm.ShowDialog(this) == DialogResult.OK)
-            {
-                LBL_Username.Text = authForm.Username;
-                //MessageBox.Show(authForm.Token);
-                //MessageBox.Show(BaseApiClient.Token);
-            }
-            else
-            {
-                Application.Exit();
-            }
+            BaseApiClient.OnUnathorized += HandleUnauthorized;
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -77,6 +64,42 @@ namespace TaskProgresser.WinForms
         }
 
         #endregion --- Setup ---
+
+        #region --- Authorization ---
+
+        private async void HandleUnauthorized(string message)
+        {
+            // Важно: так как событие может прилететь из асинхронного потока (HttpClient),
+            // нам нужно безопасно переключиться на главный UI-поток через Invoke
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => { HandleUnauthorized(message); }));
+                return;
+            }
+
+            MessageBox.Show(this, message, "Помилка авторизації!");
+            ClearTasks();
+            Hide();
+            Authorization();
+            if (BaseApiClient.Token != null)
+            {
+                Show();
+                await LoadData();
+                RenderTasks();
+            }
+        }
+
+        private void Authorization()
+        {
+            var authForm = new AuthForm();
+            if (authForm.ShowDialog(this) == DialogResult.OK)
+            {
+                LBL_Username.Text = authForm.Username;
+            }
+            else Application.Exit();
+        }
+
+        #endregion --- Authorization ---
 
         #region --- Events Handlers ---
 
@@ -144,7 +167,6 @@ namespace TaskProgresser.WinForms
             RenderTasks();
         }
 
-        
         private async void BTN_Statistics_Click(object sender, EventArgs e)
         {
             Hide();
@@ -168,12 +190,11 @@ namespace TaskProgresser.WinForms
                 RenderTasks();
                 Invoke(new Action(() => { MessageBox.Show(this, "Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
             }
-            catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+            catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
         }
 
         private async void UpdateTask(TaskItem task)
         {
-            //SaveAllData();
             if (task != null)
             {
                 try
@@ -182,7 +203,7 @@ namespace TaskProgresser.WinForms
                     RenderTasks();
                     Invoke(new Action(() => { MessageBox.Show(this, "Дані успішно оновлені!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
                 }
-                catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+                catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
             }
         }
 
@@ -197,7 +218,7 @@ namespace TaskProgresser.WinForms
                     RenderTasks();
                     Invoke(new Action(() => { MessageBox.Show(this, "Видалення успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
                 }
-                catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+                catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
             }
         }
 
@@ -223,7 +244,7 @@ namespace TaskProgresser.WinForms
                     Invoke(new Action(() => { MessageBox.Show(this, $"Задачу додано в активні!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None); }));
                 }
             }
-            catch (Exception ex) { Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+            catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
         }
 
         #endregion --- Task Control ---
@@ -233,11 +254,7 @@ namespace TaskProgresser.WinForms
         private async Task LoadData()
         {
             try { _allTasks = await _tasksApiClient.GetAllTasksAsync(); }
-            catch (Exception ex) {
-                Invoke(
-                new Action(() => MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"))
-                );
-            }
+            catch (Exception ex) { } // { Invoke(new Action(() => MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"))); }
         }
 
         #endregion --- Work with data ---
@@ -248,7 +265,7 @@ namespace TaskProgresser.WinForms
         {
             FlowPanel_Active.SuspendLayout();
             FlowPanel_Completed.SuspendLayout();
-            
+
             int active_margin = 12;
             int completed_margin = 12;
 
@@ -296,14 +313,8 @@ namespace TaskProgresser.WinForms
             }));
         }
 
-        private void RestoreWindow()
+        private void ClearTasks()
         {
-            this.Show(); // Показываем форму
-            this.WindowState = FormWindowState.Normal; // Восстанавливаем размер
-            this.Activate(); // Выводим на передний план
-        }
-
-        private void ClearTasks() {
             FlowPanel_Active.SuspendLayout();
             FlowPanel_Completed.SuspendLayout();
 
@@ -320,7 +331,14 @@ namespace TaskProgresser.WinForms
             FlowPanel_Completed.ResumeLayout();
         }
 
-        #endregion
+        private void RestoreWindow()
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Activate();
+        }
+
+        #endregion --- Visual ---
 
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
-using System;
-using TaskProgresser.WinForms.Properties;
 using System.Security.Principal;
+using TaskProgresser.WinForms.Properties;
 
 namespace TaskProgresser.WinForms.ApiClients
 {
@@ -17,18 +18,37 @@ namespace TaskProgresser.WinForms.ApiClients
         #endif
 
         public static string Token { get; private set; }
-        
+
+        public static event Action<string> OnUnathorized;
+
         public void SetToken(string token)
         {
             if (string.IsNullOrWhiteSpace(token)) throw new ArgumentException("Token cannot be null or empty.", nameof(token));
             Token = token;
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            Settings.Default.ApiToken = token;
         }
 
         public void ResetToken()
         {
             Token = null;
             Client.DefaultRequestHeaders.Authorization = null;
+            Settings.Default.ApiToken = null;
         }
+
+        protected void EnsureValidResponse(HttpResponseMessage response)
+        {
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                ResetToken();
+                OnUnathorized?.Invoke(UNATHORIZED_MESSAGE);
+                throw new UnauthorizedAccessException();
+            }
+
+            // Якщо помилка інша (наприклад 400 Bad Request або 500 Server Error)
+            response.EnsureSuccessStatusCode();
+        }
+
+        public static readonly string UNATHORIZED_MESSAGE = "Час дії сесії вичерпано.\nБудь ласка, увійдіть знову!"; 
     }
 }

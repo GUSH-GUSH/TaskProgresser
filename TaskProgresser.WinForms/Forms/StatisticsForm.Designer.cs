@@ -255,7 +255,7 @@
             this.BTN_Update.TabIndex = 1;
             this.BTN_Update.Text = "Оновити";
             this.BTN_Update.UseVisualStyleBackColor = true;
-            this.BTN_Update.Click += new System.EventHandler(this.button1_Click);
+            this.BTN_Update.Click += new System.EventHandler(this.BTN_Update_Click);
             // 
             // PBWP_AveragePercent
             // 
@@ -283,6 +283,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Статистика";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StatisticsForm_FormClosed);
             this.Load += new System.EventHandler(this.StatisticsForm_Load);
             GPBX_Header.ResumeLayout(false);
             GPBX_Header.PerformLayout();

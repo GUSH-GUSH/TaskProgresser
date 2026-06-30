@@ -17,16 +17,23 @@ namespace TaskProgresser.WinForms.Forms
     {
         private StatisticsApiClient _statisticsApiClient;
 
+        #region --- Setup ---
+
         public StatisticsForm()
         {
             InitializeComponent();
             _statisticsApiClient = new StatisticsApiClient();
+            BaseApiClient.OnUnathorized += HandleUnauthorized;
         }
 
         private async void StatisticsForm_Load(object sender, EventArgs e)
         {
             await UpdateStatistics();
         }
+
+        #endregion --- Setup  ---
+
+        #region --- Visual ---
 
         public void SetAvarageCompletedPercent(double percent)
         {
@@ -183,9 +190,25 @@ namespace TaskProgresser.WinForms.Forms
             }
         }
 
+        #endregion --- Visual ---
+
+        private async void HandleUnauthorized(string message)
+        {
+            // Важно: так как событие может прилететь из асинхронного потока (HttpClient),
+            // нам нужно безопасно переключиться на главный UI-поток через Invoke
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => { HandleUnauthorized(message); }));
+                return;
+            }
+
+            Close();
+        }
+
         public async Task<TaskStatisticsDto> LoadStatistics()
         {
-            return await _statisticsApiClient.GetStatistics();
+            try { return await _statisticsApiClient.GetStatistics(); }
+            catch (Exception ex) { return new TaskStatisticsDto(); }
         }
 
         public void RenderStatistics(TaskStatisticsDto statistics)
@@ -202,9 +225,14 @@ namespace TaskProgresser.WinForms.Forms
             Invoke(new Action<TaskStatisticsDto>(RenderStatistics), statistics);
        }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void BTN_Update_Click(object sender, EventArgs e)
         {
             await UpdateStatistics();
+        }
+
+        private void StatisticsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            BaseApiClient.OnUnathorized -= HandleUnauthorized;
         }
     }
 }
