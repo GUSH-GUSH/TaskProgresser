@@ -55,8 +55,19 @@ namespace TaskProgresser.WinForms
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            Authorization();
+            if (string.IsNullOrEmpty(_tasksApiClient.GetToken()))
+            {
+                //MessageBox.Show("Токена нет!");
+                Authorization();
+            }
+            else
+            {
+                //MessageBox.Show("Токен существует!");
+                LBL_Username.Text = _tasksApiClient.GetUsername();
+            }
+
             await LoadData();
+
             RenderTasks();
 
             ProgressUpdaterService.Tick += () => Label_CurrentDateTime.Text = DateTime.Now.ToString();
