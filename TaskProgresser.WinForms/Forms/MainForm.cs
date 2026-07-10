@@ -264,8 +264,10 @@ namespace TaskProgresser.WinForms
 
         private async Task LoadData()
         {
+            BlockUI();
             try { _allTasks = await _tasksApiClient.GetAllTasksAsync(); }
             catch (Exception ex) { } // { Invoke(new Action(() => MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"))); }
+            UnblockUI();
         }
 
         #endregion --- Work with data ---
@@ -348,6 +350,19 @@ namespace TaskProgresser.WinForms
             this.WindowState = FormWindowState.Normal;
             this.Activate();
         }
+
+        private void BlockUI()
+        {
+            this.Enabled = false;
+            this.Cursor = Cursors.WaitCursor;
+        }
+
+        private void UnblockUI()
+        {
+            this.Enabled = true;
+            this.Cursor = Cursors.Default;
+        }
+
 
         #endregion --- Visual ---
 
