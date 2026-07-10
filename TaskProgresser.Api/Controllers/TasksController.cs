@@ -39,7 +39,7 @@ namespace TaskProgresser.WinForms.ApiClients
 
             task.UserId = userId;
 
-            _context.Tasks.Add(task);
+            _context.Tasks.Add(task.ToUTC());
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
@@ -56,6 +56,8 @@ namespace TaskProgresser.WinForms.ApiClients
                 .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
 
             if (existingTask == null) return NotFound(TASK_NOT_FOUND_MESSAGE);
+
+            updatedTask.ToUTC();
 
             // Оновлюємо поля
             existingTask.Title = updatedTask.Title;

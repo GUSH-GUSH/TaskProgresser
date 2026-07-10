@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Text.Json.Serialization;
 
 namespace TaskProgresser.Core.Models
@@ -18,5 +19,37 @@ namespace TaskProgresser.Core.Models
 
         [JsonIgnore]
         public bool IsCompleted => CompletedAt.HasValue;
+
+        public TaskItem ToUTC()
+        {
+            return new TaskItem
+            {
+                Id = this.Id,
+                Title = this.Title,
+                Description = this.Description,
+                StartDate = this.StartDate.ToUniversalTime(),
+                EndDate = this.EndDate.ToUniversalTime(),
+                CompletedAt = this.CompletedAt?.ToUniversalTime(),
+                Precision = this.Precision,
+                ShowInTray = this.ShowInTray,
+                UserId = this.UserId
+            };
+        }
+
+        public TaskItem ToLocalTime()
+        {
+            return new TaskItem
+            {
+                Id = this.Id,
+                Title = this.Title,
+                Description = this.Description,
+                StartDate = this.StartDate.ToLocalTime(),
+                EndDate = this.EndDate.ToLocalTime(),
+                CompletedAt = this.CompletedAt?.ToLocalTime(),
+                Precision = this.Precision,
+                ShowInTray = this.ShowInTray,
+                UserId = this.UserId
+            };
+        }
     }
 }

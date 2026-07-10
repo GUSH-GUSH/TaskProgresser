@@ -194,10 +194,10 @@ namespace TaskProgresser.WinForms
 
         private async Task AddTask(TaskItem newTask)
         {
-            _allTasks = _allTasks.Prepend(newTask).ToList();
             try
             {
                 await _tasksApiClient.AddTaskAsync(newTask);
+                _allTasks = _allTasks.Prepend(newTask).ToList();
                 RenderTasks();
                 Invoke(new Action(() => { MessageBox.Show(this, "Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
             }
