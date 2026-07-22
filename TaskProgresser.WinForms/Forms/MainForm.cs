@@ -196,12 +196,18 @@ namespace TaskProgresser.WinForms
         {
             try
             {
+                BlockUI();
                 await _tasksApiClient.AddTaskAsync(newTask);
                 _allTasks = _allTasks.Prepend(newTask).ToList();
                 RenderTasks();
+                UnblockUI();
                 Invoke(new Action(() => { MessageBox.Show(this, "Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
             }
             catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+            finally
+            {
+                UnblockUI();
+            }
         }
 
         private async void UpdateTask(TaskItem task)
@@ -210,11 +216,17 @@ namespace TaskProgresser.WinForms
             {
                 try
                 {
+                    BlockUI();
                     await _tasksApiClient.UpdateTaskAsync(task);
                     RenderTasks();
+                    UnblockUI();
                     Invoke(new Action(() => { MessageBox.Show(this, "Дані успішно оновлені!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
                 }
                 catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+                finally
+                {
+                    UnblockUI();
+                }
             }
         }
 
@@ -224,12 +236,18 @@ namespace TaskProgresser.WinForms
             {
                 try
                 {
+                    BlockUI();
                     await _tasksApiClient.DeleteTaskAsync(taskToRemove.Id);
                     _allTasks.Remove(taskToRemove);
                     RenderTasks();
+                    UnblockUI();
                     Invoke(new Action(() => { MessageBox.Show(this, "Видалення успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
                 }
                 catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+                finally
+                {
+                    UnblockUI();
+                }
             }
         }
 
@@ -241,21 +259,26 @@ namespace TaskProgresser.WinForms
                 {
                     if (MessageBox.Show("Ви дійсно хочете завершити задачу?", "Підтвердженя операції!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                        BlockUI();
                         task.CompletedAt = DateTime.Now;
                         await _tasksApiClient.UpdateTaskAsync(task);
                         RenderTasks();
+                        UnblockUI();
                         Invoke(new Action(() => { MessageBox.Show(this, $"Задачу успішно виконано за {TaskAnalyticsController.CalculateEfficiency(task)}% часу!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None); }));
                     }
                 }
                 else if (MessageBox.Show("Ви дійсно хочете скасувати виконання задачі?", "Підтвердженя операції!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    BlockUI();
                     task.CompletedAt = null;
                     await _tasksApiClient.UpdateTaskAsync(task);
                     RenderTasks();
+                    UnblockUI();
                     Invoke(new Action(() => { MessageBox.Show(this, $"Задачу додано в активні!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None); }));
                 }
             }
             catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+            finally { UnblockUI(); }
         }
 
         #endregion --- Task Control ---
@@ -266,7 +289,7 @@ namespace TaskProgresser.WinForms
         {
             BlockUI();
             try { _allTasks = await _tasksApiClient.GetAllTasksAsync(); }
-            catch (Exception ex) { } // { Invoke(new Action(() => MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"))); }
+            catch (Exception ex) { Debug.WriteLine(ex.Message); } // { Invoke(new Action(() => MessageBox.Show(this, ex.Message, "Помилка при завантаженні задач!"))); }
             UnblockUI();
         }
 
