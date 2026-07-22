@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using TaskProgresser.WinForms.ApiClients;
+using TaskProgresser.WinForms.Helpers;
 
 namespace TaskProgresser.WinForms.Forms.DebugForms
 {
@@ -31,7 +30,7 @@ namespace TaskProgresser.WinForms.Forms.DebugForms
 
         private void UpdateIcon()
         {
-            NotifyIcon.Icon = IconGenerator.GetIcon(
+            NotifyIcon.Icon = IconFactory.GetIcon(
                                 iconText_TextBox.Text,
                                 new Font(
                                         (FontFamily)fontFamily_ComboBox.SelectedValue,

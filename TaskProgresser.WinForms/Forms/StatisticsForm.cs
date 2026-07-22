@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using TaskProgresser.Core.DTOs;
-using TaskProgresser.WinForms.ApiClients;
+using TaskProgresser.WinForms.Repositories.ApiClients;
 
 namespace TaskProgresser.WinForms.Forms
 {

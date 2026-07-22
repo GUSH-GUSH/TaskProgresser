@@ -3,7 +3,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using TaskProgresser.Core.Models;
 using TaskProgresser.WinForms.Controls;
-using TaskProgresser.WinForms.ApiClients;
+using TaskProgresser.WinForms.Components;
+using TaskProgresser.WinForms.Helpers;
 using WinFormsExtensions;
 
 namespace TaskProgresser.WinForms
@@ -119,8 +120,8 @@ namespace TaskProgresser.WinForms
             {
                 if(value == _autoUpdate) return;
                 _autoUpdate = value;
-                if (value) ProgressUpdaterService.AddDateRangeControl(this);
-                else ProgressUpdaterService.RemoveDateRangeControl(this);
+                if (value) ProgressUpdateController.AddDateRangeControl(this);
+                else ProgressUpdateController.RemoveDateRangeControl(this);
             }
         }
 
@@ -141,7 +142,7 @@ namespace TaskProgresser.WinForms
             pickersController.OnValueChanged += (o, a) => this.OnValueChanged?.Invoke(this, a);
 
 
-            PrecentIcon.Font = IconGenerator.DefaultFont;
+            PrecentIcon.Font = IconFactory.DefaultFont;
 
             EnableIcon = false;
             EnableEdit = false;

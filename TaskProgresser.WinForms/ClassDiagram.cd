@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TaskProgresser.WinForms.Controls.ClickableUserControl" Collapsed="true">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAgAACAAAAAAAACAAAACAAAACAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Controls\NoVisual\ClickableUserControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaskProgresser.WinForms.Controls.ProgressBarWithPrecent" Collapsed="true">
+    <Position X="4.5" Y="1.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AIABAAIAACAAAAAAACCAAAACAAAAAAAAAAAACYAAAAA=</HashCode>
+      <FileName>Controls\Visual\ProgressBarWithPrecent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaskProgresser.WinForms.DynamicTextNotifyIcon" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAACAAAACBAAAAAACEAAChAAAIABCAIAICAgA=</HashCode>
+      <FileName>Controls\NoVisual\DynamicTextNotifyIcon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaskProgresser.WinForms.DateRangeControl" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAEAAOiUCqADAjAECGAAAQGBECRAAElAABgBYABEAA=</HashCode>
+      <FileName>Controls\Visual\DateRangeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaskProgresser.WinForms.Forms.UserControls.TaskControl" Collapsed="true">
+    <Position X="2.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAoAxAEACDEAAECIAgiAkAAGAAAAIBAAAmAAYAkQgEA=</HashCode>
+      <FileName>Controls\Visual\TaskControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

@@ -5,7 +5,7 @@ using System.Security.Claims;
 using TaskProgresser.Api.Data;
 using TaskProgresser.Core.Models;
 
-namespace TaskProgresser.WinForms.ApiClients
+namespace TaskProgresser.WinForms.Repositories.ApiClients
 {
     [Authorize] // Захищаємо увесь контролер!
     [ApiController]

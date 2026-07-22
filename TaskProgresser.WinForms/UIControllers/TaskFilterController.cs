@@ -5,7 +5,7 @@ using TaskProgresser.Core.Models;
 
 namespace TaskProgresser.WinForms.Services
 {
-    public class TaskFilterService
+    public class TaskFilterController
     {
       /*  public IEnumerable<TaskItem> Process(
             IEnumerable<TaskItem> source,

@@ -16,8 +16,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskProgresser.WinForms.Forms;
 using TaskProgresser.WinForms.Forms.UserControls;
-using TaskProgresser.WinForms.Repositories;
-using TaskProgresser.WinForms.ApiClients;
+using TaskProgresser.WinForms.Repositories.ApiClients;
+using TaskProgresser.WinForms.Components;
 
 using TaskProgresser.Core.Models;
 using TaskProgresser.Core.Services;
@@ -70,8 +70,8 @@ namespace TaskProgresser.WinForms
 
             RenderTasks();
 
-            ProgressUpdaterService.Tick += () => Label_CurrentDateTime.Text = DateTime.Now.ToString();
-            ProgressUpdaterService.Start();
+            ProgressUpdateController.Tick += () => Label_CurrentDateTime.Text = DateTime.Now.ToString();
+            ProgressUpdateController.Start();
         }
 
         #endregion --- Setup ---

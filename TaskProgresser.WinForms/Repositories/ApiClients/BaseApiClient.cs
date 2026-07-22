@@ -6,8 +6,9 @@ using System.Security.Principal;
 using System.Windows;
 using TaskProgresser.WinForms.Properties;
 using TaskProgresser.Core.Services;
+using TaskProgresser.WinForms.Services;
 
-namespace TaskProgresser.WinForms.ApiClients
+namespace TaskProgresser.WinForms.Repositories.ApiClients
 {
     public abstract class BaseApiClient
     {
@@ -25,8 +26,8 @@ namespace TaskProgresser.WinForms.ApiClients
 
         public BaseApiClient()
         {
-            if (!string.IsNullOrWhiteSpace(Settings.Default.ApiToken))
-                SetToken(Settings.Default.ApiToken);
+            var defaultToken = TokenService.GetTokenFromSettings();
+            if (!string.IsNullOrWhiteSpace(defaultToken)) SetToken(defaultToken);
         }
 
         public void SetToken(string token)
@@ -34,18 +35,14 @@ namespace TaskProgresser.WinForms.ApiClients
             if (string.IsNullOrWhiteSpace(token)) throw new ArgumentException("Token cannot be null or empty.", nameof(token));
             Token = token;
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            Settings.Default.ApiToken = token;
-            Settings.Default.Save();
-            //MessageBox.Show("Токен сохранён!");
+            TokenService.SaveTokenToSettings(token);
         }
 
         public void ResetToken()
         {
             Token = null;
             Client.DefaultRequestHeaders.Authorization = null;
-            Settings.Default.ApiToken = null;
-            Settings.Default.Save();
-            //MessageBox.Show("Токен очищен!");
+            TokenService.ResetTokenInSettings();
         }
 
         public string GetToken() { return Token; }

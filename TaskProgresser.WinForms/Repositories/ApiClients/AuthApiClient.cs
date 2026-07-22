@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using TaskProgresser.Core.DTOs;
 using System;
 
-namespace TaskProgresser.WinForms.ApiClients
+namespace TaskProgresser.WinForms.Repositories.ApiClients
 {
     public class AuthApiClient : BaseApiClient
     {

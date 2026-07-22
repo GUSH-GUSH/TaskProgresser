@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace TaskProgresser.WinForms.ApiClients
-{
-    internal static class ProgressUpdaterService
+namespace TaskProgresser.WinForms.Components { 
+    internal static class ProgressUpdateController
     {
 
         #region --- FIELDS ---
@@ -17,7 +16,7 @@ namespace TaskProgresser.WinForms.ApiClients
 
         #region --- SETUP ---
 
-        static ProgressUpdaterService()
+        static ProgressUpdateController()
         {
             timer.Tick += (obj, eventArgs) => ExecuteOnce();
         }

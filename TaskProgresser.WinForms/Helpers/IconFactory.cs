@@ -4,9 +4,9 @@ using System.Drawing.Imaging;
 
 using System.Runtime.InteropServices;
 
-namespace TaskProgresser.WinForms.ApiClients
+namespace TaskProgresser.WinForms.Helpers
 {
-    public static class IconGenerator
+    public static class IconFactory
     {
         public static readonly Size DefaultSize = new Size(32, 32);
         public static readonly Font DefaultFont =

@@ -6,7 +6,7 @@ using System.Net.Http.Json;
 using TaskProgresser.Core.Models;
 using TaskProgresser.Core.DTOs;
 
-namespace TaskProgresser.WinForms.ApiClients
+namespace TaskProgresser.WinForms.Repositories.ApiClients
 {
     public class StatisticsApiClient : BaseApiClient
     {

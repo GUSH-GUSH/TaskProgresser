@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using TaskProgresser.Core.Validators;
 using TaskProgresser.WinForms.Services;
 
-using TaskProgresser.WinForms.ApiClients;
+using TaskProgresser.WinForms.Repositories.ApiClients;
 
 namespace TaskProgresser.WinForms.Forms
 {

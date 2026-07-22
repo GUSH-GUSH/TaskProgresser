@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace TaskProgresser.WinForms.Repositories
 {
-    internal static class JsonTaskSeializer
+    internal static class JsonTaskSeializerService
     {
         private static readonly string FilePath = "tasks.json";
 

@@ -6,8 +6,7 @@ using System.Windows.Forms;
 using TaskProgresser.WinForms.Controls;
 using TaskProgresser.Core.Models;
 using TaskProgresser.Core.Services;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using TaskProgresser.WinForms.ApiClients;
+using TaskProgresser.WinForms.Components;
 
 namespace TaskProgresser.WinForms.Forms.UserControls
 {
@@ -91,7 +90,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
             {
                 CHB_AddToTray.Checked = false;
             };
-            ProgressUpdaterService.Tick += ApplyVisualState;
+            ProgressUpdateController.Tick += ApplyVisualState;
         }
 
         public void Setup(TaskItem task) => Task = task;
@@ -107,7 +106,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
         }
 
         public new void Dispose() {
-            ProgressUpdaterService.Tick -= ApplyVisualState;
+            ProgressUpdateController.Tick -= ApplyVisualState;
             base.Dispose();
         }
         #endregion

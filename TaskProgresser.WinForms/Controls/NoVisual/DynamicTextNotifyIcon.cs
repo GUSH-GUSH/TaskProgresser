@@ -5,8 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using TaskProgresser.WinForms.ApiClients;
-
+using TaskProgresser.WinForms.Helpers;
 
 namespace TaskProgresser.WinForms
 {
@@ -18,12 +17,10 @@ namespace TaskProgresser.WinForms
         private readonly NotifyIcon _notifyIcon;
 
         private string _displayText = "0";
-        private Font _font = IconGenerator.DefaultFont;
-        private Size _size = IconGenerator.DefaultSize;
+        private Font _font = IconFactory.DefaultFont;
+        private Size _size = IconFactory.DefaultSize;
         private Color _textColor = Color.White;
         private Color _backgroundColor = Color.Transparent;
-
-        //private string _instanceSuffix; //for identification icon in tray;
 
         #endregion
 
@@ -83,10 +80,18 @@ namespace TaskProgresser.WinForms
             get => _font;
             set
             {
-                _font = value ?? IconGenerator.DefaultFont;
+                _font = value ?? IconFactory.DefaultFont;
                 UpdateIcon();
             }
         }
+
+        #endregion
+
+
+        #region --- EVENTS ---
+
+        public event EventHandler Click;
+        public event EventHandler DoubleClick;
 
         #endregion
 
@@ -95,11 +100,6 @@ namespace TaskProgresser.WinForms
 
         public DynamicTextNotifyIcon()
         {
-            //Суффикс-идентификатор, который добавляется в HeaderText для того, чтобы винда отличала иконки
-            //StringBuilder sb = new StringBuilder(++instanceCount);
-           // for (int i = 0; i < instanceCount; i++) sb.Append(IDENTIFIER);
-           // _instanceSuffix = sb.ToString();
-            
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Visible = false;
             _notifyIcon.MouseClick += (o, e) =>
@@ -128,7 +128,7 @@ namespace TaskProgresser.WinForms
         {
             //if (_notifyIcon?.Icon == null) return;
             _notifyIcon.Icon?.Dispose();
-            _notifyIcon.Icon = IconGenerator.GetIcon(_displayText, Font, _size, _textColor, _backgroundColor);
+            _notifyIcon.Icon = IconFactory.GetIcon(_displayText, Font, _size, _textColor, _backgroundColor);
         }
 
         #endregion
@@ -136,32 +136,13 @@ namespace TaskProgresser.WinForms
 
         #region --- DISPOSE ---
 
-        protected override void Dispose(bool disposing)
+        protected new void Dispose()
         {
-            if (disposing)
-            {
-                _notifyIcon.Visible = false;
-                _notifyIcon.Dispose();
-            }
-            base.Dispose(disposing);
+            _notifyIcon.Visible = false;
+            base.Dispose();
         }
 
         #endregion
 
-
-        #region --- EVENTS ---
-        
-        public event EventHandler Click;
-        public event EventHandler DoubleClick;
-
-        #endregion
-
-
-        #region --- STATIC ---
-
-        //private const char IDENTIFIER = '\t';
-        //private static int instanceCount = 0;
-
-        #endregion
     }
 }
