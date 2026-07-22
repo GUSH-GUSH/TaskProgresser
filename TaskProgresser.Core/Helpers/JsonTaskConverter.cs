@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.Json;
 using TaskProgresser.Core.Models;
 
-namespace TaskProgresser.Core.Services
+namespace TaskProgresser.Core.Helpers
 {
-    public static class TaskConverter
+    public static class JsonTaskConverter
     {
         private static readonly JsonSerializerOptions options = new JsonSerializerOptions() { WriteIndented = true , PropertyNameCaseInsensitive = true };
 

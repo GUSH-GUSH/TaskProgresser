@@ -143,7 +143,7 @@ namespace CourseWork.Forms
             }
         }
 
-        void UpdateCompletePrecentage() => LBL_Еfficiency.Text = $"Виконано за {TaskAnalyticsService.CalculateEfficiency(Task)}% відведеного часу!";
+        void UpdateCompletePrecentage() => LBL_Еfficiency.Text = $"Виконано за {TaskAnalyticsController.CalculateEfficiency(Task)}% відведеного часу!";
 
     }
 }

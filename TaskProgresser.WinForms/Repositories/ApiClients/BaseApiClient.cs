@@ -5,8 +5,8 @@ using System.Net.Http.Headers;
 using System.Security.Principal;
 using System.Windows;
 using TaskProgresser.WinForms.Properties;
-using TaskProgresser.Core.Services;
 using TaskProgresser.WinForms.Services;
+using TaskProgresser.Core.Helpers;
 
 namespace TaskProgresser.WinForms.Repositories.ApiClients
 {

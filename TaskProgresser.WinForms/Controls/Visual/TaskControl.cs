@@ -66,7 +66,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
             set => DateRangeControl.DateRange.SetDateRange(Start, value);
         }
 
-        public TaskAnalyticsService.TaskState TaskState { get; private set; }
+        public TaskAnalyticsController.TaskState TaskState { get; private set; }
 
         #endregion
 
@@ -164,17 +164,17 @@ namespace TaskProgresser.WinForms.Forms.UserControls
         {
             if (Task == null) return;
 
-            var taskState = TaskAnalyticsService.GetState(Task, DateTime.Now);
+            var taskState = TaskAnalyticsController.GetState(Task, DateTime.Now);
 
             if (taskState == TaskState) return;
 
             TaskState = taskState;
 
-            LBL_Status.Text = TaskAnalyticsService.TaskStateTitles[taskState];
+            LBL_Status.Text = TaskAnalyticsController.TaskStateTitles[taskState];
 
             switch (taskState)
             {
-                case TaskAnalyticsService.TaskState.NotStarted:
+                case TaskAnalyticsController.TaskState.NotStarted:
                     ResultPanel.Visible = false;
                     CHB_AddToTray.Visible = true;
                     BTN_Complete.Text = "Виконати";
@@ -183,7 +183,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
                     DateRangeControl.AutoUpdate = true;
                     LBL_Status.ForeColor = Color.Black;
                     break;
-                case TaskAnalyticsService.TaskState.InProgress:
+                case TaskAnalyticsController.TaskState.InProgress:
                     ResultPanel.Visible = false;
                     CHB_AddToTray.Visible = true;
                     BTN_Complete.Text = "Виконати";
@@ -192,7 +192,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
                     DateRangeControl.AutoUpdate = true;
                     LBL_Status.ForeColor = Color.Green;
                     break;
-                case TaskAnalyticsService.TaskState.Overduing:
+                case TaskAnalyticsController.TaskState.Overduing:
                     ResultPanel.Visible = false;
                     CHB_AddToTray.Visible = true;
                     BTN_Complete.Text = "Виконати";
@@ -201,7 +201,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
                     DateRangeControl.AutoUpdate = true;
                     LBL_Status.ForeColor = Color.Red;
                     break;
-                case TaskAnalyticsService.TaskState.CompletedOvertime:
+                case TaskAnalyticsController.TaskState.CompletedOvertime:
                     ResultPanel.Visible = true;
                     CHB_AddToTray.Visible = false;
                     BTN_Complete.Text = "Скасувати виконання";
@@ -213,7 +213,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
                     LBL_Status.ForeColor = Color.Red;
                     UpdateCompletePrecentage();
                     break;
-                case TaskAnalyticsService.TaskState.CompletedInTime:
+                case TaskAnalyticsController.TaskState.CompletedInTime:
                     ResultPanel.Visible = true;
                     CHB_AddToTray.Visible = false;
                     BTN_Complete.Text = "Скасувати виконання";
@@ -252,7 +252,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
 
         void UpdateCompletePrecentage()
         {
-            var duingPrecentage = TaskAnalyticsService.CalculateEfficiency(Task);
+            var duingPrecentage = TaskAnalyticsController.CalculateEfficiency(Task);
 
             LBL_Еfficiency.Text = $"Виконано за {duingPrecentage}% часу";
         }

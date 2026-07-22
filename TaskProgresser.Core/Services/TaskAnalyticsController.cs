@@ -7,7 +7,7 @@ using TaskProgresser.Core.Models;
 
 namespace TaskProgresser.Core.Services
 {
-    public static class TaskAnalyticsService
+    public static class TaskAnalyticsController
     {
         public enum TaskState
         {

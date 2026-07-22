@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 
 
-namespace TaskProgresser.Core.Services
+namespace TaskProgresser.Core.Helpers
 {
 
     public static class JwtHelper

@@ -40,7 +40,7 @@ namespace TaskProgresser.Api.Services
 
                 AverageCompletionPercent = Math.Round(tasks
                     .Where(t => t.IsCompleted && t.CompletedAt.HasValue)
-                    .Select(t => TaskAnalyticsService.CalculateEfficiency(t))
+                    .Select(t => TaskAnalyticsController.CalculateEfficiency(t))
                     .DefaultIfEmpty(0)
                     .Average(), 2)
             };

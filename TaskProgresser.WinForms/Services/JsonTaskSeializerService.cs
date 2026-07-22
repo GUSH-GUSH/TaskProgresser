@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 using TaskProgresser.Core.Models;
-using TaskProgresser.Core.Services;
 using System.Linq;
+using TaskProgresser.Core.Helpers;
 
 namespace TaskProgresser.WinForms.Repositories
 {
@@ -13,7 +13,7 @@ namespace TaskProgresser.WinForms.Repositories
 
         public static void SaveTasks(List<TaskItem> tasks)
         {
-            string json = TaskConverter.ToJson(tasks);
+            string json = JsonTaskConverter.ToJson(tasks);
             File.WriteAllText(FilePath, json);
         }
 
@@ -25,7 +25,7 @@ namespace TaskProgresser.WinForms.Repositories
             }
 
             string json = File.ReadAllText(FilePath);
-            return TaskConverter.FromJsonArray(json).ToList();
+            return JsonTaskConverter.FromJsonArray(json).ToList();
         }
     }
 }
