@@ -135,6 +135,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\WaitingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WaitingForm.Designer.cs">
+      <DependentUpon>WaitingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\ApiClients\AuthApiClient.cs" />
     <Compile Include="Repositories\ApiClients\BaseApiClient.cs" />
     <Compile Include="Repositories\ApiClients\StatisticsApiClient.cs" />
@@ -240,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Visual\TaskControl.resx">
       <DependentUpon>TaskControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WaitingForm.resx">
+      <DependentUpon>WaitingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -31,14 +31,16 @@ namespace TaskProgresser.WinForms.Forms
         private async void BTN_Login_Click(object sender, EventArgs e)
         {
             try {
+                WaitingForm.ShowWaitingFormWithDefaultTimeMessage(this, LOGIN_PROCESSING_MESSAGE);
                 Enabled = false;
                 Token = await _authApiClient.LoginAsync(Username, Password);
+                WaitingForm.CloseWaitingForm();
                 MessageBox.Show(this, $"Вхід в аккаунт {Username} виконано успішно!", "Вітаємо!");
                 DialogResult = DialogResult.OK;
                 Close();
             }
-            catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка входу!", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-            finally { Enabled = true; }
+            catch (Exception ex) { MessageBox.Show(this, ex.Message, LOGIN_ERROR_MESSAGE, MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            finally { WaitingForm.CloseWaitingForm(); Enabled = true; }
         }
 
         private async void BTN_Reg_Click(object sender, EventArgs e)
@@ -53,12 +55,14 @@ namespace TaskProgresser.WinForms.Forms
 
             try
             {
+                WaitingForm.ShowWaitingFormWithDefaultTimeMessage(this, REGISTER_PROCESSING_MESSAGE);
                 Enabled = false;
                 await _authApiClient.RegisterAsync(Username, Password);
+                WaitingForm.CloseWaitingForm();
                 MessageBox.Show(this, $"Аккаунт {Username} успішно створено!", "Успіх!");
                 BTN_Login_Click(this, new EventArgs());
             }
-            catch (Exception ex) { MessageBox.Show(this, ex.Message, "Помилка реєстрації!", MessageBoxButtons.OK, MessageBoxIcon.Warning); Enabled = true; }
+            catch (Exception ex) { MessageBox.Show(this, ex.Message, REGISTER_ERROR_MESSAGE, MessageBoxButtons.OK, MessageBoxIcon.Warning); WaitingForm.CloseWaitingForm(); Enabled = true; }
         }
 
         private void CHB_ShowPass_CheckedChanged(object sender, EventArgs e)
@@ -92,6 +96,12 @@ namespace TaskProgresser.WinForms.Forms
         }
 
         #endregion --- VALIDATION ---
+
+
+        public static readonly string LOGIN_PROCESSING_MESSAGE = "Вхід в аккаунт...";
+        public static readonly string LOGIN_ERROR_MESSAGE = "Помилка входу в аккаунт!";
+        public static readonly string REGISTER_PROCESSING_MESSAGE = "Реєстрація нового аккаунта...";
+        public static readonly string REGISTER_ERROR_MESSAGE = "Реєстрація нового аккаунта...";
 
     }
 }

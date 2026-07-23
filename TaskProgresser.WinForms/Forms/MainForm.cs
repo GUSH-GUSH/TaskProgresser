@@ -203,7 +203,7 @@ namespace TaskProgresser.WinForms
                 UnblockUI();
                 Invoke(new Action(() => { MessageBox.Show(this, "Додавання успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
             }
-            catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+            catch (Exception ex) { Debug.WriteLine(ex.Message); }
             finally
             {
                 UnblockUI();
@@ -222,7 +222,7 @@ namespace TaskProgresser.WinForms
                     UnblockUI();
                     Invoke(new Action(() => { MessageBox.Show(this, "Дані успішно оновлені!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
                 }
-                catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+                catch (Exception ex) { Debug.WriteLine(ex.Message); }
                 finally
                 {
                     UnblockUI();
@@ -243,7 +243,7 @@ namespace TaskProgresser.WinForms
                     UnblockUI();
                     Invoke(new Action(() => { MessageBox.Show(this, "Видалення успішне!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information); }));
                 }
-                catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+                catch (Exception ex) { Debug.WriteLine(ex.Message); }
                 finally
                 {
                     UnblockUI();
@@ -277,7 +277,7 @@ namespace TaskProgresser.WinForms
                     Invoke(new Action(() => { MessageBox.Show(this, $"Задачу додано в активні!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.None); }));
                 }
             }
-            catch (Exception ex) { } //{ Invoke(new Action(() => { MessageBox.Show(this, ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error); })); }
+            catch (Exception ex) { Debug.WriteLine(ex.Message); }
             finally { UnblockUI(); }
         }
 
@@ -372,18 +372,22 @@ namespace TaskProgresser.WinForms
             this.Show();
             this.WindowState = FormWindowState.Normal;
             this.Activate();
+            BringToFront();
         }
 
         private void BlockUI()
         {
+            WaitingForm.ShowWaitingForm(this);
             this.Enabled = false;
             this.Cursor = Cursors.WaitCursor;
         }
 
         private void UnblockUI()
         {
+            WaitingForm.CloseWaitingForm();
             this.Enabled = true;
             this.Cursor = Cursors.Default;
+            BringToFront();
         }
 
 
