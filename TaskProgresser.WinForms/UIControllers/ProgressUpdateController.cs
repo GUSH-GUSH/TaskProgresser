@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TaskProgresser.WinForms.Components.Controls;
 
-namespace TaskProgresser.WinForms.Components { 
+namespace TaskProgresser.WinForms.UIControllers
+{ 
     internal static class ProgressUpdateController
     {
 
@@ -50,7 +52,7 @@ namespace TaskProgresser.WinForms.Components {
 
         private static void UpdateProgress()
         {
-            //Debug.WriteLine($"Количество подписок: {rangeControls.Count}");
+            Debug.WriteLine($"Количество подписок: {rangeControls.Count}");
             foreach (var control in rangeControls) control.UpdateValue(DateTime.Now);
         }
 

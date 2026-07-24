@@ -48,7 +48,7 @@
             this.CHRT_CompletedTasks = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CHRT_ActiveTasks = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.BTN_Update = new System.Windows.Forms.Button();
-            this.PBWP_AveragePercent = new TaskProgresser.WinForms.Controls.ProgressBarWithPrecent();
+            this.PBWP_AveragePercent = new TaskProgresser.WinForms.Components.Controls.ProgressBarWithPrecent();
             GPBX_Header = new System.Windows.Forms.GroupBox();
             LBL_CompletedTitle = new System.Windows.Forms.Label();
             LBL_ActiveTitle = new System.Windows.Forms.Label();
@@ -298,7 +298,7 @@
         #endregion
         private System.Windows.Forms.Label LBL_ActiveChartTitle;
         private System.Windows.Forms.Label LBL_CompletedChartActive;
-        private Controls.ProgressBarWithPrecent PBWP_AveragePercent;
+        private Components.Controls.ProgressBarWithPrecent PBWP_AveragePercent;
         private System.Windows.Forms.Label LBL_AvarageTitle;
         private System.Windows.Forms.TableLayoutPanel TableLayoutPanel;
         private System.Windows.Forms.Button BTN_Update;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaskProgresser.Core.Models;
 
-namespace TaskProgresser.WinForms.Services
+namespace TaskProgresser.WinForms.UIControllers
 {
     public class TaskFilterController
     {

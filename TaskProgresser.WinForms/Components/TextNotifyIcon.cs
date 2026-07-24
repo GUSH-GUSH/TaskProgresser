@@ -7,9 +7,9 @@ using System.Text;
 using System.Windows.Forms;
 using TaskProgresser.WinForms.Helpers;
 
-namespace TaskProgresser.WinForms
+namespace TaskProgresser.WinForms.Components
 {
-    public class DynamicTextNotifyIcon : Component
+    public class TextNotifyIcon : Component
     {
 
         #region --- FIELDS ---
@@ -17,7 +17,7 @@ namespace TaskProgresser.WinForms
         private readonly NotifyIcon _notifyIcon;
 
         private string _displayText = "0";
-        private Font _font = IconFactory.DefaultFont;
+        private Font _font;
         private Size _size = IconFactory.DefaultSize;
         private Color _textColor = Color.White;
         private Color _backgroundColor = Color.Transparent;
@@ -57,7 +57,7 @@ namespace TaskProgresser.WinForms
         [Description("Текст, отображаемый при наведении")]
         public string HeaderText {
             get => _notifyIcon.Text;
-            set => _notifyIcon.Text = value;// + _instanceSuffix;
+            set => _notifyIcon.Text = value;
         }
 
         [Description("Текст, который будет отображаться на иконке")]
@@ -80,7 +80,9 @@ namespace TaskProgresser.WinForms
             get => _font;
             set
             {
-                _font = value ?? IconFactory.DefaultFont;
+                _font?.Dispose();
+                _font = (value ?? IconFactory.DefaultFont).Clone() as Font;
+
                 UpdateIcon();
             }
         }
@@ -98,7 +100,7 @@ namespace TaskProgresser.WinForms
 
         #region --- SETUP ---
 
-        public DynamicTextNotifyIcon()
+        public TextNotifyIcon()
         {
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Visible = false;
@@ -108,15 +110,32 @@ namespace TaskProgresser.WinForms
             };
             _notifyIcon.DoubleClick += (o, e) => DoubleClick?.Invoke(o, e);
             
-            
+            Font = IconFactory.DefaultFont;
+
             HeaderText = GetHashCode().ToString();
 
             UpdateIcon();
         }
 
-        public DynamicTextNotifyIcon(IContainer container) : this()
+        public TextNotifyIcon(IContainer container) : this()
         {
             container.Add(this);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // ПРАВИЛЬНО: Вызываем Dispose() у всех внутренних объектов, которые сами являются IDisposable.
+                if (_notifyIcon != null)
+                {
+                    _notifyIcon.Visible = false;
+                    _notifyIcon.Dispose();
+                }
+                _font?.Dispose();
+            }
+            // Обязательно базовый Dispose
+            base.Dispose(disposing);
         }
 
         #endregion
@@ -126,20 +145,8 @@ namespace TaskProgresser.WinForms
 
         private void UpdateIcon()
         {
-            //if (_notifyIcon?.Icon == null) return;
             _notifyIcon.Icon?.Dispose();
             _notifyIcon.Icon = IconFactory.GetIcon(_displayText, Font, _size, _textColor, _backgroundColor);
-        }
-
-        #endregion
-
-
-        #region --- DISPOSE ---
-
-        protected new void Dispose()
-        {
-            _notifyIcon.Visible = false;
-            base.Dispose();
         }
 
         #endregion

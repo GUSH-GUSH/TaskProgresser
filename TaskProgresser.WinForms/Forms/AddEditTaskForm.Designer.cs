@@ -1,7 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using TaskProgresser.WinForms.Components.Controls;
 
-namespace CourseWork.Forms
+namespace TaskProgresser.WinForms.Forms
 {
 
     partial class AddEditTaskForm
@@ -40,7 +41,7 @@ namespace CourseWork.Forms
             this.lblEndDate = new System.Windows.Forms.Label();
             this.Lbl_CompletedAt = new System.Windows.Forms.Label();
             this.LBL_Еfficiency = new System.Windows.Forms.Label();
-            this.DateRangeControl = new TaskProgresser.WinForms.DateRangeControl();
+            this.DateRangeControl = new TaskProgresser.WinForms.Components.Controls.DateRangeControl();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -195,7 +196,7 @@ namespace CourseWork.Forms
 
         }
         private ErrorProvider ErrorProvider;
-        private TaskProgresser.WinForms.DateRangeControl DateRangeControl;
+        private DateRangeControl DateRangeControl;
         private Label lblEndDate;
         private Label lblStartDate;
         private Label Lbl_CompletedAt;

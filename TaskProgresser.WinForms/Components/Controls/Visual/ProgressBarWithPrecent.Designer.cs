@@ -1,4 +1,4 @@
-﻿namespace TaskProgresser.WinForms.Controls
+﻿namespace TaskProgresser.WinForms.Components.Controls
 {
     partial class ProgressBarWithPrecent
     {

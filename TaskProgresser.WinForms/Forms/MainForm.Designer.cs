@@ -1,4 +1,4 @@
-﻿namespace TaskProgresser.WinForms
+﻿namespace TaskProgresser.WinForms.Forms
 {
     partial class MainForm
     {
@@ -49,8 +49,8 @@
             this.TabControl = new System.Windows.Forms.TabControl();
             this.TabPage_Active = new System.Windows.Forms.TabPage();
             this.FlowPanel_Active = new System.Windows.Forms.FlowLayoutPanel();
-            this.TSKCNTRL_Bakalavr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
-            this.TSKCTRL_Semestr = new TaskProgresser.WinForms.Forms.UserControls.TaskControl();
+            this.TSKCNTRL_Bakalavr = new TaskProgresser.WinForms.Components.Controls.TaskControl();
+            this.TSKCTRL_Semestr = new TaskProgresser.WinForms.Components.Controls.TaskControl();
             this.TabPage_Completed = new System.Windows.Forms.TabPage();
             this.FlowPanel_Completed = new System.Windows.Forms.FlowLayoutPanel();
             ToolStripMenuItem_OpenMainWindow = new System.Windows.Forms.ToolStripMenuItem();
@@ -360,8 +360,8 @@
         private System.Windows.Forms.TabControl TabControl;
         private System.Windows.Forms.TabPage TabPage_Active;
         private System.Windows.Forms.FlowLayoutPanel FlowPanel_Active;
-        private Forms.UserControls.TaskControl TSKCNTRL_Bakalavr;
-        private Forms.UserControls.TaskControl TSKCTRL_Semestr;
+        private Components.Controls.TaskControl TSKCNTRL_Bakalavr;
+        private Components.Controls.TaskControl TSKCTRL_Semestr;
         private System.Windows.Forms.TabPage TabPage_Completed;
         private System.Windows.Forms.FlowLayoutPanel FlowPanel_Completed;
         private System.Windows.Forms.Button BTN_Logout;
@@ -370,4 +370,3 @@
         private System.Windows.Forms.Button BTN_Statistics;
     }
 }
-

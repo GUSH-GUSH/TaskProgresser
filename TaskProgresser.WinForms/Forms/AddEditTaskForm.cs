@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 using TaskProgresser.Core.Models;
 using TaskProgresser.Core.Services;
+using TaskProgresser.WinForms.Components.Controls;
 
 
-namespace CourseWork.Forms
+namespace TaskProgresser.WinForms.Forms
 {
     public partial class AddEditTaskForm : Form
     {

@@ -1,4 +1,6 @@
-﻿namespace TaskProgresser.WinForms.Forms.UserControls
+﻿using TaskProgresser.WinForms.Components;
+
+namespace TaskProgresser.WinForms.Components.Controls
 {
     partial class TaskControl
     {
@@ -6,19 +8,6 @@
         /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary> 
-        /// Освободить все используемые ресурсы.
-        /// </summary>
-        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
 
         #region Код, автоматически созданный конструктором компонентов
 
@@ -39,7 +28,7 @@
             this.BTN_Delete = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
             this.NUD_Precision = new System.Windows.Forms.NumericUpDown();
-            this.DateRangeControl = new TaskProgresser.WinForms.DateRangeControl();
+            this.DateRangeControl = new TaskProgresser.WinForms.Components.Controls.DateRangeControl();
             this.LBL_Status = new System.Windows.Forms.Label();
             LBL_Accurancy = new System.Windows.Forms.Label();
             this.GroupBox.SuspendLayout();
@@ -211,7 +200,7 @@
             this.DateRangeControl.Size = new System.Drawing.Size(521, 90);
             this.DateRangeControl.TabIndex = 2;
             this.DateRangeControl.TabStop = false;
-            this.DateRangeControl.IconClick += new System.Action(this.DateRangeControl_IconClick);
+            this.DateRangeControl.OnIconClick += new System.Action(this.DateRangeControl_IconClick);
             // 
             // LBL_Status
             // 

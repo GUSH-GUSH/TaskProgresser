@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DateRangeControl = new TaskProgresser.WinForms.DateRangeControl();
+            this.DateRangeControl = new TaskProgresser.WinForms.Components.Controls.DateRangeControl();
             this.Title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -79,7 +79,7 @@
 
         #endregion
 
-        private DateRangeControl DateRangeControl;
+        private Components.Controls.DateRangeControl DateRangeControl;
         private System.Windows.Forms.Label Title;
     }
 }

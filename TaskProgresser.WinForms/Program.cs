@@ -1,12 +1,9 @@
 ﻿using AutoUpdaterDotNET;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+
 using TaskProgresser.WinForms.Services;
+using TaskProgresser.WinForms.Forms;
 
 namespace TaskProgresser.WinForms
 {
@@ -29,8 +26,14 @@ namespace TaskProgresser.WinForms
             while (!Update())
                 if (MessageBox.Show("Програма не оновилася. Стара версія більше не підтримується!\nЧи бажаєте ви закрити програму?", "Неможливо іти далі!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     return;
+            
+            #if DEBUG
+            Application.Run(new MainForm());
+            #else
             try { Application.Run(new MainForm()); }
             catch (Exception ex){ MessageBox.Show(text:ex.Message, caption:"Критична помилка!"); Application.Exit(); }
+            #endif
+
         }
 
         //FIX: Move autoupdate logic to a separate class

@@ -1,14 +1,13 @@
-﻿using CourseWork.Forms;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using TaskProgresser.WinForms.Controls;
 using TaskProgresser.Core.Models;
 using TaskProgresser.Core.Services;
-using TaskProgresser.WinForms.Components;
+using TaskProgresser.WinForms.Forms;
+using TaskProgresser.WinForms.UIControllers;
 
-namespace TaskProgresser.WinForms.Forms.UserControls
+namespace TaskProgresser.WinForms.Components.Controls
 {
     public partial class TaskControl : ClickableUserControl, IDisposable
     {
@@ -86,7 +85,7 @@ namespace TaskProgresser.WinForms.Forms.UserControls
         private void TaskControl_Load(object sender, EventArgs e)
         {
             NUD_Precision.Value = DateRangeControl.Precision;
-            DateRangeControl.HideIcon += () =>
+            DateRangeControl.OnHideIcon += () =>
             {
                 CHB_AddToTray.Checked = false;
             };
@@ -105,10 +104,16 @@ namespace TaskProgresser.WinForms.Forms.UserControls
             ApplyVisualState();
         }
 
-        public new void Dispose() {
-            ProgressUpdateController.Tick -= ApplyVisualState;
-            base.Dispose();
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ProgressUpdateController.Tick -= ApplyVisualState;
+                components?.Dispose();//  -- Очищается в базовом классе ClickableUserControl.Dispose()
+            }
+            base.Dispose(disposing);
         }
+
         #endregion
 
         #region --- EVENTS HANDLERS ---
@@ -226,28 +231,6 @@ namespace TaskProgresser.WinForms.Forms.UserControls
                     UpdateCompletePrecentage();
                     break;
             }
-            /*
-            if (Task?.IsCompleted ?? false) // CHACK: Task may be not null
-            {
-                // --- РЕЖИМ ВИКОНАНОЇ ЗАДАЧІ ЗАДАЧИ ---
-                ResultPanel.Visible = true;
-                CHB_AddToTray.Visible = false;
-                BTN_Complete.Text = "Скасувати виконання";
-                BTN_Complete.ForeColor = Color.Black;
-                DateRangeControl.AutoUpdate = false;
-                DateRangeControl.EnableIcon = false;
-                Lbl_CompletedAt.Text = $"Дата виконання: {Task.CompletedAt?.ToString("g")}";
-                UpdateCompletePrecentage();
-            }
-            else
-            {
-                // --- РЕЖИМ АКТИВНОЇ ЗАДАЧІ ---
-                ResultPanel.Visible = false;
-                CHB_AddToTray.Visible = true;
-                BTN_Complete.Text = "Виконати";
-                BTN_Complete.ForeColor = Color.Green;
-                DateRangeControl.AutoUpdate = true;
-            }*/
         }
 
         void UpdateCompletePrecentage()

@@ -1,34 +1,17 @@
-﻿using CourseWork.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Diagnostics.SymbolStore;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Text;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TaskProgresser.WinForms.Forms;
-using TaskProgresser.WinForms.Forms.UserControls;
-using TaskProgresser.WinForms.Repositories.ApiClients;
-using TaskProgresser.WinForms.Components;
-
 using TaskProgresser.Core.Models;
 using TaskProgresser.Core.Services;
+using TaskProgresser.WinForms.Components.Controls;
+using TaskProgresser.WinForms.Forms;
+using TaskProgresser.WinForms.Repositories.ApiClients;
+using TaskProgresser.WinForms.UIControllers;
 
-
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
-using System.Windows.Interop;
-using System.Net;
-using System.Web;
-
-namespace TaskProgresser.WinForms
+namespace TaskProgresser.WinForms.Forms
 {
     public partial class MainForm : Form
     {
@@ -355,10 +338,10 @@ namespace TaskProgresser.WinForms
             FlowPanel_Completed.SuspendLayout();
 
             while (FlowPanel_Active.Controls.Count > 0)
-                FlowPanel_Active.Controls[0].Dispose();
+                FlowPanel_Active.Controls[0]?.Dispose();
 
             while (FlowPanel_Completed.Controls.Count > 0)
-                FlowPanel_Completed.Controls[0].Dispose();
+                FlowPanel_Completed.Controls[0]?.Dispose();
 
             FlowPanel_Active.Controls.Clear();
             FlowPanel_Completed.Controls.Clear();

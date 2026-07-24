@@ -2,12 +2,12 @@
 using System.Drawing;
 using System.Windows.Forms;
 using TaskProgresser.Core.Models;
-using TaskProgresser.WinForms.Controls;
-using TaskProgresser.WinForms.Components;
 using TaskProgresser.WinForms.Helpers;
+using TaskProgresser.WinForms.UIControllers;
+
 using WinFormsExtensions;
 
-namespace TaskProgresser.WinForms
+namespace TaskProgresser.WinForms.Components.Controls
 {
     public partial class DateRangeControl : ClickableUserControl
     {
@@ -105,12 +105,12 @@ namespace TaskProgresser.WinForms
 
         public bool EnableIcon {
             get => _enableIcon;
-            set => _enableIcon = PrecentIcon.Visible = value;
+            set => _enableIcon = TextPrecentIcon.Visible = value;
         }
 
         public bool EnableEdit {
             get => _enableEdit;
-            set => _enableEdit = StartDateTimePicker.Enabled = EndDateTimePicker.Enabled = value;
+            set => _enableEdit = DTP_Start.Enabled = DTP_End.Enabled = value;
         }
 
         public bool AutoUpdate
@@ -134,15 +134,14 @@ namespace TaskProgresser.WinForms
         {
             InitializeComponent();
             pickersController = new DateTimePickersRangeController(
-                StartDateTimePicker,
-                EndDateTimePicker,
+                DTP_Start,
+                DTP_End,
                 DefaultDateRange,
                 TaskProgresser.Core.Extensions.Truncate.TruncateLevel.Minute
             );
             pickersController.OnValueChanged += (o, a) => this.OnValueChanged?.Invoke(this, a);
 
-
-            PrecentIcon.Font = IconFactory.DefaultFont;
+            TextPrecentIcon.Font = IconFactory.DefaultFont;
 
             EnableIcon = false;
             EnableEdit = false;
@@ -155,14 +154,17 @@ namespace TaskProgresser.WinForms
         private void DateRangeControl_Load(object sender, EventArgs e)
         {
             AutoUpdate = true;
-            this.Disposed += DateRangeControl_Disposed;
-            //ProgressBarColor = ProgressBarColor.Red;
         }
 
-        private void DateRangeControl_Disposed(object sender, EventArgs e)
+        protected override void Dispose(bool disposing)
         {
-            AutoUpdate = false;
-            this.Disposed -= DateRangeControl_Disposed;
+            if (disposing)
+            {
+                AutoUpdate = false;
+                pickersController?.Dispose();
+                components?.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
         #endregion
@@ -205,10 +207,10 @@ namespace TaskProgresser.WinForms
                 (int)(Fract * MainProgressBar.Maximum),
                 MainProgressBar.Maximum
             );
-            PrecentLabel.Text = $"{Precent}%";
+            LBL_Precent.Text = $"{Precent}%";
 
-            if ( Fract > 1 ) PrecentLabel.ForeColor = Color.Red;
-            else PrecentLabel.ForeColor = Color.Black;
+            if ( Fract > 1 ) LBL_Precent.ForeColor = Color.Red;
+            else LBL_Precent.ForeColor = Color.Black;
 
             UpdatePrecentLabelLocation();
 
@@ -217,17 +219,17 @@ namespace TaskProgresser.WinForms
 
         private void UpdatePrecentLabelLocation()
         {
-            PrecentLabel.Location = new Point(
-                x: (int)(MainProgressBar.Location.X - PrecentLabel.Size.Width / 2 + MainProgressBar.Size.Width * Math.Min(fract, 1.0)),
-                y: PrecentLabel.Location.Y
+            LBL_Precent.Location = new Point(
+                x: (int)(MainProgressBar.Location.X - LBL_Precent.Size.Width / 2 + MainProgressBar.Size.Width * Math.Min(fract, 1.0)),
+                y: LBL_Precent.Location.Y
             );
         }
 
         public void UpdatePrecentIcon()
         {
             double precent = Precent;
-            PrecentIcon.HeaderText = $"{RangeName}: {precent}%\n\n";
-            PrecentIcon.DisplayText = Math.Round(precent, 1).ToString();
+            TextPrecentIcon.HeaderText = $"{RangeName}: {precent}%\n\n";
+            TextPrecentIcon.DisplayText = Math.Round(precent, 1).ToString();
         }
 
         #endregion
@@ -236,10 +238,10 @@ namespace TaskProgresser.WinForms
         #region--- Events Handlers ---
 
         private void DateRangeControl_Resize(object sender, EventArgs e) => UpdatePrecentLabelLocation();
-        private void PrecentIcon_Click(object sender, EventArgs e) => IconClick?.Invoke();
-        private void PrecentIcon_DoubleClick(object sender, EventArgs e) => IconDoubleClick?.Invoke();
-        private void PrecentIconMenuItem_HideIcon_Click(object sender, EventArgs e) => HideIcon?.Invoke();
-        private void PrecentIconMenuItem_ShowFlyoutForm_Click(object sender, EventArgs e) => IconClick?.Invoke();
+        private void PrecentIcon_Click(object sender, EventArgs e) => OnIconClick?.Invoke();
+        private void PrecentIcon_DoubleClick(object sender, EventArgs e) => OnIconDoubleClick?.Invoke();
+        private void PrecentIconMenuItem_HideIcon_Click(object sender, EventArgs e) => OnHideIcon?.Invoke();
+        private void PrecentIconMenuItem_ShowFlyoutForm_Click(object sender, EventArgs e) => OnIconClick?.Invoke();
         
         #endregion
 
@@ -254,9 +256,9 @@ namespace TaskProgresser.WinForms
         #region --- events ---
 
         public event EventHandler OnValueChanged;
-        public event Action IconClick;
-        public event Action IconDoubleClick;
-        public event Action HideIcon;
+        public event Action OnIconClick;
+        public event Action OnIconDoubleClick;
+        public event Action OnHideIcon;
 
         #endregion
 
