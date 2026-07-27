@@ -42,17 +42,18 @@ namespace TaskProgresser.WinForms.Forms
 
         static private WaitingForm _waitingForm = new WaitingForm();
 
-        static public void ShowWaitingForm(Form owner) { ShowWaitingFormWithDefaultTimeMessage(owner, DEFAULT_MESSAGE); }
+        static public void ShowWaitingForm(Form owner, bool blockOwner = true) { ShowWaitingFormWithDefaultTimeMessage(owner, DEFAULT_MESSAGE, blockOwner); }
 
-        static public void ShowWaitingForm(Form owner, string text)
+        static public void ShowWaitingForm(Form owner, string text, bool blockOwner = true)
         {
+            if(blockOwner) _waitingForm.BlockOwnerForm();
             _waitingForm.Owner = owner;
             _waitingForm.Text = text;
             _waitingForm.Show();
             _waitingForm.BringToFront();
         }
         
-        static public void ShowWaitingFormWithDefaultTimeMessage(Form owner, string text)
+        static public void ShowWaitingFormWithDefaultTimeMessage(Form owner, string text, bool blockOwner = true)
         {
             ShowWaitingForm(owner, $"{text}\n{DEFAULT_TIME_MESSAGE}");
         }
@@ -60,8 +61,27 @@ namespace TaskProgresser.WinForms.Forms
         static public void CloseWaitingForm()
         {
             _waitingForm.Hide();
+            _waitingForm.UnblockOwnerForm();
             _waitingForm.Owner = null;
             _waitingForm.Text = null;
         }
+
+        private void BlockOwnerForm()
+        {
+            var owner = _waitingForm.Owner;
+            if(owner == null) return;
+            owner.Enabled = false;
+            owner.Cursor = Cursors.WaitCursor;
+        }
+
+        private void UnblockOwnerForm()
+        {
+            var owner = _waitingForm.Owner;
+            if(owner == null) return;
+            owner.Enabled = true;
+            owner.Cursor = Cursors.Default;
+            owner.BringToFront();
+        }
+
     }
 }

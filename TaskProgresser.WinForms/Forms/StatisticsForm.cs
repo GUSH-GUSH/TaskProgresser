@@ -16,6 +16,7 @@ namespace TaskProgresser.WinForms.Forms
     public partial class StatisticsForm : Form
     {
         private StatisticsApiClient _statisticsApiClient;
+        private bool IsLoading { get => !this.Enabled; }
 
         #region --- Setup ---
 
@@ -28,7 +29,9 @@ namespace TaskProgresser.WinForms.Forms
 
         private async void StatisticsForm_Load(object sender, EventArgs e)
         {
+            this.Enabled = false;
             await UpdateStatistics();
+            this.Enabled = true;
         }
 
         #endregion --- Setup  ---
@@ -221,9 +224,11 @@ namespace TaskProgresser.WinForms.Forms
 
         public async Task UpdateStatistics()
         {
+            Invoke(new Action<Form, bool>(WaitingForm.ShowWaitingForm), this, true);
             var statistics = await LoadStatistics();
             Invoke(new Action<TaskStatisticsDto>(RenderStatistics), statistics);
-       }
+            Invoke(new Action(WaitingForm.CloseWaitingForm));
+        }
 
         private async void BTN_Update_Click(object sender, EventArgs e)
         {
@@ -233,6 +238,11 @@ namespace TaskProgresser.WinForms.Forms
         private void StatisticsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             BaseApiClient.OnUnathorized -= HandleUnauthorized;
+        }
+
+        private void StatisticsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(IsLoading) e.Cancel = true;
         }
     }
 }

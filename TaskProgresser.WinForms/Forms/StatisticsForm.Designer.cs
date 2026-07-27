@@ -283,6 +283,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Статистика";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StatisticsForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StatisticsForm_FormClosed);
             this.Load += new System.EventHandler(this.StatisticsForm_Load);
             GPBX_Header.ResumeLayout(false);
