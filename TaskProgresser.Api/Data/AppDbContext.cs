@@ -12,6 +12,7 @@ namespace TaskProgresser.Api.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<TaskItem> Tasks { get; set; }
+        public DbSet<EventItem> Events { get; set; }
 
         #endregion --- TABLES ---
 
