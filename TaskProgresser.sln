@@ -69,6 +69,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Issues", "Issues", "{33AF55
 		Markdowns\Issues.md = Markdowns\Issues.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskProgresser.MAUI_Blazor", "TaskProgresser.MAUI_Blazor\TaskProgresser.MAUI_Blazor.csproj", "{E4D66BA1-55F7-4DE9-B36D-B3F18C6DC9CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,11 @@ Global
 		{C34D4943-EC0A-4D5A-A58B-C93B88FB0E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C34D4943-EC0A-4D5A-A58B-C93B88FB0E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C34D4943-EC0A-4D5A-A58B-C93B88FB0E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D66BA1-55F7-4DE9-B36D-B3F18C6DC9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D66BA1-55F7-4DE9-B36D-B3F18C6DC9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D66BA1-55F7-4DE9-B36D-B3F18C6DC9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D66BA1-55F7-4DE9-B36D-B3F18C6DC9CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D66BA1-55F7-4DE9-B36D-B3F18C6DC9CE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
